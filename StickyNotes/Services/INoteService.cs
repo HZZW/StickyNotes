@@ -13,13 +13,13 @@ namespace StickyNotes.Services
         /// 推送
         /// </summary>
         /// <returns></returns>
-        void PushAsync(Note conta);
+        void Push(Note conta);
 
         /// <summary>
         /// 拉取
         /// </summary>
         /// <returns></returns>
-        Note PullAsync();
+        Note Pull();
 
     }
 }

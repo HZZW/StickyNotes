@@ -21,7 +21,7 @@ namespace StickyNotes.Services
         /// </summary>
         /// <param name="note">所有文本信息</param>
         /// <returns></returns>
-        public void PushAsync(Note note)
+        public void Push(Note note)
         {
             using (FileStream stream = new FileStream(Properties.Instance.SavePath, FileMode.Create))
             {
@@ -35,7 +35,7 @@ namespace StickyNotes.Services
         /// 拉取
         /// </summary>
         /// <returns>所有文本信息</returns>
-        public Note PullAsync()
+        public Note Pull()
         {
             using (FileStream stream = new FileStream(Properties.Instance.SavePath, FileMode.Open))
             {

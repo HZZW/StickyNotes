@@ -20,9 +20,9 @@ namespace StickyNotes.UnitTest.Services
                     Author = "LeeWG",
                     Title = "it is easy title"};
             var noteService = new LocalNoteService();
-            noteService.PushAsync(noteToSave);
+            noteService.Push(noteToSave);
 
-            var noteGet =((noteService.PullAsync()));
+            var noteGet =((noteService.Pull()));
             Assert.AreEqual(noteToSave.Author, noteGet.Author);
             Assert.AreEqual(noteToSave.Content, noteGet.Content);
             Assert.AreEqual(noteToSave.Title, noteGet.Title);
