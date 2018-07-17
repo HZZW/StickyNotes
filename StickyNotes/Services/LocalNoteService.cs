@@ -13,27 +13,27 @@ namespace StickyNotes.Services
     /// <summary>
     /// 本地保存
     /// </summary>
-    public class LocalContactService :IContactService
+    public class LocalNoteService :INoteService
     {
         
 
-        public Task PushAsync(Contacts contacts)
+        public Task PushAsync(Note note)
         {
             IFormatter formatter = new BinaryFormatter();
             using (var stream = new FileStream("Data.dat", FileMode.Create, FileAccess.Write, FileShare.None))
             {
-                formatter.Serialize(stream, contacts);
+                formatter.Serialize(stream, note);
             }
             return null;
         }
 
-        public Task<Contacts> PullAsync()
+        public Task<Note> PullAsync()
         {
-            Task<Contacts> contacts = null;
+            Task<Note> contacts = null;
             IFormatter formatter = new BinaryFormatter();
             using (var stream = new FileStream("Data.dat", FileMode.Open, FileAccess.Read, FileShare.Read))
             {
-                contacts = formatter.Deserialize(stream) as Task<Contacts>;
+                contacts = formatter.Deserialize(stream) as Task<Note>;
             }
             return contacts;
         }

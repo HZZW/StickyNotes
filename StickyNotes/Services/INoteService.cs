@@ -7,19 +7,19 @@ using StickyNotes.Models;
 
 namespace StickyNotes.Services
 {
-    public  interface IContactService
+    public  interface INoteService
     {
         /// <summary>
         /// 推送
         /// </summary>
         /// <returns></returns>
-        Task PushAsync(Contacts conta);
+        Task PushAsync(Note conta);
 
         /// <summary>
         /// 拉取
         /// </summary>
         /// <returns></returns>
-        Task<Contacts>  PullAsync();
+        Task<Note>  PullAsync();
 
     }
 }

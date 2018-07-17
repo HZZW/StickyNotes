@@ -98,11 +98,11 @@
     <Compile Include="MainPage.xaml.cs">
       <DependentUpon>MainPage.xaml</DependentUpon>
     </Compile>
-    <Compile Include="Models\Contacts.cs" />
+    <Compile Include="Models\Note.cs" />
     <Compile Include="Properties.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
-    <Compile Include="Services\IContactService.cs" />
-    <Compile Include="Services\LocalContactService.cs" />
+    <Compile Include="Services\INoteService.cs" />
+    <Compile Include="Services\LocalNoteService.cs" />
   </ItemGroup>
   <ItemGroup>
     <AppxManifest Include="Package.appxmanifest">
