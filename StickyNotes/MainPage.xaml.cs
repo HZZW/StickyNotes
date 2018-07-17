@@ -26,5 +26,21 @@ namespace StickyNotes
         {
             this.InitializeComponent();
         }
+
+        private void RefreshButton_Click(object sender, RoutedEventArgs e) {
+
+        }
+
+        private void SaveButton_Click(object sender, RoutedEventArgs e) {
+
+        }
+
+        private void AddButton_Click(object sender, RoutedEventArgs e) {
+
+        }
+
+        private void DeleteButton_Click(object sender, RoutedEventArgs e) {
+
+        }
     }
 }
