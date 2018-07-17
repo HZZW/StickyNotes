@@ -340,6 +340,111 @@
                 </Setter.Value>
             </Setter>
         </Style>
+        <Style x:Key="CommandBarStyle" TargetType="CommandBar">
+            <Setter Property="Background"
+                    Value="{ThemeResource AppBarBackgroundThemeBrush}" />
+            <Setter Property="BorderBrush"
+                    Value="{ThemeResource AppBarBorderThemeBrush}" />
+            <Setter Property="IsTabStop"
+                    Value="False" />
+            <Setter Property="HorizontalContentAlignment"
+                    Value="Stretch" />
+            <Setter Property="VerticalContentAlignment"
+                    Value="Stretch" />
+            <Setter Property="MinHeight"
+                    Value="{ThemeResource AppBarThemeMinHeight}" />
+            <Setter Property="Template">
+                <Setter.Value>
+                    <ControlTemplate TargetType="CommandBar">
+                        <Border x:Name="LayoutRoot"
+                                Background="{TemplateBinding Background}"
+                                BorderBrush="{TemplateBinding BorderBrush}">
+                            <VisualStateManager.VisualStateGroups>
+                                <VisualStateGroup x:Name="FloatingStates">
+                                    <VisualState x:Name="FloatingVisible">
+                                        <Storyboard>
+                                            <FadeInThemeAnimation TargetName="LayoutRoot" />
+                                            <ObjectAnimationUsingKeyFrames Storyboard.TargetProperty="IsHitTestVisible"
+                                                                           Storyboard.TargetName="LayoutRoot">
+                                                <DiscreteObjectKeyFrame KeyTime="0">
+                                                    <DiscreteObjectKeyFrame.Value>
+                                                        <x:Boolean>True</x:Boolean>
+                                                    </DiscreteObjectKeyFrame.Value>
+                                                </DiscreteObjectKeyFrame>
+                                            </ObjectAnimationUsingKeyFrames>
+                                        </Storyboard>
+                                    </VisualState>
+                                    <VisualState x:Name="FloatingHidden">
+                                        <Storyboard>
+                                            <FadeOutThemeAnimation TargetName="LayoutRoot" />
+                                            <ObjectAnimationUsingKeyFrames Storyboard.TargetProperty="IsHitTestVisible"
+                                                                           Storyboard.TargetName="LayoutRoot">
+                                                <DiscreteObjectKeyFrame KeyTime="0">
+                                                    <DiscreteObjectKeyFrame.Value>
+                                                        <x:Boolean>False</x:Boolean>
+                                                    </DiscreteObjectKeyFrame.Value>
+                                                </DiscreteObjectKeyFrame>
+                                            </ObjectAnimationUsingKeyFrames>
+                                        </Storyboard>
+                                    </VisualState>
+                                </VisualStateGroup>
+                                <VisualStateGroup x:Name="DockPositions">
+                                    <VisualState x:Name="Top">
+                                        <Storyboard>
+                                            <ObjectAnimationUsingKeyFrames Storyboard.TargetName="LayoutRoot"
+                                                                           Storyboard.TargetProperty="BorderThickness">
+                                                <DiscreteObjectKeyFrame KeyTime="0"
+                                                                        Value="{ThemeResource AppBarTopBorderThemeThickness}" />
+                                            </ObjectAnimationUsingKeyFrames>
+                                            <ObjectAnimationUsingKeyFrames Storyboard.TargetName="LayoutRoot"
+                                                                           Storyboard.TargetProperty="Padding">
+                                                <DiscreteObjectKeyFrame KeyTime="0"
+                                                                        Value="{ThemeResource AppBarTopThemePadding}" />
+                                            </ObjectAnimationUsingKeyFrames>
+                                        </Storyboard>
+                                    </VisualState>
+                                    <VisualState x:Name="Bottom">
+                                        <Storyboard>
+                                            <ObjectAnimationUsingKeyFrames Storyboard.TargetName="LayoutRoot"
+                                                                           Storyboard.TargetProperty="BorderThickness">
+                                                <DiscreteObjectKeyFrame KeyTime="0"
+                                                                        Value="{ThemeResource AppBarBottomBorderThemeThickness}" />
+                                            </ObjectAnimationUsingKeyFrames>
+                                            <ObjectAnimationUsingKeyFrames Storyboard.TargetName="LayoutRoot"
+                                                                           Storyboard.TargetProperty="Padding">
+                                                <DiscreteObjectKeyFrame KeyTime="0"
+                                                                        Value="{ThemeResource AppBarBottomThemePadding}" />
+                                            </ObjectAnimationUsingKeyFrames>
+                                        </Storyboard>
+                                    </VisualState>
+                                </VisualStateGroup>
+                            </VisualStateManager.VisualStateGroups>
+                            <Grid>
+                                <!-- Containers for Primary & Secondary Items -->
+                                <ItemsControl x:Name="SecondaryItemsControl"
+                                              HorizontalAlignment="Left"
+                                              IsTabStop="False">
+                                    <ItemsControl.ItemsPanel>
+                                        <ItemsPanelTemplate>
+                                            <StackPanel Orientation="Horizontal" />
+                                        </ItemsPanelTemplate>
+                                    </ItemsControl.ItemsPanel>
+                                </ItemsControl>
+                                <ItemsControl x:Name="PrimaryItemsControl"
+                                              HorizontalAlignment="Right"
+                                              IsTabStop="False">
+                                    <ItemsControl.ItemsPanel>
+                                        <ItemsPanelTemplate>
+                                            <StackPanel Orientation="Horizontal" />
+                                        </ItemsPanelTemplate>
+                                    </ItemsControl.ItemsPanel>
+                                </ItemsControl>
+                            </Grid>
+                        </Border>
+                    </ControlTemplate>
+                </Setter.Value>
+            </Setter>
+        </Style>
     </Page.Resources>
     <Grid Background="White">
         <Grid.RowDefinitions>
@@ -416,7 +521,8 @@
         <CommandBar Grid.Row="0"
                     OverflowButtonVisibility="Visible"
                     IsOpen="False"
-                    DefaultLabelPosition="Right">
+                    DefaultLabelPosition="Right"
+                    Style="{StaticResource CommandBarStyle}">
             <AppBarButton Icon="Refresh"
                           Label="Refresh"
                           Name="RefreshButton"
