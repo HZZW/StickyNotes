@@ -6,6 +6,7 @@ using System.Runtime.Serialization;
 using System.Runtime.Serialization.Formatters.Binary;
 using System.Text;
 using System.Threading.Tasks;
+using Windows.Storage;
 using StickyNotes.Models;
 
 namespace StickyNotes.Services
@@ -15,27 +16,33 @@ namespace StickyNotes.Services
     /// </summary>
     public class LocalNoteService :INoteService
     {
-        
-
-        public Task PushAsync(Note note)
+        /// <summary>
+        /// 推送
+        /// </summary>
+        /// <param name="note">所有文本信息</param>
+        /// <returns></returns>
+        public void PushAsync(Note note)
         {
-            IFormatter formatter = new BinaryFormatter();
-            using (var stream = new FileStream("Data.dat", FileMode.Create, FileAccess.Write, FileShare.None))
+            using (FileStream stream = new FileStream(Properties.Instance.SavePath, FileMode.Create))
             {
-                formatter.Serialize(stream, note);
+                BinaryFormatter binaryFormatter = new BinaryFormatter();
+                binaryFormatter.Serialize(stream, note);
             }
-            return null;
+            
+            
         }
-
-        public Task<Note> PullAsync()
+        /// <summary>
+        /// 拉取
+        /// </summary>
+        /// <returns>所有文本信息</returns>
+        public Note PullAsync()
         {
-            Task<Note> contacts = null;
-            IFormatter formatter = new BinaryFormatter();
-            using (var stream = new FileStream("Data.dat", FileMode.Open, FileAccess.Read, FileShare.Read))
+            using (FileStream stream = new FileStream(Properties.Instance.SavePath, FileMode.Open))
             {
-                contacts = formatter.Deserialize(stream) as Task<Note>;
+                BinaryFormatter binaryFormatter = new BinaryFormatter();
+                Note note = binaryFormatter.Deserialize(stream) as Note;
+                return note;
             }
-            return contacts;
         }
     }
 }
