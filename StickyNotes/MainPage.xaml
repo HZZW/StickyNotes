@@ -340,7 +340,7 @@
                 </Setter.Value>
             </Setter>
         </Style>
-        <Style x:Key="CommandBarStyle" TargetType="CommandBar">
+        <!--<Style x:Key="CommandBarStyle" TargetType="CommandBar">
             <Setter Property="Background"
                     Value="{ThemeResource AppBarBackgroundThemeBrush}" />
             <Setter Property="BorderBrush"
@@ -420,7 +420,7 @@
                                 </VisualStateGroup>
                             </VisualStateManager.VisualStateGroups>
                             <Grid>
-                                <!-- Containers for Primary & Secondary Items -->
+                                --><!-- Containers for Primary & Secondary Items --><!--
                                 <ItemsControl x:Name="SecondaryItemsControl"
                                               HorizontalAlignment="Left"
                                               IsTabStop="False">
@@ -444,7 +444,7 @@
                     </ControlTemplate>
                 </Setter.Value>
             </Setter>
-        </Style>
+        </Style>-->
     </Page.Resources>
     <Grid Background="White">
         <Grid.RowDefinitions>
@@ -521,8 +521,7 @@
         <CommandBar Grid.Row="0"
                     OverflowButtonVisibility="Visible"
                     IsOpen="False"
-                    DefaultLabelPosition="Right"
-                    Style="{StaticResource CommandBarStyle}">
+                    DefaultLabelPosition="Right">
             <AppBarButton Icon="Refresh"
                           Label="Refresh"
                           Name="RefreshButton"
