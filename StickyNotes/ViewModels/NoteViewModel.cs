@@ -70,6 +70,7 @@ namespace StickyNotes.ViewModels
             }
         }));
 
+
         public event PropertyChangedEventHandler PropertyChanged;
 
         [NotifyPropertyChangedInvocator]
@@ -77,7 +78,5 @@ namespace StickyNotes.ViewModels
         {
             PropertyChanged?.Invoke(this, new PropertyChangedEventArgs(propertyName));
         }
-        
-
     }
 }
