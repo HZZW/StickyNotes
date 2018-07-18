@@ -16,6 +16,7 @@ using Windows.UI.Xaml.Navigation;
 using Windows.UI.Notifications;
 using Microsoft.Toolkit.Uwp.Notifications; // Notifications library
 using Microsoft.QueryStringDotNET; // QueryString.NET
+using Windows.ApplicationModel.Core;
 
 // https://go.microsoft.com/fwlink/?LinkId=402352&clcid=0x804 上介绍了“空白页”项模板
 
@@ -29,6 +30,7 @@ namespace StickyNotes
         public MainPage()
         {
             this.InitializeComponent();
+            
         }
 
         private void RefreshButton_Click(object sender, RoutedEventArgs e) {
