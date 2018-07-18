@@ -1,0 +1,134 @@
+﻿<Page x:Class="StickyNotes.SettingPage"
+      xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+      xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+      xmlns:local="using:StickyNotes"
+      xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+      xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+      Background="{ThemeResource ApplicationPageBackgroundThemeBrush}"
+      MaxHeight="700"
+      MaxWidth="400">
+    <Page.Resources>
+        <Style x:Key="BaseTextBlockStyle"
+               TargetType="TextBlock">
+            <Setter Property="FontFamily"
+                    Value="Segoe UI" />
+            <Setter Property="FontWeight"
+                    Value="SemiBold" />
+            <Setter Property="FontSize"
+                    Value="15" />
+            <Setter Property="TextTrimming"
+                    Value="None" />
+            <Setter Property="TextWrapping"
+                    Value="Wrap" />
+            <Setter Property="LineStackingStrategy"
+                    Value="MaxHeight" />
+            <Setter Property="TextLineBounds"
+                    Value="Full" />
+        </Style>
+        <Style x:Key="TitleTextBlockStyle"
+               TargetType="TextBlock"
+               BasedOn="{StaticResource BaseTextBlockStyle}">
+            <Setter Property="FontWeight"
+                    Value="SemiLight" />
+            <Setter Property="FontSize"
+                    Value="24" />
+            <Setter Property="OpticalMarginAlignment"
+                    Value="TrimSideBearings" />
+        </Style>
+    </Page.Resources>
+    <Grid Background="{ThemeResource TextBoxButtonBorderThemeBrush}">
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="*"/>
+            <ColumnDefinition Width="*"/>
+        </Grid.ColumnDefinitions>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="*" />
+            <RowDefinition Height="*" />
+            <RowDefinition Height="*" />
+            <RowDefinition Height="*" />
+            <RowDefinition Height="*" />
+            <RowDefinition Height="*" />
+            <RowDefinition Height="*" />
+            <RowDefinition Height="*" />
+            <RowDefinition Height="*" />
+            <RowDefinition Height="6*" />
+        </Grid.RowDefinitions>
+        <TextBlock Grid.Row="0"
+                   Grid.ColumnSpan="2"
+                   Text="Setting"
+                   Style="{ThemeResource TitleTextBlockStyle}"
+                   Margin="12,8,8,8" />
+        <TextBlock Grid.Row="1"
+                   Text="字体样式"
+                   Style="{StaticResource BaseTextBlockStyle}" />
+        <ComboBox 
+                  x:Name="cstyle"
+                  Grid.Row="1"
+                  Grid.Column="1"
+                  DisplayMemberPath="Item1"
+                  SelectedValuePath="Item2"
+                  Width="100"
+                  Loaded="Cstyle_Loaded"
+                  HorizontalAlignment="Right"/>
+        <TextBlock Grid.Row="2"
+                   Text="字体大小"
+                   Style="{StaticResource BaseTextBlockStyle}" />
+        <ComboBox 
+                  x:Name="cbig"
+                  Grid.Row="2"
+                  Grid.Column="1"
+                  DisplayMemberPath="Item1"
+                  SelectedValuePath="Item2"
+                  Width="100"
+                  Loaded="Cbig_Loaded"
+                  HorizontalAlignment="Right" />
+        <TextBlock Grid.Row="3"
+                   Text="字体颜色"
+                   Style="{StaticResource BaseTextBlockStyle}" />
+        <ComboBox 
+                  x:Name="c_color"
+                  Grid.Row="3"
+                  Grid.Column="1"
+                  DisplayMemberPath="Item1"
+                  SelectedValuePath="Item2"
+                  Width="100"
+                  Loaded="C_color_Loaded"
+                  HorizontalAlignment="Right" />
+        <TextBlock Grid.Row="4"
+                   Text="背景颜色"
+                   Style="{StaticResource BaseTextBlockStyle}" />
+        <ComboBox 
+                  x:Name="b_color"
+                  Grid.Row="4"
+                  Grid.Column="1"
+                  DisplayMemberPath="Item1"
+                  SelectedValuePath="Item2"
+                  Width="100"
+                  Loaded="B_color_Loaded"
+                  HorizontalAlignment="Right" />
+        <TextBlock Grid.Row="6"
+                   Grid.ColumnSpan="2"
+                   Text="Another Setting"
+                   Style="{ThemeResource TitleTextBlockStyle}"
+                   Margin="12,8,8,8" />
+        <TextBlock Grid.Row="7"
+                   Text="是否开机自启动"
+                   Style="{StaticResource BaseTextBlockStyle}" />
+        <ComboBox 
+                  x:Name="start"
+                  Grid.Row="7"
+                  Grid.Column="1"
+                  DisplayMemberPath="Item1"
+                  SelectedValuePath="Item2"
+                  Width="100"
+                  Loaded="Start_Loaded"
+                  HorizontalAlignment="Right" />
+        <TextBlock Grid.Row="8"
+                   Text="退出模式设置"
+                   Style="{StaticResource BaseTextBlockStyle}" />
+        <TextBlock Grid.Row="9"
+                   Text="恢复默认设置"
+                   Style="{StaticResource BaseTextBlockStyle}" />
+    </Grid>
+</Page>
+<!--ItemsSource="{x:Bind Fonts}"-->
