@@ -35,15 +35,15 @@ namespace StickyNotes
 
         }
 
-        private void C_color_Loaded(object sender, RoutedEventArgs e) {
-
-        }
-
         private void B_color_Loaded(object sender, RoutedEventArgs e) {
 
         }
 
         private void Start_Loaded(object sender, RoutedEventArgs e) {
+
+        }
+
+        private void RedSlider_ValueChanged(object sender, RangeBaseValueChangedEventArgs e) {
 
         }
     }

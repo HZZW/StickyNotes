@@ -42,9 +42,9 @@
         <Style x:Key="RectangleStyle"
                TargetType="Rectangle">
             <Setter Property="Height"
-                    Value="10"/>
+                    Value="16"/>
             <Setter Property="Width"
-                    Value="10"/>
+                    Value="16"/>
         </Style>
     </Page.Resources>
     <Grid Background="{ThemeResource TextBoxButtonBorderThemeBrush}">
@@ -96,15 +96,71 @@
         <TextBlock Grid.Row="3"
                    Text="字体颜色"
                    Style="{StaticResource BaseTextBlockStyle}" />
-        <ComboBox 
-                  x:Name="c_color"
-                  Grid.Row="3"
-                  Grid.Column="1"
-                  DisplayMemberPath="Item1"
-                  SelectedValuePath="Item2"
-                  Width="100"
-                  Loaded="C_color_Loaded"
-                  HorizontalAlignment="Right" />
+        <Rectangle Grid.Column="1"
+                   Grid.Row="3"
+                   Margin="0,0,60,0"
+                   Style="{StaticResource RectangleStyle}"
+                   HorizontalAlignment="Right" />
+        <AppBarButton Icon="Setting" Grid.Column="1" Grid.Row="3" HorizontalAlignment="Right">
+            <AppBarButton.Flyout>
+                <Flyout>
+                    <StackPanel Orientation="Horizontal">
+                        <StackPanel Orientation="Vertical">
+                            <TextBlock Text="Red"
+                                       Foreground="Red"
+                                       Style="{StaticResource BaseTextBlockStyle}" />
+                            <Slider Name="redSlider"
+                                    Foreground="Red"
+                                    Minimum="0"
+                                    Maximum="255"
+                                    ValueChanged="RedSlider_ValueChanged" />
+                            <TextBlock x:Name="RedText"
+                                       Text="0"
+                                       Foreground="Red"
+                                       Style="{StaticResource BaseTextBlockStyle}" />
+                        </StackPanel>
+                        <StackPanel Orientation="Vertical">
+                            <TextBlock Text="Green"
+                                       Foreground="Green"
+                                       Style="{StaticResource BaseTextBlockStyle}" />
+                            <Slider Name="greenSlider"
+                                    Foreground="Green"
+                                    Minimum="0"
+                                    Maximum="255"
+                                    ValueChanged="RedSlider_ValueChanged" />
+                            <TextBlock x:Name="GreenText"
+                                       Text="0"
+                                       Foreground="Green"
+                                       Style="{StaticResource BaseTextBlockStyle}" />
+                        </StackPanel>
+                        <StackPanel Orientation="Vertical">
+                            <TextBlock Text="Blue"
+                                       Foreground="Blue"
+                                       Style="{StaticResource BaseTextBlockStyle}" />
+                            <Slider Name="blueSlider"
+                                    Foreground="Blue"
+                                    Minimum="0"
+                                    Maximum="255"
+                                    ValueChanged="RedSlider_ValueChanged" />
+                            <TextBlock x:Name="BlueText"
+                                       Text="0"
+                                       Foreground="Blue"
+                                       Style="{StaticResource BaseTextBlockStyle}" />
+                        </StackPanel>
+                        <StackPanel Orientation="Horizontal">
+                            <Rectangle x:Name="Rectangle1"
+                                       Stroke="Black"
+                                       StrokeThickness="1"
+                                       Height="24"
+                                       Width="24" />
+                            <TextBlock x:Name="textblock"
+                                       Text="颜色"
+                                       Style="{StaticResource BaseTextBlockStyle}" />
+                        </StackPanel>
+                    </StackPanel>
+                </Flyout>
+            </AppBarButton.Flyout>
+        </AppBarButton>
         <TextBlock Grid.Row="4"
                    Text="背景颜色"
                    Style="{StaticResource BaseTextBlockStyle}" />
