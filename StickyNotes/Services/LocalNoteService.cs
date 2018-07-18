@@ -21,28 +21,28 @@ namespace StickyNotes.Services
         /// </summary>
         /// <param name="note">所有文本信息</param>
         /// <returns></returns>
-        public void Push(Note note)
+        public void Push(IEnumerable<Note> notes)
         {
             using (FileStream stream = new FileStream(Properties.Instance.SavePath, FileMode.Create))
             {
                 BinaryFormatter binaryFormatter = new BinaryFormatter();
-                binaryFormatter.Serialize(stream, note);
+                binaryFormatter.Serialize(stream, notes);
             }
-            
-            
         }
         /// <summary>
         /// 拉取
         /// </summary>
         /// <returns>所有文本信息</returns>
-        public Note Pull()
+        public IEnumerable<Note> Pull()
         {
             using (FileStream stream = new FileStream(Properties.Instance.SavePath, FileMode.Open))
             {
                 BinaryFormatter binaryFormatter = new BinaryFormatter();
-                Note note = binaryFormatter.Deserialize(stream) as Note;
-                return note;
+                IEnumerable<Note> notes = binaryFormatter.Deserialize(stream) as IEnumerable<Note>;
+                return notes;
             }
         }
+
+        
     }
 }

@@ -15,17 +15,19 @@ namespace StickyNotes.UnitTest.Services
         [TestMethod]
         public  void TestPushAndPull()
         {
-            var noteToSave = new Note()
-                { Content = "it is a demo content",
-                    Author = "LeeWG",
-                    Title = "it is easy title"};
-            var noteService = new LocalNoteService();
-            noteService.Push(noteToSave);
 
-            var noteGet =((noteService.Pull()));
-            Assert.AreEqual(noteToSave.Author, noteGet.Author);
-            Assert.AreEqual(noteToSave.Content, noteGet.Content);
-            Assert.AreEqual(noteToSave.Title, noteGet.Title);
+            var noteSave = new List<Note>()
+            {
+                new Note() {Author = "LwwWG", Content = "it is a easy content one", Title = "title one"},
+                {new Note() {Author = "LwwWG", Content = "it is a easy content two", Title = "title two"}},
+                {new Note() {Author = "LwwWG", Content = "it is a easy content three", Title = "title three"}}};
+
+            var noteService = new LocalNoteService();
+            noteService.Push(noteSave);
+
+            var noteGet = noteService.Pull();
+            
+
         }
 
     }
