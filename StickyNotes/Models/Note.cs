@@ -9,7 +9,7 @@ namespace StickyNotes.Models
     /// <summary>
     /// 全部的文本信息
     /// </summary>
-    [Serializable]
+    [System.Serializable]
     public class Note
     {
         /// <summary>
@@ -24,5 +24,7 @@ namespace StickyNotes.Models
         /// 作者
         /// </summary>
         public string Author { get; set; }
+
+       
     }
 }
