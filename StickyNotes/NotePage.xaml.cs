@@ -13,6 +13,9 @@ using Windows.UI.Xaml.Data;
 using Windows.UI.Xaml.Input;
 using Windows.UI.Xaml.Media;
 using Windows.UI.Xaml.Navigation;
+using Microsoft.Toolkit.Uwp.Notifications; // Notifications library
+using Microsoft.QueryStringDotNET; // QueryString.NET
+using Windows.UI.Notifications;
 
 // https://go.microsoft.com/fwlink/?LinkId=234238 上介绍了“空白页”项模板
 
@@ -139,6 +142,84 @@ namespace StickyNotes
 
         private void AppBarButton_Click(object sender, RoutedEventArgs e) {
 
+        }
+
+        private void TestToastButton_Click(object sender, RoutedEventArgs e)
+        {
+            string title = "notes";
+            string content = "提醒时间到";
+
+            // Construct the visuals of the toast
+            ToastVisual visual = new ToastVisual()
+            {
+                BindingGeneric = new ToastBindingGeneric()
+                {
+                    Children =
+                    {
+                        new AdaptiveText()
+                        {
+                            Text = title
+                        },
+
+                        new AdaptiveText()
+                        {
+                            Text = content
+                        }
+                    }
+                }
+            };
+            // In a real app, these would be initialized with actual data
+            int conversationId = 384928;
+            // Construct the actions for the toast (inputs and buttons)
+            ToastActionsCustom actions = new ToastActionsCustom()
+            {
+                Inputs =
+                {
+                     new ToastSelectionBox("snoozeTime")
+                    {
+                        DefaultSelectionBoxItemId = "15",
+                        Items =
+                        {
+                            new ToastSelectionBoxItem("5", "5 分钟"),
+                            new ToastSelectionBoxItem("15", "15 分钟"),
+                            new ToastSelectionBoxItem("60", "1 小时"),
+                            new ToastSelectionBoxItem("240", "4 小时"),
+                            new ToastSelectionBoxItem("1440", "1 天")
+                        }
+                    }
+                },
+
+                Buttons =
+                {
+                    new ToastButtonSnooze()
+                    {
+                        SelectionBoxId = "snoozeTime"
+                    },
+
+                    new ToastButtonDismiss()
+                }
+
+            };
+
+            ToastContent toastContent = new ToastContent()
+            {
+                Visual = visual,
+                Actions = actions,
+                Scenario = ToastScenario.Reminder,
+                // Arguments when the user taps body of toast
+                Launch = new QueryString()
+                {
+                    { "action", "viewConversation" },
+                    { "conversationId", conversationId.ToString() }
+
+                }.ToString()
+            };
+
+            // And create the toast notification
+            var toast = new ToastNotification(toastContent.GetXml());
+            toast.ExpirationTime = DateTime.Now.AddDays(2);
+
+            ToastNotificationManager.CreateToastNotifier().Show(toast);
         }
     }
 }
