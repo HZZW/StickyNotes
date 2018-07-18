@@ -61,50 +61,50 @@
         <TextBlock Grid.Row="1"
                    Text="字体样式"
                    Style="{StaticResource BaseTextBlockStyle}" />
-        <ComboBox ItemsSource="{x:Bind Fonts}"
+        <ComboBox 
                   x:Name="cstyle"
                   Grid.Row="1"
                   Grid.Column="1"
                   DisplayMemberPath="Item1"
                   SelectedValuePath="Item2"
                   Width="100"
-                  Loaded="cstyle_Loaded"
+                  Loaded="Cstyle_Loaded"
                   HorizontalAlignment="Right"/>
         <TextBlock Grid.Row="2"
                    Text="字体大小"
                    Style="{StaticResource BaseTextBlockStyle}" />
-        <ComboBox ItemsSource="{x:Bind Fonts}"
+        <ComboBox 
                   x:Name="cbig"
                   Grid.Row="2"
                   Grid.Column="1"
                   DisplayMemberPath="Item1"
                   SelectedValuePath="Item2"
                   Width="100"
-                  Loaded="cbig_Loaded"
+                  Loaded="Cbig_Loaded"
                   HorizontalAlignment="Right" />
         <TextBlock Grid.Row="3"
                    Text="字体颜色"
                    Style="{StaticResource BaseTextBlockStyle}" />
-        <ComboBox ItemsSource="{x:Bind Fonts}"
+        <ComboBox 
                   x:Name="c_color"
                   Grid.Row="3"
                   Grid.Column="1"
                   DisplayMemberPath="Item1"
                   SelectedValuePath="Item2"
                   Width="100"
-                  Loaded="c_color_Loaded"
+                  Loaded="C_color_Loaded"
                   HorizontalAlignment="Right" />
         <TextBlock Grid.Row="4"
                    Text="背景颜色"
                    Style="{StaticResource BaseTextBlockStyle}" />
-        <ComboBox ItemsSource="{x:Bind Fonts}"
+        <ComboBox 
                   x:Name="b_color"
                   Grid.Row="4"
                   Grid.Column="1"
                   DisplayMemberPath="Item1"
                   SelectedValuePath="Item2"
                   Width="100"
-                  Loaded="b_color_Loaded"
+                  Loaded="B_color_Loaded"
                   HorizontalAlignment="Right" />
         <TextBlock Grid.Row="6"
                    Grid.ColumnSpan="2"
@@ -114,14 +114,14 @@
         <TextBlock Grid.Row="7"
                    Text="是否开机自启动"
                    Style="{StaticResource BaseTextBlockStyle}" />
-        <ComboBox ItemsSource="{x:Bind Fonts}"
+        <ComboBox 
                   x:Name="start"
                   Grid.Row="7"
                   Grid.Column="1"
                   DisplayMemberPath="Item1"
                   SelectedValuePath="Item2"
                   Width="100"
-                  Loaded="start_Loaded"
+                  Loaded="Start_Loaded"
                   HorizontalAlignment="Right" />
         <TextBlock Grid.Row="8"
                    Text="退出模式设置"
@@ -131,3 +131,4 @@
                    Style="{StaticResource BaseTextBlockStyle}" />
     </Grid>
 </Page>
+<!--ItemsSource="{x:Bind Fonts}"-->

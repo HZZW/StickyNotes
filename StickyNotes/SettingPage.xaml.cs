@@ -27,23 +27,23 @@ namespace StickyNotes
             this.InitializeComponent();
         }
 
-        private void cstyle_Loaded(object sender, RoutedEventArgs e) {
+        private void Cstyle_Loaded(object sender, RoutedEventArgs e) {
 
         }
 
-        private void cbig_Loaded(object sender, RoutedEventArgs e) {
+        private void Cbig_Loaded(object sender, RoutedEventArgs e) {
 
         }
 
-        private void c_color_Loaded(object sender, RoutedEventArgs e) {
+        private void C_color_Loaded(object sender, RoutedEventArgs e) {
 
         }
 
-        private void b_color_Loaded(object sender, RoutedEventArgs e) {
+        private void B_color_Loaded(object sender, RoutedEventArgs e) {
 
         }
 
-        private void start_Loaded(object sender, RoutedEventArgs e) {
+        private void Start_Loaded(object sender, RoutedEventArgs e) {
 
         }
     }
