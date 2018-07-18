@@ -10,6 +10,7 @@ namespace StickyNotes.UnitTest
         [TestMethod]
         public void TestMethod1()
         {
+            //
         }
     }
 }
