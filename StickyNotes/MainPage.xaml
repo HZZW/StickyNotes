@@ -9,6 +9,6 @@
     Background="{ThemeResource ApplicationPageBackgroundThemeBrush}">
 
     <Grid>
-
+        <Button Click="TestToastButton_Click"/>
     </Grid>
 </Page>
