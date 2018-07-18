@@ -13,13 +13,13 @@ namespace StickyNotes.Services
         /// 推送
         /// </summary>
         /// <returns></returns>
-        void Push(Note conta);
+        void Push(IEnumerable<Note> notes);
 
         /// <summary>
         /// 拉取
         /// </summary>
         /// <returns></returns>
-        Note Pull();
+        IEnumerable<Note> Pull();
 
     }
 }

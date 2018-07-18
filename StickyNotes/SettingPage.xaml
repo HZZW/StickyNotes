@@ -24,6 +24,8 @@
                     Value="MaxHeight" />
             <Setter Property="TextLineBounds"
                     Value="Full" />
+            <Setter Property="Margin"
+                    Value="8,0,0,0"/>
         </Style>
         <Style x:Key="TitleTextBlockStyle"
                TargetType="TextBlock"
@@ -34,6 +36,15 @@
                     Value="24" />
             <Setter Property="OpticalMarginAlignment"
                     Value="TrimSideBearings" />
+            <Setter Property="Padding"
+                    Value="2"/>
+        </Style>
+        <Style x:Key="RectangleStyle"
+               TargetType="Rectangle">
+            <Setter Property="Height"
+                    Value="10"/>
+            <Setter Property="Width"
+                    Value="10"/>
         </Style>
     </Page.Resources>
     <Grid Background="{ThemeResource TextBoxButtonBorderThemeBrush}">
