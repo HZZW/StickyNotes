@@ -2,12 +2,6 @@
     x:Class="StickyNotes.App"
     xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
     xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
-    xmlns:local="using:StickyNotes"
-    xmlns:viewModels="using:StickyNotes.ViewModels">
-    <Application.Resources>
-        <!--单元测试前需要删除下述内容。-->
-        <ResourceDictionary>
-            <viewModels:NoteViewModel x:Key="NoteViewModel" />
-        </ResourceDictionary>
-    </Application.Resources>
+    xmlns:local="using:StickyNotes">
+
 </Application>

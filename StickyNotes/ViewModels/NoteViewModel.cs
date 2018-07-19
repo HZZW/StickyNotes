@@ -21,19 +21,15 @@ namespace StickyNotes.ViewModels
         /// </summary>
         private INoteService _noteService;
 
-        public NoteViewModel() : this(new LocalNoteService())
-        {
-
-        }
         public NoteViewModel(INoteService noteService)
         {
             _noteService = noteService;
-            Notes = new ObservableCollection<Note>();
+            Note = new ObservableCollection<Note>();
         }
         /// <summary>
         /// Note实例
         /// </summary>
-        public ObservableCollection<Note> Notes {get; set; }
+        public ObservableCollection<Note> Note {get; set; }
         /// <summary>
         /// 当前聚焦的Note
         /// </summary>
@@ -67,10 +63,10 @@ namespace StickyNotes.ViewModels
             var service = _noteService;
             var notes = service.Pull().ToList();
             //因为拉取的内容包含全部信息,所以需要清除原本信息
-            this.Notes.Clear();
+            this.Note.Clear();
             foreach (var note in notes)
             {
-                this.Notes.Add(note);
+                this.Note.Add(note);
             }
         }));
 
