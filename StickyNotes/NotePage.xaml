@@ -344,9 +344,7 @@
             </Setter>
         </Style>
     </Page.Resources>
-    <Grid Background="White"
-          Height="700"
-          Width="600">
+    <Grid Background="White">
         <Grid.RowDefinitions>
             <RowDefinition Height="AUTO" />
             <RowDefinition Height="*" />

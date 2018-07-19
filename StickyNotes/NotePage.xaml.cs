@@ -36,7 +36,7 @@ namespace StickyNotes
         }
 
         private void SaveButton_Click(object sender, RoutedEventArgs e) {
-
+            
         }
 
         private void AddButton_Click(object sender, RoutedEventArgs e) {
