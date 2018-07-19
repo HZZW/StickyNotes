@@ -7,6 +7,11 @@
       mc:Ignorable="d"
       Background="{ThemeResource ApplicationPageBackgroundThemeBrush}">
     <Grid>
+        <StackPanel Orientation="Vertical">
+            <Button  Content="NotePage" Margin="0,0,0,20"  Click="Button_Click"/>
+            <Button Content="SetPage"  Margin="0,0,0,20"  Click="Button_Click_1"/>
+            <Button Content="DesignPage"  Margin="0,0,0,20"  Click="Button_Click_"/>
+        </StackPanel>
 
     </Grid>
 </Page>

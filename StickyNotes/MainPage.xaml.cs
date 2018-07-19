@@ -16,6 +16,7 @@ using Windows.UI.Xaml.Navigation;
 using Windows.UI.Notifications;
 using Windows.ApplicationModel.Core;
 
+
 // https://go.microsoft.com/fwlink/?LinkId=402352&clcid=0x804 上介绍了“空白页”项模板
 
 namespace StickyNotes
@@ -29,6 +30,22 @@ namespace StickyNotes
         {
             this.InitializeComponent();
 
+        }
+
+        private void Button_Click(object sender, RoutedEventArgs e)
+        {
+            Frame.Navigate(typeof(NotePage));
+        }
+
+        private void Button_Click_1(object sender, RoutedEventArgs e)
+        {
+            Frame.Navigate(typeof(SettingPage));
+        }
+
+  
+        private void Button_Click_(object sender, RoutedEventArgs e)
+        {
+            Frame.Navigate(typeof(DesignPage));
         }
     }
 }
