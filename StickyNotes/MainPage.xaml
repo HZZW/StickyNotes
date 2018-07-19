@@ -4,9 +4,37 @@
       xmlns:local="using:StickyNotes"
       xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
       xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+      xmlns:userControls="using:StickyNotes.UserControls"
       mc:Ignorable="d"
       Background="{ThemeResource ApplicationPageBackgroundThemeBrush}">
-    <Grid>
+    <Page.DataContext>
+        <Binding Source="{StaticResource NoteViewModel}" />
+    </Page.DataContext>
+    <Page.Resources>
+        <ResourceDictionary>
+            <ResourceDictionary.MergedDictionaries>
+                <ResourceDictionary Source="Templates/NoteBoxTemplate.xaml" />
+            </ResourceDictionary.MergedDictionaries>
+        </ResourceDictionary>
+    </Page.Resources>
 
+    <Grid>
+        <StackPanel>
+            <Button Click="ButtonBase_OnClick"></Button>
+            <Button Click="SaveButton"></Button>
+            <!--<ListView Name="MasterListView"
+                      IsItemClickEnabled="True"
+                      ItemTemplate="{StaticResource NoteBoxTemplate}"
+                      ItemsSource="{Binding Notes}"></ListView>-->
+            <ListView Name="MasterListView"
+                      IsItemClickEnabled="True"
+                      ItemsSource="{Binding Notes}">
+                <ListView.ItemTemplate>
+                    <DataTemplate>
+                        <userControls:NoteBoxUserControl></userControls:NoteBoxUserControl>
+                    </DataTemplate>
+                </ListView.ItemTemplate>
+            </ListView>
+        </StackPanel>
     </Grid>
 </Page>

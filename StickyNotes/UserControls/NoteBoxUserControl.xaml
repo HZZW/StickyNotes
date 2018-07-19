@@ -1,0 +1,19 @@
+﻿<UserControl
+    x:Class="StickyNotes.UserControls.NoteBoxUserControl"
+    xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+    xmlns:local="using:StickyNotes.UserControls"
+    xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+    xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+    mc:Ignorable="d"
+    d:DesignHeight="300"
+    d:DesignWidth="400">
+
+    <Grid>
+        <StackPanel>
+            <!--<TextBox Name="TitleTextBlock" Text="{Binding Title}" ></TextBox>
+            <TextBox Name="AuthorTextBlock" Text="{Binding Author}"></TextBox>-->
+            <TextBox Name="ContentTextBlock" Text="{Binding Content}"></TextBox>
+        </StackPanel>
+    </Grid>
+</UserControl>

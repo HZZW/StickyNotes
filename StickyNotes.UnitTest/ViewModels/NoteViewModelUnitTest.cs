@@ -29,7 +29,7 @@ namespace StickyNotes.UnitTest.ViewModels
 
             noteViewModel.PullCommand.Execute(null);
 
-            var noteGetList = noteViewModel.Note.ToList();
+            var noteGetList = noteViewModel.Notes.ToList();
             
             Tools.Tools.CompareSaveAndGetList(noteSaveList,noteGetList);
         }

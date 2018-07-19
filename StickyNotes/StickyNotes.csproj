@@ -110,6 +110,9 @@
     <Compile Include="SettingPage.xaml.cs">
       <DependentUpon>SettingPage.xaml</DependentUpon>
     </Compile>
+    <Compile Include="UserControls\NoteBoxUserControl.xaml.cs">
+      <DependentUpon>NoteBoxUserControl.xaml</DependentUpon>
+    </Compile>
     <Compile Include="ViewModels\NoteViewModel.cs" />
   </ItemGroup>
   <ItemGroup>
@@ -142,6 +145,14 @@
       <Generator>MSBuild:Compile</Generator>
     </Page>
     <Page Include="SettingPage.xaml">
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="Templates\NoteBoxTemplate.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="UserControls\NoteBoxUserControl.xaml">
+      <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </Page>
   </ItemGroup>
