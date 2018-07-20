@@ -31,7 +31,6 @@ namespace StickyNotes
         public MainPage()
         {
             this.InitializeComponent();
-
         }
         //TODO will delete this method,just test 
         private void ButtonBase_OnClick(object sender, RoutedEventArgs e)
