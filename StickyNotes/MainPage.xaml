@@ -354,7 +354,7 @@
             <RowDefinition Height="*" />
         </Grid.RowDefinitions>
         <Grid.ColumnDefinitions>
-            <ColumnDefinition Width="auto" />
+            <ColumnDefinition Width="120" />
             <ColumnDefinition Width="*" />
         </Grid.ColumnDefinitions>
         <RichEditBox x:Name="Edit"
@@ -435,25 +435,25 @@
             <AppBarButton Icon="Refresh"
                           Label="Refresh"
                           Name="RefreshButton"
-                          Click="RefreshButton_Click"
+                          Command="{Binding PullCommand}"
                           Margin="0,0,36,0"
                           Style="{StaticResource Button}" />
+            
             <AppBarButton Icon="Save"
                           Label="Save"
                           Name="SaveButton"
-                          Click="SaveButton_Click"
+                          Command="{Binding PushCommand}"
                           Margin="0,0,32,0"
                           Style="{StaticResource Button}" />
             <AppBarButton Icon="Add"
                           Label="Add"
                           Name="AddButton"
-                          Click="AddButton_Click"
+                          Command="{Binding AddNoteCommand,Mode=OneWay}"
                           Margin="0,0,28,0"
                           Style="{StaticResource Button}" />
             <AppBarButton Icon="Delete"
                           Label="Delete"
                           Name="DeleteButton"
-                          Click="DeleteButton_Click"
                           Margin="0,0,24,0"
                           Style="{StaticResource Button}" />
             <CommandBar.SecondaryCommands>
@@ -464,10 +464,11 @@
                               Label="Put" />
             </CommandBar.SecondaryCommands>
         </CommandBar>
+        <Button Command="{Binding AddNoteCommand}">tian</Button>
         <ListView Name="MasterListView"
                   IsItemClickEnabled="True"
                   Grid.Column="0"
-                  Grid.Row="1"
+                  Grid.Row="1" 
                   ItemsSource="{Binding Note}">
             <ListView.ItemTemplate>
                 <DataTemplate>

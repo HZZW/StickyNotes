@@ -42,23 +42,6 @@ namespace StickyNotes
 
             ////windows.ExtendViewIntoTitleBar = true;
         }
-        private void RefreshButton_Click(object sender, RoutedEventArgs e) {
-            var noteViewModel = this.DataContext as NoteViewModel;
-            noteViewModel?.PullCommand.Execute(null);
-        }
-
-        private void SaveButton_Click(object sender, RoutedEventArgs e) {
-            var noteViewModel = this.DataContext as NoteViewModel;
-            noteViewModel?.PushCommand.Execute(null);
-        }
-
-        private void AddButton_Click(object sender, RoutedEventArgs e) {
-
-        }
-
-        private void DeleteButton_Click(object sender, RoutedEventArgs e) {
-
-        }
 
         private void OnContextMenuOpening(object sender, ContextMenuEventArgs e) {
             //阻止弹出默认的上下文菜单，然后，调用ShowAt方法在指定的坐标处打开菜单
