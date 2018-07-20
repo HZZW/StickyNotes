@@ -9,12 +9,10 @@ using Windows.UI.Notifications;
 
 namespace StickyNotes.Models
 {
-    class Notification
+    public class Notification
     {
-        public Notification(DateTime alarmTime)
+         public Notification(DateTime alarmTime)
         {
-
-
             string title = "notes";
             string content = "提醒时间到";
 
