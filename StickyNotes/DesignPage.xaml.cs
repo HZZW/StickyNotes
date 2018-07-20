@@ -3,8 +3,10 @@ using System.Collections.Generic;
 using System.IO;
 using System.Linq;
 using System.Runtime.InteropServices.WindowsRuntime;
+using Windows.ApplicationModel.Core;
 using Windows.Foundation;
 using Windows.Foundation.Collections;
+using Windows.UI.ViewManagement;
 using Windows.UI.Xaml;
 using Windows.UI.Xaml.Controls;
 using Windows.UI.Xaml.Controls.Primitives;
@@ -26,6 +28,17 @@ namespace StickyNotes
         {
             this.InitializeComponent();
         }
+        private void CommandBar_Opening(object sender, object e)
+        {
+            CommandBar cb = sender as CommandBar;
+            if (cb != null) cb.Background.Opacity = 1.0;
+        }
+
+        private void CommandBar_Closing(object sender, object e)
+        {
+            CommandBar cb = sender as CommandBar;
+            if (cb != null) cb.Background.Opacity = 0.5;
+        }
 
         private void AppBarButton_Click(object sender, RoutedEventArgs e)
         {
@@ -40,7 +53,7 @@ namespace StickyNotes
    
         private void SetButton_Click(object sender, RoutedEventArgs e)
         {
-
+            Frame.Navigate(typeof(SettingPage), "");
         }
 
         private void BoldButton_Click(object sender, RoutedEventArgs e)
@@ -83,6 +96,9 @@ namespace StickyNotes
             }
         }
 
-       
+        private void AddButton_Click(object sender, RoutedEventArgs e)
+        {
+
+        }
     }
 }

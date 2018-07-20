@@ -32,7 +32,7 @@ namespace StickyNotes
         public MainPage()
         {
             this.InitializeComponent();
-            ApplicationView.PreferredLaunchViewSize = new Size(300, 200);
+            ApplicationView.PreferredLaunchViewSize = new Size(500, 302);
             ApplicationView.PreferredLaunchWindowingMode = ApplicationViewWindowingMode.PreferredLaunchViewSize;
             ApplicationView.PreferredLaunchWindowingMode = ApplicationViewWindowingMode.Auto;
             ApplicationView.GetForCurrentView().SetPreferredMinSize(new Size(200, 200));
@@ -53,6 +53,14 @@ namespace StickyNotes
         {
             var noteViewModel = this.DataContext as NoteViewModel;
             noteViewModel?.PushCommand.Execute(null);
+        }
+
+        private void TurnTo_Click(object sender, RoutedEventArgs e)
+        {
+            {
+                // 此处的NewPage是另一个页面的名字
+                Frame.Navigate(typeof(DesignPage), "");
+            }
         }
     }
 }
