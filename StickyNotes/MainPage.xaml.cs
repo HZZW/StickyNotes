@@ -17,6 +17,7 @@ using Windows.UI.Notifications;
 using Windows.ApplicationModel.Core;
 using StickyNotes.Models;
 using StickyNotes.ViewModels;
+using Windows.UI.ViewManagement;
 
 
 // https://go.microsoft.com/fwlink/?LinkId=402352&clcid=0x804 上介绍了“空白页”项模板
@@ -31,6 +32,15 @@ namespace StickyNotes
         public MainPage()
         {
             this.InitializeComponent();
+            ApplicationView.PreferredLaunchViewSize = new Size(300, 200);
+            ApplicationView.PreferredLaunchWindowingMode = ApplicationViewWindowingMode.PreferredLaunchViewSize;
+            ApplicationView.PreferredLaunchWindowingMode = ApplicationViewWindowingMode.Auto;
+            ApplicationView.GetForCurrentView().SetPreferredMinSize(new Size(200, 200));
+            var windows = CoreApplication.GetCurrentView().TitleBar;
+
+            windows.ExtendViewIntoTitleBar = false;
+
+            //windows.ExtendViewIntoTitleBar = true;
         }
         //TODO will delete this method,just test 
         private void ButtonBase_OnClick(object sender, RoutedEventArgs e)
