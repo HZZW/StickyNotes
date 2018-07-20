@@ -40,7 +40,7 @@ namespace StickyNotes
    
         private void SetButton_Click(object sender, RoutedEventArgs e)
         {
-
+            Frame.Navigate(typeof(SettingPage), "");
         }
 
         private void BoldButton_Click(object sender, RoutedEventArgs e)
