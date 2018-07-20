@@ -10,23 +10,14 @@
     <Page.DataContext>
         <Binding Source="{StaticResource NoteViewModel}" />
     </Page.DataContext>
-    <Page.Resources>
-        <ResourceDictionary>
-            <ResourceDictionary.MergedDictionaries>
-                <ResourceDictionary Source="Templates/NoteBoxTemplate.xaml" />
-            </ResourceDictionary.MergedDictionaries>
-        </ResourceDictionary>
-    </Page.Resources>
+    
 
     <Grid>
         <StackPanel>
             <userControls:AddNoteButtonUserControl></userControls:AddNoteButtonUserControl>
             <Button Click="ButtonBase_OnClick"></Button>
             <Button Click="SaveButton"></Button>
-            <!--<ListView Name="MasterListView"
-                      IsItemClickEnabled="True"
-                      ItemTemplate="{StaticResource NoteBoxTemplate}"
-                      ItemsSource="{Binding Notes}"></ListView>-->
+            
             <ListView Name="MasterListView"
                       IsItemClickEnabled="True"
                       ItemsSource="{Binding Note}">

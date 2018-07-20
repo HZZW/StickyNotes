@@ -15,9 +15,13 @@ namespace StickyNotes.Models
     [System.Serializable]
     public class Note:INotifyPropertyChanged
     {
-        //TODO 未初始化ID
-        public int ID;
-        
+        public int ID { get; private set; }
+
+        public Note()
+        {
+            Random ran = new Random();
+            ID = ran.Next();
+        }
 
         /// <summary>
         /// 内容

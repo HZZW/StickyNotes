@@ -6,10 +6,10 @@
     
     xmlns:viewModels="using:StickyNotes.ViewModels">
 
-    <Application.Resources>
-        <!--单元测试前需要删除下述内容。-->
+    <!--<Application.Resources>
+        --><!--单元测试前需要删除下述内容。--><!--
         <ResourceDictionary>
             <viewModels:NoteViewModel x:Key="NoteViewModel" />
         </ResourceDictionary>
-    </Application.Resources>
+    </Application.Resources>-->
 </Application>

@@ -65,7 +65,14 @@ namespace StickyNotes.ViewModels
                 service.Push((Note.ToList()));
             }
 
-            if (notes != null) service.Push((notes.ToList()));
+            if (notes != null)
+            {
+                service.Push((notes.ToList()));
+                foreach (var note in notes)
+                {
+                    this.Note.Add(note);
+                }
+            }
         }));
         /// <summary>
         /// 拉取命令
