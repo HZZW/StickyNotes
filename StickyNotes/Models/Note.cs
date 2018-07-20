@@ -72,6 +72,7 @@ namespace StickyNotes.Models
             }
         }
 
+        [field: NonSerialized]
         public event PropertyChangedEventHandler PropertyChanged;
 
         [NotifyPropertyChangedInvocator]

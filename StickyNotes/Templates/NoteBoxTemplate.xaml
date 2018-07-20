@@ -1,0 +1,11 @@
+﻿<ResourceDictionary xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+                    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml">
+    <DataTemplate x:Key="NoteBoxTemplate">
+        <StackPanel>
+            <TextBox Name="TitleTextBlock" Text="{Binding Title}"></TextBox>
+            <TextBox Name="AuthorTextBlock" Text="{Binding Author}"></TextBox>
+            <TextBox Name="ContentTextBlock" Text="{Binding Content}"></TextBox>
+        </StackPanel>
+    </DataTemplate>
+</ResourceDictionary>
+
