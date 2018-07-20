@@ -9,7 +9,7 @@ using Windows.UI.Notifications;
 
 namespace StickyNotes.Models
 {
-    class Notification
+    public class Notification
     {
         public Notification(DateTime alarmTime)
         {
