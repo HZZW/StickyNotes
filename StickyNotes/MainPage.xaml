@@ -17,6 +17,7 @@
             <userControls:AddNoteButtonUserControl></userControls:AddNoteButtonUserControl>
             <Button Click="ButtonBase_OnClick">拉取</Button>
             <Button Click="SaveButton">更新</Button>
+            <Button Click="TurnTo_Click">跳转至DesignPage</Button>
             <ListView Name="MasterListView"
                       IsItemClickEnabled="True"
                       ItemsSource="{Binding Note}">

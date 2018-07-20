@@ -54,5 +54,13 @@ namespace StickyNotes
             var noteViewModel = this.DataContext as NoteViewModel;
             noteViewModel?.PushCommand.Execute(null);
         }
+
+        private void TurnTo_Click(object sender, RoutedEventArgs e)
+        {
+            {
+                // 此处的NewPage是另一个页面的名字
+                Frame.Navigate(typeof(DesignPage), "");
+            }
+        }
     }
 }
