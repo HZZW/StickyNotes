@@ -82,7 +82,6 @@ namespace StickyNotes.Models
                 }.ToString()
             };
 
-
             var toast = new ToastNotification(toastContent.GetXml());
             toast.ExpirationTime = DateTime.Now.AddDays(2);
 

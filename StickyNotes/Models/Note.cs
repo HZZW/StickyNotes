@@ -76,6 +76,26 @@ namespace StickyNotes.Models
             }
         }
 
+        /// <summary>
+        /// 提示时间
+        /// </summary>
+        private DateTime _notificationDateTime;
+        public DateTime NotificationDateTime {
+            get => _notificationDateTime;
+            set
+            {
+                if (_notificationDateTime == value)
+                {
+                    return;
+                }
+
+                _notificationDateTime = value;
+                OnPropertyChanged(nameof(NotificationDateTime));
+            }
+        }
+
+
+
         [field: NonSerialized]
         public event PropertyChangedEventHandler PropertyChanged;
 
