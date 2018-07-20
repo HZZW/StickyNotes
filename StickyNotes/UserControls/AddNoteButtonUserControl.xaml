@@ -10,6 +10,6 @@
     d:DesignWidth="400">
     <!--直接放在DataContext中即可-->
     <Grid>
-        <Button Command="{Binding AddNoteCommand,Mode=OneWay}"></Button>
+        <Button Command="{Binding AddNoteCommand,Mode=OneWay}">添加</Button>
     </Grid>
 </UserControl>
