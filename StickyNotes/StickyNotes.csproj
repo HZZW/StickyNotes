@@ -103,9 +103,6 @@
     </Compile>
     <Compile Include="Models\Note.cs" />
     <Compile Include="Models\Notification.cs" />
-    <Compile Include="NotePage.xaml.cs">
-      <DependentUpon>NotePage.xaml</DependentUpon>
-    </Compile>
     <Compile Include="Properties.cs" />
     <Compile Include="Properties\Annotations1.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
@@ -150,10 +147,6 @@
     <Page Include="MainPage.xaml">
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
-    </Page>
-    <Page Include="NotePage.xaml">
-      <SubType>Designer</SubType>
-      <Generator>MSBuild:Compile</Generator>
     </Page>
     <Page Include="SettingPage.xaml">
       <SubType>Designer</SubType>
