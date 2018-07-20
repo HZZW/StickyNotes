@@ -6,69 +6,62 @@
     xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
     xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
     mc:Ignorable="d"
-    Background="{ThemeResource ApplicationPageBackgroundThemeBrush}" Height="300" Width="500">
-    <Page.Resources>
-        <Style x:Key="ButtonStyle" TargetType="Button">
-            <Setter Property="FontFamily" Value="Segoe MDL2 Assets"/>
-            <Setter Property="FontSize" Value="15" />
-            <Setter Property="Width" Value="50" />
-        </Style>
-        <Style x:Key="ItemBoxTextBlock" TargetType="TextBlock">
-            <Setter Property="FontSize" Value="10"/>
-            <Setter Property="CharacterSpacing" Value="35"/>
-            <Setter Property="FontFamily" Value="Arial"/>
-        </Style>
-    </Page.Resources>
-    
-    <Grid >
+    Background="{ThemeResource ApplicationPageBackgroundThemeBrush}" Width="750">
+
+    <Grid>
+        
         <Grid.RowDefinitions>
-            <RowDefinition Height="40"/>
+            <RowDefinition Height="Auto"/>
             <RowDefinition Height="*"/>
+            <RowDefinition Height="Auto"/>
         </Grid.RowDefinitions>
-
-        <CommandBar  Opening="CommandBar_Opening"  Closing="CommandBar_Closing"  >
-            <AppBarButton Name="PinButton" Style="{StaticResource ButtonStyle}" Content="&#xE840;"  />
-
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="Auto"/>
+            <ColumnDefinition Width="*"/>
+            <ColumnDefinition Width="Auto"/>
+        </Grid.ColumnDefinitions>
+        <CommandBar Grid.ColumnSpan="3" OverflowButtonVisibility="Collapsed"  >
+            <AppBarButton Name="PinButton" FontSize="25" FontFamily ="Segoe MDL2 Assets" Content="&#xE718;" />
+            
             <AppBarSeparator/>
-            <AppBarButton Style="{StaticResource ButtonStyle}" Content="&#xE19B;" Click="BoldButton_Click" ToolTipService.ToolTip="Bold"  />
-            <AppBarButton x:Name="italicButton" Style="{StaticResource ButtonStyle}"  Content="&#xE199;" Click="ItalicButton_Click"   ToolTipService.ToolTip="Italic" />
-            <AppBarButton x:Name="underlineButton"  Style="{StaticResource ButtonStyle}" Content="&#xE19A;" Click="UnderlineButton_Click" ToolTipService.ToolTip="Underline"/>
-            <AppBarSeparator/>
-            <AppBarButton Name ="AddButton"   Style="{StaticResource ButtonStyle}" Content="&#xE710;" Click="AddButton_Click" />
-            <AppBarButton Name ="DeleteButton"   Style="{StaticResource ButtonStyle}" Content="&#xE107;" Click="AddButton_Click" />
-
-            <CommandBar.SecondaryCommands >
-                <AppBarButton    Label="More Color"   Icon="Play"/>
-                <AppBarButton  Label="All Note"  Icon="Page2"  Click="SetButton_Click" />
-                <AppBarButton  Label="Setting"  Icon="Setting"  Click="SetButton_Click" />
-            </CommandBar.SecondaryCommands>
-
+            <AppBarButton Icon="Bold" Click="BoldButton_Click" ToolTipService.ToolTip="Bold"/>
+            <AppBarButton x:Name="italicButton" Icon="Italic" Click="ItalicButton_Click"   ToolTipService.ToolTip="Italic" />
+            <AppBarButton x:Name="underlineButton" Icon="Underline" Click="UnderlineButton_Click" ToolTipService.ToolTip="Underline"/>
+            <AppBarSeparator />
+            
+            <AppBarButton Name ="AddButton" FontSize="20" FontFamily ="Segoe MDL2 Assets" Content="&#xE710;" />
+            
             <CommandBar.Content>
-                <AppBarButton Name ="AllNoteButton"  Style="{StaticResource ButtonStyle}" Content="&#xE76C;" Click="AllNoteButton_Click"/>
+                <AppBarButton Name ="AllNoteButton" FontSize="20" FontFamily ="Segoe MDL2 Assets" Content="&#xE76C;" Click="AllNoteButton_Click"/>
             </CommandBar.Content>
         </CommandBar>
-        <SplitView Name="AllNoteSpiltView" IsPaneOpen="False" Grid.Row="1" CompactPaneLength="0" 
-                   OpenPaneLength="100" DisplayMode="Overlay"  PanePlacement="Left">
+        <SplitView Name="AllNoteSpiltView" Grid.Row="1" Grid.Column="0" OpenPaneLength="100" DisplayMode="Inline"  PanePlacement="Left">
             <SplitView.Pane>
                 <Grid>
                     <StackPanel Orientation="Vertical">
                         <ListBox >
-                            <ListBoxItem>
-                                <TextBlock Style="{StaticResource ItemBoxTextBlock}" Text="Note one"/>
-                            </ListBoxItem>
-                            <ListBoxItem>
-                                <TextBlock Style="{StaticResource ItemBoxTextBlock}" Text="Note two"/>
-                            </ListBoxItem>
-                            <ListBoxItem>
-                                <TextBlock Style="{StaticResource ItemBoxTextBlock}" Text="Note three"/>
-                            </ListBoxItem>
+                            <ListBoxItem>次</ListBoxItem>
+                            <ListBoxItem>处</ListBoxItem>
+                            <ListBoxItem>显</ListBoxItem>
+                            <ListBoxItem>示</ListBoxItem>
+                            <ListBoxItem>所</ListBoxItem>
+                            <ListBoxItem>有</ListBoxItem>
+                            <ListBoxItem>便</ListBoxItem>
+                            <ListBoxItem>签</ListBoxItem>
                         </ListBox>
                     </StackPanel>
+                    <AppBarButton Name ="SetButton" FontSize="20" FontFamily ="Segoe MDL2 Assets"  Content="&#xE713;" Click="SetButton_Click"
+                                  VerticalAlignment="Bottom" HorizontalAlignment="Center" />
                 </Grid>
             </SplitView.Pane>
-            <SplitView.Content>
-                <RichEditBox x:Name="editor" BorderThickness="1.5" BorderBrush="Gray" />
-            </SplitView.Content>
         </SplitView>
+        <RelativePanel HorizontalAlignment="Stretch" Grid.Row="1" Grid.Column="1">
+            <RelativePanel.Resources>
+                <Style TargetType="AppBarButton">
+                    <Setter Property="IsCompact" Value="True"/>
+                </Style>
+            </RelativePanel.Resources>
+            <RichEditBox x:Name="editor" Height="588" RelativePanel.AlignLeftWithPanel="True" RelativePanel.AlignRightWithPanel="True"/>
+        </RelativePanel>
     </Grid>
 </Page>

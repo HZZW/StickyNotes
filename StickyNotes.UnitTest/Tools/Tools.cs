@@ -15,7 +15,6 @@ namespace StickyNotes.UnitTest.Tools
             Assert.AreEqual(noteSave.Title, noteGet.Title);
             Assert.AreEqual(noteSave.Content, noteGet.Content);
             Assert.AreEqual(noteSave.Author, noteGet.Author);
-            Assert.AreEqual(true,noteSave.NotificationDateTime==noteGet.NotificationDateTime);
         }
 
         public static void CompareSaveAndGetList(List<Note> noteSaveList,List<Note> noteGetList)
