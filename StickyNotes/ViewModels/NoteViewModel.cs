@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
 using System.ComponentModel;
+using System.Diagnostics;
 using System.Linq;
 using System.Runtime.CompilerServices;
 using System.Text;
@@ -26,15 +27,15 @@ namespace StickyNotes.ViewModels
             _noteService = noteService;
             Note = new ObservableCollection<Note>();
         }
+        public NoteViewModel():this(new LocalNoteService())
+        {
+            
+        }
         /// <summary>
         /// Note实例
         /// </summary>
         public ObservableCollection<Note> Note {get; set; }
-        /// <summary>
-        /// 当前聚焦的Note
-        /// </summary>
-        private Note _selectNote;
-        public Note SelectNote { get; private set; }
+        
         /// <summary>
         /// 推送
         /// </summary>
@@ -51,9 +52,21 @@ namespace StickyNotes.ViewModels
         public RelayCommand<List<Note>> PushCommand => _pushCommand ?? (_pushCommand = new RelayCommand<List<Note>>(
         notes=>
         {
-            //TODO 最后将只更新一个Note中的内容,然后同意更新到Model
             var service = _noteService;
-            service.Push((notes.ToList()));
+
+            if (notes == null)
+            {
+                service.Push((Note.ToList()));
+            }
+
+            if (notes != null)
+            {
+                service.Push((notes.ToList()));
+                foreach (var note in notes)
+                {
+                    this.Note.Add(note);
+                }
+            }
         }));
         /// <summary>
         /// 拉取命令
@@ -70,7 +83,50 @@ namespace StickyNotes.ViewModels
             }
         }));
 
+        /// <summary>
+        /// 添加新Note
+        /// </summary>
+        private RelayCommand _addNoteCommand;
+        /// <summary>
+        /// 添加新Note
+        /// </summary>
+        public RelayCommand AddNoteCommand => _addNoteCommand ?? (new RelayCommand(() =>
+        {
+            var note = new Note();
+            this.Note.Add(note);
+        }));
+        /// <summary>
+        /// 删除原Note
+        /// </summary>
+        private RelayCommand<Note> _deleteNoteCommand;
+        /// <summary>
+        /// 删除原Note
+        /// </summary>
+        public RelayCommand<Note> DeleteNoteCommand => _deleteNoteCommand ?? (new RelayCommand<Note>(note =>
+        {
+            //if (Note.Contains(note))
+            //{
+            //    Note.Remove(note);
+            //}
+            //else
+            if (Note.Select(a=>a.ID).Contains(note.ID))
+            {
 
+                for (int i = 0; i < Note.Count; i++)
+                {
+                    if(Note[i].ID ==note.ID)
+                    {
+                        Note.RemoveAt(i);
+                        break;
+                    }
+                }
+            }
+            else
+            {
+                Debug.Print("NoteViewModel error,when delete command");
+            }
+        }));
+        //-----------------------继承---------------------------//
         public event PropertyChangedEventHandler PropertyChanged;
 
         [NotifyPropertyChangedInvocator]

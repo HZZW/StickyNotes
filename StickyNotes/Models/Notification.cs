@@ -11,10 +11,8 @@ namespace StickyNotes.Models
 {
     public class Notification
     {
-        public Notification(DateTime alarmTime)
+         public Notification(DateTime alarmTime)
         {
-
-
             string title = "notes";
             string content = "提醒时间到";
 
