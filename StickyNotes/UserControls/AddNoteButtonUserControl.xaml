@@ -8,7 +8,7 @@
     mc:Ignorable="d"
     d:DesignHeight="300"
     d:DesignWidth="400">
-
+    <!--直接放在DataContext中即可-->
     <Grid>
         <Button Command="{Binding AddNoteCommand,Mode=OneWay}"></Button>
     </Grid>

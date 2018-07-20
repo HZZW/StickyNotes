@@ -8,8 +8,8 @@
     mc:Ignorable="d"
     d:DesignHeight="300"
     d:DesignWidth="400">
-    
-    <Grid>
+    <!--作为ListView或其他DataTemplate即可-->
+        <Grid>
         <StackPanel Name="NoteBoxStackPanel" Orientation="Vertical">
             <!--<TextBox Name="TitleTextBlock" Text="{Binding Title}" ></TextBox>
             <TextBox Name="AuthorTextBlock" Text="{Binding Author}"></TextBox>-->

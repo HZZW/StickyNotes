@@ -35,11 +35,7 @@ namespace StickyNotes.ViewModels
         /// Note实例
         /// </summary>
         public ObservableCollection<Note> Note {get; set; }
-        /// <summary>
-        /// 当前聚焦的Note
-        /// </summary>
-        private Note _selectNote;
-        public Note SelectNote { get; private set; }
+        
         /// <summary>
         /// 推送
         /// </summary>
@@ -49,8 +45,6 @@ namespace StickyNotes.ViewModels
         /// 拉取
         /// </summary>
         private RelayCommand _pullCommand;
-
-        
 
         /// <summary>
         /// 推送命令
@@ -93,27 +87,46 @@ namespace StickyNotes.ViewModels
         /// 添加新Note
         /// </summary>
         private RelayCommand _addNoteCommand;
-
+        /// <summary>
+        /// 添加新Note
+        /// </summary>
         public RelayCommand AddNoteCommand => _addNoteCommand ?? (new RelayCommand(() =>
         {
             var note = new Note();
             this.Note.Add(note);
         }));
-
+        /// <summary>
+        /// 删除原Note
+        /// </summary>
         private RelayCommand<Note> _deleteNoteCommand;
-
+        /// <summary>
+        /// 删除原Note
+        /// </summary>
         public RelayCommand<Note> DeleteNoteCommand => _deleteNoteCommand ?? (new RelayCommand<Note>(note =>
         {
-            if (Note.Contains(note))
+            //if (Note.Contains(note))
+            //{
+            //    Note.Remove(note);
+            //}
+            //else
+            if (Note.Select(a=>a.ID).Contains(note.ID))
             {
-                Note.Remove(note);
+
+                for (int i = 0; i < Note.Count; i++)
+                {
+                    if(Note[i].ID ==note.ID)
+                    {
+                        Note.RemoveAt(i);
+                        break;
+                    }
+                }
             }
             else
             {
                 Debug.Print("NoteViewModel error,when delete command");
             }
         }));
-        
+        //-----------------------继承---------------------------//
         public event PropertyChangedEventHandler PropertyChanged;
 
         [NotifyPropertyChangedInvocator]
