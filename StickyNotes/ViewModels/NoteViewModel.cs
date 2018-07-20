@@ -17,10 +17,7 @@ namespace StickyNotes.ViewModels
 {
     public class NoteViewModel : INotifyPropertyChanged
     {
-        /// <summary>
-        /// note服务
-        /// </summary>
-        private INoteService _noteService;
+        
 
         public NoteViewModel(INoteService noteService)
         {
@@ -31,21 +28,24 @@ namespace StickyNotes.ViewModels
         {
             
         }
+        //-----------------------成员变量---------------------//
+        /// <summary>
+        /// note服务
+        /// </summary>
+        private INoteService _noteService;
         /// <summary>
         /// Note实例
         /// </summary>
-        public ObservableCollection<Note> Note {get; set; }
-        
+        public ObservableCollection<Note> Note {get; set; }   
+        //-----------------------命令-------------------------//
         /// <summary>
         /// 推送
         /// </summary>
         private RelayCommand<List<Note>> _pushCommand;
-
         /// <summary>
         /// 拉取
         /// </summary>
         private RelayCommand _pullCommand;
-
         /// <summary>
         /// 推送命令
         /// </summary>
@@ -82,7 +82,6 @@ namespace StickyNotes.ViewModels
                 this.Note.Add(note);
             }
         }));
-
         /// <summary>
         /// 添加新Note
         /// </summary>
@@ -90,7 +89,7 @@ namespace StickyNotes.ViewModels
         /// <summary>
         /// 添加新Note
         /// </summary>
-        public RelayCommand AddNoteCommand => _addNoteCommand ?? (new RelayCommand(() =>
+        public RelayCommand AddNoteCommand => _addNoteCommand ?? (_addNoteCommand=new RelayCommand(() =>
         {
             var note = new Note();
             this.Note.Add(note);
@@ -102,29 +101,51 @@ namespace StickyNotes.ViewModels
         /// <summary>
         /// 删除原Note
         /// </summary>
-        public RelayCommand<Note> DeleteNoteCommand => _deleteNoteCommand ?? (new RelayCommand<Note>(note =>
+        public RelayCommand<Note> DeleteNoteCommand => _deleteNoteCommand ?? (_deleteNoteCommand=new RelayCommand<Note>(note =>
         {
-            //if (Note.Contains(note))
-            //{
-            //    Note.Remove(note);
-            //}
-            //else
-            if (Note.Select(a=>a.ID).Contains(note.ID))
+            var theNote = GetNoteById(note.ID);
+            if (theNote != null)
             {
+                //撤销时间提醒
+                CancelDateTimeCommand.Execute(theNote);
+                Note.Remove(theNote);
+            }
 
-                for (int i = 0; i < Note.Count; i++)
-                {
-                    if(Note[i].ID ==note.ID)
-                    {
-                        Note.RemoveAt(i);
-                        break;
-                    }
-                }
-            }
-            else
+        }));
+        /// <summary>
+        /// 设置note的时间提示
+        /// </summary>
+        private RelayCommand<KeyValuePair<Note, DateTime>> _setDateTimeCommand;
+        /// <summary>
+        /// 设置note的时间提示
+        /// </summary>
+        public RelayCommand<KeyValuePair<Note,DateTime>> SetDateTimeCommand=>_setDateTimeCommand?? (_setDateTimeCommand = new RelayCommand<KeyValuePair<Note, DateTime>>(
+                                                                                 note_DateTime =>
+                                                                                 {
+                                                                                    var theNote =
+                                                                                         GetNoteById(note_DateTime.Key
+                                                                                             .ID);
+                                                                                     theNote.NotificationDateTime =
+                                                                                         note_DateTime.Value;
+                                                                                     //TODO 通知系统修改时间
+                                                                                 }));
+        /// <summary>
+        /// 取消Note的提示时间
+        /// </summary>
+        private RelayCommand<Note> _cancelDateTimeCommand;
+        /// <summary>
+        /// 取消Note的提示时间
+        /// </summary>
+        public RelayCommand<Note> CancelDateTimeCommand => _cancelDateTimeCommand ?? (new RelayCommand<Note>(note =>
+        {
+            var theNote = GetNoteById(note.ID);
+            if(theNote!=null)
             {
-                Debug.Print("NoteViewModel error,when delete command");
+                //TODO 或许换成其他的值作为note取消提醒更好,不过没找到可替代的方式
+                note.NotificationDateTime = DateTime.MinValue;
+                //TODO 通知系统取消提醒
             }
+
         }));
         //-----------------------继承---------------------------//
         public event PropertyChangedEventHandler PropertyChanged;
@@ -133,6 +154,21 @@ namespace StickyNotes.ViewModels
         protected virtual void OnPropertyChanged([CallerMemberName] string propertyName = null)
         {
             PropertyChanged?.Invoke(this, new PropertyChangedEventArgs(propertyName));
+        }
+
+        //-----------------------私有-------------------------//
+        private Note GetNoteById(int id)
+        {
+            foreach (var note in Note)
+            {
+                if (id == note.ID)
+                {
+                    return note;
+
+                }
+            }
+
+            return null;
         }
     }
 }
