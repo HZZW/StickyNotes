@@ -1,8 +1,11 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.ComponentModel;
 using System.Linq;
+using System.Runtime.CompilerServices;
 using System.Text;
 using System.Threading.Tasks;
+using StickyNotes.Annotations;
 
 namespace StickyNotes.Models
 {
@@ -10,21 +13,71 @@ namespace StickyNotes.Models
     /// 全部的文本信息
     /// </summary>
     [System.Serializable]
-    public class Note
+    public class Note:INotifyPropertyChanged
     {
+        //TODO 未初始化ID
+        public int ID;
+        
+
         /// <summary>
         /// 内容
         /// </summary>
-        public string Content { get; set; }
+        private string _content;
+        public string Content
+        {
+            get => _content;
+            set
+            {
+                if (_content == value)
+                {
+                    return;
+                }
+
+                _content = value;
+                OnPropertyChanged(nameof(Content));
+            }
+        }
         /// <summary>
         /// 标题
         /// </summary>
-        public string Title { get; set; }
+        private string _title;
+        public string Title { get=>_title;
+            set
+            {
+                if (_title == value)
+                {
+                    return;
+                }
+
+                _title = value;
+                OnPropertyChanged(nameof(Title));
+            }
+        }
         /// <summary>
         /// 作者
         /// </summary>
-        public string Author { get; set; }
+        private string _author { get; set; }
+        public string Author
+        {
+            get => _author;
+            set
+            {
+                if (_author == value)
+                {
+                    return;
+                }
 
-       
+                _author = value;
+                OnPropertyChanged(nameof(Author));
+            }
+        }
+
+        public event PropertyChangedEventHandler PropertyChanged;
+
+        [NotifyPropertyChangedInvocator]
+        protected virtual void OnPropertyChanged([CallerMemberName] string propertyName = null)
+        {
+            PropertyChanged?.Invoke(this, new PropertyChangedEventArgs(propertyName));
+        }
     }
 }

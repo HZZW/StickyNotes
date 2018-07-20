@@ -25,6 +25,9 @@ namespace StickyNotes
         public SettingPage()
         {
             this.InitializeComponent();
+            redSlider.Value = 128;
+            greenSlider.Value = 128;
+            blueSlider.Value = 128;
         }
 
         private void Cstyle_Loaded(object sender, RoutedEventArgs e) {
@@ -35,16 +38,16 @@ namespace StickyNotes
 
         }
 
-        private void C_color_Loaded(object sender, RoutedEventArgs e) {
-
-        }
-
         private void B_color_Loaded(object sender, RoutedEventArgs e) {
 
         }
 
         private void Start_Loaded(object sender, RoutedEventArgs e) {
 
+        }
+
+        private void RedSlider_ValueChanged(object sender, RangeBaseValueChangedEventArgs e) {
+            
         }
     }
 }
