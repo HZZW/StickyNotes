@@ -35,8 +35,12 @@ namespace StickyNotes.Services
         /// <returns>所有文本信息</returns>
         public IEnumerable<Note> Pull()
         {
-            using (FileStream stream = new FileStream(Properties.Instance.SavePath, FileMode.Open))
+            using (FileStream stream = new FileStream(Properties.Instance.SavePath, FileMode.OpenOrCreate))
             {
+                if (stream.Length == 0)
+                {
+                    return null;
+                }
                 BinaryFormatter binaryFormatter = new BinaryFormatter();
                 IEnumerable<Note> notes = binaryFormatter.Deserialize(stream) as IEnumerable<Note>;
                 return notes;
