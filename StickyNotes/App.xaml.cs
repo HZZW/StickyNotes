@@ -14,6 +14,7 @@ using Windows.UI.Xaml.Data;
 using Windows.UI.Xaml.Input;
 using Windows.UI.Xaml.Media;
 using Windows.UI.Xaml.Navigation;
+using StickyNotes.ViewModels;
 
 namespace StickyNotes
 {
@@ -95,6 +96,8 @@ namespace StickyNotes
             var deferral = e.SuspendingOperation.GetDeferral();
             //TODO: 保存应用程序状态并停止任何后台活动
             deferral.Complete();
+
+            (App.Current.Resources["NoteViewModel"] as NoteViewModel).PushCommand.Execute(null);
         }
     }
 }

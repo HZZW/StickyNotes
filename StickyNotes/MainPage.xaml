@@ -4,14 +4,28 @@
       xmlns:local="using:StickyNotes"
       xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
       xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+      xmlns:userControls="using:StickyNotes.UserControls"
       mc:Ignorable="d"
       Background="{ThemeResource ApplicationPageBackgroundThemeBrush}">
-    <Grid>
-        <StackPanel Orientation="Vertical">
-            <Button  Content="NotePage" Margin="0,0,0,20"  Click="Button_Click"/>
-            <Button Content="SetPage"  Margin="0,0,0,20"  Click="Button_Click_1"/>
-            <Button Content="DesignPage"  Margin="0,0,0,20"  Click="Button_Click_"/>
-        </StackPanel>
+    <Page.DataContext>
+        <Binding Source="{StaticResource NoteViewModel}" />
+    </Page.DataContext>
+    
 
+    <Grid>
+        <StackPanel>
+            <userControls:AddNoteButtonUserControl></userControls:AddNoteButtonUserControl>
+            <Button Click="ButtonBase_OnClick">拉取</Button>
+            <Button Click="SaveButton">更新</Button>
+            <ListView Name="MasterListView"
+                      IsItemClickEnabled="True"
+                      ItemsSource="{Binding Note}">
+                <ListView.ItemTemplate>
+                    <DataTemplate>
+                        <userControls:NoteBoxUserControl></userControls:NoteBoxUserControl>
+                    </DataTemplate>
+                </ListView.ItemTemplate>
+            </ListView>
+        </StackPanel>
     </Grid>
 </Page>
