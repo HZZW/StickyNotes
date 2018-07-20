@@ -49,11 +49,7 @@ namespace StickyNotes
             noteViewModel?.PullCommand.Execute(null);
         }
 
-        private void SaveButton(object sender, RoutedEventArgs e)
-        {
-            var noteViewModel = this.DataContext as NoteViewModel;
-            noteViewModel?.PushCommand.Execute(null);
-        }
+       
 
         private void TurnTo_Click(object sender, RoutedEventArgs e)
         {
@@ -61,6 +57,11 @@ namespace StickyNotes
                 // 此处的NewPage是另一个页面的名字
                 Frame.Navigate(typeof(DesignPage), "");
             }
+        }
+
+        private void AppBarButton_Click(object sender, RoutedEventArgs e)
+        {
+
         }
     }
 }
