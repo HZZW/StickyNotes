@@ -100,8 +100,29 @@
                     </FlyoutBase.AttachedFlyout>
                 </TextBox>
             </Grid>
-            <AppBarButton  Name="CloseButton" Icon="Delete" Click="CloseButtonClick">
+            <Grid Grid.Column="0">
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="*"/>
+                    <RowDefinition Height="*"/>
+                </Grid.RowDefinitions>
+                <AppBarButton  Name="CloseButton"
+                               Icon="Delete"
+                               Grid.Row="0"
+                               Click="CloseButtonClick" />
+                <AppBarButton Name="ClockButton"
+                              Grid.Row="1"
+                              Icon="Clock">
+                    <AppBarButton.Flyout>
+                        <Flyout>
+                            <StackPanel Orientation="Horizontal">
+                                <DatePicker />
+                                <TimePicker />
+                            </StackPanel>
+                        </Flyout>
+                    </AppBarButton.Flyout>
                 </AppBarButton>
+            </Grid>
+           
         </Grid>
     </Grid>
 </UserControl>
