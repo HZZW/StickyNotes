@@ -28,9 +28,6 @@ namespace StickyNotes
         public SettingPage()
         {
             this.InitializeComponent();
-            redSlider.Value = 128;
-            greenSlider.Value = 128;
-            blueSlider.Value = 128;
         }
         private void BackButton_OnClick(object sender, RoutedEventArgs e) {
             OnBackRequested();
@@ -65,7 +62,7 @@ namespace StickyNotes
         }
         public async Task LoadState() {
             var task = await StartupTask.GetAsync("StickyNotes");
-            this.tbState.Text = $"Status: {task.State}";
+
             switch (task.State)
             {
                 case StartupTaskState.Disabled:
@@ -100,6 +97,21 @@ namespace StickyNotes
 
             // 重新加載狀態
             await LoadState();
+        }
+
+        private void RecoverButton_Click(object sender, RoutedEventArgs e)
+        {
+
+        }
+
+        private void QiuteModleButton_Click(object sender, RoutedEventArgs e)
+        {
+
+        }
+
+        private void ColorChoose_Click(object sender, RoutedEventArgs e)
+        {
+
         }
     }
 }
