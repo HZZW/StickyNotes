@@ -6,7 +6,8 @@
       xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
       Background="{ThemeResource ApplicationPageBackgroundThemeBrush}"
       MaxHeight="700"
-      MaxWidth="400">
+      MaxWidth="400"
+      Loaded="Page_Loaded">
     <Page.Resources>
         <Style x:Key="BaseTextBlockStyle"
                TargetType="TextBlock">
@@ -15,7 +16,7 @@
             <Setter Property="FontWeight"
                     Value="SemiBold" />
             <Setter Property="FontSize"
-                    Value="15" />
+                    Value="13" />
             <Setter Property="TextTrimming"
                     Value="None" />
             <Setter Property="TextWrapping"
@@ -26,6 +27,8 @@
                     Value="Full" />
             <Setter Property="Margin"
                     Value="8,0,0,0"/>
+            <Setter Property="Padding"
+                    Value="2"/>
         </Style>
         <Style x:Key="TitleTextBlockStyle"
                TargetType="TextBlock"
@@ -33,7 +36,7 @@
             <Setter Property="FontWeight"
                     Value="SemiLight" />
             <Setter Property="FontSize"
-                    Value="24" />
+                    Value="20" />
             <Setter Property="OpticalMarginAlignment"
                     Value="TrimSideBearings" />
             <Setter Property="Padding"
@@ -53,6 +56,7 @@
             <ColumnDefinition Width="*"/>
         </Grid.ColumnDefinitions>
         <Grid.RowDefinitions>
+            <RowDefinition Height="auto"/>
             <RowDefinition Height="*" />
             <RowDefinition Height="*" />
             <RowDefinition Height="*" />
@@ -64,44 +68,51 @@
             <RowDefinition Height="*" />
             <RowDefinition Height="6*" />
         </Grid.RowDefinitions>
-        <TextBlock Grid.Row="0"
+        <Button Name="BackButton"
+                Grid.Row="0"
+                Grid.Column="0"
+                Style="{StaticResource NavigationBackButtonNormalStyle}"
+                Click="BackButton_OnClick" />
+        <TextBlock Grid.Row="1"
                    Grid.ColumnSpan="2"
                    Text="Setting"
+                   HorizontalAlignment="Left"
+                   HorizontalTextAlignment="DetectFromContent"
                    Style="{ThemeResource TitleTextBlockStyle}"
                    Margin="12,8,8,8" />
-        <TextBlock Grid.Row="1"
+        <TextBlock Grid.Row="2"
                    Text="字体样式"
                    Style="{StaticResource BaseTextBlockStyle}" />
         <ComboBox 
                   x:Name="cstyle"
-                  Grid.Row="1"
+                  Grid.Row="2"
                   Grid.Column="1"
                   DisplayMemberPath="Item1"
                   SelectedValuePath="Item2"
                   Width="100"
                   Loaded="Cstyle_Loaded"
                   HorizontalAlignment="Right"/>
-        <TextBlock Grid.Row="2"
+        <TextBlock Grid.Row="3"
                    Text="字体大小"
                    Style="{StaticResource BaseTextBlockStyle}" />
         <ComboBox 
                   x:Name="cbig"
-                  Grid.Row="2"
+                  Grid.Row="3"
                   Grid.Column="1"
                   DisplayMemberPath="Item1"
                   SelectedValuePath="Item2"
                   Width="100"
                   Loaded="Cbig_Loaded"
                   HorizontalAlignment="Right" />
-        <TextBlock Grid.Row="3"
+        <TextBlock Grid.Row="4"
                    Text="字体颜色"
                    Style="{StaticResource BaseTextBlockStyle}" />
         <Rectangle Grid.Column="1"
-                   Grid.Row="3"
+                   Grid.Row="4"
                    Margin="0,0,60,0"
                    Style="{StaticResource RectangleStyle}"
                    HorizontalAlignment="Right" />
-        <AppBarButton Icon="Setting" Grid.Column="1" Grid.Row="3" HorizontalAlignment="Right">
+        <AppBarButton Icon="Setting" Grid.Column="1" Grid.Row="4" HorizontalAlignment="Right">
             <AppBarButton.Flyout>
                 <Flyout>
                     <StackPanel Orientation="Horizontal">
@@ -161,39 +172,38 @@
                 </Flyout>
             </AppBarButton.Flyout>
         </AppBarButton>
-        <TextBlock Grid.Row="4"
+        <TextBlock Grid.Row="5"
                    Text="背景颜色"
                    Style="{StaticResource BaseTextBlockStyle}" />
         <ComboBox 
                   x:Name="b_color"
-                  Grid.Row="4"
+                  Grid.Row="5"
                   Grid.Column="1"
                   DisplayMemberPath="Item1"
                   SelectedValuePath="Item2"
                   Width="100"
                   Loaded="B_color_Loaded"
                   HorizontalAlignment="Right" />
-        <TextBlock Grid.Row="6"
+        <TextBlock Grid.Row="7"
                    Grid.ColumnSpan="2"
                    Text="Another Setting"
                    Style="{ThemeResource TitleTextBlockStyle}"
                    Margin="12,8,8,8" />
-        <TextBlock Grid.Row="7"
-                   Text="是否开机自启动"
-                   Style="{StaticResource BaseTextBlockStyle}" />
-        <ComboBox 
-                  x:Name="start"
-                  Grid.Row="7"
-                  Grid.Column="1"
-                  DisplayMemberPath="Item1"
-                  SelectedValuePath="Item2"
-                  Width="100"
-                  Loaded="Start_Loaded"
-                  HorizontalAlignment="Right" />
         <TextBlock Grid.Row="8"
+                   Text="是否开机自启动"
+                   Name="tbState"
+                   Style="{StaticResource BaseTextBlockStyle}" />
+        <ToggleButton Name="btnSetState"
+                      Margin="0,4,0,0"
+                      Click="btnSetState_Click"
+                      Grid.Row="8"
+                      Grid.Column="1"
+                      Content="当前值&#x2502;否"
+                      />
+        <TextBlock Grid.Row="9"
                    Text="退出模式设置"
                    Style="{StaticResource BaseTextBlockStyle}" />
-        <TextBlock Grid.Row="9"
+        <TextBlock Grid.Row="10"
                    Text="恢复默认设置"
                    Style="{StaticResource BaseTextBlockStyle}" />
     </Grid>
