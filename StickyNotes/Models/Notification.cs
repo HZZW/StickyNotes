@@ -11,7 +11,7 @@ namespace StickyNotes.Models
 {
     public class Notification
     {
-         public Notification(DateTime alarmTime)
+         public Notification(DateTime alarmTime, string id)
         {
             string title = "notes";
             string content = "提醒时间到";
@@ -81,10 +81,6 @@ namespace StickyNotes.Models
 
                 }.ToString()
             };
-
-            var toast = new ToastNotification(toastContent.GetXml());
-            toast.ExpirationTime = DateTime.Now.AddDays(2);
-
             if (alarmTime > DateTime.Now.AddSeconds(5))
             {
 
@@ -95,8 +91,20 @@ namespace StickyNotes.Models
                     );
 
                 // And add it to the schedule
+                scheduledNotif.Id = id;
                 ToastNotificationManager.CreateToastNotifier().AddToSchedule(scheduledNotif);
             }
+        }
+
+        public void Delete(string id)
+        {
+            var notifier = ToastNotificationManager.CreateToastNotifier();
+            var scheduled = notifier.GetScheduledToastNotifications();
+
+            // Find the one we want to remove
+            var toRemove = scheduled.FirstOrDefault(i => i.Id.Equals(id));
+            // And remove it
+            notifier.RemoveFromSchedule(toRemove);
         }
     }
 }
