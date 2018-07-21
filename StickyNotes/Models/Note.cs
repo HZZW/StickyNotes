@@ -15,6 +15,9 @@ namespace StickyNotes.Models
     [System.Serializable]
     public class Note:INotifyPropertyChanged
     {
+        /// <summary>
+        /// Note唯一标识
+        /// </summary>
         public int ID { get; private set; }
 
         public Note()
@@ -94,7 +97,24 @@ namespace StickyNotes.Models
             }
         }
 
+        /// <summary>
+        /// 所属分组
+        /// </summary>
+        private string _tag;
+        public string Tag
+        {
+            get => _tag;
+            set
+            {
+                if (_tag == value)
+                {
+                    return;
+                }
 
+                _tag = value;
+                OnPropertyChanged(nameof(Tag));
+            }
+        }
 
         [field: NonSerialized]
         public event PropertyChangedEventHandler PropertyChanged;
