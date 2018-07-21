@@ -161,6 +161,7 @@ namespace StickyNotes.ViewModels
             if (theNote != null)
             {
                 //撤销时间提醒
+                if(Notification.Instance.Show().Contains(theNote.ID.ToString()))
                 CancelDateTimeCommand.Execute(theNote);
                 Note.Remove(theNote);
             }
@@ -178,9 +179,13 @@ namespace StickyNotes.ViewModels
                                                                                     var theNote =
                                                                                          GetNoteById(note_DateTime.Key
                                                                                              .ID);
-                                                                                     theNote.NotificationDateTime =
-                                                                                         note_DateTime.Value;
-                                                                                     //TODO 通知系统修改时间
+                                                                                     if (theNote != null)
+                                                                                     {
+                                                                                         theNote.NotificationDateTime =
+                                                                                             note_DateTime.Value;
+                                                                                         //通知系统修改时间
+                                                                                         Notification.Instance.Create(theNote.NotificationDateTime,theNote.ID.ToString());
+                                                                                     }
                                                                                  }));
         /// <summary>
         /// 取消Note的提示时间
@@ -196,7 +201,9 @@ namespace StickyNotes.ViewModels
             {
                 //TODO 或许换成其他的值作为note取消提醒更好,不过没找到可替代的方式
                 note.NotificationDateTime = DateTime.MinValue;
-                //TODO 通知系统取消提醒
+                //通知系统取消提醒
+                if(Notification.Instance.Show().Contains(theNote.ID.ToString()))
+                Notification.Instance.Delete(theNote.ID.ToString());
             }
 
         }));
