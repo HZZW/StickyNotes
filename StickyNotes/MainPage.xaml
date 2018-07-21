@@ -264,12 +264,16 @@
                           Command="{Binding AddNoteCommand,Mode=OneWay}"
                           Margin="0,0,28,0" />
             <CommandBar.SecondaryCommands>
+                <AppBarButton Icon="SelectAll"
+                              Label="Put" />
+                <AppBarButton  Name="AllNoteAppBarButton" 
+                               Icon="Page2"
+                               Label="All Note"  
+                               Click="AllNoteButton_Click" />
                 <AppBarButton Name="SettingAppBarButton"
                               Icon="Setting"
                               Label="Settings"
                               Click="SettingAppBarButton_Click" />
-                <AppBarButton Icon="SelectAll"
-                              Label="Put" />
             </CommandBar.SecondaryCommands>
         </CommandBar>
         <ListView Name="MasterListView"
