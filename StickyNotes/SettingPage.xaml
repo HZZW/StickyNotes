@@ -6,7 +6,8 @@
       xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
       Background="{ThemeResource ApplicationPageBackgroundThemeBrush}"
       MaxHeight="700"
-      MaxWidth="400">
+      MaxWidth="400"
+      Loaded="Page_Loaded">
     <Page.Resources>
         <Style x:Key="BaseTextBlockStyle"
                TargetType="TextBlock">
@@ -180,16 +181,15 @@
                    Margin="12,8,8,8" />
         <TextBlock Grid.Row="7"
                    Text="是否开机自启动"
+                   Name="tbState"
                    Style="{StaticResource BaseTextBlockStyle}" />
-        <ComboBox 
-                  x:Name="start"
-                  Grid.Row="7"
-                  Grid.Column="1"
-                  DisplayMemberPath="Item1"
-                  SelectedValuePath="Item2"
-                  Width="100"
-                  Loaded="Start_Loaded"
-                  HorizontalAlignment="Right" />
+        <ToggleButton Name="btnSetState"
+                      Margin="0,4,0,0"
+                      Click="btnSetState_Click"
+                      Grid.Row="7"
+                      Grid.Column="1"
+                      Content="当前值&#x2502;否"
+                      />
         <TextBlock Grid.Row="8"
                    Text="退出模式设置"
                    Style="{StaticResource BaseTextBlockStyle}" />

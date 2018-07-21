@@ -99,5 +99,22 @@ namespace StickyNotes
 
             (App.Current.Resources["NoteViewModel"] as NoteViewModel).PushCommand.Execute(null);
         }
+
+        protected override void OnActivated(IActivatedEventArgs args) {
+            Frame rootFrame = Window.Current.Content as Frame;
+            if (rootFrame == null)
+            {
+                rootFrame = new Frame();
+                Window.Current.Content = rootFrame;
+            }
+
+            if (args.Kind == ActivationKind.StartupTask)
+            {
+                var startupArgs = args as StartupTaskActivatedEventArgs;
+            }
+
+            rootFrame.Navigate(typeof(MainPage), args.Kind);
+            Window.Current.Activate();
+        }
     }
 }
