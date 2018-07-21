@@ -12,7 +12,6 @@
     </Page.DataContext>
 
     <Page.Resources>
-
         <Style x:Key="Button"
                TargetType="AppBarButton">
             <Setter Property="Background"
@@ -209,10 +208,14 @@
             </Setter>
         </Style>
     </Page.Resources>
-    <Grid Background="White">
+    <Grid Background="White" 
+          x:Name="MainGrid" 
+          IsTapEnabled="True">
         <Grid.RowDefinitions>
-            <RowDefinition x:Name="MasterRow" Height="AUTO" />
-            <RowDefinition x:Name="DetailRow" Height="*" />
+            <RowDefinition x:Name="MasterRow" 
+                           Height="AUTO" />
+            <RowDefinition x:Name="DetailRow" 
+                           Height="*" />
         </Grid.RowDefinitions>
         <!--<VisualStateManager.VisualStateGroups>
             <VisualStateGroup x:Name="AdaptiveStates"
@@ -239,7 +242,8 @@
                 </VisualState>
             </VisualStateGroup>
         </VisualStateManager.VisualStateGroups>-->
-        <CommandBar Grid.Row="0"
+        <CommandBar  
+                    Grid.Row="0"
                     OverflowButtonVisibility="Visible"
                     IsOpen="False"
                     DefaultLabelPosition="Right"
@@ -249,7 +253,6 @@
                           Name="RefreshButton"
                           Command="{Binding PullCommand}"
                           Margin="0,0,36,0" />
-
             <AppBarButton Icon="Save"
                           Label="Save"
                           Name="SaveButton"
