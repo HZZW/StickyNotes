@@ -27,8 +27,7 @@
                          Background="AliceBlue"
                          AcceptsReturn="True"
                          TextWrapping="Wrap"
-                         Text="{Binding Content,Mode=TwoWay}"
-                         Style="{StaticResource AutoSuggestBoxTextBoxStyle}">
+                         Text="{Binding Content,Mode=TwoWay}">
                     <FlyoutBase.AttachedFlyout>
                         <MenuFlyout>
                             <MenuFlyoutItem Text="复制" />

@@ -5,6 +5,8 @@ using Windows.ApplicationModel.Core;
 using StickyNotes.Models;
 using StickyNotes.ViewModels;
 using Windows.UI.ViewManagement;
+using StickyNotes.UserControls;
+using Windows.UI.Xaml.Media.Animation;
 
 
 // https://go.microsoft.com/fwlink/?LinkId=402352&clcid=0x804 上介绍了“空白页”项模板

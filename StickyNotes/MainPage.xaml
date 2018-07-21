@@ -211,9 +211,34 @@
     </Page.Resources>
     <Grid Background="White">
         <Grid.RowDefinitions>
-            <RowDefinition Height="AUTO" />
-            <RowDefinition Height="*" />
+            <RowDefinition x:Name="MasterRow" Height="AUTO" />
+            <RowDefinition x:Name="DetailRow" Height="*" />
         </Grid.RowDefinitions>
+        <!--<VisualStateManager.VisualStateGroups>
+            <VisualStateGroup x:Name="AdaptiveStates"
+                              CurrentStateChanged="AdaptiveStates_OnCurrentStateChanged">
+                <VisualState x:Name="DefaultState">
+                    <VisualState.StateTriggers>
+                        <AdaptiveTrigger MinWindowWidth="720" />
+                    </VisualState.StateTriggers>
+                </VisualState>
+
+                <VisualState x:Name="NarrowState">
+                    <VisualState.StateTriggers>
+                        <AdaptiveTrigger MinWindowWidth="0" />
+                    </VisualState.StateTriggers>
+
+                    <VisualState.Setters>
+                        <Setter Target="MasterRow.Height"
+                                Value="auto" />
+                        <Setter Target="DetailRow.Height"
+                                Value="*" />
+                        <Setter Target="MasterListView.SelectionMode"
+                                Value="None" />
+                    </VisualState.Setters>
+                </VisualState>
+            </VisualStateGroup>
+        </VisualStateManager.VisualStateGroups>-->
         <CommandBar Grid.Row="0"
                     OverflowButtonVisibility="Visible"
                     IsOpen="False"
@@ -247,8 +272,7 @@
         <ListView Name="MasterListView"
                   Grid.Row="1"
                   Width="1500"
-                  ItemsSource="{Binding Note}"
-                  IsItemClickEnabled="True">
+                  ItemsSource="{Binding Note}">
             <ListView.ItemTemplate>
                 <DataTemplate>
                     <userControls:NoteBoxUserControl></userControls:NoteBoxUserControl>
