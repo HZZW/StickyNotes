@@ -53,17 +53,15 @@ namespace StickyNotes.ViewModels
         /// </summary>
         private INoteService _noteService;
 
+
         /// <summary>
         /// Note实例
         /// </summary>
         private ObservableCollection<Note> _note;
-        /// <summary>
-        /// Note实例
-        /// </summary>
         public ObservableCollection<Note> Note
         {
-            get => _note ?? (_note = new ObservableCollection<Note>());
-            private set => _note = value;
+            get => _note??(_note=new ObservableCollection<Note>());
+            private set =>_note=value;
         }
 
         /// <summary>
@@ -108,7 +106,6 @@ namespace StickyNotes.ViewModels
         notes=>
         {
             var service = _noteService;
-
             if (notes == null)
             {
                 service.Push((Note.ToList()));
@@ -116,6 +113,7 @@ namespace StickyNotes.ViewModels
 
             if (notes != null)
             {
+                Note.Clear();
                 service.Push((notes.ToList()));
                 foreach (var note in notes)
                 {
@@ -126,7 +124,7 @@ namespace StickyNotes.ViewModels
         /// <summary>
         /// 拉取命令
         /// </summary>
-        public RelayCommand PullCommand =>_pullCommand ??(new RelayCommand(()=>
+        public RelayCommand PullCommand =>_pullCommand ??(_pullCommand=new RelayCommand(()=>
         {
             var service = _noteService;
             var notes = service.Pull()?.ToList();
@@ -191,7 +189,7 @@ namespace StickyNotes.ViewModels
         /// <summary>
         /// 取消Note的提示时间
         /// </summary>
-        public RelayCommand<Note> CancelDateTimeCommand => _cancelDateTimeCommand ?? (new RelayCommand<Note>(note =>
+        public RelayCommand<Note> CancelDateTimeCommand => _cancelDateTimeCommand ?? (_cancelDateTimeCommand=new RelayCommand<Note>(note =>
         {
             var theNote = GetNoteById(note.ID);
             if(theNote!=null)
@@ -210,7 +208,7 @@ namespace StickyNotes.ViewModels
         /// <summary>
         /// 设置当前组的标签
         /// </summary>
-        public RelayCommand<string> SetTagCommand => _setTagCommand ?? (new RelayCommand<string>(tag =>
+        public RelayCommand<string> SetTagCommand => _setTagCommand ?? (_setTagCommand=new RelayCommand<string>(tag =>
         {
             NoteWithTag.Clear();
             if (Note.Select(a => a.Tag).ToList().Contains(tag))

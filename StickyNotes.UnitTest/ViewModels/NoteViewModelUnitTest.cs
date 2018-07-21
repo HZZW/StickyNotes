@@ -67,11 +67,14 @@ namespace StickyNotes.UnitTest.ViewModels
         public void TestDeleteNoteCommand()
         {
             var noteViewModel = new NoteViewModel();
+            
             var noteSaveList = new List<Note>();
             noteSaveList.Add(new Note() { Author = "LwwWG", Content = "it is a easy content one", Title = "title one", NotificationDateTime = new DateTime(2018, 9, 10) });
             noteSaveList.Add(new Note() { Author = "LwwWG", Content = "it is a easy content two", Title = "title two", NotificationDateTime = new DateTime(2018, 10, 10) });
             noteSaveList.Add(new Note() { Author = "LwwWG", Content = "it is a easy content three", Title = "title three", NotificationDateTime = new DateTime(2018, 11, 10) });
             noteSaveList.Add(new Note() { Author = "LwwWG", Content = "it is a easy content four", Title = "title four", NotificationDateTime = new DateTime(2018, 12, 10) });
+            
+
             //保存
             noteViewModel.PushCommand.Execute(noteSaveList);
             for (int i = 0; i < noteSaveList.Count-2; i++)
