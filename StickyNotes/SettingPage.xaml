@@ -238,13 +238,13 @@
                 ClickMode="Release" >
                 <Button.Flyout>
                     <MenuFlyout>
-                        <MenuFlyoutItem Text="Default"  Click="ColorChoose_Click"/>
-                        <MenuFlyoutItem Text="pink" Background="Pink" Click="ColorChoose_Click"/>
-                        <MenuFlyoutItem Text="green" Background="Green" Click="ColorChoose_Click"/>
-                        <MenuFlyoutItem Text="orange"  Background="Orange" Click="ColorChoose_Click"/>
-                        <MenuFlyoutItem Text="yellow"  Background="Yellow" Click="ColorChoose_Click"/>
-                        <MenuFlyoutItem Text="bule" Background="AliceBlue" Click="ColorChoose_Click"/>
-                        <MenuFlyoutItem Text="black" Background="MidnightBlue" Click="ColorChoose_Click"/>
+                        <MenuFlyoutItem Text="Default" IsHitTestVisible="False"  Click="ColorChoose_Click"/>
+                        <MenuFlyoutItem Text="pink" IsHitTestVisible="False" Background="Pink" Click="ColorChoose_Click"/>
+                        <MenuFlyoutItem Text="green" IsHitTestVisible="False"  Background="Green" Click="ColorChoose_Click"/>
+                        <MenuFlyoutItem Text="orange"  IsHitTestVisible="False" Background="Orange" Click="ColorChoose_Click"/>
+                        <MenuFlyoutItem Text="yellow"  IsHitTestVisible="False" Background="Yellow" Click="ColorChoose_Click"/>
+                        <MenuFlyoutItem Text="purple" IsHitTestVisible="False" Background="purple" Click="ColorChoose_Click"/>
+                        <MenuFlyoutItem Text="black" IsHitTestVisible="False" Background="MidnightBlue" Click="ColorChoose_Click"/>
                     </MenuFlyout>
                 </Button.Flyout>
             </Button>
