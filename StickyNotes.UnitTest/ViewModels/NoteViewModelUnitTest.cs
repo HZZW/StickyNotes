@@ -171,7 +171,6 @@ namespace StickyNotes.UnitTest.ViewModels
             Assert.AreEqual(true, noteViewModel.NoteWithTag.Contains(noteSaveList[5]));
             Assert.AreEqual(true, noteViewModel.NoteWithTag.Contains(noteSaveList[6]));
         }
-
         [TestMethod]
         public void TestSetAndCancelNotification()
         {
@@ -202,6 +201,7 @@ namespace StickyNotes.UnitTest.ViewModels
             Assert.AreEqual(true, Notification.Instance.Show().Contains(noteSaveList[4].ID.ToString()));
             Assert.AreEqual(true, Notification.Instance.Show().Contains(noteSaveList[5].ID.ToString()));
             Assert.AreEqual(true, Notification.Instance.Show().Contains(noteSaveList[6].ID.ToString()));
+            Assert.AreEqual(7, Notification.Instance.Show().Count);
             //CancelNotificationCommand
             noteViewModel.CancelNotificationCommand.Execute(noteSaveList[0]);
             noteViewModel.CancelNotificationCommand.Execute(noteSaveList[1]);
@@ -214,14 +214,45 @@ namespace StickyNotes.UnitTest.ViewModels
             Assert.AreEqual(true,  Notification.Instance.Show().Contains(noteSaveList[4].ID.ToString()));
             Assert.AreEqual(true,  Notification.Instance.Show().Contains(noteSaveList[5].ID.ToString()));
             Assert.AreEqual(true,  Notification.Instance.Show().Contains(noteSaveList[6].ID.ToString()));
+            Assert.AreEqual(4, Notification.Instance.Show().Count);
+            //再次设置
+
+            //SetNotificationCommand
+            noteViewModel.SetNotificationCommand.Execute(new KeyValuePair<Note, DateTime>(noteSaveList[0], new DateTime(2018,12,12)));
+            noteViewModel.SetNotificationCommand.Execute(new KeyValuePair<Note, DateTime>(noteSaveList[1], new DateTime(2018,12,12)));
+            noteViewModel.SetNotificationCommand.Execute(new KeyValuePair<Note, DateTime>(noteSaveList[2], new DateTime(2018,12,12)));
+            noteViewModel.SetNotificationCommand.Execute(new KeyValuePair<Note, DateTime>(noteSaveList[3], new DateTime(2018,12,12)));
+            noteViewModel.SetNotificationCommand.Execute(new KeyValuePair<Note, DateTime>(noteSaveList[4], new DateTime(2018,12,12)));
+            noteViewModel.SetNotificationCommand.Execute(new KeyValuePair<Note, DateTime>(noteSaveList[5], new DateTime(2018,12,12)));
+            noteViewModel.SetNotificationCommand.Execute(new KeyValuePair<Note, DateTime>(noteSaveList[6], new DateTime(2018,12,12)));
+            Assert.AreEqual(7, Notification.Instance.Show().Count);
+            //检查
+            Assert.AreEqual(true, Notification.Instance.Show().Contains(noteSaveList[0].ID.ToString()));
+            Assert.AreEqual(true, Notification.Instance.Show().Contains(noteSaveList[1].ID.ToString()));
+            Assert.AreEqual(true, Notification.Instance.Show().Contains(noteSaveList[2].ID.ToString()));
+            Assert.AreEqual(true, Notification.Instance.Show().Contains(noteSaveList[3].ID.ToString()));
+            Assert.AreEqual(true, Notification.Instance.Show().Contains(noteSaveList[4].ID.ToString()));
+            Assert.AreEqual(true, Notification.Instance.Show().Contains(noteSaveList[5].ID.ToString()));
+            Assert.AreEqual(true, Notification.Instance.Show().Contains(noteSaveList[6].ID.ToString()));
+            //CancelNotificationCommand
+            noteViewModel.CancelNotificationCommand.Execute(noteSaveList[0]);
+            noteViewModel.CancelNotificationCommand.Execute(noteSaveList[1]);
+            noteViewModel.CancelNotificationCommand.Execute(noteSaveList[2]);
+            //检查
+            Assert.AreEqual(true, !Notification.Instance.Show().Contains(noteSaveList[0].ID.ToString()));
+            Assert.AreEqual(true, !Notification.Instance.Show().Contains(noteSaveList[1].ID.ToString()));
+            Assert.AreEqual(true, !Notification.Instance.Show().Contains(noteSaveList[2].ID.ToString()));
+            Assert.AreEqual(true, Notification.Instance.Show().Contains(noteSaveList[3].ID.ToString()));
+            Assert.AreEqual(true, Notification.Instance.Show().Contains(noteSaveList[4].ID.ToString()));
+            Assert.AreEqual(true, Notification.Instance.Show().Contains(noteSaveList[5].ID.ToString()));
+            Assert.AreEqual(true, Notification.Instance.Show().Contains(noteSaveList[6].ID.ToString()));
+            Assert.AreEqual(4,Notification.Instance.Show().Count);
         }
-        
         [TestMethod]
         public void TestAllCommandTogether()
         {
             
         }
-
         /// <summary>
         /// 执行多次命令
         /// </summary>

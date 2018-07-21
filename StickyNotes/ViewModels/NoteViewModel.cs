@@ -173,18 +173,20 @@ namespace StickyNotes.ViewModels
         /// <summary>
         /// 设置note的时间提示
         /// </summary>
-        public RelayCommand<KeyValuePair<Note,DateTime>> SetNotificationCommand=>_setNotificationCommand?? (_setNotificationCommand = new RelayCommand<KeyValuePair<Note, DateTime>>(
+        public RelayCommand<KeyValuePair<Note,DateTime>> SetNotificationCommand=>
+            _setNotificationCommand?? (_setNotificationCommand = new RelayCommand<KeyValuePair<Note, DateTime>>(
                                                                                  note_DateTime =>
                                                                                  {
-                                                                                    var theNote =
-                                                                                         GetNoteById(note_DateTime.Key
-                                                                                             .ID);
+                                                                                    var theNote =GetNoteById(note_DateTime.Key.ID);
                                                                                      if (theNote != null)
                                                                                      {
-                                                                                         theNote.NotificationDateTime =
-                                                                                             note_DateTime.Value;
+                                                                                         theNote.NotificationDateTime=note_DateTime.Value;
                                                                                          //通知系统修改时间
-                                                                                         Notification.Instance.Create(theNote.NotificationDateTime,theNote.ID.ToString());
+                                                                                         if(Notification.Instance.Show().Contains(theNote.ID.ToString()))
+                                                                                         {
+                                                                                             Notification.Instance.Delete(theNote.ID.ToString());
+                                                                                         }
+                                                                                         Notification.Instance.Create(theNote.NotificationDateTime, theNote.ID.ToString());
                                                                                      }
                                                                                  }));
         /// <summary>
@@ -207,7 +209,6 @@ namespace StickyNotes.ViewModels
             }
 
         }));
-
         /// <summary>
         /// 设置当前组的标签
         /// </summary>
@@ -228,16 +229,13 @@ namespace StickyNotes.ViewModels
             }
             SelectTag = tag;
         }));
-        
         //-----------------------继承---------------------------//
         public event PropertyChangedEventHandler PropertyChanged;
-
         [NotifyPropertyChangedInvocator]
         protected virtual void OnPropertyChanged([CallerMemberName] string propertyName = null)
         {
             PropertyChanged?.Invoke(this, new PropertyChangedEventArgs(propertyName));
         }
-
         //-----------------------私有-------------------------//
         private Note GetNoteById(int id)
         {
@@ -252,6 +250,5 @@ namespace StickyNotes.ViewModels
 
             return null;
         }
-        
     }
 }
