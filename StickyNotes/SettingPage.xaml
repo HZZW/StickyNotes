@@ -5,7 +5,7 @@
       xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
       xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
       Background="{ThemeResource ApplicationPageBackgroundThemeBrush}"
-
+      NavigationCacheMode="Enabled"
       Loaded="Page_Loaded">
     <Page.Resources>
         <Style x:Key="CaptionTextBlockStyle" TargetType="TextBlock" 
@@ -135,6 +135,11 @@
     
     <ScrollViewer  HorizontalScrollBarVisibility="Disabled" VerticalScrollBarVisibility="Auto">
         <Grid  MinWidth="500" >
+            <Grid.Background>
+                <AcrylicBrush BackgroundSource="HostBackdrop"
+                          TintColor="WhiteSmoke"
+                          TintOpacity="0.2"></AcrylicBrush>
+            </Grid.Background>
             <Grid.ColumnDefinitions>
                 <ColumnDefinition Width="Auto"/>
                 <ColumnDefinition Width="*"/>
