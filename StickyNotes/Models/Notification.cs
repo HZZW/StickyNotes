@@ -120,5 +120,18 @@ namespace StickyNotes.Models
             // And remove it
             notifier.RemoveFromSchedule(toRemove);
         }
+
+        public List<string> Show()
+        {
+            var notifier = ToastNotificationManager.CreateToastNotifier();
+            var scheduled = notifier.GetScheduledToastNotifications();
+            List<string> resList = new List<string>();
+            foreach (var s in scheduled)
+            {
+                resList.Add(s.Id);
+            }
+
+            return resList;
+        }
     }
 }
