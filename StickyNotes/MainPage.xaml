@@ -208,228 +208,13 @@
                 </Setter.Value>
             </Setter>
         </Style>
-        <Style x:Key="RichEditBoxStyle"
-               TargetType="RichEditBox">
-            <Setter Property="MinWidth"
-                    Value="{ThemeResource TextControlThemeMinWidth}" />
-            <Setter Property="MinHeight"
-                    Value="{ThemeResource TextControlThemeMinHeight}" />
-            <Setter Property="Foreground"
-                    Value="{ThemeResource TextBoxForegroundThemeBrush}" />
-            <Setter Property="Background"
-                    Value="{ThemeResource TextBoxBackgroundThemeBrush}" />
-            <Setter Property="SelectionHighlightColor"
-                    Value="{ThemeResource TextSelectionHighlightColorThemeBrush}" />
-            <Setter Property="BorderBrush"
-                    Value="{ThemeResource TextBoxBorderThemeBrush}" />
-            <Setter Property="BorderThickness"
-                    Value="{ThemeResource TextControlBorderThemeThickness}" />
-            <Setter Property="FontFamily"
-                    Value="{ThemeResource ContentControlThemeFontFamily}" />
-            <Setter Property="FontSize"
-                    Value="{ThemeResource ControlContentThemeFontSize}" />
-            <Setter Property="ScrollViewer.HorizontalScrollBarVisibility"
-                    Value="Auto" />
-            <Setter Property="ScrollViewer.VerticalScrollBarVisibility"
-                    Value="Auto" />
-            <Setter Property="ScrollViewer.IsDeferredScrollingEnabled"
-                    Value="False" />
-            <Setter Property="TextWrapping"
-                    Value="Wrap" />
-            <Setter Property="Padding"
-                    Value="{ThemeResource TextControlThemePadding}" />
-            <Setter Property="Template">
-                <Setter.Value>
-                    <ControlTemplate TargetType="RichEditBox">
-                        <Grid>
-                            <VisualStateManager.VisualStateGroups>
-                                <VisualStateGroup x:Name="CommonStates">
-                                    <VisualState x:Name="Disabled">
-                                        <Storyboard>
-                                            <ObjectAnimationUsingKeyFrames Storyboard.TargetName="BackgroundElement"
-                                                                           Storyboard.TargetProperty="Background">
-                                                <DiscreteObjectKeyFrame KeyTime="0"
-                                                                        Value="{ThemeResource TextBoxDisabledBackgroundThemeBrush}" />
-                                            </ObjectAnimationUsingKeyFrames>
-                                            <ObjectAnimationUsingKeyFrames Storyboard.TargetName="BorderElement"
-                                                                           Storyboard.TargetProperty="BorderBrush">
-                                                <DiscreteObjectKeyFrame KeyTime="0"
-                                                                        Value="{ThemeResource TextBoxDisabledBorderThemeBrush}" />
-                                            </ObjectAnimationUsingKeyFrames>
-                                            <ObjectAnimationUsingKeyFrames Storyboard.TargetName="ContentElement"
-                                                                           Storyboard.TargetProperty="Foreground">
-                                                <DiscreteObjectKeyFrame KeyTime="0"
-                                                                        Value="{ThemeResource TextBoxDisabledForegroundThemeBrush}" />
-                                            </ObjectAnimationUsingKeyFrames>
-                                            <ObjectAnimationUsingKeyFrames Storyboard.TargetName="PlaceholderTextContentPresenter"
-                                                                           Storyboard.TargetProperty="Foreground">
-                                                <DiscreteObjectKeyFrame KeyTime="0"
-                                                                        Value="{ThemeResource TextBoxDisabledForegroundThemeBrush}" />
-                                            </ObjectAnimationUsingKeyFrames>
-                                        </Storyboard>
-                                    </VisualState>
-                                    <VisualState x:Name="Normal">
-                                        <Storyboard>
-                                            <DoubleAnimation Storyboard.TargetName="BackgroundElement"
-                                                             Storyboard.TargetProperty="Opacity"
-                                                             Duration="0"
-                                                             To="{ThemeResource TextControlBackgroundThemeOpacity}" />
-                                            <DoubleAnimation Storyboard.TargetName="BorderElement"
-                                                             Storyboard.TargetProperty="Opacity"
-                                                             Duration="0"
-                                                             To="{ThemeResource TextControlBorderThemeOpacity}" />
-                                        </Storyboard>
-                                    </VisualState>
-                                    <VisualState x:Name="PointerOver">
-                                        <Storyboard>
-                                            <DoubleAnimation Storyboard.TargetName="BackgroundElement"
-                                                             Storyboard.TargetProperty="Opacity"
-                                                             Duration="0"
-                                                             To="{ThemeResource TextControlPointerOverBackgroundThemeOpacity}" />
-                                            <DoubleAnimation Storyboard.TargetName="BorderElement"
-                                                             Storyboard.TargetProperty="Opacity"
-                                                             Duration="0"
-                                                             To="{ThemeResource TextControlPointerOverBorderThemeOpacity}" />
-                                        </Storyboard>
-                                    </VisualState>
-                                    <VisualState x:Name="Focused" />
-                                </VisualStateGroup>
-                            </VisualStateManager.VisualStateGroups>
-                            <Grid.RowDefinitions>
-                                <RowDefinition Height="Auto" />
-                                <RowDefinition Height="*" />
-                            </Grid.RowDefinitions>
-                            <Border x:Name="BackgroundElement"
-                                    Grid.Row="1"
-                                    Background="{TemplateBinding Background}"
-                                    Margin="{TemplateBinding BorderThickness}"
-                                    Grid.ColumnSpan="2"
-                                    Grid.RowSpan="2" />
-                            <Border x:Name="BorderElement"
-                                    Grid.Row="1"
-                                    BorderBrush="{TemplateBinding BorderBrush}"
-                                    BorderThickness="{TemplateBinding BorderThickness}"
-                                    Grid.ColumnSpan="2"
-                                    Grid.RowSpan="1" />
-                            <ContentPresenter x:Name="HeaderContentPresenter"
-                                              Grid.Row="0"
-                                              Foreground="{ThemeResource TextBoxForegroundHeaderThemeBrush}"
-                                              Margin="0,4,0,4"
-                                              Grid.ColumnSpan="2"
-                                              Content="{TemplateBinding Header}"
-                                              ContentTemplate="{TemplateBinding HeaderTemplate}"
-                                              FontWeight="Semilight" />
-                            <ScrollViewer x:Name="ContentElement"
-                                          Grid.Row="1"
-                                          HorizontalScrollMode="{TemplateBinding ScrollViewer.HorizontalScrollMode}"
-                                          HorizontalScrollBarVisibility="{TemplateBinding ScrollViewer.HorizontalScrollBarVisibility}"
-                                          VerticalScrollMode="{TemplateBinding ScrollViewer.VerticalScrollMode}"
-                                          VerticalScrollBarVisibility="{TemplateBinding ScrollViewer.VerticalScrollBarVisibility}"
-                                          IsHorizontalRailEnabled="{TemplateBinding ScrollViewer.IsHorizontalRailEnabled}"
-                                          IsVerticalRailEnabled="{TemplateBinding ScrollViewer.IsVerticalRailEnabled}"
-                                          IsDeferredScrollingEnabled="{TemplateBinding ScrollViewer.IsDeferredScrollingEnabled}"
-                                          Margin="{TemplateBinding BorderThickness}"
-                                          Padding="{TemplateBinding Padding}"
-                                          IsTabStop="False"
-                                          ZoomMode="Disabled"
-                                          AutomationProperties.AccessibilityView="Raw" />
-                            <ContentControl x:Name="PlaceholderTextContentPresenter"
-                                            Grid.Row="1"
-                                            Foreground="{ThemeResource TextBoxPlaceholderTextThemeBrush}"
-                                            Margin="{TemplateBinding BorderThickness}"
-                                            Padding="{TemplateBinding Padding}"
-                                            IsTabStop="False"
-                                            Grid.ColumnSpan="2"
-                                            Content="{TemplateBinding PlaceholderText}"
-                                            IsHitTestVisible="False" />
-                        </Grid>
-                    </ControlTemplate>
-                </Setter.Value>
-            </Setter>
-        </Style>
     </Page.Resources>
     <Grid Background="White">
         <Grid.RowDefinitions>
             <RowDefinition Height="AUTO" />
             <RowDefinition Height="*" />
         </Grid.RowDefinitions>
-        <Grid.ColumnDefinitions>
-            <ColumnDefinition Width="120" />
-            <ColumnDefinition Width="*" />
-        </Grid.ColumnDefinitions>
-        <RichEditBox x:Name="Edit"
-                     Grid.Row="1"
-                     Grid.Column="1"
-                     Background="AliceBlue"
-                     AcceptsReturn="True"
-                     TextWrapping="Wrap"
-                     ContextMenuOpening="OnContextMenuOpening"
-                     Style="{StaticResource RichEditBoxStyle}">
-            <FlyoutBase.AttachedFlyout>
-                <MenuFlyout>
-                    <MenuFlyoutItem Text="复制"
-                                    Click="OnCopy" />
-                    <MenuFlyoutItem Text="剪切"
-                                    Click="OnCut" />
-                    <MenuFlyoutItem Text="粘贴"
-                                    Click="OnPaste" />
-                    <MenuFlyoutSeparator />
-                    <!--分割-->
-                    <MenuFlyoutSubItem Text="字号">
-                        <MenuFlyoutItem Text="16"
-                                        Tag="16"
-                                         Click="OnFontSize"/>
-                        <MenuFlyoutItem Text="20"
-                                        Tag="20"
-                                        Click="OnFontSize"/>
-                        <MenuFlyoutItem Text="24"
-                                        Tag="24"
-                                         Click="OnFontSize"/>
-                        <MenuFlyoutItem Text="36"
-                                        Tag="36"
-                                        Click="OnFontSize"/>
-                        <MenuFlyoutItem Text="48"
-                                        Tag="48"
-                                        Click="OnFontSize"/>
-                    </MenuFlyoutSubItem>
-                    <!--分割-->
-                    <MenuFlyoutSeparator />
-                    <ToggleMenuFlyoutItem Text="加粗"
-                                          Click="OnBold" />
-                    <MenuFlyoutSeparator />
-                    <MenuFlyoutSubItem Text="下划线">
-                        <MenuFlyoutItem Text="无"
-                                        Tag="-1"
-                                         Click="OnUnderline"/>
-                        <MenuFlyoutItem Text="单实线"
-                                        Tag="0"
-                                        Click="OnUnderline" />
-                        <MenuFlyoutItem Text="双实线"
-                                        Tag="1"
-                                        Click="OnUnderline" />
-                        <MenuFlyoutItem Text="虚线"
-                                        Tag="2"
-                                        Click="OnUnderline" />
-                    </MenuFlyoutSubItem>
-                    <!--分割-->
-                    <MenuFlyoutSeparator />
-                    <MenuFlyoutSubItem Text="颜色">
-                        <MenuFlyoutItem Text="黑色"
-                                        Tag="黑色"
-                                         Click="OnTinct"/>
-                        <MenuFlyoutItem Text="蓝色"
-                                        Tag="蓝色"
-                                        Click="OnTinct" />
-                        <MenuFlyoutItem Text="白色"
-                                        Tag="白色"
-                                        Click="OnTinct" />
-                    </MenuFlyoutSubItem>
-                </MenuFlyout>
-            </FlyoutBase.AttachedFlyout>
-        </RichEditBox>
         <CommandBar Grid.Row="0"
-                    Grid.Column="0"
-                    Grid.ColumnSpan="2"
                     OverflowButtonVisibility="Visible"
                     IsOpen="False"
                     DefaultLabelPosition="Right"
@@ -438,41 +223,32 @@
                           Label="Refresh"
                           Name="RefreshButton"
                           Command="{Binding PullCommand}"
-                          Margin="0,0,36,0"
-                         />
-            
+                          Margin="0,0,36,0" />
+
             <AppBarButton Icon="Save"
                           Label="Save"
                           Name="SaveButton"
                           Command="{Binding PushCommand}"
-                          Margin="0,0,32,0"
-                          />
+                          Margin="0,0,32,0" />
             <AppBarButton Icon="Add"
                           Label="Add"
                           Name="AddButton"
                           Command="{Binding AddNoteCommand,Mode=OneWay}"
-                          Margin="0,0,28,0"
-                          />
-            <AppBarButton Icon="Delete"
-                          Label="Delete"
-                          Name="DeleteButton"
-                          Margin="0,0,24,0"
-                          />
+                          Margin="0,0,28,0" />
             <CommandBar.SecondaryCommands>
                 <AppBarButton Name="SettingAppBarButton"
                               Icon="Setting"
                               Label="Settings"
-                              Click="SettingAppBarButton_Click"/>
+                              Click="SettingAppBarButton_Click" />
                 <AppBarButton Icon="SelectAll"
                               Label="Put" />
             </CommandBar.SecondaryCommands>
         </CommandBar>
-        <!--<Button Command="{Binding AddNoteCommand}">tian</Button>-->
         <ListView Name="MasterListView"
-                  IsItemClickEnabled="True"
-                  Grid.Column="0"
-                  Grid.Row="1" 
-                  ItemsSource="{Binding Note}">
+                  Grid.Row="1"
+                  Width="1500"
+                  ItemsSource="{Binding Note}"
+                  IsItemClickEnabled="True">
             <ListView.ItemTemplate>
                 <DataTemplate>
                     <userControls:NoteBoxUserControl></userControls:NoteBoxUserControl>
