@@ -9,9 +9,23 @@ using Windows.UI.Notifications;
 
 namespace StickyNotes.Models
 {
-    public class Notification
+    public sealed class Notification
     {
-         public Notification(DateTime alarmTime, string id)
+        private static Notification _instance = null;
+
+        private Notification()
+        {
+        }
+
+        /// <summary>
+        /// Gets the instance.
+        /// </summary>
+        public static Notification Instance
+        {
+            get { return _instance ?? (_instance = new Notification()); }
+        }
+
+        public void Create(DateTime alarmTime, string id)
         {
             string title = "notes";
             string content = "提醒时间到";
