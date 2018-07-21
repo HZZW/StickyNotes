@@ -26,7 +26,7 @@ namespace StickyNotes.ViewModels
         }
         public NoteViewModel():this(new LocalNoteService())
         {
-            
+            this.PullCommand.Execute(null);
         }
         //-----------------------成员变量---------------------//
         /// <summary>
