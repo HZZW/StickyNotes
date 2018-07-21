@@ -17,16 +17,41 @@
             </Grid.ColumnDefinitions>
             <Grid Grid.Column="1">
                 <Grid.RowDefinitions>
-                    <RowDefinition Height="12" />
+                    <RowDefinition Height="auto" />
                     <RowDefinition Height="*" />
                 </Grid.RowDefinitions>
-                <TextBlock Grid.Row="0" Name="TitleTextBlock" Text="{Binding Title}" ></TextBlock>
-            <TextBox Name="AuthorTextBlock" Text="{Binding Author}"></TextBox>
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="*"/>
+                    <ColumnDefinition Width="*"/>
+                    <ColumnDefinition Width="*" />
+                </Grid.ColumnDefinitions>
+                <TextBlock Grid.Row="0"
+                           Grid.Column="0"
+                           Name="TitleTextBlock"
+                           Text="{Binding Title}" 
+                           Style="{StaticResource BaseTextBlockStyle}"/>
+                <TextBlock Grid.Row="0"
+                           Grid.Column="1"
+                           Name="DataTextBlock"
+                           Text="{Binding Title}"
+                           HorizontalAlignment="Right"
+                           HorizontalTextAlignment="Center"
+                           Style="{StaticResource BaseTextBlockStyle}" />
+                <TextBlock Grid.Row="0"
+                           Grid.Column="2"
+                           Name="TimeTextBlock"
+                           Text="{Binding Title}"
+                           HorizontalAlignment="Left"
+                           HorizontalTextAlignment="Center"
+                           Style="{StaticResource BaseTextBlockStyle}" />
                 <TextBox x:Name="Edit"
                          Grid.Row="1"
+                         Grid.Column="0"
+                         Grid.ColumnSpan="3"
                          Background="AliceBlue"
                          AcceptsReturn="True"
                          TextWrapping="Wrap"
+                         Width="440"
                          Text="{Binding Content,Mode=TwoWay}">
                     <FlyoutBase.AttachedFlyout>
                         <MenuFlyout>

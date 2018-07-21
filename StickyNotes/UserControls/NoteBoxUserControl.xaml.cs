@@ -15,6 +15,21 @@ namespace StickyNotes.UserControls {
         public NoteBoxUserControl()
         {
             this.InitializeComponent();
+            ShowCurTimer();
+        }
+
+        private void ShowCurTimer() {
+            //"星期"+DateTime.Now.DayOfWeek.ToString(("d"))
+
+            //获得星期几
+            this.DataTextBlock.Text = DateTime.Now.ToString("dddd", new System.Globalization.CultureInfo("zh-cn"));
+            this.DataTextBlock.Text += " ";
+            //获得年月日
+            this.DataTextBlock.Text += DateTime.Now.ToString("yyyy年MM月dd日");   //yyyy年MM月dd日
+            this.DataTextBlock.Text += " ";
+            //获得时分秒
+            this.TimeTextBlock.Text += DateTime.Now.ToString("HH:mm:ss");
+            //System.Diagnostics.Debug.Print("this.ShowCurrentTime {0}", this.ShowCurrentTime);
         }
 
         private void CloseButtonClick(object sender, RoutedEventArgs e) {
