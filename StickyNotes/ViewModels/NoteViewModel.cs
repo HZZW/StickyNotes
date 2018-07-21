@@ -29,6 +29,23 @@ namespace StickyNotes.ViewModels
             this.PullCommand.Execute(null);
         }
         //-----------------------成员变量---------------------//
+        private Note _selectNote;
+
+        public Note SelectNote
+        {
+            get => _selectNote;
+            set
+            {
+                if (_selectNote == value)
+                {
+                    return;
+                }
+
+                _selectNote = value;
+                OnPropertyChanged(nameof(SelectNote));
+            }
+        }
+
         /// <summary>
         /// note服务
         /// </summary>
