@@ -17,8 +17,6 @@ namespace StickyNotes.ViewModels
 {
     public class NoteViewModel : INotifyPropertyChanged
     {
-        
-
         public NoteViewModel(INoteService noteService)
         {
             _noteService = noteService;
@@ -29,8 +27,13 @@ namespace StickyNotes.ViewModels
             this.PullCommand.Execute(null);
         }
         //-----------------------成员变量---------------------//
+        /// <summary>
+        /// 当前选择的Note
+        /// </summary>
         private Note _selectNote;
-
+        /// <summary>
+        /// 当前选择的Note
+        /// </summary>
         public Note SelectNote
         {
             get => _selectNote;
@@ -45,15 +48,50 @@ namespace StickyNotes.ViewModels
                 OnPropertyChanged(nameof(SelectNote));
             }
         }
-
         /// <summary>
         /// note服务
         /// </summary>
         private INoteService _noteService;
+
         /// <summary>
         /// Note实例
         /// </summary>
-        public ObservableCollection<Note> Note {get; set; }   
+        private ObservableCollection<Note> _note;
+        /// <summary>
+        /// Note实例
+        /// </summary>
+        public ObservableCollection<Note> Note
+        {
+            get => _note ?? (_note = new ObservableCollection<Note>());
+            private set => _note = value;
+        }
+
+        /// <summary>
+        /// 当前标签组的标签
+        /// </summary>
+        private string _selectTag;
+        public string SelectTag {
+            get =>_selectTag;
+            set {
+                if (_selectTag != value)
+                {
+                    _selectTag = value;
+                    OnPropertyChanged(nameof(SelectTag));
+                }
+        }}
+        /// <summary>
+        /// 当前标签组
+        /// </summary>
+        private ObservableCollection<Note> _noteWithTag;
+
+        /// <summary>
+        /// 当前标签组
+        /// </summary>
+        public ObservableCollection<Note> NoteWithTag
+        {
+            get => _noteWithTag??(_noteWithTag=new ObservableCollection<Note>());
+            private set => _noteWithTag = value;
+        }
         //-----------------------命令-------------------------//
         /// <summary>
         /// 推送
@@ -91,13 +129,14 @@ namespace StickyNotes.ViewModels
         public RelayCommand PullCommand =>_pullCommand ??(new RelayCommand(()=>
         {
             var service = _noteService;
-            var notes = service.Pull().ToList();
+            var notes = service.Pull()?.ToList();
             //因为拉取的内容包含全部信息,所以需要清除原本信息
             this.Note.Clear();
-            foreach (var note in notes)
-            {
-                this.Note.Add(note);
-            }
+            if (notes != null)
+                foreach (var note in notes)
+                {
+                    this.Note.Add(note);
+                }
         }));
         /// <summary>
         /// 添加新Note
@@ -127,7 +166,6 @@ namespace StickyNotes.ViewModels
                 CancelDateTimeCommand.Execute(theNote);
                 Note.Remove(theNote);
             }
-
         }));
         /// <summary>
         /// 设置note的时间提示
@@ -164,6 +202,28 @@ namespace StickyNotes.ViewModels
             }
 
         }));
+
+        /// <summary>
+        /// 设置当前组的标签
+        /// </summary>
+        private RelayCommand<string> _setTagCommand;
+        /// <summary>
+        /// 设置当前组的标签
+        /// </summary>
+        public RelayCommand<string> SetTagCommand => _setTagCommand ?? (new RelayCommand<string>(tag =>
+        {
+            NoteWithTag.Clear();
+            if (Note.Select(a => a.Tag).ToList().Contains(tag))
+            {
+                foreach (var note in Note)
+                {
+                    if (note.Tag == tag)
+                        NoteWithTag.Add(note);
+                }
+            }
+            SelectTag = tag;
+        }));
+        
         //-----------------------继承---------------------------//
         public event PropertyChangedEventHandler PropertyChanged;
 
