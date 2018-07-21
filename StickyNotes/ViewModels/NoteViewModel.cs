@@ -162,18 +162,18 @@ namespace StickyNotes.ViewModels
             {
                 //撤销时间提醒
                 if(Notification.Instance.Show().Contains(theNote.ID.ToString()))
-                CancelDateTimeCommand.Execute(theNote);
+                CancelNotificationCommand.Execute(theNote);
                 Note.Remove(theNote);
             }
         }));
         /// <summary>
         /// 设置note的时间提示
         /// </summary>
-        private RelayCommand<KeyValuePair<Note, DateTime>> _setDateTimeCommand;
+        private RelayCommand<KeyValuePair<Note, DateTime>> _setNotificationCommand;
         /// <summary>
         /// 设置note的时间提示
         /// </summary>
-        public RelayCommand<KeyValuePair<Note,DateTime>> SetDateTimeCommand=>_setDateTimeCommand?? (_setDateTimeCommand = new RelayCommand<KeyValuePair<Note, DateTime>>(
+        public RelayCommand<KeyValuePair<Note,DateTime>> SetNotificationCommand=>_setNotificationCommand?? (_setNotificationCommand = new RelayCommand<KeyValuePair<Note, DateTime>>(
                                                                                  note_DateTime =>
                                                                                  {
                                                                                     var theNote =
@@ -190,11 +190,11 @@ namespace StickyNotes.ViewModels
         /// <summary>
         /// 取消Note的提示时间
         /// </summary>
-        private RelayCommand<Note> _cancelDateTimeCommand;
+        private RelayCommand<Note> _cancelNotificationCommand;
         /// <summary>
         /// 取消Note的提示时间
         /// </summary>
-        public RelayCommand<Note> CancelDateTimeCommand => _cancelDateTimeCommand ?? (_cancelDateTimeCommand=new RelayCommand<Note>(note =>
+        public RelayCommand<Note> CancelNotificationCommand => _cancelNotificationCommand ?? (_cancelNotificationCommand=new RelayCommand<Note>(note =>
         {
             var theNote = GetNoteById(note.ID);
             if(theNote!=null)
