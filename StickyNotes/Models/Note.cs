@@ -19,13 +19,14 @@ namespace StickyNotes.Models
         /// Note唯一标识
         /// </summary>
         public int ID { get; private set; }
-
         public Note()
         {
             Random ran = new Random();
             ID = ran.Next();
+            //TODO 初始化时使得初始化通知时间为当前时间,但不会将这个时间添加到通知里
+            _notificationDateTime = new DateTime();
+            _notificationDateTime =DateTime.Now;
         }
-
         /// <summary>
         /// 内容
         /// </summary>
@@ -78,7 +79,6 @@ namespace StickyNotes.Models
                 OnPropertyChanged(nameof(Author));
             }
         }
-
         /// <summary>
         /// 提示时间
         /// </summary>
@@ -96,7 +96,6 @@ namespace StickyNotes.Models
                 OnPropertyChanged(nameof(NotificationDateTime));
             }
         }
-
         /// <summary>
         /// 所属分组
         /// </summary>
@@ -115,10 +114,8 @@ namespace StickyNotes.Models
                 OnPropertyChanged(nameof(Tag));
             }
         }
-
         [field: NonSerialized]
         public event PropertyChangedEventHandler PropertyChanged;
-
         [NotifyPropertyChangedInvocator]
         protected virtual void OnPropertyChanged([CallerMemberName] string propertyName = null)
         {

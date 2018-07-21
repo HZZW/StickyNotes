@@ -112,20 +112,20 @@ namespace StickyNotes.UnitTest.ViewModels
             noteSaveList.Add(new Note() { Author = "LwwWG", Content = "it is a easy content four", Title = "title four", NotificationDateTime = new DateTime(2018, 12, 10) });
             noteViewModel.PushCommand.Execute(noteSaveList);
             //修改
-            noteViewModel.SetDateTimeCommand.Execute(new KeyValuePair<Note, DateTime> (noteViewModel.Note[0], new DateTime(2017, 12, 10)));
-            noteViewModel.SetDateTimeCommand.Execute(new KeyValuePair<Note, DateTime>(noteViewModel.Note[1], new DateTime(2017, 11, 10)));
-            noteViewModel.SetDateTimeCommand.Execute(new KeyValuePair<Note, DateTime>(noteViewModel.Note[2], new DateTime(2017, 10, 10)));
-            noteViewModel.SetDateTimeCommand.Execute(new KeyValuePair<Note, DateTime>(noteViewModel.Note[3], new DateTime(2017, 9,  10)));
+            noteViewModel.SetNotificationCommand.Execute(new KeyValuePair<Note, DateTime> (noteViewModel.Note[0], new DateTime(2017, 12, 10)));
+            noteViewModel.SetNotificationCommand.Execute(new KeyValuePair<Note, DateTime>(noteViewModel.Note[1], new DateTime(2017, 11, 10)));
+            noteViewModel.SetNotificationCommand.Execute(new KeyValuePair<Note, DateTime>(noteViewModel.Note[2], new DateTime(2017, 10, 10)));
+            noteViewModel.SetNotificationCommand.Execute(new KeyValuePair<Note, DateTime>(noteViewModel.Note[3], new DateTime(2017, 9,  10)));
             //判断
             Assert.AreEqual(noteViewModel.Note[0].NotificationDateTime, new DateTime(2017, 12, 10));
             Assert.AreEqual(noteViewModel.Note[1].NotificationDateTime, new DateTime(2017, 11, 10));
             Assert.AreEqual(noteViewModel.Note[2].NotificationDateTime, new DateTime(2017, 10, 10));
             Assert.AreEqual(noteViewModel.Note[3].NotificationDateTime, new DateTime(2017, 9,  10));
             //取消
-            noteViewModel.CancelDateTimeCommand.Execute(noteViewModel.Note[0]);
-            noteViewModel.CancelDateTimeCommand.Execute(noteViewModel.Note[1]);
-            noteViewModel.CancelDateTimeCommand.Execute(noteViewModel.Note[2]);
-            noteViewModel.CancelDateTimeCommand.Execute(noteViewModel.Note[3]);
+            noteViewModel.CancelNotificationCommand.Execute(noteViewModel.Note[0]);
+            noteViewModel.CancelNotificationCommand.Execute(noteViewModel.Note[1]);
+            noteViewModel.CancelNotificationCommand.Execute(noteViewModel.Note[2]);
+            noteViewModel.CancelNotificationCommand.Execute(noteViewModel.Note[3]);
             //判断
             Assert.AreEqual(noteViewModel.Note[0].NotificationDateTime,DateTime.MinValue);
             Assert.AreEqual(noteViewModel.Note[1].NotificationDateTime,DateTime.MinValue);
@@ -186,14 +186,14 @@ namespace StickyNotes.UnitTest.ViewModels
             noteSaveList.Add(new Note() { Author = "LwwWG", Content = "it is a easy content five" , Title = "title five" ,  NotificationDateTime = new DateTime(2018, 12, 10), Tag = "第二组" });
             noteSaveList.Add(new Note() { Author = "LwwWG", Content = "it is a easy content six " , Title = "title six " ,  NotificationDateTime = new DateTime(2018, 12, 10), Tag = "第二组" });
             noteViewModel.PushCommand.Execute(noteSaveList);
-            //SetDateTimeCommand
-            noteViewModel.SetDateTimeCommand.Execute(new KeyValuePair<Note,DateTime>(noteSaveList[0],noteSaveList[0].NotificationDateTime));
-            noteViewModel.SetDateTimeCommand.Execute(new KeyValuePair<Note,DateTime>(noteSaveList[1],noteSaveList[1].NotificationDateTime));
-            noteViewModel.SetDateTimeCommand.Execute(new KeyValuePair<Note,DateTime>(noteSaveList[2],noteSaveList[2].NotificationDateTime));
-            noteViewModel.SetDateTimeCommand.Execute(new KeyValuePair<Note,DateTime>(noteSaveList[3],noteSaveList[3].NotificationDateTime));
-            noteViewModel.SetDateTimeCommand.Execute(new KeyValuePair<Note,DateTime>(noteSaveList[4],noteSaveList[4].NotificationDateTime));
-            noteViewModel.SetDateTimeCommand.Execute(new KeyValuePair<Note,DateTime>(noteSaveList[5],noteSaveList[5].NotificationDateTime));
-            noteViewModel.SetDateTimeCommand.Execute(new KeyValuePair<Note,DateTime>(noteSaveList[6],noteSaveList[6].NotificationDateTime));
+            //SetNotificationCommand
+            noteViewModel.SetNotificationCommand.Execute(new KeyValuePair<Note,DateTime>(noteSaveList[0],noteSaveList[0].NotificationDateTime));
+            noteViewModel.SetNotificationCommand.Execute(new KeyValuePair<Note,DateTime>(noteSaveList[1],noteSaveList[1].NotificationDateTime));
+            noteViewModel.SetNotificationCommand.Execute(new KeyValuePair<Note,DateTime>(noteSaveList[2],noteSaveList[2].NotificationDateTime));
+            noteViewModel.SetNotificationCommand.Execute(new KeyValuePair<Note,DateTime>(noteSaveList[3],noteSaveList[3].NotificationDateTime));
+            noteViewModel.SetNotificationCommand.Execute(new KeyValuePair<Note,DateTime>(noteSaveList[4],noteSaveList[4].NotificationDateTime));
+            noteViewModel.SetNotificationCommand.Execute(new KeyValuePair<Note,DateTime>(noteSaveList[5],noteSaveList[5].NotificationDateTime));
+            noteViewModel.SetNotificationCommand.Execute(new KeyValuePair<Note,DateTime>(noteSaveList[6],noteSaveList[6].NotificationDateTime));
             //检查
             Assert.AreEqual(true, Notification.Instance.Show().Contains(noteSaveList[0].ID.ToString()));
             Assert.AreEqual(true, Notification.Instance.Show().Contains(noteSaveList[1].ID.ToString()));
@@ -202,10 +202,10 @@ namespace StickyNotes.UnitTest.ViewModels
             Assert.AreEqual(true, Notification.Instance.Show().Contains(noteSaveList[4].ID.ToString()));
             Assert.AreEqual(true, Notification.Instance.Show().Contains(noteSaveList[5].ID.ToString()));
             Assert.AreEqual(true, Notification.Instance.Show().Contains(noteSaveList[6].ID.ToString()));
-            //CancelDateTimeCommand
-            noteViewModel.CancelDateTimeCommand.Execute(noteSaveList[0]);
-            noteViewModel.CancelDateTimeCommand.Execute(noteSaveList[1]);
-            noteViewModel.CancelDateTimeCommand.Execute(noteSaveList[2]);
+            //CancelNotificationCommand
+            noteViewModel.CancelNotificationCommand.Execute(noteSaveList[0]);
+            noteViewModel.CancelNotificationCommand.Execute(noteSaveList[1]);
+            noteViewModel.CancelNotificationCommand.Execute(noteSaveList[2]);
             //检查
             Assert.AreEqual(true, !Notification.Instance.Show().Contains(noteSaveList[0].ID.ToString()));
             Assert.AreEqual(true, !Notification.Instance.Show().Contains(noteSaveList[1].ID.ToString()));
