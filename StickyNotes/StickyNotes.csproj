@@ -95,7 +95,7 @@
     <Compile Include="App.xaml.cs">
       <DependentUpon>App.xaml</DependentUpon>
     </Compile>
-    <Compile Include="DesignPage.xaml.cs">
+    <Compile Include="View\DesignPage.xaml.cs">
       <DependentUpon>DesignPage.xaml</DependentUpon>
     </Compile>
     <Compile Include="MainPage.xaml.cs">
@@ -108,7 +108,7 @@
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Services\INoteService.cs" />
     <Compile Include="Services\LocalNoteService.cs" />
-    <Compile Include="SettingPage.xaml.cs">
+    <Compile Include="View\SettingPage.xaml.cs">
       <DependentUpon>SettingPage.xaml</DependentUpon>
     </Compile>
     <Compile Include="UserControls\AddNoteButtonUserControl.xaml.cs">
@@ -118,6 +118,9 @@
       <DependentUpon>NoteBoxUserControl.xaml</DependentUpon>
     </Compile>
     <Compile Include="ViewModels\NoteViewModel.cs" />
+    <Compile Include="View\AllNotePage.xaml.cs">
+      <DependentUpon>AllNotePage.xaml</DependentUpon>
+    </Compile>
   </ItemGroup>
   <ItemGroup>
     <AppxManifest Include="Package.appxmanifest">
@@ -140,7 +143,7 @@
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </ApplicationDefinition>
-    <Page Include="DesignPage.xaml">
+    <Page Include="View\DesignPage.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
@@ -148,7 +151,7 @@
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </Page>
-    <Page Include="SettingPage.xaml">
+    <Page Include="View\SettingPage.xaml">
       <SubType>Designer</SubType>
     </Page>
     <Page Include="UserControls\AddNoteButtonUserControl.xaml">
@@ -156,6 +159,10 @@
       <Generator>MSBuild:Compile</Generator>
     </Page>
     <Page Include="UserControls\NoteBoxUserControl.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="View\AllNotePage.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
