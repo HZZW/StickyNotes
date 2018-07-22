@@ -55,5 +55,10 @@ namespace StickyNotes {
         private void SettingAppBarButton_Click(object sender, RoutedEventArgs e) {
             Frame.Navigate(typeof(SettingPage));
         }
+
+        private void AllNoteButton_Click(object sender, RoutedEventArgs e)
+        {
+
+        }
     }
 }
