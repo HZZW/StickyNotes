@@ -176,6 +176,8 @@ namespace StickyNotes.UnitTest.ViewModels
         {
             //设置数据
             var noteViewModel = new NoteViewModel();
+            var lastNotificationCount = Notification.Instance.Show().Count;
+
             var noteSaveList = new List<Note>();
             noteSaveList.Add(new Note() { Author = "LwwWG", Content = "it is a easy content one"  , Title = "title one"  ,  NotificationDateTime = new DateTime(2018, 9, 10),  Tag = "第一组" });
             noteSaveList.Add(new Note() { Author = "LwwWG", Content = "it is a easy content two"  , Title = "title two"  ,  NotificationDateTime = new DateTime(2018, 10, 10), Tag = "第一组" });
@@ -201,7 +203,7 @@ namespace StickyNotes.UnitTest.ViewModels
             Assert.AreEqual(true, Notification.Instance.Show().Contains(noteSaveList[4].ID.ToString()));
             Assert.AreEqual(true, Notification.Instance.Show().Contains(noteSaveList[5].ID.ToString()));
             Assert.AreEqual(true, Notification.Instance.Show().Contains(noteSaveList[6].ID.ToString()));
-            Assert.AreEqual(7, Notification.Instance.Show().Count);
+            Assert.AreEqual(lastNotificationCount+7, Notification.Instance.Show().Count);
             //CancelNotificationCommand
             noteViewModel.CancelNotificationCommand.Execute(noteSaveList[0]);
             noteViewModel.CancelNotificationCommand.Execute(noteSaveList[1]);
@@ -214,7 +216,7 @@ namespace StickyNotes.UnitTest.ViewModels
             Assert.AreEqual(true,  Notification.Instance.Show().Contains(noteSaveList[4].ID.ToString()));
             Assert.AreEqual(true,  Notification.Instance.Show().Contains(noteSaveList[5].ID.ToString()));
             Assert.AreEqual(true,  Notification.Instance.Show().Contains(noteSaveList[6].ID.ToString()));
-            Assert.AreEqual(4, Notification.Instance.Show().Count);
+            Assert.AreEqual(lastNotificationCount + 4, Notification.Instance.Show().Count);
             //再次设置
 
             //SetNotificationCommand
@@ -225,7 +227,7 @@ namespace StickyNotes.UnitTest.ViewModels
             noteViewModel.SetNotificationCommand.Execute(new KeyValuePair<Note, DateTime>(noteSaveList[4], new DateTime(2018,12,12)));
             noteViewModel.SetNotificationCommand.Execute(new KeyValuePair<Note, DateTime>(noteSaveList[5], new DateTime(2018,12,12)));
             noteViewModel.SetNotificationCommand.Execute(new KeyValuePair<Note, DateTime>(noteSaveList[6], new DateTime(2018,12,12)));
-            Assert.AreEqual(7, Notification.Instance.Show().Count);
+            Assert.AreEqual(lastNotificationCount + 7, Notification.Instance.Show().Count);
             //检查
             Assert.AreEqual(true, Notification.Instance.Show().Contains(noteSaveList[0].ID.ToString()));
             Assert.AreEqual(true, Notification.Instance.Show().Contains(noteSaveList[1].ID.ToString()));
@@ -246,7 +248,7 @@ namespace StickyNotes.UnitTest.ViewModels
             Assert.AreEqual(true, Notification.Instance.Show().Contains(noteSaveList[4].ID.ToString()));
             Assert.AreEqual(true, Notification.Instance.Show().Contains(noteSaveList[5].ID.ToString()));
             Assert.AreEqual(true, Notification.Instance.Show().Contains(noteSaveList[6].ID.ToString()));
-            Assert.AreEqual(4,Notification.Instance.Show().Count);
+            Assert.AreEqual(lastNotificationCount + 4,Notification.Instance.Show().Count);
         }
         [TestMethod]
         public void TestAllCommandTogether()
