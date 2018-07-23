@@ -23,6 +23,7 @@ namespace StickyNotes {
         public MainPage()
         {
             this.InitializeComponent();
+            ShowCurTimer();
             ApplicationView.PreferredLaunchViewSize = new Size(600, 302);
             ApplicationView.PreferredLaunchWindowingMode = ApplicationViewWindowingMode.PreferredLaunchViewSize;
             ApplicationView.PreferredLaunchWindowingMode = ApplicationViewWindowingMode.Auto;
@@ -45,6 +46,22 @@ namespace StickyNotes {
 
             titleBar.ButtonForegroundColor = titleBar.ButtonHoverForegroundColor = titleBar.ButtonInactiveForegroundColor = titleBar.ButtonPressedForegroundColor = Colors.Black;
         }
+
+
+        private void ShowCurTimer() {
+            //"星期"+DateTime.Now.DayOfWeek.ToString(("d"))
+
+            //获得星期几
+            this.DataTextBlock.Text = DateTime.Now.ToString("dddd", new System.Globalization.CultureInfo("zh-cn"));
+            this.DataTextBlock.Text += " ";
+            //获得年月日
+            this.DataTextBlock.Text += DateTime.Now.ToString("yyyy年MM月dd日");   //yyyy年MM月dd日
+            this.DataTextBlock.Text += " ";
+            //获得时分秒
+            this.TimeTextBlock.Text += DateTime.Now.ToString("HH:mm:ss");
+            //System.Diagnostics.Debug.Print("this.ShowCurrentTime {0}", this.ShowCurrentTime);
+        }
+
         //TODO will delete this method,just test 
         private void ButtonBase_OnClick(object sender, RoutedEventArgs e)
         {

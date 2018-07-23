@@ -50,8 +50,6 @@
                                         Value="*" />
                                 <Setter Target="TitleTextBlock.FontSize"
                                         Value="15" />
-                                <Setter Target="DataTextBlock.FontSize"
-                                        Value="15" />
                                 <Setter Target="TimeTextBlock.FontSize"
                                         Value="15" />
                                 <Setter Target="Edit.Width"
@@ -83,8 +81,6 @@
                                         Value="*" />
                                 <Setter Target="TitleTextBlock.FontSize"
                                         Value="1" />
-                                <Setter Target="DataTextBlock.FontSize"
-                                        Value="1" />
                                 <Setter Target="TimeTextBlock.FontSize"
                                         Value="1" />
                                 <Setter Target="Edit.Width"
@@ -98,19 +94,12 @@
                 <TextBlock Grid.Row="0"
                            Grid.Column="0"
                            Name="TitleTextBlock"
-                           Text="{Binding Title}" 
-                           Style="{StaticResource BaseTextBlockStyle}"/>
-                <TextBlock Grid.Row="0"
-                           Grid.Column="1"
-                           Name="DataTextBlock"
                            Text="{Binding Title}"
-                           HorizontalAlignment="Right"
-                           HorizontalTextAlignment="Center"
                            Style="{StaticResource BaseTextBlockStyle}" />
                 <TextBlock Grid.Row="0"
                            Grid.Column="2"
                            Name="TimeTextBlock"
-                           Text="{Binding Title}"
+                           Text="{Binding NotificationDateTime}"
                            HorizontalAlignment="Left"
                            HorizontalTextAlignment="Center"
                            Style="{StaticResource BaseTextBlockStyle}" />
@@ -203,10 +192,14 @@
                                 </Style>
                             </Flyout.FlyoutPresenterStyle>
                             <StackPanel Orientation="Vertical">
-                                <DatePicker />
-                                <TimePicker />
+                                <DatePicker x:Name="Data" 
+                                            HorizontalAlignment="Right"/>
+                                <TimePicker x:Name="Time" 
+                                            HorizontalAlignment="Right"/>
                                 <AppBarButton x:Name="CertainButton"
-                                              Icon="Accept"/>
+                                              HorizontalAlignment="Right"
+                                              Icon="Accept"
+                                              Click="CertainButton_Click"/>
                             </StackPanel>
                         </Flyout>
                     </AppBarButton.Flyout>
