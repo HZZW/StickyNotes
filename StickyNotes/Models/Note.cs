@@ -26,6 +26,8 @@ namespace StickyNotes.Models
             //TODO 初始化时使得初始化通知时间为当前时间,但不会将这个时间添加到通知里
             _notificationDateTime = new DateTime();
             _notificationDateTime =DateTime.Now;
+            //TODO 暂定默认的Tag为"默认"
+            Tag = "默认";
         }
         /// <summary>
         /// 内容

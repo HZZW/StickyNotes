@@ -1,12 +1,14 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
+using System.Collections.Specialized;
 using System.ComponentModel;
 using System.Diagnostics;
 using System.Linq;
 using System.Runtime.CompilerServices;
 using System.Text;
 using System.Threading.Tasks;
+using Windows.ApplicationModel.Background;
 using GalaSoft.MvvmLight;
 using GalaSoft.MvvmLight.Command;
 using StickyNotes.Annotations;
@@ -21,6 +23,7 @@ namespace StickyNotes.ViewModels
         {
             _noteService = noteService;
             Note = new ObservableCollection<Note>();
+            Note.CollectionChanged += UpdateTagList;
         }
         public NoteViewModel():this(new LocalNoteService())
         {
@@ -65,6 +68,18 @@ namespace StickyNotes.ViewModels
         }
 
         /// <summary>
+        /// Tag列表
+        /// </summary>
+        private ObservableCollection<string> _tag;
+        public ObservableCollection<string> Tag
+        {
+            get => _tag ?? (_tag = new ObservableCollection<string>());
+            private set => _tag = value;
+        }
+        
+
+
+        /// <summary>
         /// 当前标签组的标签
         /// </summary>
         private string _selectTag;
@@ -81,7 +96,6 @@ namespace StickyNotes.ViewModels
         /// 当前标签组
         /// </summary>
         private ObservableCollection<Note> _noteWithTag;
-
         /// <summary>
         /// 当前标签组
         /// </summary>
@@ -212,11 +226,11 @@ namespace StickyNotes.ViewModels
         /// <summary>
         /// 设置当前组的标签
         /// </summary>
-        private RelayCommand<string> _setTagCommand;
+        private RelayCommand<string> _setSelectTagCommand;
         /// <summary>
         /// 设置当前组的标签
         /// </summary>
-        public RelayCommand<string> SetTagCommand => _setTagCommand ?? (_setTagCommand=new RelayCommand<string>(tag =>
+        public RelayCommand<string> SetSelectTagCommand => _setSelectTagCommand ?? (_setSelectTagCommand=new RelayCommand<string>(tag =>
         {
             NoteWithTag.Clear();
             if (Note.Select(a => a.Tag).ToList().Contains(tag))
@@ -229,6 +243,23 @@ namespace StickyNotes.ViewModels
             }
             SelectTag = tag;
         }));
+        /// <summary>
+        /// 更新Tag列表
+        /// </summary>
+        private RelayCommand _updateTagListCommand;
+        /// <summary>
+        /// 更新Tag列表
+        /// </summary>
+        public RelayCommand UpdateTagListCommand =>
+            _updateTagListCommand ?? (_updateTagListCommand = new RelayCommand(() =>
+            {
+                Tag.Clear();
+                var tagList = Note.Select(a => a.Tag).ToList();
+                foreach (var theTag in tagList)
+                {
+                    Tag.Add(theTag);
+                }
+            }));
         //-----------------------继承---------------------------//
         public event PropertyChangedEventHandler PropertyChanged;
         [NotifyPropertyChangedInvocator]
@@ -249,6 +280,10 @@ namespace StickyNotes.ViewModels
             }
 
             return null;
+        }
+        private void UpdateTagList(object sender,NotifyCollectionChangedEventArgs e)
+        {
+            UpdateTagListCommand.Execute(null);
         }
     }
 }
