@@ -1,4 +1,5 @@
-﻿using StickyNotes.ViewModels;
+﻿using StickyNotes.View;
+using StickyNotes.ViewModels;
 using System;
 using System.Collections.Generic;
 using System.IO;
@@ -20,10 +21,6 @@ namespace StickyNotes.UserControls
 {
     public sealed partial class NoteListUserControl : UserControl
     {
-        public NoteListUserControl()
-        {
-            this.InitializeComponent();
-        }
         // 为不同的菜单创建不同的List类型
         private List<NavMenuItem> navMenuPrimaryItem = new List<NavMenuItem>(
             new[]
@@ -32,36 +29,36 @@ namespace StickyNotes.UserControls
                 {
                     FontFamily = new FontFamily("Segoe MDL2 Assets"),
                     Icon = "\xE10F",
-                    Label = "便签1",
+                    Label = "页面1",
                     Selected = Visibility.Visible,
-                    DestPage = typeof(SettingPage)
+                    DestPage = typeof(BlankPage)
                 },
 
                 new NavMenuItem()
                 {
                     FontFamily = new FontFamily("Segoe MDL2 Assets"),
                     Icon = "\xE11A",
-                    Label = "便签2",
+                    Label = "页面2",
                     Selected = Visibility.Collapsed,
-                    DestPage = typeof(SettingPage)
+                    DestPage = typeof(BlankPage)
                 },
 
                 new NavMenuItem()
                 {
                     FontFamily = new FontFamily("Segoe MDL2 Assets"),
                     Icon = "\xE121",
-                    Label = "便签3",
+                    Label = "页面3",
                     Selected = Visibility.Collapsed,
-                    DestPage = typeof(SettingPage)
+                    DestPage = typeof(BlankPage)
                 },
 
                 new NavMenuItem()
                 {
                     FontFamily = new FontFamily("Segoe MDL2 Assets"),
                     Icon = "\xE122",
-                    Label = "便签4",
+                    Label = "页面4",
                     Selected = Visibility.Collapsed,
-                    DestPage = typeof(SettingPage)
+                    DestPage = typeof(BlankPage)
                 }
 
             });
@@ -75,11 +72,11 @@ namespace StickyNotes.UserControls
                     Icon = "\xE713",
                     Label = "设置",
                     Selected = Visibility.Collapsed,
-                    DestPage = typeof(SettingPage)
+                    DestPage = typeof(BlankPage)
                 }
             });
 
-        public void MainPage()
+        public NoteListUserControl()
         {
             this.InitializeComponent();
             // 绑定导航菜单
@@ -94,7 +91,7 @@ namespace StickyNotes.UserControls
             NavMenuPrimaryListView.ItemClick += NavMenuListView_ItemClick;
             NavMenuSecondaryListView.ItemClick += NavMenuListView_ItemClick;
             // 默认页
-            RootFrame.SourcePageType = typeof(SettingPage);
+            RootFrame.SourcePageType = typeof(BlankPage);
         }
 
         private void NavMenuListView_ItemClick(object sender, ItemClickEventArgs e)
