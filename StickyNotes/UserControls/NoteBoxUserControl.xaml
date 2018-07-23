@@ -12,19 +12,89 @@
         <Grid>
         <Grid Name="NoteBoxStackPanel">
             <Grid.ColumnDefinitions>
-                <ColumnDefinition Width="auto" />
-                <ColumnDefinition Width="*"/>
+                <ColumnDefinition x:Name="PFirstColumn" Width="auto" />
+                <ColumnDefinition x:Name="PSecondColumn" Width="*"/>
             </Grid.ColumnDefinitions>
-            <Grid Grid.Column="1">
+            <Grid Name="CGrid" Grid.Column="1">
                 <Grid.RowDefinitions>
-                    <RowDefinition Height="auto" />
-                    <RowDefinition Height="*" />
+                    <RowDefinition x:Name="MasterNoteRow" 
+                                   Height="auto" />
+                    <RowDefinition x:Name="DetailNoteRow"
+                                   Height="*" />
                 </Grid.RowDefinitions>
                 <Grid.ColumnDefinitions>
-                    <ColumnDefinition Width="*"/>
-                    <ColumnDefinition Width="*"/>
-                    <ColumnDefinition Width="*" />
+                    <ColumnDefinition x:Name="FirstColumn" Width="*"/>
+                    <ColumnDefinition x:Name="SecondColumn" Width="*"/>
+                    <ColumnDefinition x:Name="ThirdColumn" Width="*" />
                 </Grid.ColumnDefinitions>
+                <VisualStateManager.VisualStateGroups>
+                    <VisualStateGroup x:Name="AdaptiveStates">
+                        <VisualState x:Name="DefaultState">
+                            <VisualState.StateTriggers>
+                                <AdaptiveTrigger MinWindowWidth="600" />
+                            </VisualState.StateTriggers>
+                            <VisualState.Setters>
+                                <Setter Target="PFirstColumn.Width"
+                                        Value="auto" />
+                                <Setter Target="PSecondColumn.Width"
+                                        Value="*" />
+                                <Setter Target="FirstColumn.Width"
+                                        Value="*" />
+                                <Setter Target="SecondColumn.Width"
+                                        Value="*" />
+                                <Setter Target="ThirdColumn.Width"
+                                        Value="*" />
+                                <Setter Target="MasterNoteRow.Height"
+                                        Value="auto" />
+                                <Setter Target="DetailNoteRow.Height"
+                                        Value="*" />
+                                <Setter Target="TitleTextBlock.FontSize"
+                                        Value="15" />
+                                <Setter Target="DataTextBlock.FontSize"
+                                        Value="15" />
+                                <Setter Target="TimeTextBlock.FontSize"
+                                        Value="15" />
+                                <Setter Target="Edit.Width"
+                                        Value="440" />
+                                <Setter Target="AppBarButton.FontSize"
+                                        Value="12" />
+                            </VisualState.Setters>
+                        </VisualState>
+
+                        <VisualState x:Name="NarrowState">
+                            <VisualState.StateTriggers>
+                                <AdaptiveTrigger MinWindowWidth="0" />
+                            </VisualState.StateTriggers>
+
+                            <VisualState.Setters>
+                                <Setter Target="PFirstColumn.Width"
+                                        Value="auto" />
+                                <Setter Target="PSecondColumn.Width"
+                                        Value="*" />
+                                <Setter Target="FirstColumn.Width"
+                                        Value="*" />
+                                <Setter Target="SecondColumn.Width"
+                                        Value="*" />
+                                <Setter Target="ThirdColumn.Width"
+                                        Value="*" />
+                                <Setter Target="MasterNoteRow.Height"
+                                        Value="auto" />
+                                <Setter Target="DetailNoteRow.Height"
+                                        Value="*" />
+                                <Setter Target="TitleTextBlock.FontSize"
+                                        Value="1" />
+                                <Setter Target="DataTextBlock.FontSize"
+                                        Value="1" />
+                                <Setter Target="TimeTextBlock.FontSize"
+                                        Value="1" />
+                                <Setter Target="Edit.Width"
+                                        Value="140" />
+                                <Setter Target="AppBarButton.FontSize"
+                                        Value="2"/>
+                            </VisualState.Setters>
+                        </VisualState>
+                    </VisualStateGroup>
+                </VisualStateManager.VisualStateGroups>
                 <TextBlock Grid.Row="0"
                            Grid.Column="0"
                            Name="TitleTextBlock"
@@ -107,10 +177,12 @@
                 </Grid.RowDefinitions>
                 <AppBarButton  Name="CloseButton"
                                Icon="Delete"
+                               FontSize="12"
                                Grid.Row="0"
                                Click="CloseButtonClick" />
                 <AppBarButton Name="ClockButton"
                               Grid.Row="1"
+                              FontSize="12"
                               Icon="Clock">
                     <AppBarButton.Flyout>
                         <Flyout>
