@@ -298,6 +298,7 @@
                     OverflowButtonVisibility="Visible"
                     IsOpen="False"
                     DefaultLabelPosition="Right"
+                    Background="White"
                     Style="{StaticResource CommandBarRevealStyle}">
             <AppBarButton Icon="Refresh"
                           Label="Refresh"

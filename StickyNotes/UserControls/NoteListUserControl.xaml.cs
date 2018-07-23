@@ -29,7 +29,7 @@ namespace StickyNotes.UserControls
                 {
                     FontFamily = new FontFamily("Segoe MDL2 Assets"),
                     Icon = "\xE10F",
-                    Label = "页面1",
+                    Label = "便签1",
                     Selected = Visibility.Visible,
                     DestPage = typeof(BlankPage)
                 },
@@ -38,7 +38,7 @@ namespace StickyNotes.UserControls
                 {
                     FontFamily = new FontFamily("Segoe MDL2 Assets"),
                     Icon = "\xE11A",
-                    Label = "页面2",
+                    Label = "便签2",
                     Selected = Visibility.Collapsed,
                     DestPage = typeof(BlankPage)
                 },
@@ -47,7 +47,7 @@ namespace StickyNotes.UserControls
                 {
                     FontFamily = new FontFamily("Segoe MDL2 Assets"),
                     Icon = "\xE121",
-                    Label = "页面3",
+                    Label = "便签3",
                     Selected = Visibility.Collapsed,
                     DestPage = typeof(BlankPage)
                 },
@@ -56,7 +56,7 @@ namespace StickyNotes.UserControls
                 {
                     FontFamily = new FontFamily("Segoe MDL2 Assets"),
                     Icon = "\xE122",
-                    Label = "页面4",
+                    Label = "便签4",
                     Selected = Visibility.Collapsed,
                     DestPage = typeof(BlankPage)
                 }
@@ -72,7 +72,7 @@ namespace StickyNotes.UserControls
                     Icon = "\xE713",
                     Label = "设置",
                     Selected = Visibility.Collapsed,
-                    DestPage = typeof(BlankPage)
+                    DestPage = typeof(SettingPage)
                 }
             });
 
