@@ -260,6 +260,21 @@ namespace StickyNotes.ViewModels
                     Tag.Add(theTag);
                 }
             }));
+
+        /// <summary>
+        /// 设置Note的Tag
+        /// </summary>
+        
+        private RelayCommand<KeyValuePair<Note, string>> _SetNoteTagCommand;
+
+        public RelayCommand<KeyValuePair<Note, string>> SetNoteTagCommand =>
+            _SetNoteTagCommand ?? (_SetNoteTagCommand = new RelayCommand<KeyValuePair<Note, string>>(
+                noteString =>
+                {
+                    var theNote = GetNoteById(noteString.Key.ID);
+                    theNote.Tag = noteString.Value;
+                }));
+
         //-----------------------继承---------------------------//
         public event PropertyChangedEventHandler PropertyChanged;
         [NotifyPropertyChangedInvocator]
@@ -284,6 +299,8 @@ namespace StickyNotes.ViewModels
         private void UpdateTagList(object sender,NotifyCollectionChangedEventArgs e)
         {
             UpdateTagListCommand.Execute(null);
+            //相当于更新选择的Tag的列表,因为Note的列表可能是修改了Tag.
+            SetSelectTagCommand.Execute(SelectTag);
         }
     }
 }

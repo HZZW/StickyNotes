@@ -252,6 +252,61 @@ namespace StickyNotes.UnitTest.ViewModels
         }
 
         [TestMethod]
+        public void TestSetNoteTagCommand()
+        {
+            //设置数据
+            var noteViewModel = new NoteViewModel();
+            var lastNotificationCount = Notification.Instance.Show().Count;
+
+            var noteSaveList = new List<Note>();
+            noteSaveList.Add(new Note() { Author = "LwwWG", Content = "it is a easy content one", Title = "title one", NotificationDateTime = new DateTime(2018, 9, 10), Tag = "第一组" });
+            noteSaveList.Add(new Note() { Author = "LwwWG", Content = "it is a easy content two", Title = "title two", NotificationDateTime = new DateTime(2018, 10, 10), Tag = "第一组" });
+            noteSaveList.Add(new Note() { Author = "LwwWG", Content = "it is a easy content three", Title = "title three", NotificationDateTime = new DateTime(2018, 11, 10), Tag = "第一组" });
+            noteSaveList.Add(new Note() { Author = "LwwWG", Content = "it is a easy content four", Title = "title four", NotificationDateTime = new DateTime(2018, 12, 10), Tag = "第二组" });
+            noteSaveList.Add(new Note() { Author = "LwwWG", Content = "it is a easy content four", Title = "title four", NotificationDateTime = new DateTime(2018, 12, 10), Tag = "第二组" });
+            noteSaveList.Add(new Note() { Author = "LwwWG", Content = "it is a easy content five", Title = "title five", NotificationDateTime = new DateTime(2018, 12, 10), Tag = "第二组" });
+            noteSaveList.Add(new Note() { Author = "LwwWG", Content = "it is a easy content six", Title = "title six", NotificationDateTime = new DateTime(2018, 12, 10),   Tag = "第二组" });
+            noteViewModel.PushCommand.Execute(noteSaveList);
+
+            //修改对应分组
+            noteViewModel.SetNoteTagCommand.Execute(new KeyValuePair<Note,string> (noteSaveList[0], "第三组"));
+            noteViewModel.SetNoteTagCommand.Execute(new KeyValuePair<Note, string>(noteSaveList[1], "第三组"));
+            noteViewModel.SetNoteTagCommand.Execute(new KeyValuePair<Note, string>(noteSaveList[2], "第三组"));
+            noteViewModel.SetSelectTagCommand.Execute("第三组");
+            //判断
+            Assert.AreEqual("第三组", noteSaveList[0].Tag);
+            Assert.AreEqual("第三组", noteSaveList[1].Tag);
+            Assert.AreEqual("第三组", noteSaveList[2].Tag);
+            //选择分组
+            Assert.AreEqual("第三组",noteViewModel.SelectTag);
+            //判断
+            Assert.AreEqual(true, noteViewModel.NoteWithTag.Contains(noteSaveList[0]));
+            Assert.AreEqual(true, noteViewModel.NoteWithTag.Contains(noteSaveList[1]));
+            Assert.AreEqual(true, noteViewModel.NoteWithTag.Contains(noteSaveList[2]));
+            Assert.AreEqual(false, noteViewModel.NoteWithTag.Contains(noteSaveList[3]));
+            Assert.AreEqual(false, noteViewModel.NoteWithTag.Contains(noteSaveList[4]));
+            Assert.AreEqual(false, noteViewModel.NoteWithTag.Contains(noteSaveList[5]));
+            Assert.AreEqual(false, noteViewModel.NoteWithTag.Contains(noteSaveList[6]));
+            //判断是否对其他的造成了影响
+            Assert.AreEqual("第二组",  noteSaveList[3].Tag);
+            Assert.AreEqual("第二组" , noteSaveList[4].Tag);
+            Assert.AreEqual("第二组" , noteSaveList[5].Tag);
+            Assert.AreEqual("第二组" , noteSaveList[6].Tag);
+
+
+            //修改Note的Tag之后不反复设置选择的Tag
+            noteViewModel.SetNoteTagCommand.Execute(new KeyValuePair<Note, string>(noteSaveList[3], "第三组"));
+            noteViewModel.SetNoteTagCommand.Execute(new KeyValuePair<Note, string>(noteSaveList[4], "第三组"));
+            noteViewModel.SetNoteTagCommand.Execute(new KeyValuePair<Note, string>(noteSaveList[5], "第三组"));
+            noteViewModel.SetNoteTagCommand.Execute(new KeyValuePair<Note, string>(noteSaveList[6], "第三组"));
+            Assert.AreEqual(false, noteViewModel.NoteWithTag.Contains(noteSaveList[3]));
+            Assert.AreEqual(false, noteViewModel.NoteWithTag.Contains(noteSaveList[4]));
+            Assert.AreEqual(false, noteViewModel.NoteWithTag.Contains(noteSaveList[5]));
+            Assert.AreEqual(false, noteViewModel.NoteWithTag.Contains(noteSaveList[6]));
+
+        }
+
+        [TestMethod]
         public void TestUpdateTagList()
         {
             //设置数据
