@@ -9,6 +9,7 @@ using StickyNotes.UserControls;
 using Windows.UI.Xaml.Media.Animation;
 using StickyNotes.View;
 using System;
+using Windows.UI;
 
 
 // https://go.microsoft.com/fwlink/?LinkId=402352&clcid=0x804 上介绍了“空白页”项模板
@@ -22,16 +23,45 @@ namespace StickyNotes {
         public MainPage()
         {
             this.InitializeComponent();
+            ShowCurTimer();
             ApplicationView.PreferredLaunchViewSize = new Size(600, 302);
             ApplicationView.PreferredLaunchWindowingMode = ApplicationViewWindowingMode.PreferredLaunchViewSize;
             ApplicationView.PreferredLaunchWindowingMode = ApplicationViewWindowingMode.Auto;
-            ApplicationView.GetForCurrentView().SetPreferredMinSize(new Size(200, 200));
+            ApplicationView.GetForCurrentView().SetPreferredMinSize(new Size(300, 200));
             var windows = CoreApplication.GetCurrentView().TitleBar;
 
             windows.ExtendViewIntoTitleBar = false;
 
             //windows.ExtendViewIntoTitleBar = true;
+
+            var titleBar = ApplicationView.GetForCurrentView().TitleBar;
+            titleBar.BackgroundColor = Color.FromArgb(0xFF, 0xFF, 0xFF, 0xD0);
+            titleBar.ForegroundColor = Color.FromArgb(0xFF, 0xFF, 0xFF, 0xD0);
+            titleBar.InactiveBackgroundColor = Color.FromArgb(0xFF, 0xFF, 0xFF, 0xD0);
+            titleBar.InactiveForegroundColor = Color.FromArgb(0xFF, 0xFF, 0xFF, 0xD0);
+
+            titleBar.ButtonBackgroundColor = titleBar.ButtonInactiveBackgroundColor = Color.FromArgb(0xFF, 0xFF, 0xFF, 0xD0);
+            titleBar.ButtonHoverBackgroundColor = Color.FromArgb(0xFF, 0xEF, 0xEF, 0xB0);
+            titleBar.ButtonPressedBackgroundColor = Color.FromArgb(0xFF, 0xDF, 0xDF, 0x90);
+
+            titleBar.ButtonForegroundColor = titleBar.ButtonHoverForegroundColor = titleBar.ButtonInactiveForegroundColor = titleBar.ButtonPressedForegroundColor = Colors.Black;
         }
+
+
+        private void ShowCurTimer() {
+            //"星期"+DateTime.Now.DayOfWeek.ToString(("d"))
+
+            //获得星期几
+            this.DataTextBlock.Text = DateTime.Now.ToString("dddd", new System.Globalization.CultureInfo("zh-cn"));
+            this.DataTextBlock.Text += " ";
+            //获得年月日
+            this.DataTextBlock.Text += DateTime.Now.ToString("yyyy年MM月dd日");   //yyyy年MM月dd日
+            this.DataTextBlock.Text += " ";
+            //获得时分秒
+            this.TimeTextBlock.Text += DateTime.Now.ToString("HH:mm:ss");
+            //System.Diagnostics.Debug.Print("this.ShowCurrentTime {0}", this.ShowCurrentTime);
+        }
+
         //TODO will delete this method,just test 
         private void ButtonBase_OnClick(object sender, RoutedEventArgs e)
         {

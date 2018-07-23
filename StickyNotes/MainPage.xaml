@@ -180,13 +180,38 @@
                                     <VisualState x:Name="TouchInputMode">
                                     </VisualState>
                                 </VisualStateGroup>
+                                <VisualStateGroup x:Name="AdaptiveStates">
+                                    <VisualState x:Name="DefaultState">
+                                        <VisualState.StateTriggers>
+                                            <AdaptiveTrigger MinWindowWidth="600" />
+                                        </VisualState.StateTriggers>
+                                        <VisualState.Setters>
+                                            <Setter Target="ContentPresenter.Height"
+                                                    Value="16" />
+                                            <Setter Target="TextBlock.FontSize"
+                                                    Value="4" />
+                                        </VisualState.Setters>
+                                    </VisualState>
+
+                                    <VisualState x:Name="NarrowState">
+                                        <VisualState.StateTriggers>
+                                            <AdaptiveTrigger MinWindowWidth="400" />
+                                        </VisualState.StateTriggers>
+                                        <VisualState.Setters>
+                                            <Setter Target="ContentPresenter.Height"
+                                                    Value="2" />
+                                            <Setter Target="TextBlockl.FontSize"
+                                                    Value="0" />
+                                        </VisualState.Setters>
+                                    </VisualState>
+                                </VisualStateGroup>
                             </VisualStateManager.VisualStateGroups>
 
                             <StackPanel x:Name="ContentRoot"
                                         MinHeight="{ThemeResource AppBarThemeCompactHeight}"
                                         Orientation="Horizontal">
                                 <ContentPresenter x:Name="Content"
-                                                  Height="20"
+                                                  Height="16"
                                                   Margin="0,0,0,4"
                                                   Content="{TemplateBinding Icon}"
                                                   Foreground="{TemplateBinding Foreground}"
@@ -195,14 +220,14 @@
                                 <TextBlock x:Name="TextLabel"
                                            Text="{TemplateBinding Label}"
                                            Foreground="{TemplateBinding Foreground}"
-                                           FontSize="16"
+                                           FontSize="4"
                                            FontFamily="{TemplateBinding FontFamily}"
                                            TextAlignment="Center"
                                            TextWrapping="Wrap"
                                            Margin="10,0,0,6"
                                            VerticalAlignment="Center" />
                             </StackPanel>
-
+                            
                         </Grid>
                     </ControlTemplate>
                 </Setter.Value>
@@ -217,14 +242,31 @@
                            Height="AUTO" />
             <RowDefinition x:Name="DetailRow" 
                            Height="*" />
+            <RowDefinition x:Name="DateTimeRow"
+                           Height="AUTO" />
         </Grid.RowDefinitions>
-        <!--<VisualStateManager.VisualStateGroups>
-            <VisualStateGroup x:Name="AdaptiveStates"
-                              CurrentStateChanged="AdaptiveStates_OnCurrentStateChanged">
+        <VisualStateManager.VisualStateGroups>
+            <VisualStateGroup x:Name="AdaptiveStates">
                 <VisualState x:Name="DefaultState">
                     <VisualState.StateTriggers>
-                        <AdaptiveTrigger MinWindowWidth="720" />
+                        <AdaptiveTrigger MinWindowWidth="600" />
                     </VisualState.StateTriggers>
+                    <VisualState.Setters>
+                        <Setter Target="MasterRow.Height"
+                                Value="auto" />
+                        <Setter Target="DetailRow.Height"
+                                Value="*" />
+                        <Setter Target="DateTimeRow.Height"
+                                Value="auto" />
+                        <Setter Target="MasterListView.Width"
+                                Value="1500" />
+                        <Setter Target="TitleTextBlock.FontSize"
+                                Value="15" />
+                        <Setter Target="DataTextBlock.FontSize"
+                                Value="15" />
+                        <Setter Target="TimeTextBlock.FontSize"
+                                Value="15" />
+                    </VisualState.Setters>
                 </VisualState>
 
                 <VisualState x:Name="NarrowState">
@@ -237,13 +279,21 @@
                                 Value="auto" />
                         <Setter Target="DetailRow.Height"
                                 Value="*" />
-                        <Setter Target="MasterListView.SelectionMode"
-                                Value="None" />
+                        <Setter Target="DateTimeRow.Height"
+                                Value="auto" />
+                        <Setter Target="MasterListView.Width"
+                                Value="300" />
+                        <Setter Target="TitleTextBlock.FontSize"
+                                Value="1" />
+                        <Setter Target="DataTextBlock.FontSize"
+                                Value="1" />
+                        <Setter Target="TimeTextBlock.FontSize"
+                                Value="1" />
                     </VisualState.Setters>
                 </VisualState>
             </VisualStateGroup>
-        </VisualStateManager.VisualStateGroups>-->
-        <CommandBar  
+        </VisualStateManager.VisualStateGroups>
+        <CommandBar  x:Name="CommandBar"
                     Grid.Row="0"
                     OverflowButtonVisibility="Visible"
                     IsOpen="False"
@@ -287,5 +337,21 @@
                 </DataTemplate>
             </ListView.ItemTemplate>
         </ListView>
+        <TextBlock Grid.Row="2"
+                   Name="TitleTextBlock"
+                   Text="{Binding Title}"
+                   Style="{StaticResource BaseTextBlockStyle}" />
+        <TextBlock Grid.Row="2"
+                   Name="DataTextBlock"
+                   Text="{Binding Title}"
+                   HorizontalAlignment="Right"
+                   HorizontalTextAlignment="Center"
+                   Style="{StaticResource BaseTextBlockStyle}" />
+        <TextBlock Grid.Row="2"
+                   Name="TimeTextBlock"
+                   Text="{Binding Title}"
+                   HorizontalAlignment="Left"
+                   HorizontalTextAlignment="Center"
+                   Style="{StaticResource BaseTextBlockStyle}" />
     </Grid>
 </Page>
