@@ -8,6 +8,7 @@ using Windows.UI.ViewManagement;
 using StickyNotes.UserControls;
 using Windows.UI.Xaml.Media.Animation;
 using StickyNotes.View;
+using System;
 
 
 // https://go.microsoft.com/fwlink/?LinkId=402352&clcid=0x804 上介绍了“空白页”项模板
@@ -57,9 +58,43 @@ namespace StickyNotes {
             Frame.Navigate(typeof(SettingPage));
         }
 
-        private void AllNoteButton_Click(object sender, RoutedEventArgs e)
+        private async void AllNoteButton_Click(object sender, RoutedEventArgs e)
         {
-            Frame.Navigate(typeof(AllNotePage));
+            CoreApplicationView newView = null;
+            if (CoreApplication.Views.Count > 1)
+            {
+                newView = CoreApplication.Views[1];
+            }
+            // 如果没有这个视图，就创一个
+            if (newView == null)
+            {
+                newView = CoreApplication.CreateNewView();
+            }
+
+            int newViewID = default(int);
+            // 初始化视图
+            await newView.Dispatcher.RunAsync(Windows.UI.Core.CoreDispatcherPriority.Normal,
+                () =>
+                {
+                    // 获取视图视图ID
+                    ApplicationView theView = ApplicationView.GetForCurrentView();
+                    newViewID = theView.Id;
+                    // 初始化视图的UI
+                    Frame frame = new Frame();
+                    frame.Navigate(typeof(AllNotePage), null);
+                    Window.Current.Content = frame;
+                    // You have to activate the window in order to show it later.
+                    Window.Current.Activate();
+                });
+            bool viewShown = await ApplicationViewSwitcher.TryShowAsStandaloneAsync(newViewID);
+            if (viewShown)
+            {
+                // 成功显示新视图
+            }
+            else
+            {
+                // 视图显示失败
+            }
         }
     }
 }
