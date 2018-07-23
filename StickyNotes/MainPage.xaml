@@ -6,6 +6,7 @@
       xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
       xmlns:userControls="using:StickyNotes.UserControls"
       mc:Ignorable="d"
+       xmlns:allnote="using:StickyNotes.View"
       Background="{ThemeResource ApplicationPageBackgroundThemeBrush}">
     <Page.DataContext>
         <Binding Source="{StaticResource NoteViewModel}" />

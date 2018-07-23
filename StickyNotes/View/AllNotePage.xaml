@@ -1,0 +1,128 @@
+﻿<Page
+    x:Class="StickyNotes.View.AllNotePage"
+    xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+    xmlns:local="using:StickyNotes.View"
+    xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+    xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+    mc:Ignorable="d"
+    Background="{ThemeResource ApplicationPageBackgroundThemeBrush}">
+    <Page.Resources>
+        <Style x:Key="ButtonStyle" TargetType="Button">
+            <Setter Property="FontFamily" Value="Segoe MDL2 Assets"/>
+            <Setter Property="FontSize" Value="12" />
+            <Setter Property="Width" Value="35" />
+            <Setter Property="Height" Value="35"/>
+        </Style>
+        <Style x:Key="ListViewItemText" TargetType="ListViewItem">
+            <Setter Property="FontSize" Value="10"/>
+            <Setter Property="CharacterSpacing" Value="35"/>
+            <Setter Property="FontFamily" Value="Arial"/>
+        </Style>
+    </Page.Resources>
+
+    <Grid>
+        <Grid>
+            <Grid.RowDefinitions>
+                <RowDefinition Height="Auto"/>
+                <RowDefinition Height="*"/>
+            </Grid.RowDefinitions>
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="120"/>
+                <ColumnDefinition Width="*"/>
+            </Grid.ColumnDefinitions>
+            <CommandBar  Name="MyCommandBar" 
+                     Opening="CommandBar_Opening"  
+                     Closing="CommandBar_Closing"  
+                     Grid.ColumnSpan="2"
+                     Height="35"
+                     OverflowButtonVisibility="Collapsed">
+
+                <AppBarButton Name ="AddButton"   
+                          Style="{StaticResource ButtonStyle}" 
+                          Content="&#xE710;"          
+                          ToolTipService.ToolTip="Add group"
+                          Click="AddButton_Click" />
+                <AppBarButton Name ="DeleteButton"  
+                          Style="{StaticResource ButtonStyle}" 
+                          Content="&#xE74D;"
+                          ToolTipService.ToolTip="Delete group"
+                          Click="DeleteButton_Click" />
+
+                <AppBarButton Name ="RenameButton"  
+                          Style="{StaticResource ButtonStyle}" 
+                          Content="&#xE8FB;"
+                          ToolTipService.ToolTip="Rename"
+                          Click="DeleteButton_Click" />
+
+                <AppBarSeparator/>
+                <AppBarButton x:Name="SortDownButton"
+                          Style="{StaticResource ButtonStyle}"
+                          Content="&#xE70D;"
+                          ToolTipService.ToolTip="Descent by date"
+                          Margin="10,0,0,0"
+                          Click="SortButton_Click"/>
+
+                <AppBarButton x:Name="SortUpButton"
+                          Style="{StaticResource ButtonStyle}"
+                          Content="&#xE70E;"
+                          Margin="10,0,0,0"
+                          ToolTipService.ToolTip="Absent by Date"                       
+                          Click="SortButton_Click"/>
+
+                <CommandBar.Content>
+                    <StackPanel Orientation="Horizontal" Height="35" >
+                        <TextBlock Text="All Group: "  VerticalAlignment="Bottom" Margin="2,0,0,0" FontSize="12"/>
+                        <TextBlock Text="0" Margin="0,0,15,0" VerticalAlignment="Bottom" FontSize="12"/>
+                        <TextBlock Text="All Note: "  VerticalAlignment="Bottom" FontSize="12"/>
+                        <TextBlock Text="0"  VerticalAlignment="Bottom" FontSize="12"/>
+                    </StackPanel>
+                </CommandBar.Content>
+            </CommandBar>
+            <!--**************************所有便签分组模板 ***********************-->
+            <ListView Grid.Row="1" 
+                  Grid.Column="0" 
+                  BorderThickness="1.5"
+                  BorderBrush="LightCyan" 
+                  ItemClick="ListView_ItemClick">
+                <ListViewItem Content="Default"/>
+                <ListViewItem Content="Group two"/>
+                <ListViewItem Content="Group three"/>
+
+                <!--<ListView.ItemTemplate>
+                <DataTemplate x:DataType="">
+                    <ListViewItem Content="{x:Bind } "
+                </DataTemplate>
+            </ListView.ItemTemplate>-->
+
+
+                <!--**************************显示便签模板 ***********************-->
+            </ListView>
+            <ListView Grid.Row="1" Grid.Column="1">
+                <ListViewItem Margin="0,0,0,5" Background="WhiteSmoke"  >
+                    <StackPanel Orientation="Vertical">
+                        <TextBlock FontSize="13" Text="这是一个便签，今天创建的，这个界面主要是用来显示界面分组情况和所有的便签，左侧用来显示所有的分组，数据暂时还没有绑定"/>
+                        <TextBlock Text="2019/7/7" FontSize="8" HorizontalAlignment="Right" VerticalAlignment="Bottom"/>
+                    </StackPanel>
+                </ListViewItem>
+                <ListViewItem Margin="0,0,0,5" Background="WhiteSmoke">
+                    <StackPanel Orientation="Vertical">
+                        <TextBlock FontSize="13" Text="这是一个便签，今天创建的，这个界面主要是用来显示界面分组情况和所有的便签，左侧用来显示所有的分组，数据暂时还没有绑定"/>
+                        <TextBlock Text="2019/7/7" FontSize="8" HorizontalAlignment="Right"/>
+                    </StackPanel>
+                </ListViewItem>
+
+
+                <!--<ListView.ItemTemplate>
+                <DataTemplate x:DataType="">
+                    <StackPanel>
+                        <TextBlock Text="{x:Bind }"/>
+                        <TextBlock Text="{x:Bind}" HorizontalAlignment="Left"/ >
+                    </StackPanel>
+                </DataTemplate>
+            </ListView.ItemTemplate>-->
+            </ListView>
+        </Grid>
+
+    </Grid>
+</Page>

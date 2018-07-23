@@ -135,11 +135,11 @@
     
     <ScrollViewer  HorizontalScrollBarVisibility="Disabled" VerticalScrollBarVisibility="Auto">
         <Grid  MinWidth="500" >
-            <Grid.Background>
+            <!--<Grid.Background>
                 <AcrylicBrush BackgroundSource="HostBackdrop"
                           TintColor="WhiteSmoke"
                           TintOpacity="0.2"></AcrylicBrush>
-            </Grid.Background>
+            </Grid.Background>-->
             <Grid.ColumnDefinitions>
                 <ColumnDefinition Width="Auto"/>
                 <ColumnDefinition Width="*"/>
