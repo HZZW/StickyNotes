@@ -245,6 +245,13 @@
             <RowDefinition x:Name="DateTimeRow"
                            Height="AUTO" />
         </Grid.RowDefinitions>
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition x:Name="ListColumn"
+                              Width="AUTO"/>
+            <ColumnDefinition x:Name="ContentColumn"
+                              Width="*"/>
+        </Grid.ColumnDefinitions>
+        
         <VisualStateManager.VisualStateGroups>
             <VisualStateGroup x:Name="AdaptiveStates">
                 <VisualState x:Name="DefaultState">
@@ -293,7 +300,15 @@
                 </VisualState>
             </VisualStateGroup>
         </VisualStateManager.VisualStateGroups>
-        <CommandBar  x:Name="CommandBar"
+
+        <!--替代CommandBar-->
+        <Grid Grid.Row="0"
+              Grid.Column="0">
+            <Button Width="23" Height="23"></Button>
+        </Grid>
+        
+        
+        <!--<CommandBar  x:Name="CommandBar"
                     Grid.Row="0"
                     OverflowButtonVisibility="Visible"
                     IsOpen="False"
@@ -326,7 +341,7 @@
                               Label="Settings"
                               Click="SettingAppBarButton_Click" />
             </CommandBar.SecondaryCommands>
-        </CommandBar>
+        </CommandBar>-->
         <ListView Name="MasterListView"
                   Grid.Row="1"
                   Width="1500"

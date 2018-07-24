@@ -33,6 +33,7 @@ namespace StickyNotes {
             windows.ExtendViewIntoTitleBar = false;
 
             //windows.ExtendViewIntoTitleBar = true;
+            //TODO 获取标题栏高度
 
             var titleBar = ApplicationView.GetForCurrentView().TitleBar;
             titleBar.BackgroundColor = Color.FromArgb(0xFF, 0xFF, 0xFF, 0xD0);
