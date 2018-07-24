@@ -19,7 +19,7 @@
                     <ColumnDefinition Width="*" />
                 </Grid.ColumnDefinitions>
                 
-                <Rectangle Fill="{ThemeResource SystemControlBackgroundAccentBrush}" 
+                <Rectangle Fill="#FFFFFFD0" 
                            Visibility="{Binding Selected, Mode=TwoWay}" 
                            HorizontalAlignment="Left" Width="5" Height="48" />
 
