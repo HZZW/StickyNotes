@@ -293,7 +293,49 @@
                 </VisualState>
             </VisualStateGroup>
         </VisualStateManager.VisualStateGroups>
-        <CommandBar  x:Name="CommandBar"
+        <StackPanel x:Name="TitleStackPanel" Height="32" Width="AUTO" Background="#FFEFEFB0" Orientation="Horizontal">
+            <Button Height="32" 
+                    Width="48"  
+                    Content="&#xE109;" 
+                    Background="#FFFFFFD0" 
+                    FontWeight="Normal" 
+                    FontFamily="Segoe MDL2 Assets" 
+                    Command="{Binding AddNoteCommand,Mode=OneWay}"/>
+            <Button Height="32" 
+                    Width="48" 
+                    Content="&#xE107;" 
+                    Background="#FFFFFFD0" 
+                    FontWeight="Normal" 
+                    FontFamily="Segoe MDL2 Assets" />
+            <Button Height="32" 
+                    Width="48"  
+                    Content="&#xE712;"
+                    Background="#FFFFFFD0"
+                    FontWeight="Normal"
+                    FontFamily="Segoe MDL2 Assets" >
+                <Button.Flyout>
+                    <MenuFlyout>
+                        <MenuFlyoutItem Text="ReFresh" Command="{Binding PullCommand}">
+                            <MenuFlyoutItem.Icon>
+                                <FontIcon Glyph="&#xE895;"/>
+                            </MenuFlyoutItem.Icon>
+                        </MenuFlyoutItem>
+                        <MenuFlyoutItem Text="Toast">
+                            <MenuFlyoutItem.Icon>
+                                <FontIcon Glyph="&#xED5A;"/>
+                            </MenuFlyoutItem.Icon>
+                        </MenuFlyoutItem>
+                        <MenuFlyoutItem Text="Setting" Click="SettingAppBarButton_Click">
+                            <MenuFlyoutItem.Icon>
+                                <FontIcon Glyph="&#xE713;"/>
+                            </MenuFlyoutItem.Icon>
+                        </MenuFlyoutItem>
+                    </MenuFlyout>
+                </Button.Flyout>
+            </Button>
+            <StackPanel Width="19999" x:Name="DragArea" Background="#FFFFFFD0"/>
+        </StackPanel>
+        <!--<CommandBar  x:Name="CommandBar"
                     Grid.Row="0"
                     OverflowButtonVisibility="Visible"
                     IsOpen="False"
@@ -327,7 +369,7 @@
                               Label="Settings"
                               Click="SettingAppBarButton_Click" />
             </CommandBar.SecondaryCommands>
-        </CommandBar>
+        </CommandBar>-->
         <ListView Name="MasterListView"
                   Grid.Row="1"
                   Width="1500"
