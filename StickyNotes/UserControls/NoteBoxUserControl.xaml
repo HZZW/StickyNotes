@@ -4,12 +4,19 @@
              xmlns:local="using:StickyNotes.UserControls"
              xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
              xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+             xmlns:media="using:Microsoft.Toolkit.Uwp.UI.Media"
              mc:Ignorable="d"
              d:DesignHeight="300"
              d:DesignWidth="400">
 
     <!--作为ListView或其他DataTemplate即可-->
     <Grid Background="{ThemeResource SystemControlAcrylicElementBrush}">
+        <Border BorderBrush="Purple"
+                BorderThickness="1">
+            <Border.Background>
+                <media:BackdropBlurBrush Amount="10" />
+            </Border.Background>
+        </Border>
         <Grid Name="NoteBoxStackPanel">
             <Grid.ColumnDefinitions>
                 <ColumnDefinition x:Name="PFirstColumn" Width="auto" />
@@ -103,6 +110,15 @@
                            HorizontalAlignment="Left"
                            HorizontalTextAlignment="Center"
                            Style="{StaticResource BaseTextBlockStyle}" />
+                <Border BorderBrush="AliceBlue"
+                        Grid.Row="1"
+                        Grid.Column="0"
+                        Grid.ColumnSpan="3"
+                        Width="440">
+                    <Border.Background>
+                        <media:BackdropSepiaBrush Intensity="1" />
+                    </Border.Background>
+                </Border>
                 <TextBox x:Name="Edit"
                          Grid.Row="1"
                          Grid.Column="0"
@@ -162,8 +178,8 @@
             <Grid Grid.Column="0"
                   Background="{ThemeResource SystemControlAcrylicElementBrush}">
                 <Grid.RowDefinitions>
-                    <RowDefinition Height="*"/>
-                    <RowDefinition Height="*"/>
+                    <RowDefinition Height="*" />
+                    <RowDefinition Height="*" />
                 </Grid.RowDefinitions>
                 <AppBarButton  Name="CloseButton"
                                Icon="Delete"
