@@ -9,7 +9,7 @@
              d:DesignWidth="400">
 
     <!--作为ListView或其他DataTemplate即可-->
-        <Grid>
+    <Grid Background="{ThemeResource SystemControlAcrylicElementBrush}">
         <Grid Name="NoteBoxStackPanel">
             <Grid.ColumnDefinitions>
                 <ColumnDefinition x:Name="PFirstColumn" Width="auto" />
@@ -159,7 +159,8 @@
                     </FlyoutBase.AttachedFlyout>
                 </TextBox>
             </Grid>
-            <Grid Grid.Column="0">
+            <Grid Grid.Column="0"
+                  Background="{ThemeResource SystemControlAcrylicElementBrush}">
                 <Grid.RowDefinitions>
                     <RowDefinition Height="*"/>
                     <RowDefinition Height="*"/>
