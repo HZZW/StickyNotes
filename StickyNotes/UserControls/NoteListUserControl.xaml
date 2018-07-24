@@ -5,7 +5,8 @@
     xmlns:local="using:StickyNotes.UserControls"
     xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
     xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
-    mc:Ignorable="d"
+             xmlns:media="using:Microsoft.Toolkit.Uwp.UI.Media"
+             mc:Ignorable="d"
     d:DesignHeight="300"
     d:DesignWidth="400"
     >
@@ -17,7 +18,7 @@
                     <ColumnDefinition Width="48" />
                     <ColumnDefinition Width="*" />
                 </Grid.ColumnDefinitions>
-
+                
                 <Rectangle Fill="{ThemeResource SystemControlBackgroundAccentBrush}" 
                            Visibility="{Binding Selected, Mode=TwoWay}" 
                            HorizontalAlignment="Left" Width="5" Height="48" />
@@ -61,6 +62,15 @@
     </UserControl.Resources>
 
     <Grid Background="{ThemeResource ApplicationPageBackgroundThemeBrush}">
+        <Border BorderBrush="Black"
+                BorderThickness="1"
+                Grid.Column="0"
+                Grid.ColumnSpan="2"
+                Height="400">
+            <Border.Background>
+                <media:BackdropBlurBrush Amount="10" />
+            </Border.Background>
+        </Border>
         <!--汉堡菜单开关-->
         <Button Name="PaneOpenButton" 
                 FontFamily="Segoe MDL2 Assets" Content="&#xE700;" Foreground="Black" 
@@ -71,7 +81,7 @@
         <SplitView Name="RootSplitView" 
                    DisplayMode="CompactOverlay" 
                    CompactPaneLength="48" OpenPaneLength="256" 
-                   IsPaneOpen="True">
+                   IsPaneOpen="False">
 
             <SplitView.Pane>
                 <Grid Background="#FFFFFFD0">

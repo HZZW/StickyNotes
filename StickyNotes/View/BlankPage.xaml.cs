@@ -31,10 +31,10 @@ namespace StickyNotes
             ApplicationView.GetForCurrentView().SetPreferredMinSize(new Size(300, 200));
             var windows = CoreApplication.GetCurrentView().TitleBar;
 
-            windows.ExtendViewIntoTitleBar = false;
+            //windows.ExtendViewIntoTitleBar = false;
 
-            //windows.ExtendViewIntoTitleBar = true;
-
+            windows.ExtendViewIntoTitleBar = true;
+            Window.Current.SetTitleBar(DragArea);
             var titleBar = ApplicationView.GetForCurrentView().TitleBar;
             titleBar.BackgroundColor = Color.FromArgb(0xFF, 0xFF, 0xFF, 0xD0);
             titleBar.ForegroundColor = Color.FromArgb(0xFF, 0xFF, 0xFF, 0xD0);
