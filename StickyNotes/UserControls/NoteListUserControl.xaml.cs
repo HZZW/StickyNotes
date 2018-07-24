@@ -76,6 +76,22 @@ namespace StickyNotes.UserControls
                 }
             });
 
+        private void AddButton_Click(object sender, RoutedEventArgs e)
+        {
+            var NewNote = new NavMenuItem()
+            {
+                FontFamily = new FontFamily("Segoe MDL2 Assets"),
+                Icon = "\xE122",
+                Label = "便签???",
+                Selected = Visibility.Collapsed,
+                DestPage = typeof(BlankPage)
+            };
+            navMenuPrimaryItem.Add(NewNote);
+
+            // 绑定导航菜单
+            NavMenuPrimaryListView.ItemsSource = navMenuPrimaryItem;
+        }
+
         public NoteListUserControl()
         {
             this.InitializeComponent();
@@ -116,5 +132,6 @@ namespace StickyNotes.UserControls
 
             RootSplitView.IsPaneOpen = false;
         }
+
     }
 }

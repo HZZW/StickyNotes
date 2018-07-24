@@ -7,7 +7,8 @@
     xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
     mc:Ignorable="d"
     d:DesignHeight="300"
-    d:DesignWidth="400">
+    d:DesignWidth="400"
+    >
     <UserControl.Resources>
         <!--菜单的数据模板-->
         <DataTemplate x:Key="DataTemplate">
@@ -21,12 +22,12 @@
                            Visibility="{Binding Selected, Mode=TwoWay}" 
                            HorizontalAlignment="Left" Width="5" Height="48" />
 
-                <FontIcon FontFamily="{Binding FontFamily}" Glyph="{Binding Icon}" Foreground="White" 
+                <FontIcon FontFamily="{Binding FontFamily}" Glyph="{Binding Icon}" Foreground="Black" 
                           VerticalAlignment="Center" 
                           Margin="-2,0,0,0" Width="48" Height="48" />
 
                 <TextBlock Grid.Column="1" 
-                           Text="{Binding Label}" Foreground="White" 
+                           Text="{Binding Label}" Foreground="Black" 
                            Margin="12,0,0,0" VerticalAlignment="Center" />
             </Grid>
         </DataTemplate>
@@ -62,7 +63,7 @@
     <Grid Background="{ThemeResource ApplicationPageBackgroundThemeBrush}">
         <!--汉堡菜单开关-->
         <Button Name="PaneOpenButton" 
-                FontFamily="Segoe MDL2 Assets" Content="&#xE700;" Foreground="White" 
+                FontFamily="Segoe MDL2 Assets" Content="&#xE700;" Foreground="Black" 
                 Background="{Binding BackgroundColor}" 
                 Width="48" Height="48" 
                 VerticalAlignment="Top" Canvas.ZIndex="100" />
@@ -73,7 +74,7 @@
                    IsPaneOpen="True">
 
             <SplitView.Pane>
-                <Grid Background="#CC000000">
+                <Grid Background="#FFFFFFD0">
                     <Grid.RowDefinitions>
                         <!--空出Button的高度-->
                         <RowDefinition Height="48" />
@@ -93,6 +94,10 @@
                               ItemTemplate="{StaticResource DataTemplate}" 
                               ItemContainerStyle="{StaticResource NavMenuItemContainerStyle}" 
                               BorderBrush="{ThemeResource SystemControlBackgroundAccentBrush}" BorderThickness="0,1,0,0" />
+                    <AppBarButton x:Name="AddButton"
+                                  Background="#FFFFFFD0"
+                                  Icon = "Add"
+                                  Click="AddButton_Click" HorizontalAlignment="Left" Margin="205,0,0,0" VerticalAlignment="Top" Grid.RowSpan="2" Height="48" Width="51"/>
                 </Grid>
             </SplitView.Pane>
 
