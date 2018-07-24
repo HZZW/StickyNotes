@@ -70,7 +70,7 @@
         <SplitView Name="RootSplitView" 
                    DisplayMode="CompactOverlay" 
                    CompactPaneLength="48" OpenPaneLength="256" 
-                   IsPaneOpen="True">
+                   IsPaneOpen="False">
 
             <SplitView.Pane>
                 <Grid Background="#CC000000">
