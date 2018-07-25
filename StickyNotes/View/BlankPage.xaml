@@ -327,7 +327,7 @@
                     FontFamily="Segoe MDL2 Assets" >
                 <Button.Flyout>
                     <MenuFlyout>
-                        <MenuFlyoutItem Text="Toast">
+                        <MenuFlyoutItem Text="Toast" Click="ToastButton_Click">
                             <MenuFlyoutItem.Icon>
                                 <FontIcon Glyph="&#xED5A;"/>
                             </MenuFlyoutItem.Icon>
