@@ -224,13 +224,13 @@
                 </Button.Flyout>
             </Button>
 
-            <Slider Grid.Row="3" 
-                Grid.Column="1" 
-                Width="200" 
-                Minimum="1" 
-                Maximum="20" 
-                StepFrequency="1"  />
-            
+            <Slider x:Name="FontSlider"
+                    Grid.Row="3"
+                    Grid.Column="1"
+                    Width="500"
+                    Minimum="1"
+                    Maximum="50"
+                    StepFrequency="1" />
             <Button Grid.Row="4"  
                 Grid.Column="1" 
                 Name="FontColorButton"
