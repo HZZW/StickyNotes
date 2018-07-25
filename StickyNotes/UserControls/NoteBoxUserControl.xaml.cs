@@ -31,9 +31,7 @@ namespace StickyNotes.UserControls {
         }
 
         private void CertainButton_Click(object sender, RoutedEventArgs e) {
-            
-            var note = (DataContext) as Note;
-           
+            var note = (this.DataContext) as Note;
             var data = new DateTime(Data.Date.Year,Data.Date.Month,Data.Date.Day,Time.Time.Hours,Time.Time.Minutes,Time.Time.Seconds);
             var noteDate = new KeyValuePair<Note, DateTime>(note,data);
             (App.Current.Resources["NoteViewModel"] as NoteViewModel).SetNotificationCommand.Execute(noteDate);

@@ -319,7 +319,7 @@
                                 <FontIcon Glyph="&#xE895;"/>
                             </MenuFlyoutItem.Icon>
                         </MenuFlyoutItem>
-                        <MenuFlyoutItem Text="Toast" Click="ToastButton_Click">
+                        <MenuFlyoutItem Text="Toast">
                             <MenuFlyoutItem.Icon>
                                 <FontIcon Glyph="&#xED5A;"/>
                             </MenuFlyoutItem.Icon>

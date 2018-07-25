@@ -141,9 +141,6 @@
     <Compile Include="View\AllNotePage.xaml.cs">
       <DependentUpon>AllNotePage.xaml</DependentUpon>
     </Compile>
-    <Compile Include="View\SetToastContentDialog.xaml.cs">
-      <DependentUpon>SetToastContentDialog.xaml</DependentUpon>
-    </Compile>
   </ItemGroup>
   <ItemGroup>
     <AppxManifest Include="Package.appxmanifest">
@@ -241,10 +238,6 @@
       <Generator>MSBuild:Compile</Generator>
     </Page>
     <Page Include="View\AllNotePage.xaml">
-      <SubType>Designer</SubType>
-      <Generator>MSBuild:Compile</Generator>
-    </Page>
-    <Page Include="View\SetToastContentDialog.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
