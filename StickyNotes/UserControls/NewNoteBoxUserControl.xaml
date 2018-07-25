@@ -10,6 +10,9 @@
     d:DesignWidth="400">
 
     <Grid>
-        <TextBox Text="{Binding Content,Mode=TwoWay}"/>
+        <TextBox 
+            AcceptsReturn="True"
+            TextWrapping="Wrap"
+            Text="{Binding SelectNote.Content,Mode=TwoWay}"/>
     </Grid>
 </UserControl>

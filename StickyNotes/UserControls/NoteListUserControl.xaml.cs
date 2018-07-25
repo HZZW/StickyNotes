@@ -23,7 +23,6 @@ namespace StickyNotes.UserControls
 {
     public sealed partial class NoteListUserControl : UserControl
     {
-        int a = 1;
         // 为不同的菜单创建不同的List类型
         private ObservableCollection<NavMenuItem> navMenuPrimaryItem = new ObservableCollection<NavMenuItem>();
 
