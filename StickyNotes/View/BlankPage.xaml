@@ -293,14 +293,13 @@
                 </VisualState>
             </VisualStateGroup>
         </VisualStateManager.VisualStateGroups>
-        <StackPanel x:Name="TitleStackPanel" Height="32" Width="AUTO" Background="#FFEFEFB0" Orientation="Horizontal">
+        <StackPanel x:Name="TitleStackPanel" Height="32" Width="AUTO" Background="#FFEFEFB0" Orientation="Horizontal" Grid.Row="0">
             <Button Height="32" 
                     Width="48"  
                     Content="&#xE109;" 
                     Background="#FFFFFFD0" 
                     FontWeight="Normal" 
-                    FontFamily="Segoe MDL2 Assets" 
-                    Command="{Binding AddNoteCommand,Mode=OneWay}"/>
+                    FontFamily="Segoe MDL2 Assets" />
             <Button Height="32" 
                     Width="48" 
                     Content="&#xE107;" 
@@ -370,7 +369,7 @@
                               Click="SettingAppBarButton_Click" />
             </CommandBar.SecondaryCommands>
         </CommandBar>-->
-        <ListView Name="MasterListView"
+        <!--<ListView Name="MasterListView"
                   Grid.Row="1"
                   Width="1500"
                   ItemsSource="{Binding Note}">
@@ -379,8 +378,10 @@
                     <userControls:NoteBoxUserControl></userControls:NoteBoxUserControl>
                 </DataTemplate>
             </ListView.ItemTemplate>
-        </ListView>
-        <TextBlock Grid.Row="2"
+        </ListView>-->
+        <!--<userControls:NoteBoxUserControl Grid.Row="1"></userControls:NoteBoxUserControl>-->
+        <userControls:NewNoteBoxUserControl Grid.Row="1"></userControls:NewNoteBoxUserControl>
+            <TextBlock Grid.Row="2"
                    Name="TitleTextBlock"
                    Text="{Binding Title}"
                    Style="{StaticResource BaseTextBlockStyle}" />
