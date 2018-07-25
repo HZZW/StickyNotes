@@ -12,7 +12,7 @@ namespace StickyNotes.UnitTest.Tools
     {
         public static void CompareSaveAndGet(Note noteSave, Note noteGet)
         {
-            Assert.AreEqual(noteSave.Title, noteGet.Title);
+            Assert.AreEqual(noteSave.Label, noteGet.Label);
             Assert.AreEqual(noteSave.Content, noteGet.Content);
             Assert.AreEqual(noteSave.Author, noteGet.Author);
             Assert.AreEqual(true,noteSave.NotificationDateTime==noteGet.NotificationDateTime);

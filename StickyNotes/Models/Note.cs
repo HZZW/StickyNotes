@@ -50,8 +50,8 @@ namespace StickyNotes.Models
 
         /// <summary>
         /// 被选择的状态
-        /// TODO 或许不应该序列化这个属性
         /// </summary>
+        [NonSerialized]
         private Visibility _selected=Visibility.Collapsed;
         public Visibility Selected
         {
@@ -79,25 +79,54 @@ namespace StickyNotes.Models
                 {
                     return;
                 }
-
                 _content = value;
+                UpdateLabel();
                 OnPropertyChanged(nameof(Content));
             }
         }
-        /// <summary>
-        /// 标题
-        /// </summary>
-        private string _title;
-        public string Title { get=>_title;
+        
+        private int _labelLenght;
+        public int LabelLenght
+        {
+            get
+            {
+                //TODO LabelLenght默认长度为20
+                if(_labelLenght==0)
+                    LabelLenght=20;
+                return _labelLenght;
+            }
             set
             {
-                if (_title == value)
+                if (_labelLenght == value)
                 {
                     return;
                 }
 
-                _title = value;
-                OnPropertyChanged(nameof(Title));
+                _labelLenght = value;
+                OnPropertyChanged(nameof(LabelLenght));
+                UpdateLabel();
+            } }
+        /// <summary>
+        /// 标题
+        /// </summary>
+        private string _label;
+        public string Label {
+            get
+            {
+                if (_label == null)
+                {
+                    UpdateLabel();
+                }
+                return _label;
+            }
+            set
+            {
+                if (_label == value)
+                {
+                    return;
+                }
+                _label = value;
+                OnPropertyChanged(nameof(Label));
             }
         }
         /// <summary>
@@ -159,6 +188,14 @@ namespace StickyNotes.Models
         protected virtual void OnPropertyChanged([CallerMemberName] string propertyName = null)
         {
             PropertyChanged?.Invoke(this, new PropertyChangedEventArgs(propertyName));
+        }
+        /// <summary>
+        /// 更新Label
+        /// </summary>
+        private void UpdateLabel()
+        {
+            if(Content!=null)
+            Label = LabelLenght < this.Content.Length ? this.Content.Substring(0, LabelLenght) : this.Content;
         }
     }
 }

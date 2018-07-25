@@ -260,7 +260,7 @@
                                 Value="auto" />
                         <Setter Target="MasterListView.Width"
                                 Value="1500" />
-                        <Setter Target="TitleTextBlock.FontSize"
+                        <Setter Target="LabelTextBlock.FontSize"
                                 Value="15" />
                         <Setter Target="DataTextBlock.FontSize"
                                 Value="15" />
@@ -283,7 +283,7 @@
                                 Value="auto" />
                         <Setter Target="MasterListView.Width"
                                 Value="300" />
-                        <Setter Target="TitleTextBlock.FontSize"
+                        <Setter Target="LabelTextBlock.FontSize"
                                 Value="1" />
                         <Setter Target="DataTextBlock.FontSize"
                                 Value="1" />

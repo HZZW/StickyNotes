@@ -15,6 +15,7 @@ using Windows.UI.Xaml.Data;
 using Windows.UI.Xaml.Input;
 using Windows.UI.Xaml.Media;
 using Windows.UI.Xaml.Navigation;
+using StickyNotes.Models;
 
 //https://go.microsoft.com/fwlink/?LinkId=234236 上介绍了“用户控件”项模板
 
@@ -29,16 +30,8 @@ namespace StickyNotes.UserControls
 
         private void AddButton_Click(object sender, RoutedEventArgs e)
         {
-            var NewNote = new NavMenuItem()
-            {
-                FontFamily = new FontFamily("Segoe MDL2 Assets"),
-                Icon = "\xE122",
-                Label = "便签"+a,
-                Selected = Visibility.Collapsed,
-                DestPage = typeof(BlankPage)
-            };
-            navMenuPrimaryItem.Add(NewNote);
-            a++; 
+            var theNoteViewModel = (this.DataContext as NoteViewModel);
+            theNoteViewModel.AddNoteCommand.Execute(null);
         }
 
 
@@ -46,8 +39,7 @@ namespace StickyNotes.UserControls
         public NoteListUserControl()
         {
             this.InitializeComponent();
-            // 绑定导航菜单
-            NavMenuPrimaryListView.ItemsSource = navMenuPrimaryItem;
+           
             // SplitView 开关
             PaneOpenButton.Click += (sender, args) =>
             {
@@ -61,21 +53,12 @@ namespace StickyNotes.UserControls
 
         private void NavMenuListView_ItemClick(object sender, ItemClickEventArgs e)
         {
-            // 遍历，将选中Rectangle隐藏
-            foreach (var np in navMenuPrimaryItem)
-            {
-                np.Selected = Visibility.Collapsed;
-            }
+            var theNote = (e.ClickedItem as Note);
+            if (theNote == null) return;
+            var theNoteViewModel = (this.DataContext as NoteViewModel);
 
-            NavMenuItem item = e.ClickedItem as NavMenuItem;
-            // Rectangle显示并导航
-            item.Selected = Visibility.Visible;
-            if (item.DestPage != null)
-            {
-                RootFrame.Navigate(item.DestPage);
-            }
+            theNoteViewModel.SetSelectNoteCommand.Execute(theNote);
 
-            RootSplitView.IsPaneOpen = false;
         }
 
     }
