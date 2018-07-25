@@ -18,9 +18,9 @@ namespace StickyNotes.UnitTest.Services
 
             var noteSave = new List<Note>()
             {
-                new Note() {Author = "LwwWG", Content = "it is a easy content one", Title = "title one"},
-                {new Note() {Author = "LwwWG", Content = "it is a easy content two", Title = "title two"}},
-                {new Note() {Author = "LwwWG", Content = "it is a easy content three", Title = "title three"}}};
+                new Note() {Author = "LwwWG", Content = "it is a easy content one", Label = "title one"},
+                {new Note() {Author = "LwwWG", Content = "it is a easy content two", Label = "title two"}},
+                {new Note() {Author = "LwwWG", Content = "it is a easy content three", Label = "title three"}}};
 
             var noteService = new LocalNoteService();
             noteService.Push(noteSave);

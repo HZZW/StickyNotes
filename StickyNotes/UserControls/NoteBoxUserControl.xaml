@@ -55,7 +55,7 @@
                                         Value="auto" />
                                 <Setter Target="DetailNoteRow.Height"
                                         Value="*" />
-                                <Setter Target="TitleTextBlock.FontSize"
+                                <Setter Target="LabelTextBlock.FontSize"
                                         Value="15" />
                                 <Setter Target="TimeTextBlock.FontSize"
                                         Value="15" />
@@ -86,7 +86,7 @@
                                         Value="auto" />
                                 <Setter Target="DetailNoteRow.Height"
                                         Value="*" />
-                                <Setter Target="TitleTextBlock.FontSize"
+                                <Setter Target="LabelTextBlock.FontSize"
                                         Value="1" />
                                 <Setter Target="TimeTextBlock.FontSize"
                                         Value="1" />

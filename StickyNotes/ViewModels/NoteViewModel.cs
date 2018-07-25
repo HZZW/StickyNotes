@@ -286,7 +286,7 @@ namespace StickyNotes.ViewModels
 
         private RelayCommand<Note> _setSelectNoteCommand;
 
-        public RelayCommand<Note> SetSetSelectNoteCommand =>
+        public RelayCommand<Note> SetSelectNoteCommand =>
             _setSelectNoteCommand ?? (_setSelectNoteCommand = new RelayCommand<Note>(
                 note =>
                 {

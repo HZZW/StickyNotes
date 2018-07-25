@@ -10,6 +10,10 @@
     d:DesignHeight="300"
     d:DesignWidth="400"
     >
+    <UserControl.DataContext>
+        <Binding Source="{StaticResource NoteViewModel}" />
+    </UserControl.DataContext>
+
     <UserControl.Resources>
         <!--菜单的数据模板-->
         <DataTemplate x:Key="DataTemplate">
@@ -95,6 +99,7 @@
                     <ListView Name="NavMenuPrimaryListView" 
                               Grid.Row="1" VerticalAlignment="Top" 
                               SelectionMode="None" IsItemClickEnabled="True" 
+                              ItemsSource="{Binding Note}"
                               ItemTemplate="{StaticResource DataTemplate}" 
                               ItemContainerStyle="{StaticResource NavMenuItemContainerStyle}"/>
                     <!--二级菜单-->
