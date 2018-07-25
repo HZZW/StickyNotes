@@ -127,6 +127,12 @@ namespace StickyNotes
             }
         }
 
+        private void ToastButton_Click(object sender, RoutedEventArgs e)
+        {
+            SetToastContentDialog setting = new SetToastContentDialog();
+            setting.ShowAsync();
+        }
+
         private void DeleteButton_Click(object sender, RoutedEventArgs e)
         {
             // var parent = this.Parent;
