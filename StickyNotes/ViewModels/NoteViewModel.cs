@@ -9,6 +9,7 @@ using System.Runtime.CompilerServices;
 using System.Text;
 using System.Threading.Tasks;
 using Windows.ApplicationModel.Background;
+using Windows.UI.Xaml;
 using GalaSoft.MvvmLight;
 using GalaSoft.MvvmLight.Command;
 using StickyNotes.Annotations;
@@ -47,7 +48,15 @@ namespace StickyNotes.ViewModels
                     return;
                 }
 
+                if (_selectNote != null)
+                {
+                    _selectNote.Selected = Visibility.Collapsed;
+                }
                 _selectNote = value;
+                if (_selectNote != null)
+                {
+                    _selectNote.Selected = Visibility.Visible;
+                }
                 OnPropertyChanged(nameof(SelectNote));
             }
         }
@@ -189,20 +198,20 @@ namespace StickyNotes.ViewModels
         /// </summary>
         public RelayCommand<KeyValuePair<Note,DateTime>> SetNotificationCommand=>
             _setNotificationCommand?? (_setNotificationCommand = new RelayCommand<KeyValuePair<Note, DateTime>>(
-                note_DateTime =>
-                {
-                var theNote =GetNoteById(note_DateTime.Key.ID);
-                    if (theNote != null)
-                    {
-                        theNote.NotificationDateTime=note_DateTime.Value;
-                        //通知系统修改时间
-                        if(Notification.Instance.Show().Contains(theNote.ID.ToString()))
-                        {
-                            Notification.Instance.Delete(theNote.ID.ToString());
-                        }
-                        Notification.Instance.Create(theNote.NotificationDateTime, theNote.ID.ToString());
-                    }
-                }));
+                                                                                 note_DateTime =>
+                                                                                 {
+                                                                                    var theNote =GetNoteById(note_DateTime.Key.ID);
+                                                                                     if (theNote != null)
+                                                                                     {
+                                                                                         theNote.NotificationDateTime=note_DateTime.Value;
+                                                                                         //通知系统修改时间
+                                                                                         if(Notification.Instance.Show().Contains(theNote.ID.ToString()))
+                                                                                         {
+                                                                                             Notification.Instance.Delete(theNote.ID.ToString());
+                                                                                         }
+                                                                                         Notification.Instance.Create(theNote.NotificationDateTime, theNote.ID.ToString());
+                                                                                     }
+                                                                                 }));
         /// <summary>
         /// 取消Note的提示时间
         /// </summary>
@@ -275,7 +284,19 @@ namespace StickyNotes.ViewModels
                     theNote.Tag = noteString.Value;
                 }));
 
+        private RelayCommand<Note> _setSelectNoteCommand;
 
+        public RelayCommand<Note> SetSetSelectNoteCommand =>
+            _setSelectNoteCommand ?? (_setSelectNoteCommand = new RelayCommand<Note>(
+                note =>
+                {
+                    var theNote = GetNoteById(note.ID);
+                    if (theNote==null)
+                    {
+                        return;
+                    }
+                    SelectNote = theNote;
+                }));
         //-----------------------继承---------------------------//
         public event PropertyChangedEventHandler PropertyChanged;
         [NotifyPropertyChangedInvocator]

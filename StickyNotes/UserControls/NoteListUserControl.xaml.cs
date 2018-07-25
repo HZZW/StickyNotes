@@ -2,6 +2,7 @@
 using StickyNotes.ViewModels;
 using System;
 using System.Collections.Generic;
+using System.Collections.ObjectModel;
 using System.IO;
 using System.Linq;
 using System.Runtime.InteropServices.WindowsRuntime;
@@ -21,60 +22,10 @@ namespace StickyNotes.UserControls
 {
     public sealed partial class NoteListUserControl : UserControl
     {
+        int a = 1;
         // 为不同的菜单创建不同的List类型
-        private List<NavMenuItem> navMenuPrimaryItem = new List<NavMenuItem>(
-            new[]
-            {
-                new NavMenuItem()
-                {
-                    FontFamily = new FontFamily("Segoe MDL2 Assets"),
-                    Icon = "\xE10F",
-                    Label = "便签1",
-                    Selected = Visibility.Visible,
-                    DestPage = typeof(BlankPage)
-                },
+        private ObservableCollection<NavMenuItem> navMenuPrimaryItem = new ObservableCollection<NavMenuItem>();
 
-                new NavMenuItem()
-                {
-                    FontFamily = new FontFamily("Segoe MDL2 Assets"),
-                    Icon = "\xE11A",
-                    Label = "便签2",
-                    Selected = Visibility.Collapsed,
-                    DestPage = typeof(BlankPage)
-                },
-
-                new NavMenuItem()
-                {
-                    FontFamily = new FontFamily("Segoe MDL2 Assets"),
-                    Icon = "\xE121",
-                    Label = "便签3",
-                    Selected = Visibility.Collapsed,
-                    DestPage = typeof(BlankPage)
-                },
-
-                new NavMenuItem()
-                {
-                    FontFamily = new FontFamily("Segoe MDL2 Assets"),
-                    Icon = "\xE122",
-                    Label = "便签4",
-                    Selected = Visibility.Collapsed,
-                    DestPage = typeof(BlankPage)
-                }
-
-            });
-
-        private List<NavMenuItem> navMenuSecondaryItem = new List<NavMenuItem>(
-            new[]
-            {
-                new NavMenuItem()
-                {
-                    FontFamily = new FontFamily("Segoe MDL2 Assets"),
-                    Icon = "\xE713",
-                    Label = "设置",
-                    Selected = Visibility.Collapsed,
-                    DestPage = typeof(SettingPage)
-                }
-            });
 
         private void AddButton_Click(object sender, RoutedEventArgs e)
         {
@@ -82,22 +33,21 @@ namespace StickyNotes.UserControls
             {
                 FontFamily = new FontFamily("Segoe MDL2 Assets"),
                 Icon = "\xE122",
-                Label = "便签???",
+                Label = "便签"+a,
                 Selected = Visibility.Collapsed,
                 DestPage = typeof(BlankPage)
             };
             navMenuPrimaryItem.Add(NewNote);
-
-            // 绑定导航菜单
-            NavMenuPrimaryListView.ItemsSource = navMenuPrimaryItem;
+            a++; 
         }
+
+
 
         public NoteListUserControl()
         {
             this.InitializeComponent();
             // 绑定导航菜单
             NavMenuPrimaryListView.ItemsSource = navMenuPrimaryItem;
-            NavMenuSecondaryListView.ItemsSource = navMenuSecondaryItem;
             // SplitView 开关
             PaneOpenButton.Click += (sender, args) =>
             {
@@ -105,7 +55,6 @@ namespace StickyNotes.UserControls
             };
             // 导航事件
             NavMenuPrimaryListView.ItemClick += NavMenuListView_ItemClick;
-            NavMenuSecondaryListView.ItemClick += NavMenuListView_ItemClick;
             // 默认页
             RootFrame.SourcePageType = typeof(BlankPage);
         }
@@ -116,10 +65,6 @@ namespace StickyNotes.UserControls
             foreach (var np in navMenuPrimaryItem)
             {
                 np.Selected = Visibility.Collapsed;
-            }
-            foreach (var ns in navMenuSecondaryItem)
-            {
-                ns.Selected = Visibility.Collapsed;
             }
 
             NavMenuItem item = e.ClickedItem as NavMenuItem;

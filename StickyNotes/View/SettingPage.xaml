@@ -131,6 +131,88 @@
                 </Setter.Value>
             </Setter>
         </Style>
+        <Style x:Key="ComboxItemStyle"
+               TargetType="ComboBoxItem">
+            <Setter Property="Padding"
+                    Value="2" />
+            <Setter Property="Template">
+                <Setter.Value>
+                    <ControlTemplate TargetType="ComboBoxItem">
+                        <Border x:Name="RootBorder">
+                            <Grid>
+                                <Rectangle x:Name="Mask"
+                                           Grid.Row="1"
+                                           Margin="2"
+                                           Visibility="Collapsed"
+                                           Fill="{StaticResource DefaultScrollThumb_Background_P}" />
+                                <ContentPresenter VerticalAlignment="{TemplateBinding VerticalAlignment}"
+                                                  HorizontalAlignment="{TemplateBinding HorizontalAlignment}"
+                                                  Margin="{TemplateBinding Padding}" />
+                            </Grid>
+                        </Border>
+                    </ControlTemplate>
+                </Setter.Value>
+            </Setter>
+        </Style>
+        <!--Combobox-->
+        <Style x:Key="SettingPageComboBox"
+               TargetType="ComboBox">
+            <Setter Property="ItemContainerStyle"
+                    Value="{StaticResource ComboxItemStyle}" />
+            <Setter Property="Template">
+                <Setter.Value>
+                    <ControlTemplate TargetType="ComboBox">
+                        <Grid x:Name="templateRoot">
+                            <Grid.ColumnDefinitions>
+                                <ColumnDefinition Width="*" />
+                                <ColumnDefinition MinWidth="10"
+                                                  Width="auto" />
+                            </Grid.ColumnDefinitions>
+                            <Popup x:Name="PART_Popup"
+                                   Grid.ColumnSpan="2"
+                                   IsOpen="{Binding IsDropDownOpen, RelativeSource={RelativeSource TemplatedParent}}">
+                                <Border x:Name="dropDownBorder"
+                                        BorderBrush="{StaticResource BorderBrush}"
+                                        BorderThickness="1"
+                                        MaxHeight="160"
+                                        Background="{StaticResource BackgroundBrush}">
+                                    <ScrollViewer x:Name="DropDownScrollViewer"
+                                                  Style="{StaticResource SC_ScrollViewer}">
+                                        <Grid x:Name="grid">
+                                            <Canvas x:Name="canvas"
+                                                    HorizontalAlignment="Left"
+                                                    Height="0"
+                                                    VerticalAlignment="Top"
+                                                    Width="0">
+                                                <Rectangle x:Name="opaqueRect"
+                                                           Fill="{Binding Background, ElementName=dropDownBorder}"
+                                                           Height="{Binding ActualHeight, ElementName=dropDownBorder}"
+                                                           Width="{Binding ActualWidth, ElementName=dropDownBorder}" />
+                                            </Canvas>
+                                        </Grid>
+                                    </ScrollViewer>
+                                </Border>
+                            </Popup>
+                            <Border x:Name="border"
+                                    BorderBrush="{StaticResource BorderBrush}"
+                                    Margin="{TemplateBinding BorderThickness}">
+                                <TextBox x:Name="PART_EditableTextBox"
+                                         Text="{Binding SelectedValue,RelativeSource={RelativeSource Mode=TemplatedParent}}"
+                                         HorizontalContentAlignment="{TemplateBinding HorizontalContentAlignment}"
+                                         IsReadOnly="{Binding IsReadOnly, RelativeSource={RelativeSource TemplatedParent}}"
+                                         Margin="{TemplateBinding Padding}"
+                                         FontSize="{StaticResource SettingPageSecondFontSize}"
+                                         Foreground="{StaticResource DefaultPopupForeground}"
+                                         Background="Transparent"
+                                         BorderThickness="0"
+                                         VerticalAlignment="Center"
+                                         VerticalContentAlignment="Center" />
+                            </Border>
+                        </Grid>
+                    </ControlTemplate>
+                </Setter.Value>
+            </Setter>
+        </Style>
     </Page.Resources>
     
     <ScrollViewer  HorizontalScrollBarVisibility="Disabled" VerticalScrollBarVisibility="Auto">
@@ -224,13 +306,13 @@
                 </Button.Flyout>
             </Button>
 
-            <Slider Grid.Row="3" 
-                Grid.Column="1" 
-                Width="200" 
-                Minimum="1" 
-                Maximum="20" 
-                StepFrequency="1"  />
-            
+            <Slider x:Name="FontSlider"
+                    Grid.Row="3"
+                    Grid.Column="1"
+                    Width="500"
+                    Minimum="1"
+                    Maximum="50"
+                    StepFrequency="1" />
             <Button Grid.Row="4"  
                 Grid.Column="1" 
                 Name="FontColorButton"
