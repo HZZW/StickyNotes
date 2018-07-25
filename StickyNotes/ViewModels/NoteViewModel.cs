@@ -9,6 +9,7 @@ using System.Runtime.CompilerServices;
 using System.Text;
 using System.Threading.Tasks;
 using Windows.ApplicationModel.Background;
+using Windows.UI.Xaml;
 using GalaSoft.MvvmLight;
 using GalaSoft.MvvmLight.Command;
 using StickyNotes.Annotations;
@@ -47,7 +48,15 @@ namespace StickyNotes.ViewModels
                     return;
                 }
 
+                if (_selectNote != null)
+                {
+                    _selectNote.Selected = Visibility.Collapsed;
+                }
                 _selectNote = value;
+                if (_selectNote != null)
+                {
+                    _selectNote.Selected = Visibility.Visible;
+                }
                 OnPropertyChanged(nameof(SelectNote));
             }
         }
@@ -275,6 +284,19 @@ namespace StickyNotes.ViewModels
                     theNote.Tag = noteString.Value;
                 }));
 
+        private RelayCommand<Note> _setSelectNoteCommand;
+
+        public RelayCommand<Note> SetSetSelectNoteCommand =>
+            _setSelectNoteCommand ?? (_setSelectNoteCommand = new RelayCommand<Note>(
+                note =>
+                {
+                    var theNote = GetNoteById(note.ID);
+                    if (theNote==null)
+                    {
+                        return;
+                    }
+                    SelectNote = theNote;
+                }));
         //-----------------------继承---------------------------//
         public event PropertyChangedEventHandler PropertyChanged;
         [NotifyPropertyChangedInvocator]

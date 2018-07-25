@@ -5,6 +5,7 @@ using System.Linq;
 using System.Runtime.CompilerServices;
 using System.Text;
 using System.Threading.Tasks;
+using Windows.UI.Xaml;
 using StickyNotes.Annotations;
 
 namespace StickyNotes.Models
@@ -28,6 +29,42 @@ namespace StickyNotes.Models
             _notificationDateTime =DateTime.Now;
             //TODO 暂定默认的Tag为"默认"
             Tag = "默认";
+        }
+        /// <summary>
+        /// 图标
+        /// </summary>
+        private string _icon;
+        public string Icon
+        {
+            get => _icon ?? (_icon = "\xE10F");
+            set
+            {
+                if (_icon == value)
+                {
+                    return;
+                }
+                _icon = value;
+                OnPropertyChanged(nameof(Icon));
+            }
+        }
+
+        /// <summary>
+        /// 被选择的状态
+        /// TODO 或许不应该序列化这个属性
+        /// </summary>
+        private Visibility _selected=Visibility.Collapsed;
+        public Visibility Selected
+        {
+            get => _selected;
+            set
+            {
+                if (_selected == value)
+                {
+                    return;
+                }
+                _selected = value;
+                OnPropertyChanged(nameof(Selected));
+            }
         }
         /// <summary>
         /// 内容
