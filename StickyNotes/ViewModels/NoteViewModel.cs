@@ -86,8 +86,6 @@ namespace StickyNotes.ViewModels
             private set => _tag = value;
         }
         
-
-
         /// <summary>
         /// 当前标签组的标签
         /// </summary>

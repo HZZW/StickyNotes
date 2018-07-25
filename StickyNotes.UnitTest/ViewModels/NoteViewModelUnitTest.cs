@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using Windows.UI.Xaml;
 using GalaSoft.MvvmLight.Command;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
 using StickyNotes.Models;
@@ -332,6 +333,58 @@ namespace StickyNotes.UnitTest.ViewModels
         [TestMethod]
         public void TestAllCommandTogether()
         {
+            
+        }
+
+        [TestMethod]
+        public void TestSetSelectNoteCommand()
+        {
+            //设置数据
+            var noteViewModel = new NoteViewModel();
+            var lastNotificationCount = Notification.Instance.Show().Count;
+            var noteSaveList = new List<Note>();
+            noteSaveList.Add(new Note() { Author = "LwwWG", Content = "it is a easy content one", Label = "title one", NotificationDateTime = new DateTime(2018, 9, 10), Tag = "第一组" });
+            noteSaveList.Add(new Note() { Author = "LwwWG", Content = "it is a easy content two", Label = "title two", NotificationDateTime = new DateTime(2018, 10, 10), Tag = "第二组" });
+            noteSaveList.Add(new Note() { Author = "LwwWG", Content = "it is a easy content three", Label = "title three", NotificationDateTime = new DateTime(2018, 11, 10), Tag = "第三组" });
+            noteSaveList.Add(new Note() { Author = "LwwWG", Content = "it is a easy content four", Label = "title four", NotificationDateTime = new DateTime(2018, 12, 10), Tag = "第四组" });
+            noteSaveList.Add(new Note() { Author = "LwwWG", Content = "it is a easy content five", Label = "title five", NotificationDateTime = new DateTime(2018, 12, 10), Tag = "第五组" });
+            noteSaveList.Add(new Note() { Author = "LwwWG", Content = "it is a easy content six ", Label = "title six", NotificationDateTime = new DateTime(2018, 12, 10), Tag = "第六组" });
+            
+            //选择和判断
+            noteViewModel.SetSelectNoteCommand.Execute(noteSaveList[0]);
+            Assert.AreEqual(noteViewModel.SelectNote,noteSaveList[0]);
+            Assert.AreEqual(noteSaveList[0], Visibility.Visible);
+            Assert.AreEqual(noteViewModel.SelectNote.Selected,Visibility.Visible);
+
+            noteViewModel.SetSelectNoteCommand.Execute(noteSaveList[1]);
+            Assert.AreEqual(noteViewModel.SelectNote, noteSaveList[1]);
+            Assert.AreEqual(noteSaveList[1], Visibility.Visible);
+            Assert.AreEqual(noteViewModel.SelectNote.Selected, Visibility.Visible);
+            Assert.AreEqual(noteSaveList[0], Visibility.Collapsed);
+
+            noteViewModel.SetSelectNoteCommand.Execute(noteSaveList[2]);
+            Assert.AreEqual(noteViewModel.SelectNote, noteSaveList[2]);
+            Assert.AreEqual(noteSaveList[2], Visibility.Visible);
+            Assert.AreEqual(noteViewModel.SelectNote.Selected, Visibility.Visible);
+            Assert.AreEqual(noteSaveList[1], Visibility.Collapsed);
+
+            noteViewModel.SetSelectNoteCommand.Execute(noteSaveList[3]);
+            Assert.AreEqual(noteViewModel.SelectNote, noteSaveList[3]);
+            Assert.AreEqual(noteSaveList[3], Visibility.Visible);
+            Assert.AreEqual(noteViewModel.SelectNote.Selected, Visibility.Visible);
+            Assert.AreEqual(noteSaveList[2], Visibility.Collapsed);
+
+            noteViewModel.SetSelectNoteCommand.Execute(noteSaveList[4]);
+            Assert.AreEqual(noteViewModel.SelectNote, noteSaveList[4]);
+            Assert.AreEqual(noteSaveList[4], Visibility.Visible);
+            Assert.AreEqual(noteViewModel.SelectNote.Selected, Visibility.Visible);
+            Assert.AreEqual(noteSaveList[3], Visibility.Collapsed);
+
+            noteViewModel.SetSelectNoteCommand.Execute(noteSaveList[5]);
+            Assert.AreEqual(noteViewModel.SelectNote, noteSaveList[5]);
+            Assert.AreEqual(noteSaveList[5], Visibility.Visible);
+            Assert.AreEqual(noteViewModel.SelectNote.Selected, Visibility.Visible);
+            Assert.AreEqual(noteSaveList[4], Visibility.Collapsed);
             
         }
         /// <summary>
