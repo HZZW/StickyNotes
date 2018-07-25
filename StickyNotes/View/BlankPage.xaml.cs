@@ -126,5 +126,11 @@ namespace StickyNotes
                 // 视图显示失败
             }
         }
+
+        private void ToastButton_Click(object sender, RoutedEventArgs e)
+        {
+            SetToastContentDialog setting = new SetToastContentDialog();
+            setting.ShowAsync();
+        }
     }
 }

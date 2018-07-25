@@ -196,20 +196,20 @@ namespace StickyNotes.ViewModels
         /// </summary>
         public RelayCommand<KeyValuePair<Note,DateTime>> SetNotificationCommand=>
             _setNotificationCommand?? (_setNotificationCommand = new RelayCommand<KeyValuePair<Note, DateTime>>(
-                                                                                 note_DateTime =>
-                                                                                 {
-                                                                                    var theNote =GetNoteById(note_DateTime.Key.ID);
-                                                                                     if (theNote != null)
-                                                                                     {
-                                                                                         theNote.NotificationDateTime=note_DateTime.Value;
-                                                                                         //通知系统修改时间
-                                                                                         if(Notification.Instance.Show().Contains(theNote.ID.ToString()))
-                                                                                         {
-                                                                                             Notification.Instance.Delete(theNote.ID.ToString());
-                                                                                         }
-                                                                                         Notification.Instance.Create(theNote.NotificationDateTime, theNote.ID.ToString());
-                                                                                     }
-                                                                                 }));
+                note_DateTime =>
+                {
+                var theNote =GetNoteById(note_DateTime.Key.ID);
+                    if (theNote != null)
+                    {
+                        theNote.NotificationDateTime=note_DateTime.Value;
+                        //通知系统修改时间
+                        if(Notification.Instance.Show().Contains(theNote.ID.ToString()))
+                        {
+                            Notification.Instance.Delete(theNote.ID.ToString());
+                        }
+                        Notification.Instance.Create(theNote.NotificationDateTime, theNote.ID.ToString());
+                    }
+                }));
         /// <summary>
         /// 取消Note的提示时间
         /// </summary>
