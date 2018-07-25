@@ -81,14 +81,11 @@ namespace StickyNotes
             }
         }
 
-        private void AppBarButton_Click(object sender, RoutedEventArgs e)
-        {
 
-        }
-
-        private void SettingAppBarButton_Click(object sender, RoutedEventArgs e)
+        private void SettingButton_Click(object sender, RoutedEventArgs e)
         {
-            Frame.Navigate(typeof(SettingPage));
+            SettingContentDialog setting = new SettingContentDialog();
+            setting.ShowAsync();
         }
 
         private async void AllNoteButton_Click(object sender, RoutedEventArgs e)
