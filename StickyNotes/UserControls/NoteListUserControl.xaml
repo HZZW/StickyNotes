@@ -90,14 +90,14 @@
                 Foreground="Black" 
                 Background="{Binding BackgroundColor}" 
                 Width="48" 
-                Height="48" 
+                Height="32" 
                 VerticalAlignment="Top" 
                 Canvas.ZIndex="100" />
 
         <SplitView Name="RootSplitView" 
                    DisplayMode="CompactOverlay" 
                    CompactPaneLength="48" 
-                   OpenPaneLength="256" 
+                   OpenPaneLength="180" 
                    IsPaneOpen="False">
 
             <SplitView.Pane>
