@@ -349,42 +349,42 @@ namespace StickyNotes.UnitTest.ViewModels
             noteSaveList.Add(new Note() { Author = "LwwWG", Content = "it is a easy content four", Label = "title four", NotificationDateTime = new DateTime(2018, 12, 10), Tag = "第四组" });
             noteSaveList.Add(new Note() { Author = "LwwWG", Content = "it is a easy content five", Label = "title five", NotificationDateTime = new DateTime(2018, 12, 10), Tag = "第五组" });
             noteSaveList.Add(new Note() { Author = "LwwWG", Content = "it is a easy content six ", Label = "title six", NotificationDateTime = new DateTime(2018, 12, 10), Tag = "第六组" });
-            
+            noteViewModel.PushCommand.Execute(noteSaveList);
             //选择和判断
             noteViewModel.SetSelectNoteCommand.Execute(noteSaveList[0]);
             Assert.AreEqual(noteViewModel.SelectNote,noteSaveList[0]);
-            Assert.AreEqual(noteSaveList[0], Visibility.Visible);
+            Assert.AreEqual(noteSaveList[0].Selected, Visibility.Visible);
             Assert.AreEqual(noteViewModel.SelectNote.Selected,Visibility.Visible);
 
             noteViewModel.SetSelectNoteCommand.Execute(noteSaveList[1]);
             Assert.AreEqual(noteViewModel.SelectNote, noteSaveList[1]);
-            Assert.AreEqual(noteSaveList[1], Visibility.Visible);
+            Assert.AreEqual(noteSaveList[1].Selected, Visibility.Visible);
             Assert.AreEqual(noteViewModel.SelectNote.Selected, Visibility.Visible);
-            Assert.AreEqual(noteSaveList[0], Visibility.Collapsed);
+            Assert.AreEqual(noteSaveList[0].Selected, Visibility.Collapsed);
 
             noteViewModel.SetSelectNoteCommand.Execute(noteSaveList[2]);
             Assert.AreEqual(noteViewModel.SelectNote, noteSaveList[2]);
-            Assert.AreEqual(noteSaveList[2], Visibility.Visible);
+            Assert.AreEqual(noteSaveList[2].Selected, Visibility.Visible);
             Assert.AreEqual(noteViewModel.SelectNote.Selected, Visibility.Visible);
-            Assert.AreEqual(noteSaveList[1], Visibility.Collapsed);
+            Assert.AreEqual(noteSaveList[1].Selected, Visibility.Collapsed);
 
             noteViewModel.SetSelectNoteCommand.Execute(noteSaveList[3]);
             Assert.AreEqual(noteViewModel.SelectNote, noteSaveList[3]);
-            Assert.AreEqual(noteSaveList[3], Visibility.Visible);
+            Assert.AreEqual(noteSaveList[3].Selected, Visibility.Visible);
             Assert.AreEqual(noteViewModel.SelectNote.Selected, Visibility.Visible);
-            Assert.AreEqual(noteSaveList[2], Visibility.Collapsed);
+            Assert.AreEqual(noteSaveList[2].Selected, Visibility.Collapsed);
 
             noteViewModel.SetSelectNoteCommand.Execute(noteSaveList[4]);
             Assert.AreEqual(noteViewModel.SelectNote, noteSaveList[4]);
-            Assert.AreEqual(noteSaveList[4], Visibility.Visible);
+            Assert.AreEqual(noteSaveList[4].Selected, Visibility.Visible);
             Assert.AreEqual(noteViewModel.SelectNote.Selected, Visibility.Visible);
-            Assert.AreEqual(noteSaveList[3], Visibility.Collapsed);
+            Assert.AreEqual(noteSaveList[3].Selected, Visibility.Collapsed);
 
             noteViewModel.SetSelectNoteCommand.Execute(noteSaveList[5]);
             Assert.AreEqual(noteViewModel.SelectNote, noteSaveList[5]);
-            Assert.AreEqual(noteSaveList[5], Visibility.Visible);
+            Assert.AreEqual(noteSaveList[5].Selected, Visibility.Visible);
             Assert.AreEqual(noteViewModel.SelectNote.Selected, Visibility.Visible);
-            Assert.AreEqual(noteSaveList[4], Visibility.Collapsed);
+            Assert.AreEqual(noteSaveList[4].Selected, Visibility.Collapsed);
             
         }
         /// <summary>
