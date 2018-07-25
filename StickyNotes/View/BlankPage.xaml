@@ -293,16 +293,29 @@
                 </VisualState>
             </VisualStateGroup>
         </VisualStateManager.VisualStateGroups>
-        <StackPanel x:Name="TitleStackPanel" Height="32" Width="AUTO" Background="#FFEFEFB0" Orientation="Horizontal" Grid.Row="0">
+        <StackPanel x:Name="TitleStackPanel" 
+                    Height="32" 
+                    Width="AUTO" 
+                    Background="#FFEFEFB0" 
+                    Orientation="Horizontal" 
+                    Grid.Row="0">
             <Button Height="32" 
                     Width="48"  
                     Content="&#xE109;" 
                     Background="#FFFFFFD0" 
+                    Click="AddButton_Click"
                     FontWeight="Normal" 
                     FontFamily="Segoe MDL2 Assets" />
             <Button Height="32" 
                     Width="48" 
                     Content="&#xE107;" 
+                    Background="#FFFFFFD0" 
+                    FontWeight="Normal" 
+                    Click="DeleteButton_Click"
+                    FontFamily="Segoe MDL2 Assets" />
+            <Button Height="32" 
+                    Width="48" 
+                    Content="&#xE105;" 
                     Background="#FFFFFFD0" 
                     FontWeight="Normal" 
                     FontFamily="Segoe MDL2 Assets" />
@@ -314,12 +327,7 @@
                     FontFamily="Segoe MDL2 Assets" >
                 <Button.Flyout>
                     <MenuFlyout>
-                        <MenuFlyoutItem Text="ReFresh" Command="{Binding PullCommand}">
-                            <MenuFlyoutItem.Icon>
-                                <FontIcon Glyph="&#xE895;"/>
-                            </MenuFlyoutItem.Icon>
-                        </MenuFlyoutItem>
-                        <MenuFlyoutItem Text="Toast" Click="ToastButton_Click">
+                        <MenuFlyoutItem Text="Toast">
                             <MenuFlyoutItem.Icon>
                                 <FontIcon Glyph="&#xED5A;"/>
                             </MenuFlyoutItem.Icon>

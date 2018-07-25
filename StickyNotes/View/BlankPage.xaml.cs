@@ -132,5 +132,23 @@ namespace StickyNotes
             SetToastContentDialog setting = new SetToastContentDialog();
             setting.ShowAsync();
         }
+
+        private void DeleteButton_Click(object sender, RoutedEventArgs e)
+        {
+            // var parent = this.Parent;
+            //var theNote = ((this.Parent as ListViewItem)?.DataContext as Note);
+            // var context = this.DataContext;
+            // var content = this.Content;
+
+            var noteViewModel = (App.Current.Resources["NoteViewModel"] as NoteViewModel);
+            var note = (this.DataContext as NoteViewModel).SelectNote;
+            noteViewModel?.DeleteNoteCommand.Execute(note);
+        }
+
+        private void AddButton_Click(object sender, RoutedEventArgs e)
+        {
+            var theNoteViewModel = (this.DataContext as NoteViewModel);
+            theNoteViewModel.AddNoteCommand.Execute(null);
+        }
     }
 }
