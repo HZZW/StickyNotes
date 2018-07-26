@@ -117,14 +117,6 @@
                               ItemTemplate="{StaticResource DataTemplate}" 
                               ItemContainerStyle="{StaticResource NavMenuItemContainerStyle}"/>
                     <!--二级菜单-->
-                    <ListView Name="NavMenuSecondaryListView" 
-                              Grid.Row="2" 
-                              VerticalAlignment="Bottom" 
-                              SelectionMode="None" 
-                              IsItemClickEnabled="True" 
-                              ItemTemplate="{StaticResource DataTemplate}" 
-                              ItemContainerStyle="{StaticResource NavMenuItemContainerStyle}" 
-                              BorderBrush="{ThemeResource SystemControlBackgroundAccentBrush}" BorderThickness="0,1,0,0" />
                 </Grid>
             </SplitView.Pane>
 
