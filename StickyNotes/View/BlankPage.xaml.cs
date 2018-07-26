@@ -92,44 +92,44 @@ namespace StickyNotes {
             setting.ShowAsync();
         }
 
-        private async void AllNoteButton_Click(object sender, RoutedEventArgs e)
-        {
-            CoreApplicationView newView = null;
-            if (CoreApplication.Views.Count > 1)
-            {
-                newView = CoreApplication.Views[1];
-            }
-            // 如果没有这个视图，就创一个
-            if (newView == null)
-            {
-                newView = CoreApplication.CreateNewView();
-            }
+        //private async void AllNoteButton_Click(object sender, RoutedEventArgs e)
+        //{
+        //    CoreApplicationView newView = null;
+        //    if (CoreApplication.Views.Count > 1)
+        //    {
+        //        newView = CoreApplication.Views[1];
+        //    }
+        //    // 如果没有这个视图，就创一个
+        //    if (newView == null)
+        //    {
+        //        newView = CoreApplication.CreateNewView();
+        //    }
 
-            int newViewId = default(int);
-            // 初始化视图
-            await newView.Dispatcher.RunAsync(Windows.UI.Core.CoreDispatcherPriority.Normal,
-                () =>
-                {
-                    // 获取视图视图ID
-                    ApplicationView theView = ApplicationView.GetForCurrentView();
-                    newViewId = theView.Id;
-                    // 初始化视图的UI
-                    Frame frame = new Frame();
-                    frame.Navigate(typeof(AllNotePage), null);
-                    Window.Current.Content = frame;
-                    // You have to activate the window in order to show it later.
-                    Window.Current.Activate();
-                });
-            bool viewShown = await ApplicationViewSwitcher.TryShowAsStandaloneAsync(newViewId);
-            if (viewShown)
-            {
-                // 成功显示新视图
-            }
-            else
-            {
-                // 视图显示失败
-            }
-        }
+        //    int newViewId = default(int);
+        //    // 初始化视图
+        //    await newView.Dispatcher.RunAsync(Windows.UI.Core.CoreDispatcherPriority.Normal,
+        //        () =>
+        //        {
+        //            // 获取视图视图ID
+        //            ApplicationView theView = ApplicationView.GetForCurrentView();
+        //            newViewId = theView.Id;
+        //            // 初始化视图的UI
+        //            Frame frame = new Frame();
+        //            frame.Navigate(typeof(AllNotePage), null);
+        //            Window.Current.Content = frame;
+        //            // You have to activate the window in order to show it later.
+        //            Window.Current.Activate();
+        //        });
+        //    bool viewShown = await ApplicationViewSwitcher.TryShowAsStandaloneAsync(newViewId);
+        //    if (viewShown)
+        //    {
+        //        // 成功显示新视图
+        //    }
+        //    else
+        //    {
+        //        // 视图显示失败
+        //    }
+        //}
 
         private void ToastButton_Click(object sender, RoutedEventArgs e)
         {

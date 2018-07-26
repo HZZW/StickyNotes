@@ -127,9 +127,6 @@
     <Compile Include="View\SettingContentDialog.xaml.cs">
       <DependentUpon>SettingContentDialog.xaml</DependentUpon>
     </Compile>
-    <Compile Include="View\SettingPage.xaml.cs">
-      <DependentUpon>SettingPage.xaml</DependentUpon>
-    </Compile>
     <Compile Include="UserControls\AddNoteButtonUserControl.xaml.cs">
       <DependentUpon>AddNoteButtonUserControl.xaml</DependentUpon>
     </Compile>
@@ -224,9 +221,6 @@
     <Page Include="View\SettingContentDialog.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
-    </Page>
-    <Page Include="View\SettingPage.xaml">
-      <SubType>Designer</SubType>
     </Page>
     <Page Include="UserControls\AddNoteButtonUserControl.xaml">
       <SubType>Designer</SubType>
