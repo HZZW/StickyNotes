@@ -1,26 +1,12 @@
-﻿using StickyNotes.View;
-using StickyNotes.ViewModels;
-using System;
-using System.Collections.Generic;
+﻿using StickyNotes.ViewModels;
 using System.Collections.ObjectModel;
-using System.IO;
-using System.Linq;
-using System.Runtime.InteropServices.WindowsRuntime;
-using Windows.Foundation;
-using Windows.Foundation.Collections;
 using Windows.UI.Xaml;
 using Windows.UI.Xaml.Controls;
-using Windows.UI.Xaml.Controls.Primitives;
-using Windows.UI.Xaml.Data;
-using Windows.UI.Xaml.Input;
-using Windows.UI.Xaml.Media;
-using Windows.UI.Xaml.Navigation;
 using StickyNotes.Models;
 
 //https://go.microsoft.com/fwlink/?LinkId=234236 上介绍了“用户控件”项模板
 
-namespace StickyNotes.UserControls
-{
+namespace StickyNotes.UserControls {
     public sealed partial class NoteListUserControl : UserControl
     {
         // 为不同的菜单创建不同的List类型

@@ -1,9 +1,6 @@
 ﻿using System;
-using Windows.Foundation;
 using Windows.UI.Xaml;
 using Windows.UI.Xaml.Controls;
-using Windows.UI.Xaml.Controls.Primitives;
-using Windows.UI.Text;
 using StickyNotes.Models;
 using StickyNotes.ViewModels;
 using System.Collections.Generic;
