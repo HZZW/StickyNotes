@@ -131,7 +131,7 @@
                 </Setter.Value>
             </Setter>
         </Style>
-        <Style x:Key="ComboxItemStyle"
+        <!--<Style x:Key="ComboxItemStyle"
                TargetType="ComboBoxItem">
             <Setter Property="Padding"
                     Value="2" />
@@ -154,7 +154,7 @@
                 </Setter.Value>
             </Setter>
         </Style>
-        <!--Combobox-->
+        --><!--Combobox--><!--
         <Style x:Key="SettingPageComboBox"
                TargetType="ComboBox">
             <Setter Property="ItemContainerStyle"
@@ -212,7 +212,7 @@
                     </ControlTemplate>
                 </Setter.Value>
             </Setter>
-        </Style>
+        </Style>-->
     </Page.Resources>
     
     <ScrollViewer  HorizontalScrollBarVisibility="Disabled" VerticalScrollBarVisibility="Auto">
