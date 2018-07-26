@@ -133,9 +133,6 @@
     <Compile Include="UserControls\AddNoteButtonUserControl.xaml.cs">
       <DependentUpon>AddNoteButtonUserControl.xaml</DependentUpon>
     </Compile>
-    <Compile Include="UserControls\NoteBoxUserControl.xaml.cs">
-      <DependentUpon>NoteBoxUserControl.xaml</DependentUpon>
-    </Compile>
     <Compile Include="ViewModels\NoteViewModel.cs" />
     <Compile Include="View\AllNotePage.xaml.cs">
       <DependentUpon>AllNotePage.xaml</DependentUpon>
@@ -232,10 +229,6 @@
       <SubType>Designer</SubType>
     </Page>
     <Page Include="UserControls\AddNoteButtonUserControl.xaml">
-      <SubType>Designer</SubType>
-      <Generator>MSBuild:Compile</Generator>
-    </Page>
-    <Page Include="UserControls\NoteBoxUserControl.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
