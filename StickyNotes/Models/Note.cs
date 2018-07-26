@@ -1,6 +1,7 @@
 ﻿using System;
 using System.ComponentModel;
 using System.Runtime.CompilerServices;
+using System.Text.RegularExpressions;
 using Windows.UI.Xaml;
 using StickyNotes.Annotations;
 
@@ -89,7 +90,7 @@ namespace StickyNotes.Models
             {
                 //TODO LabelLenght默认长度为20
                 if(_labelLenght==0)
-                    LabelLenght=20;
+                    LabelLenght=10;
                 return _labelLenght;
             }
             set
@@ -192,8 +193,14 @@ namespace StickyNotes.Models
         /// </summary>
         private void UpdateLabel()
         {
-            if(Content!=null)
-            Label = LabelLenght < Content.Length ? Content.Substring(0, LabelLenght) : Content;
+            if (Content == null)
+            {
+                Label = "";
+                return;
+            }
+            string pattern = @"\A[^\r\n]{0," + LabelLenght.ToString()+ @"}";
+            Label = Regex.Match(Content, pattern).Value;
+            
         }
     }
 }
