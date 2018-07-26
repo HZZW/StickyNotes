@@ -14,7 +14,6 @@
                       Margin="100,0,0,0"
                       Click="btnSetState_Click"
                       Content="当前值&#x2502;否"
-                          Grid.Row="7" Grid.Column="1" 
-                          HorizontalAlignment="Center"    />
+                      HorizontalAlignment="Center"    />
     </Grid>
 </ContentDialog>
