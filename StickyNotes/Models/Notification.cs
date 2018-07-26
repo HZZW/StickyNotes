@@ -45,7 +45,7 @@ namespace StickyNotes.Models
                 }
             };
             // In a real app, these would be initialized with actual data
-            int conversationId = 384928;
+            //int conversationId = 384928;
             // Construct the actions for the toast (inputs and buttons)
             ToastActionsCustom actions = new ToastActionsCustom()
             {
@@ -86,7 +86,7 @@ namespace StickyNotes.Models
                 Launch = new QueryString()
                 {
                     { "action", "viewConversation" },
-                    { "conversationId", conversationId.ToString() }
+                    //{ "conversationId", conversationId.ToString() }
 
                 }.ToString()
             };

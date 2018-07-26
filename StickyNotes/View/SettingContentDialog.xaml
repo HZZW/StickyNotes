@@ -9,7 +9,12 @@
     Title="设置">
 
     <Grid>
-        <TextBlock Text="开机自启" FontWeight="Normal" FontSize="20" HorizontalAlignment="Left" Margin="20,0,0,0" VerticalAlignment="Center"/>
+        <TextBlock Text="开机自启" 
+                   FontWeight="Normal" 
+                   FontSize="20" 
+                   HorizontalAlignment="Left" 
+                   Margin="20,0,0,0" 
+                   VerticalAlignment="Center"/>
         <ToggleButton Name="BtnSetState"
                       Margin="100,0,0,0"
                       Click="btnSetState_Click"

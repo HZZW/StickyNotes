@@ -69,8 +69,7 @@
             <ListView Grid.Row="1" 
                   Grid.Column="0" 
                   BorderThickness="1.5"
-                  BorderBrush="LightCyan" 
-                  ItemClick="ListView_ItemClick">
+                  BorderBrush="LightCyan" >
                 <ListViewItem Content="Default"/>
                 <ListViewItem Content="Group two"/>
                 <ListViewItem Content="Group three"/>
