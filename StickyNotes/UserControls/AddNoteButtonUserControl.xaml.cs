@@ -20,12 +20,11 @@ LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
 OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
 SOFTWARE. */
 
-using Windows.UI.Xaml.Controls;
 
 //https://go.microsoft.com/fwlink/?LinkId=234236 上介绍了“用户控件”项模板
 
 namespace StickyNotes.UserControls {
-    public sealed partial class AddNoteButtonUserControl : UserControl
+    public sealed partial class AddNoteButtonUserControl
     {
         public AddNoteButtonUserControl()
         {

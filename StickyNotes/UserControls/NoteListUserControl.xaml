@@ -2,7 +2,6 @@
     x:Class="StickyNotes.UserControls.NoteListUserControl"
     xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
     xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
-    xmlns:local="using:StickyNotes.UserControls"
     xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
     xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
              xmlns:media="using:Microsoft.Toolkit.Uwp.UI.Media"
@@ -118,14 +117,6 @@
                               ItemTemplate="{StaticResource DataTemplate}" 
                               ItemContainerStyle="{StaticResource NavMenuItemContainerStyle}"/>
                     <!--二级菜单-->
-                    <ListView Name="NavMenuSecondaryListView" 
-                              Grid.Row="2" 
-                              VerticalAlignment="Bottom" 
-                              SelectionMode="None" 
-                              IsItemClickEnabled="True" 
-                              ItemTemplate="{StaticResource DataTemplate}" 
-                              ItemContainerStyle="{StaticResource NavMenuItemContainerStyle}" 
-                              BorderBrush="{ThemeResource SystemControlBackgroundAccentBrush}" BorderThickness="0,1,0,0" />
                 </Grid>
             </SplitView.Pane>
 

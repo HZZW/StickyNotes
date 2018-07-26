@@ -20,94 +20,86 @@ LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
 OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
 SOFTWARE. */
 
-using Windows.UI.Xaml;
-using Windows.UI.Xaml.Controls;
 
 // https://go.microsoft.com/fwlink/?LinkId=234238 上介绍了“空白页”项模板
 
-namespace StickyNotes {
+namespace StickyNotes.View
+{
     /// <summary>
     /// 可用于自身或导航至 Frame 内部的空白页。
     /// </summary>
-    public sealed partial class DesignPage : Page
+    public sealed partial class DesignPage
     {
         public DesignPage()
         {
             InitializeComponent();
         }
-        private void CommandBar_Opening(object sender, object e)
-        {
-            if (!(sender is CommandBar cb)) return;
-            if (cb.Background != null)
-                cb.Background.Opacity = 1.0;
-        }
+        //private void CommandBar_Opening(object sender, object e)
+        //{
+        //    if (!(sender is CommandBar cb)) return;
+        //    if (cb.Background != null)
+        //        cb.Background.Opacity = 1.0;
+        //}
 
-        private void CommandBar_Closing(object sender, object e)
-        {
-            if (!(sender is CommandBar cb)) return;
-            if (cb.Background != null)
-                cb.Background.Opacity = 0.5;
-        }
+        //private void CommandBar_Closing(object sender, object e)
+        //{
+        //    if (!(sender is CommandBar cb)) return;
+        //    if (cb.Background != null)
+        //        cb.Background.Opacity = 0.5;
+        //}
 
-        private void AppBarButton_Click(object sender, RoutedEventArgs e)
-        {
+        //private void AppBarButton_Click(object sender, RoutedEventArgs e)
+        //{
 
-        }
+        //}
 
-        private void AllNoteButton_Click(object sender, RoutedEventArgs e)
-        {
-            AllNoteSpiltView.IsPaneOpen = !AllNoteSpiltView.IsPaneOpen;
-        }
+        //private void AllNoteButton_Click(object sender, RoutedEventArgs e)
+        //{
+        //    AllNoteSpiltView.IsPaneOpen = !AllNoteSpiltView.IsPaneOpen;
+        //}
 
    
-        private void SetButton_Click(object sender, RoutedEventArgs e)
-        {
-            Frame.Navigate(typeof(SettingPage), "");
-        }
+        //private void SetButton_Click(object sender, RoutedEventArgs e)
+        //{
+        //    Frame.Navigate(typeof(SettingPage), "");
+        //}
 
-        private void BoldButton_Click(object sender, RoutedEventArgs e)
-        {
-            Windows.UI.Text.ITextSelection selectedText = editor.Document.Selection;
-            if (selectedText != null)
-            {
-                Windows.UI.Text.ITextCharacterFormat charFormatting = selectedText.CharacterFormat;
-                charFormatting.Bold = Windows.UI.Text.FormatEffect.Toggle;
-                selectedText.CharacterFormat = charFormatting;
-            }
-        }
+        //private void BoldButton_Click(object sender, RoutedEventArgs e)
+        //{
+        //    Windows.UI.Text.ITextSelection selectedText = Editor.Document.Selection;
+        //    if (selectedText != null)
+        //    {
+        //        Windows.UI.Text.ITextCharacterFormat charFormatting = selectedText.CharacterFormat;
+        //        charFormatting.Bold = Windows.UI.Text.FormatEffect.Toggle;
+        //        selectedText.CharacterFormat = charFormatting;
+        //    }
+        //}
 
-        private void ItalicButton_Click(object sender, RoutedEventArgs e)
-        {
-            Windows.UI.Text.ITextSelection selectedText = editor.Document.Selection;
-            if (selectedText != null)
-            {
-                Windows.UI.Text.ITextCharacterFormat charFormatting = selectedText.CharacterFormat;
-                charFormatting.Italic = Windows.UI.Text.FormatEffect.Toggle;
-                selectedText.CharacterFormat = charFormatting;
-            }
-        }
+        //private void ItalicButton_Click(object sender, RoutedEventArgs e)
+        //{
+        //    Windows.UI.Text.ITextSelection selectedText = Editor.Document.Selection;
+        //    if (selectedText != null)
+        //    {
+        //        Windows.UI.Text.ITextCharacterFormat charFormatting = selectedText.CharacterFormat;
+        //        charFormatting.Italic = Windows.UI.Text.FormatEffect.Toggle;
+        //        selectedText.CharacterFormat = charFormatting;
+        //    }
+        //}
 
-        private void UnderlineButton_Click(object sender, RoutedEventArgs e)
-        {
-            Windows.UI.Text.ITextSelection selectedText = editor.Document.Selection;
-            if (selectedText != null)
-            {
-                Windows.UI.Text.ITextCharacterFormat charFormatting = selectedText.CharacterFormat;
-                if (charFormatting.Underline == Windows.UI.Text.UnderlineType.None)
-                {
-                    charFormatting.Underline = Windows.UI.Text.UnderlineType.Single;
-                }
-                else
-                {
-                    charFormatting.Underline = Windows.UI.Text.UnderlineType.None;
-                }
-                selectedText.CharacterFormat = charFormatting;
-            }
-        }
+        //private void UnderlineButton_Click(object sender, RoutedEventArgs e)
+        //{
+        //    Windows.UI.Text.ITextSelection selectedText = Editor.Document.Selection;
+        //    if (selectedText != null)
+        //    {
+        //        Windows.UI.Text.ITextCharacterFormat charFormatting = selectedText.CharacterFormat;
+        //        charFormatting.Underline = charFormatting.Underline == Windows.UI.Text.UnderlineType.None ? Windows.UI.Text.UnderlineType.Single : Windows.UI.Text.UnderlineType.None;
+        //        selectedText.CharacterFormat = charFormatting;
+        //    }
+        //}
 
-        private void AddButton_Click(object sender, RoutedEventArgs e)
-        {
+        //private void AddButton_Click(object sender, RoutedEventArgs e)
+        //{
 
-        }
+        //}
     }
 }

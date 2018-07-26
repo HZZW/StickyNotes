@@ -1,15 +1,13 @@
 ﻿<UserControl x:Class="StickyNotes.UserControls.NoteBoxUserControl"
              xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
              xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
-             xmlns:local="using:StickyNotes.UserControls"
              xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
              xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
-             xmlns:media="using:Microsoft.Toolkit.Uwp.UI.Media"
              mc:Ignorable="d"
              d:DesignHeight="300"
              d:DesignWidth="400">
 
-    <!--作为ListView或其他DataTemplate即可-->
+    <!--作为ListView或其他DataTemplate即可--><!--
     <Grid Background="{ThemeResource SystemControlAcrylicElementBrush}">
         <Border BorderBrush="Purple"
                 BorderThickness="1">
@@ -134,7 +132,7 @@
                             <MenuFlyoutItem Text="剪切" />
                             <MenuFlyoutItem Text="粘贴" />
                             <MenuFlyoutSeparator />
-                            <!--分割-->
+                            --><!--分割--><!--
                             <MenuFlyoutSubItem Text="字号">
                                 <MenuFlyoutItem Text="16"
                                                 Tag="16" />
@@ -147,7 +145,7 @@
                                 <MenuFlyoutItem Text="48"
                                                 Tag="48" />
                             </MenuFlyoutSubItem>
-                            <!--分割-->
+                            --><!--分割--><!--
                             <MenuFlyoutSeparator />
                             <ToggleMenuFlyoutItem Text="加粗" />
                             <MenuFlyoutSeparator />
@@ -161,7 +159,7 @@
                                 <MenuFlyoutItem Text="虚线"
                                                 Tag="2" />
                             </MenuFlyoutSubItem>
-                            <!--分割-->
+                            --><!--分割--><!--
                             <MenuFlyoutSeparator />
                             <MenuFlyoutSubItem Text="颜色">
                                 <MenuFlyoutItem Text="黑色"
@@ -224,5 +222,5 @@
             </Grid>
            
         </Grid>
-    </Grid>
+    </Grid>-->
 </UserControl>

@@ -10,7 +10,7 @@ namespace StickyNotes.Models
     /// <summary>
     /// 全部的文本信息
     /// </summary>
-    [System.Serializable]
+    [Serializable]
     public class Note:INotifyPropertyChanged
     {
         /// <summary>

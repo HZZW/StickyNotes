@@ -24,12 +24,11 @@ using System;
 using System.Threading.Tasks;
 using Windows.ApplicationModel;
 using Windows.UI.Xaml;
-using Windows.UI.Xaml.Controls;
 
 // https://go.microsoft.com/fwlink/?LinkId=234238 上介绍了“内容对话框”项模板
 
 namespace StickyNotes.View {
-    public sealed partial class SettingContentDialog : ContentDialog
+    public sealed partial class SettingContentDialog
     {
          public SettingContentDialog()
         {
@@ -56,23 +55,23 @@ namespace StickyNotes.View {
             {
                 case StartupTaskState.Disabled:
                     // 禁用狀態
-                    btnSetState.Content = "啟用";
-                    btnSetState.IsEnabled = true;
+                    BtnSetState.Content = "啟用";
+                    BtnSetState.IsEnabled = true;
                     break;
                 case StartupTaskState.DisabledByPolicy:
                     // 由管理員或組策略禁用
-                    btnSetState.Content = "被系統策略禁用";
-                    btnSetState.IsEnabled = false;
+                    BtnSetState.Content = "被系統策略禁用";
+                    BtnSetState.IsEnabled = false;
                     break;
                 case StartupTaskState.DisabledByUser:
                     // 由用户手工禁用
-                    btnSetState.Content = "被用户禁用";
-                    btnSetState.IsEnabled = false;
+                    BtnSetState.Content = "被用户禁用";
+                    BtnSetState.IsEnabled = false;
                     break;
                 case StartupTaskState.Enabled:
                     // 當前狀態為已啟用
-                    btnSetState.Content = "已啟用";
-                    btnSetState.IsEnabled = false;
+                    BtnSetState.Content = "已啟用";
+                    BtnSetState.IsEnabled = false;
                     break;
             }
         }

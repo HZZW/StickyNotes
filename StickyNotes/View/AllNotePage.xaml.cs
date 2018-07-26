@@ -20,16 +20,13 @@ LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
 OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
 SOFTWARE. */
 
-using Windows.UI.Xaml;
-using Windows.UI.Xaml.Controls;
-
 // https://go.microsoft.com/fwlink/?LinkId=234238 上介绍了“空白页”项模板
 
 namespace StickyNotes.View {
     /// <summary>
     /// 可用于自身或导航至 Frame 内部的空白页。
     /// </summary>
-    public sealed partial class AllNotePage : Page
+    public sealed partial class AllNotePage
     {
 
         public AllNotePage()
@@ -37,36 +34,36 @@ namespace StickyNotes.View {
             InitializeComponent();
         }
 
-        private void SortButton_Click(object sender, RoutedEventArgs e)
-        {
+        //private void SortButton_Click(object sender, RoutedEventArgs e)
+        //{
+            
+        //}
+        //private void CommandBar_Opening(object sender, object e)
+        //{
+        //    if (!(sender is CommandBar cb)) return;
+        //    if (cb.Background != null)
+        //        cb.Background.Opacity = 1.0;
+        //}
 
-        }
-        private void CommandBar_Opening(object sender, object e)
-        {
-            if (!(sender is CommandBar cb)) return;
-            if (cb.Background != null)
-                cb.Background.Opacity = 1.0;
-        }
+        //private void CommandBar_Closing(object sender, object e)
+        //{
+        //    if (!(sender is CommandBar cb)) return;
+        //    if (cb.Background != null)
+        //        cb.Background.Opacity = 0.5;
+        //}
+        //private void DeleteButton_Click(object sender, RoutedEventArgs e)
+        //{
 
-        private void CommandBar_Closing(object sender, object e)
-        {
-            if (!(sender is CommandBar cb)) return;
-            if (cb.Background != null)
-                cb.Background.Opacity = 0.5;
-        }
-        private void DeleteButton_Click(object sender, RoutedEventArgs e)
-        {
+        //}
 
-        }
+        //private void AddButton_Click(object sender, RoutedEventArgs e)
+        //{
 
-        private void AddButton_Click(object sender, RoutedEventArgs e)
-        {
+        //}
 
-        }
+        //private void ListView_ItemClick(object sender, ItemClickEventArgs e)
+        //{
 
-        private void ListView_ItemClick(object sender, ItemClickEventArgs e)
-        {
-
-        }
+        //}
     }
 }
