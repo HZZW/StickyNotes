@@ -42,7 +42,7 @@ namespace StickyNotes {
         public BlankPage()
         {
             InitializeComponent();
-            ShowCurTimer();
+            //ShowCurTimer();
             ApplicationView.PreferredLaunchViewSize = new Size(600, 302);
             ApplicationView.PreferredLaunchWindowingMode = ApplicationViewWindowingMode.PreferredLaunchViewSize;
             ApplicationView.PreferredLaunchWindowingMode = ApplicationViewWindowingMode.Auto;
@@ -67,20 +67,20 @@ namespace StickyNotes {
         }
 
 
-        private void ShowCurTimer()
-        {
-            //"星期"+DateTime.Now.DayOfWeek.ToString(("d"))
+        //private void ShowCurTimer()
+        //{
+        //    //"星期"+DateTime.Now.DayOfWeek.ToString(("d"))
 
-            //获得星期几
-            DataTextBlock.Text = DateTime.Now.ToString("dddd", new System.Globalization.CultureInfo("zh-cn"));
-            DataTextBlock.Text += " ";
-            //获得年月日
-            DataTextBlock.Text += DateTime.Now.ToString("yyyy年MM月dd日");   //yyyy年MM月dd日
-            DataTextBlock.Text += " ";
-            //获得时分秒
-            TimeTextBlock.Text += DateTime.Now.ToString("HH:mm:ss");
-            //System.Diagnostics.Debug.Print("this.ShowCurrentTime {0}", this.ShowCurrentTime);
-        }
+        //    //获得星期几
+        //    DataTextBlock.Text = DateTime.Now.ToString("dddd", new System.Globalization.CultureInfo("zh-cn"));
+        //    DataTextBlock.Text += " ";
+        //    //获得年月日
+        //    DataTextBlock.Text += DateTime.Now.ToString("yyyy年MM月dd日");   //yyyy年MM月dd日
+        //    DataTextBlock.Text += " ";
+        //    //获得时分秒
+        //    TimeTextBlock.Text += DateTime.Now.ToString("HH:mm:ss");
+        //    //System.Diagnostics.Debug.Print("this.ShowCurrentTime {0}", this.ShowCurrentTime);
+        //}
 
         //TODO will delete this method,just test 
         private void ButtonBase_OnClick(object sender, RoutedEventArgs e)
