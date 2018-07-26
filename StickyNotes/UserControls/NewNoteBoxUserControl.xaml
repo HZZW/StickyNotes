@@ -13,6 +13,9 @@
         <TextBox 
             AcceptsReturn="True"
             TextWrapping="Wrap"
-            Text="{Binding SelectNote.Content,Mode=TwoWay}"/>
+            Text="{Binding SelectNote.Content,Mode=TwoWay}"
+            BorderBrush="White"
+            BorderThickness="0"
+            />
     </Grid>
 </UserControl>
