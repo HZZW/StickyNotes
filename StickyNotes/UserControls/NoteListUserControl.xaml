@@ -28,7 +28,8 @@
                            Width="5" 
                            Height="48" />
 
-                <FontIcon FontFamily="{Binding FontFamily}" 
+                <FontIcon Grid.Column="0"
+                          FontFamily="{Binding FontFamily}" 
                           Glyph="{Binding Icon}" 
                           Foreground="Black" 
                           VerticalAlignment="Center" 
@@ -76,7 +77,6 @@
         <Border BorderBrush="Black"
                 BorderThickness="1"
                 Grid.Column="0"
-                Grid.ColumnSpan="2"
                 Height="400">
             <Border.Background>
                 <media:BackdropBlurBrush Amount="10" />
