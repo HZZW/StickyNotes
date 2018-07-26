@@ -215,7 +215,9 @@ namespace StickyNotes.ViewModels {
             _setNotificationCommand?? (_setNotificationCommand = new RelayCommand<KeyValuePair<Note, DateTime>>(
                 noteDateTime =>
                 {
-                var theNote =GetNoteById(noteDateTime.Key.Id);
+                    if (noteDateTime.Key == null) return;
+
+                    var theNote =GetNoteById(noteDateTime.Key.Id);
                     if (theNote == null) return;
                     theNote.NotificationDateTime=noteDateTime.Value;
                     //通知系统修改时间
