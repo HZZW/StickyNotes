@@ -1,9 +1,6 @@
 ﻿<Page x:Class="StickyNotes.SettingPage"
       xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
       xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
-      xmlns:local="using:StickyNotes"
-      xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
-      xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
       Background="{ThemeResource ApplicationPageBackgroundThemeBrush}"
       NavigationCacheMode="Enabled"
       Loaded="Page_Loaded">
@@ -239,16 +236,19 @@
                 <RowDefinition Height="auto" />
             </Grid.RowDefinitions>
             <!-- *******************放置按钮***********************-->
-        
-            <Button Name="BackButton"
+            <!--Name="BackButton"-->
+            <Button 
                 Grid.Row="0"
                 Grid.Column="0"
                 Style="{StaticResource NavigationBackButtonNormalStyle}"
                 Click="BackButton_OnClick" />
             <Border Grid.Row="1" 
-                   Grid.ColumnSpan="2" Background="WhiteSmoke">
-                <TextBlock   Margin="15,6,0,6"  Text="编辑设置" 
-                  Style="{StaticResource CaptionTextBlockStyle}"/>
+                   Grid.ColumnSpan="2" 
+                    Grid.Column="0" 
+                    Background="WhiteSmoke">
+            <TextBlock   Margin="15,6,0,6"  
+                         Text="编辑设置" 
+                         Style="{StaticResource CaptionTextBlockStyle}"/>
             </Border>
             <AppBarButton  Grid.Row="2" 
                 Grid.Column="0"
@@ -267,9 +267,11 @@
                 Width="100" />
             <Border Grid.Row="6" 
                     Grid.ColumnSpan="2" 
+                    Grid.Column="0"
                     Background="WhiteSmoke">
-                  <TextBlock   Margin="15,6,0,6"  Text="系统设置" 
-                   Style="{StaticResource CaptionTextBlockStyle}"/>
+            <TextBlock   Margin="15,6,0,6"  
+                         Text="系统设置" 
+                         Style="{StaticResource CaptionTextBlockStyle}"/>
             </Border>
             <AppBarButton Grid.Row="7" 
                 Grid.Column="0"
@@ -288,9 +290,10 @@
                 Width="100" />
 
             <!-- ****************************放置选项按钮*********************************** -->
+            <!--Name="FontStyleButton"-->
             <Button Grid.Row="2" 
                 Grid.Column="1"
-                Name="FontStyleButton"
+               
                 Content="Calibri" 
                 HorizontalAlignment="Center"
                 Background="Snow"  
@@ -305,17 +308,18 @@
                     </MenuFlyout>
                 </Button.Flyout>
             </Button>
-
-            <Slider x:Name="FontSlider"
+            <!--x:Name="FontSlider"-->
+            <Slider 
                     Grid.Row="3"
                     Grid.Column="1"
                     Width="500"
                     Minimum="1"
                     Maximum="50"
                     StepFrequency="1" />
+            <!--Name="FontColorButton"-->
             <Button Grid.Row="4"  
                 Grid.Column="1" 
-                Name="FontColorButton"
+                
                 Content="Default" 
                 HorizontalAlignment="Center" 
                 Background="Snow"  
@@ -336,7 +340,7 @@
                 </Button.Flyout>
             </Button>
             
-            <ToggleButton Name="btnSetState"
+            <ToggleButton Name="BtnSetState"
                       Margin="0,4,0,0"
                       Click="btnSetState_Click"
                       Content="当前值&#x2502;否"

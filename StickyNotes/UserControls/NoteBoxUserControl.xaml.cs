@@ -22,7 +22,7 @@ namespace StickyNotes.UserControls {
             // var context = this.DataContext;
             // var content = this.Content;
 
-            var noteViewModel = (App.Current.Resources["NoteViewModel"] as NoteViewModel);
+            var noteViewModel = Application.Current.Resources["NoteViewModel"] as NoteViewModel;
             var note = DataContext as Note;
             noteViewModel?.DeleteNoteCommand.Execute(note);
         }
@@ -33,7 +33,7 @@ namespace StickyNotes.UserControls {
            
             var data = new DateTime(Data.Date.Year,Data.Date.Month,Data.Date.Day,Time.Time.Hours,Time.Time.Minutes,Time.Time.Seconds);
             var noteDate = new KeyValuePair<Note, DateTime>(note,data);
-            (App.Current.Resources["NoteViewModel"] as NoteViewModel).SetNotificationCommand.Execute(noteDate);
+            (Application.Current.Resources["NoteViewModel"] as NoteViewModel)?.SetNotificationCommand.Execute(noteDate);
         }
     }
 }

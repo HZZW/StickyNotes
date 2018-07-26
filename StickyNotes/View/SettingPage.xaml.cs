@@ -2,8 +2,6 @@
 using System.Threading.Tasks;
 using Windows.ApplicationModel;
 using Windows.UI.Xaml;
-using Windows.UI.Xaml.Controls;
-using Windows.UI.Xaml.Controls.Primitives;
 using Windows.UI.Xaml.Media.Animation;
 
 // https://go.microsoft.com/fwlink/?LinkId=234238 上介绍了“空白页”项模板
@@ -12,7 +10,7 @@ namespace StickyNotes {
     /// <summary>
     /// 可用于自身或导航至 Frame 内部的空白页。
     /// </summary>
-    public sealed partial class SettingPage : Page
+    public sealed partial class SettingPage
     {
         public SettingPage()
         {
@@ -26,25 +24,25 @@ namespace StickyNotes {
             Frame.GoBack(new DrillInNavigationTransitionInfo());
         }
 
-        private void Cstyle_Loaded(object sender, RoutedEventArgs e) {
+        //private void Cstyle_Loaded(object sender, RoutedEventArgs e) {
 
-        }
+        //}
 
-        private void Cbig_Loaded(object sender, RoutedEventArgs e) {
+        //private void Cbig_Loaded(object sender, RoutedEventArgs e) {
 
-        }
+        //}
 
-        private void B_color_Loaded(object sender, RoutedEventArgs e) {
+        //private void B_color_Loaded(object sender, RoutedEventArgs e) {
 
-        }
+        //}
 
-        private void Start_Loaded(object sender, RoutedEventArgs e) {
+        //private void Start_Loaded(object sender, RoutedEventArgs e) {
 
-        }
+        //}
 
-        private void RedSlider_ValueChanged(object sender, RangeBaseValueChangedEventArgs e) {
+        //private void RedSlider_ValueChanged(object sender, RangeBaseValueChangedEventArgs e) {
             
-        }
+        //}
 
         private async void Page_Loaded(object sender, RoutedEventArgs e) {
             await LoadState();
@@ -56,23 +54,23 @@ namespace StickyNotes {
             {
                 case StartupTaskState.Disabled:
                     // 禁用狀態
-                    btnSetState.Content = "啟用";
-                    btnSetState.IsEnabled = true;
+                    BtnSetState.Content = "啟用";
+                    BtnSetState.IsEnabled = true;
                     break;
                 case StartupTaskState.DisabledByPolicy:
                     // 由管理員或組策略禁用
-                    btnSetState.Content = "被系統策略禁用";
-                    btnSetState.IsEnabled = false;
+                    BtnSetState.Content = "被系統策略禁用";
+                    BtnSetState.IsEnabled = false;
                     break;
                 case StartupTaskState.DisabledByUser:
                     // 由用户手工禁用
-                    btnSetState.Content = "被用户禁用";
-                    btnSetState.IsEnabled = false;
+                    BtnSetState.Content = "被用户禁用";
+                    BtnSetState.IsEnabled = false;
                     break;
                 case StartupTaskState.Enabled:
                     // 當前狀態為已啟用
-                    btnSetState.Content = "已啟用";
-                    btnSetState.IsEnabled = false;
+                    BtnSetState.Content = "已啟用";
+                    BtnSetState.IsEnabled = false;
                     break;
             }
         }
