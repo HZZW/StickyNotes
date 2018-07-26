@@ -200,6 +200,8 @@ namespace StickyNotes.ViewModels {
                 //撤销时间提醒
                 if(Notification.Instance.Show().Contains(theNote.ID.ToString()))
                 CancelNotificationCommand.Execute(theNote);
+
+                if (theNote == SelectNote) SelectNote = null;
                 Note.Remove(theNote);
             }
         }));
