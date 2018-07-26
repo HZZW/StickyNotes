@@ -82,22 +82,8 @@ namespace StickyNotes {
         //    //System.Diagnostics.Debug.Print("this.ShowCurrentTime {0}", this.ShowCurrentTime);
         //}
 
-        //TODO will delete this method,just test 
-        private void ButtonBase_OnClick(object sender, RoutedEventArgs e)
-        {
-            var noteViewModel = DataContext as NoteViewModel;
-            noteViewModel?.PullCommand.Execute(null);
-        }
 
 
-
-        private void TurnTo_Click(object sender, RoutedEventArgs e)
-        {
-            {
-                // 此处的NewPage是另一个页面的名字
-                Frame.Navigate(typeof(DesignPage), "");
-            }
-        }
 
 
         private void SettingButton_Click(object sender, RoutedEventArgs e)
