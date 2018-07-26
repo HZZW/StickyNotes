@@ -90,16 +90,6 @@ namespace StickyNotes {
         }
 
 
-
-        private void TurnTo_Click(object sender, RoutedEventArgs e)
-        {
-            {
-                // 此处的NewPage是另一个页面的名字
-                Frame.Navigate(typeof(DesignPage), "");
-            }
-        }
-
-
         private void SettingButton_Click(object sender, RoutedEventArgs e)
         {
             SettingContentDialog setting = new SettingContentDialog();
