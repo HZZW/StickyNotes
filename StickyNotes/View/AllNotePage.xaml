@@ -6,22 +6,9 @@
     xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
     mc:Ignorable="d"
     Background="{ThemeResource ApplicationPageBackgroundThemeBrush}">
-    <Page.Resources>
-        <!--<Style x:Key="ButtonStyle" TargetType="Button">
-            <Setter Property="FontFamily" Value="Segoe MDL2 Assets"/>
-            <Setter Property="FontSize" Value="12" />
-            <Setter Property="Width" Value="35" />
-            <Setter Property="Height" Value="35"/>
-        </Style>-->
-        <!--<Style x:Key="ListViewItemText" TargetType="ListViewItem">
-            <Setter Property="FontSize" Value="10"/>
-            <Setter Property="CharacterSpacing" Value="35"/>
-            <Setter Property="FontFamily" Value="Arial"/>
-        </Style>-->
-    </Page.Resources>
 
     <Grid>
-        <Grid>
+        <!--<Grid>
             <Grid.RowDefinitions>
                 <RowDefinition Height="Auto"/>
                 <RowDefinition Height="*"/>
@@ -30,7 +17,7 @@
                 <ColumnDefinition Width="120"/>
                 <ColumnDefinition Width="*"/>
             </Grid.ColumnDefinitions>
-            <!--<CommandBar  Name="MyCommandBar" 
+            --><!--<CommandBar  Name="MyCommandBar" 
                      Opening="CommandBar_Opening"  
                      Closing="CommandBar_Closing"  
                      Grid.ColumnSpan="2"
@@ -78,7 +65,7 @@
                     </StackPanel>
                 </CommandBar.Content>
             </CommandBar>-->
-            <!--**************************所有便签分组模板 ***********************-->
+            <!--**************************所有便签分组模板 ***********************--><!--
             <ListView Grid.Row="1" 
                   Grid.Column="0" 
                   BorderThickness="1.5"
@@ -88,14 +75,14 @@
                 <ListViewItem Content="Group two"/>
                 <ListViewItem Content="Group three"/>
 
-                <!--<ListView.ItemTemplate>
+                --><!--<ListView.ItemTemplate>
                 <DataTemplate x:DataType="">
                     <ListViewItem Content="{x:Bind } "
                 </DataTemplate>
             </ListView.ItemTemplate>-->
 
 
-                <!--**************************显示便签模板 ***********************-->
+                <!--**************************显示便签模板 ***********************--><!--
             </ListView>
             <ListView Grid.Row="1" Grid.Column="1">
                 <ListViewItem Margin="0,0,0,5" Background="WhiteSmoke"  >
@@ -112,16 +99,16 @@
                 </ListViewItem>
 
 
-                <!--<ListView.ItemTemplate>
+                --><!--<ListView.ItemTemplate>
                 <DataTemplate x:DataType="">
                     <StackPanel>
                         <TextBlock Text="{x:Bind }"/>
                         <TextBlock Text="{x:Bind}" HorizontalAlignment="Left"/ >
                     </StackPanel>
                 </DataTemplate>
-            </ListView.ItemTemplate>-->
+            </ListView.ItemTemplate>--><!--
             </ListView>
-        </Grid>
+        </Grid>-->
 
     </Grid>
 </Page>
