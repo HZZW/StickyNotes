@@ -242,9 +242,6 @@
             <!--x:Name="DetailRow"-->
             <RowDefinition  
                            Height="*" />
-            <!--x:Name="DateTimeRow"-->
-            <RowDefinition 
-                           Height="AUTO" />
         </Grid.RowDefinitions>
         <!--<VisualStateManager.VisualStateGroups>
             <VisualStateGroup x:Name="AdaptiveStates">

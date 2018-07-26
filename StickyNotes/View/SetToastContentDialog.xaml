@@ -12,11 +12,11 @@
 
     <Grid>
         <StackPanel Orientation="Vertical">
-            <StackPanel Orientation="Horizontal">
+            <!--<StackPanel Orientation="Horizontal">
                 <TextBlock Text="月" Margin="120,0,0,0"/>
                 <TextBlock Text="日" Margin="64,0,0,0"/>
                 <TextBlock Text="年" Margin="64,0,0,0"/>
-            </StackPanel>
+            </StackPanel>-->
             <DatePicker x:Name="Data" 
                         HorizontalAlignment="Right"
                         Margin="0,0,0,20"/>
