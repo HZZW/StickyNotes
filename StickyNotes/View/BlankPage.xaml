@@ -232,15 +232,18 @@
             </Setter>
         </Style>
     </Page.Resources>-->
-    <Grid Background="White" 
-          x:Name="MainGrid" 
+    <!--x:Name="MainGrid"-->
+<Grid Background="White" 
           IsTapEnabled="True">
         <Grid.RowDefinitions>
-            <RowDefinition x:Name="MasterRow" 
+            <!--x:Name="MasterRow"-->
+            <RowDefinition  
                            Height="AUTO" />
-            <RowDefinition x:Name="DetailRow" 
+            <!--x:Name="DetailRow"-->
+            <RowDefinition  
                            Height="*" />
-            <RowDefinition x:Name="DateTimeRow"
+            <!--x:Name="DateTimeRow"-->
+            <RowDefinition 
                            Height="AUTO" />
         </Grid.RowDefinitions>
         <!--<VisualStateManager.VisualStateGroups>
@@ -289,7 +292,8 @@
                 </VisualState>
             </VisualStateGroup>
         </VisualStateManager.VisualStateGroups>-->
-        <StackPanel x:Name="TitleStackPanel" 
+        <!--x:Name="TitleStackPanel"-->
+        <StackPanel 
                     Height="32" 
                     Width="AUTO" 
                     Background="#FFEFEFB0" 

@@ -5,7 +5,7 @@ using StickyNotes.Models;
 //https://go.microsoft.com/fwlink/?LinkId=234236 上介绍了“用户控件”项模板
 
 namespace StickyNotes.UserControls {
-    public sealed partial class NoteListUserControl : UserControl
+    public sealed partial class NoteListUserControl
     {
 
         public NoteListUserControl()
