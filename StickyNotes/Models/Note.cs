@@ -50,10 +50,19 @@ namespace StickyNotes.Models
         /// 被选择的状态
         /// </summary>
         [NonSerialized]
-        private Visibility _selected=Visibility.Collapsed;
+        private Visibility _selected;
         public Visibility Selected
         {
-            get => _selected;
+            get
+            {
+                if (_setSelectedDefault == 0)
+                {
+                    _setSelectedDefault = 1;
+                    _selected = Visibility.Collapsed;
+                }
+
+                return _selected;
+            }
             set
             {
                 if (_selected == value)
@@ -64,6 +73,13 @@ namespace StickyNotes.Models
                 OnPropertyChanged(nameof(Selected));
             }
         }
+        /// <summary>
+        /// 用于Selected的初始化标记
+        /// </summary>
+        [NonSerialized] private int _setSelectedDefault;
+
+
+
         /// <summary>
         /// 内容
         /// </summary>
