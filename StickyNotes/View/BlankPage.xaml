@@ -1,18 +1,16 @@
 ﻿<Page x:Class="StickyNotes.BlankPage"
       xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
       xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
-      xmlns:local="using:StickyNotes"
       xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
       xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
       xmlns:userControls="using:StickyNotes.UserControls"
       mc:Ignorable="d"
-       xmlns:allnote="using:StickyNotes.View"
       Background="{ThemeResource ApplicationPageBackgroundThemeBrush}">
     <Page.DataContext>
         <Binding Source="{StaticResource NoteViewModel}" />
     </Page.DataContext>
 
-    <Page.Resources>
+    <!--<Page.Resources>
         <Style x:Key="Button"
                TargetType="AppBarButton">
             <Setter Property="Background"
@@ -71,24 +69,24 @@
                                     </VisualState>
                                 </VisualStateGroup>
                                 <VisualStateGroup x:Name="CommonStates">
-                                    <!--设置视觉状态组改变时的动画时间-->
+                                    --><!--设置视觉状态组改变时的动画时间--><!--
                                     <VisualStateGroup.Transitions>
-                                        <!--Take 0.3 second from Normal state to trasition to the MouseOver state.-->
+                                        --><!--Take 0.3 second from Normal state to trasition to the MouseOver state.--><!--
                                         <VisualTransition From="Normal"
                                                           To="MouseOver"
                                                           GeneratedDuration="0:0:0.3" />
 
-                                        <!--Take 0.2 second from MouseOver state to trasition to the Normal state.-->
+                                        --><!--Take 0.2 second from MouseOver state to trasition to the Normal state.--><!--
                                         <VisualTransition From="MouseOver"
                                                           To="Normal"
                                                           GeneratedDuration="0:0:0.2" />
 
-                                        <!--Take 0.2 second from MouseOver state to trasition to the Pressed state.-->
+                                        --><!--Take 0.2 second from MouseOver state to trasition to the Pressed state.--><!--
                                         <VisualTransition From="MouseOver"
                                                           To="Pressed"
                                                           GeneratedDuration="0:0:0.2" />
 
-                                        <!--Take 0.2 second from Pressed state to trasition to the MouseOver state.-->
+                                        --><!--Take 0.2 second from Pressed state to trasition to the MouseOver state.--><!--
                                         <VisualTransition From="Pressed"
                                                           To="MouseOver"
                                                           GeneratedDuration="0:0:0.2" />
@@ -98,8 +96,8 @@
                                         <Storyboard>
                                         </Storyboard>
                                     </VisualState>
-                                    <!--Change the button Width and Height when the mouse is over the button.
-                                        分别设置Button_RootElement下的Width和Height属性，鼠标放在button上时，button会变大-->
+                                    --><!--Change the button Width and Height when the mouse is over the button.
+                                        分别设置Button_RootElement下的Width和Height属性，鼠标放在button上时，button会变大--><!--
                                     <VisualState x:Name="MouseOver">
                                         <Storyboard>
                                             <DoubleAnimation Storyboard.TargetName="Button_RootElement"
@@ -130,7 +128,7 @@
 
                                         </Storyboard>
                                     </VisualState>
-                                    <!--Change the BackgroundBrush背景色, BackgroundBrush边框色, Opacity when the button is pressed.-->
+                                    --><!--Change the BackgroundBrush背景色, BackgroundBrush边框色, Opacity when the button is pressed.--><!--
                                     <VisualState x:Name="Pressed">
                                         <Storyboard>
                                             <ObjectAnimationUsingKeyFrames Storyboard.TargetName="Root"
@@ -154,9 +152,9 @@
                                             <ColorAnimation Storyboard.TargetName="BackgroundBrush"
                                                             Storyboard.TargetProperty="Color"
                                                             To="LightSkyBlue" />
-                                            <ColorAnimation Storyboard.TargetName="BorderBrush"
+                                            --><!--<ColorAnimation Storyboard.TargetName="BorderBrush"
                                                             Storyboard.TargetProperty="Color"
-                                                            To="Black" />
+                                                            To="Black" />--><!--
                                         </Storyboard>
                                     </VisualState>
                                     <VisualState x:Name="Disabled">
@@ -233,7 +231,7 @@
                 </Setter.Value>
             </Setter>
         </Style>
-    </Page.Resources>
+    </Page.Resources>-->
     <Grid Background="White" 
           x:Name="MainGrid" 
           IsTapEnabled="True">
