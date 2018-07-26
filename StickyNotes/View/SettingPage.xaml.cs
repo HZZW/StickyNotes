@@ -2,8 +2,6 @@
 using System.Threading.Tasks;
 using Windows.ApplicationModel;
 using Windows.UI.Xaml;
-using Windows.UI.Xaml.Controls;
-using Windows.UI.Xaml.Controls.Primitives;
 using Windows.UI.Xaml.Media.Animation;
 
 // https://go.microsoft.com/fwlink/?LinkId=234238 上介绍了“空白页”项模板
@@ -12,7 +10,7 @@ namespace StickyNotes {
     /// <summary>
     /// 可用于自身或导航至 Frame 内部的空白页。
     /// </summary>
-    public sealed partial class SettingPage : Page
+    public sealed partial class SettingPage
     {
         public SettingPage()
         {
@@ -26,25 +24,25 @@ namespace StickyNotes {
             Frame.GoBack(new DrillInNavigationTransitionInfo());
         }
 
-        private void Cstyle_Loaded(object sender, RoutedEventArgs e) {
+        //private void Cstyle_Loaded(object sender, RoutedEventArgs e) {
 
-        }
+        //}
 
-        private void Cbig_Loaded(object sender, RoutedEventArgs e) {
+        //private void Cbig_Loaded(object sender, RoutedEventArgs e) {
 
-        }
+        //}
 
-        private void B_color_Loaded(object sender, RoutedEventArgs e) {
+        //private void B_color_Loaded(object sender, RoutedEventArgs e) {
 
-        }
+        //}
 
-        private void Start_Loaded(object sender, RoutedEventArgs e) {
+        //private void Start_Loaded(object sender, RoutedEventArgs e) {
 
-        }
+        //}
 
-        private void RedSlider_ValueChanged(object sender, RangeBaseValueChangedEventArgs e) {
+        //private void RedSlider_ValueChanged(object sender, RangeBaseValueChangedEventArgs e) {
             
-        }
+        //}
 
         private async void Page_Loaded(object sender, RoutedEventArgs e) {
             await LoadState();

@@ -236,8 +236,8 @@
                 <RowDefinition Height="auto" />
             </Grid.RowDefinitions>
             <!-- *******************放置按钮***********************-->
-        
-            <Button Name="BackButton"
+            <!--Name="BackButton"-->
+            <Button 
                 Grid.Row="0"
                 Grid.Column="0"
                 Style="{StaticResource NavigationBackButtonNormalStyle}"
@@ -290,9 +290,10 @@
                 Width="100" />
 
             <!-- ****************************放置选项按钮*********************************** -->
+            <!--Name="FontStyleButton"-->
             <Button Grid.Row="2" 
                 Grid.Column="1"
-                Name="FontStyleButton"
+               
                 Content="Calibri" 
                 HorizontalAlignment="Center"
                 Background="Snow"  
@@ -307,17 +308,18 @@
                     </MenuFlyout>
                 </Button.Flyout>
             </Button>
-
-            <Slider x:Name="FontSlider"
+            <!--x:Name="FontSlider"-->
+            <Slider 
                     Grid.Row="3"
                     Grid.Column="1"
                     Width="500"
                     Minimum="1"
                     Maximum="50"
                     StepFrequency="1" />
+            <!--Name="FontColorButton"-->
             <Button Grid.Row="4"  
                 Grid.Column="1" 
-                Name="FontColorButton"
+                
                 Content="Default" 
                 HorizontalAlignment="Center" 
                 Background="Snow"  
