@@ -310,12 +310,12 @@
                     FontWeight="Normal" 
                     Click="DeleteButton_Click"
                     FontFamily="Segoe MDL2 Assets" />
-            <Button Height="32" 
+            <!--<Button Height="32" 
                     Width="48" 
                     Content="&#xE105;" 
                     Background="#FFFFFFD0" 
                     FontWeight="Normal" 
-                    FontFamily="Segoe MDL2 Assets" />
+                    FontFamily="Segoe MDL2 Assets" />-->
             <Button Height="32" 
                     Width="48"  
                     Content="&#xE712;"
