@@ -108,7 +108,7 @@ namespace StickyNotes {
             //TODO: 保存应用程序状态并停止任何后台活动
             deferral.Complete();
 
-            (App.Current.Resources["NoteViewModel"] as NoteViewModel)?.PushCommand.Execute(null);
+            (Current.Resources["NoteViewModel"] as NoteViewModel)?.PushCommand.Execute(null);
         }
 
         protected override void OnActivated(IActivatedEventArgs args) {
