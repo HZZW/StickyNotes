@@ -119,14 +119,14 @@ namespace StickyNotes {
                 newView = CoreApplication.CreateNewView();
             }
 
-            int newViewID = default(int);
+            int newViewId = default(int);
             // 初始化视图
             await newView.Dispatcher.RunAsync(Windows.UI.Core.CoreDispatcherPriority.Normal,
                 () =>
                 {
                     // 获取视图视图ID
                     ApplicationView theView = ApplicationView.GetForCurrentView();
-                    newViewID = theView.Id;
+                    newViewId = theView.Id;
                     // 初始化视图的UI
                     Frame frame = new Frame();
                     frame.Navigate(typeof(AllNotePage), null);
@@ -134,7 +134,7 @@ namespace StickyNotes {
                     // You have to activate the window in order to show it later.
                     Window.Current.Activate();
                 });
-            bool viewShown = await ApplicationViewSwitcher.TryShowAsStandaloneAsync(newViewID);
+            bool viewShown = await ApplicationViewSwitcher.TryShowAsStandaloneAsync(newViewId);
             if (viewShown)
             {
                 // 成功显示新视图
@@ -158,7 +158,7 @@ namespace StickyNotes {
             // var context = this.DataContext;
             // var content = this.Content;
 
-            var noteViewModel = (App.Current.Resources["NoteViewModel"] as NoteViewModel);
+            var noteViewModel = Application.Current.Resources["NoteViewModel"] as NoteViewModel;
             var note = (DataContext as NoteViewModel)?.SelectNote;
             noteViewModel?.DeleteNoteCommand.Execute(note);
         }

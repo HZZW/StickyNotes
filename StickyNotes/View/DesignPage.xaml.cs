@@ -93,14 +93,7 @@ namespace StickyNotes {
             if (selectedText != null)
             {
                 Windows.UI.Text.ITextCharacterFormat charFormatting = selectedText.CharacterFormat;
-                if (charFormatting.Underline == Windows.UI.Text.UnderlineType.None)
-                {
-                    charFormatting.Underline = Windows.UI.Text.UnderlineType.Single;
-                }
-                else
-                {
-                    charFormatting.Underline = Windows.UI.Text.UnderlineType.None;
-                }
+                charFormatting.Underline = charFormatting.Underline == Windows.UI.Text.UnderlineType.None ? Windows.UI.Text.UnderlineType.Single : Windows.UI.Text.UnderlineType.None;
                 selectedText.CharacterFormat = charFormatting;
             }
         }

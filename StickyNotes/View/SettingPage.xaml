@@ -1,9 +1,6 @@
 ﻿<Page x:Class="StickyNotes.SettingPage"
       xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
       xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
-      xmlns:local="using:StickyNotes"
-      xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
-      xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
       Background="{ThemeResource ApplicationPageBackgroundThemeBrush}"
       NavigationCacheMode="Enabled"
       Loaded="Page_Loaded">
@@ -246,9 +243,12 @@
                 Style="{StaticResource NavigationBackButtonNormalStyle}"
                 Click="BackButton_OnClick" />
             <Border Grid.Row="1" 
-                   Grid.ColumnSpan="2" Background="WhiteSmoke">
-                <TextBlock   Margin="15,6,0,6"  Text="编辑设置" 
-                  Style="{StaticResource CaptionTextBlockStyle}"/>
+                   Grid.ColumnSpan="2" 
+                    Grid.Column="0" 
+                    Background="WhiteSmoke">
+            <TextBlock   Margin="15,6,0,6"  
+                         Text="编辑设置" 
+                         Style="{StaticResource CaptionTextBlockStyle}"/>
             </Border>
             <AppBarButton  Grid.Row="2" 
                 Grid.Column="0"
@@ -267,9 +267,11 @@
                 Width="100" />
             <Border Grid.Row="6" 
                     Grid.ColumnSpan="2" 
+                    Grid.Column="0"
                     Background="WhiteSmoke">
-                  <TextBlock   Margin="15,6,0,6"  Text="系统设置" 
-                   Style="{StaticResource CaptionTextBlockStyle}"/>
+            <TextBlock   Margin="15,6,0,6"  
+                         Text="系统设置" 
+                         Style="{StaticResource CaptionTextBlockStyle}"/>
             </Border>
             <AppBarButton Grid.Row="7" 
                 Grid.Column="0"
@@ -336,7 +338,7 @@
                 </Button.Flyout>
             </Button>
             
-            <ToggleButton Name="btnSetState"
+            <ToggleButton Name="BtnSetState"
                       Margin="0,4,0,0"
                       Click="btnSetState_Click"
                       Content="当前值&#x2502;否"
