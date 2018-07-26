@@ -154,9 +154,6 @@
                                             <ColorAnimation Storyboard.TargetName="BackgroundBrush"
                                                             Storyboard.TargetProperty="Color"
                                                             To="LightSkyBlue" />
-                                            <ColorAnimation Storyboard.TargetName="BorderBrush"
-                                                            Storyboard.TargetProperty="Color"
-                                                            To="Black" />
                                         </Storyboard>
                                     </VisualState>
                                     <VisualState x:Name="Disabled">
