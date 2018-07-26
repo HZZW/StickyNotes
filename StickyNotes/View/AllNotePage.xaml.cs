@@ -20,7 +20,7 @@ LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
 OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
 SOFTWARE. */
 
-using Windows.UI.Xaml.Controls;
+//using Windows.UI.Xaml.Controls;
 
 // https://go.microsoft.com/fwlink/?LinkId=234238 上介绍了“空白页”项模板
 
@@ -63,9 +63,5 @@ namespace StickyNotes.View {
 
         //}
 
-        private void ListView_ItemClick(object sender, ItemClickEventArgs e)
-        {
-
-        }
     }
 }

@@ -22,12 +22,12 @@ SOFTWARE. */
 
 using Windows.Foundation;
 using Windows.UI.Xaml;
-using Windows.UI.Xaml.Controls;
+//using Windows.UI.Xaml.Controls;
 using Windows.ApplicationModel.Core;
 using StickyNotes.ViewModels;
 using Windows.UI.ViewManagement;
 using StickyNotes.View;
-using System;
+//using System;
 using Windows.UI;
 
 
