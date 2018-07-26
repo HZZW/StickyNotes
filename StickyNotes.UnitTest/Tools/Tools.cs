@@ -1,8 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+﻿using System.Collections.Generic;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
 using StickyNotes.Models;
 
@@ -15,15 +11,13 @@ namespace StickyNotes.UnitTest.Tools
             Assert.AreEqual(noteSave.Label, noteGet.Label);
             Assert.AreEqual(noteSave.Content, noteGet.Content);
             Assert.AreEqual(noteSave.Author, noteGet.Author);
-            Assert.AreEqual(true,noteSave.NotificationDateTime==noteGet.NotificationDateTime);
+            Assert.AreEqual(true, noteSave.NotificationDateTime == noteGet.NotificationDateTime);
         }
 
-        public static void CompareSaveAndGetList(List<Note> noteSaveList,List<Note> noteGetList)
+        public static void CompareSaveAndGetList(List<Note> noteSaveList, List<Note> noteGetList)
         {
-            for (int index = 0; index < noteSaveList.Count; index++)
-            {
+            for (var index = 0; index < noteSaveList.Count; index++)
                 CompareSaveAndGet(noteSaveList[index], noteGetList[index]);
-            }
         }
     }
 }

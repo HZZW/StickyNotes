@@ -44,7 +44,7 @@ namespace StickyNotes.ViewModels {
         }
         public NoteViewModel():this(new LocalNoteService())
         {
-            this.PullCommand.Execute(null);
+            PullCommand.Execute(null);
         }
         //-----------------------成员变量---------------------//
         /// <summary>
@@ -79,7 +79,7 @@ namespace StickyNotes.ViewModels {
         /// <summary>
         /// note服务
         /// </summary>
-        private INoteService _noteService;
+        private readonly INoteService _noteService;
 
 
         /// <summary>
@@ -154,7 +154,7 @@ namespace StickyNotes.ViewModels {
                 service.Push((notes.ToList()));
                 foreach (var note in notes)
                 {
-                    this.Note.Add(note);
+                    Note.Add(note);
                 }
             }
         }));
@@ -166,12 +166,12 @@ namespace StickyNotes.ViewModels {
             var service = _noteService;
             var notes = service.Pull()?.ToList();
             //因为拉取的内容包含全部信息,所以需要清除原本信息
-            this.Note.Clear();
-            if (notes != null)
-                foreach (var note in notes)
-                {
-                    this.Note.Add(note);
-                }
+            Note.Clear();
+            if (notes == null) return;
+            foreach (var note in notes)
+            {
+                Note.Add(note);
+            }
         }));
         /// <summary>
         /// 添加新Note
@@ -183,7 +183,7 @@ namespace StickyNotes.ViewModels {
         public RelayCommand AddNoteCommand => _addNoteCommand ?? (_addNoteCommand=new RelayCommand(() =>
         {
             var note = new Note();
-            this.Note.Add(note);
+            Note.Add(note);
         }));
         /// <summary>
         /// 删除原Note
@@ -194,16 +194,15 @@ namespace StickyNotes.ViewModels {
         /// </summary>
         public RelayCommand<Note> DeleteNoteCommand => _deleteNoteCommand ?? (_deleteNoteCommand=new RelayCommand<Note>(note =>
         {
-            var theNote = GetNoteById(note.ID);
-            if (theNote != null)
-            {
-                //撤销时间提醒
-                if(Notification.Instance.Show().Contains(theNote.ID.ToString()))
+            if (note == null) return;
+            var theNote = GetNoteById(note.Id);
+            if (theNote == null) return;
+            //撤销时间提醒
+            if(Notification.Instance.Show().Contains(theNote.Id.ToString()))
                 CancelNotificationCommand.Execute(theNote);
 
-                if (theNote == SelectNote) SelectNote = null;
-                Note.Remove(theNote);
-            }
+            if (theNote == SelectNote) SelectNote = null;
+            Note.Remove(theNote);
         }));
         /// <summary>
         /// 设置note的时间提示
@@ -214,19 +213,17 @@ namespace StickyNotes.ViewModels {
         /// </summary>
         public RelayCommand<KeyValuePair<Note,DateTime>> SetNotificationCommand=>
             _setNotificationCommand?? (_setNotificationCommand = new RelayCommand<KeyValuePair<Note, DateTime>>(
-                note_DateTime =>
+                noteDateTime =>
                 {
-                var theNote =GetNoteById(note_DateTime.Key.ID);
-                    if (theNote != null)
+                var theNote =GetNoteById(noteDateTime.Key.Id);
+                    if (theNote == null) return;
+                    theNote.NotificationDateTime=noteDateTime.Value;
+                    //通知系统修改时间
+                    if(Notification.Instance.Show().Contains(theNote.Id.ToString()))
                     {
-                        theNote.NotificationDateTime=note_DateTime.Value;
-                        //通知系统修改时间
-                        if(Notification.Instance.Show().Contains(theNote.ID.ToString()))
-                        {
-                            Notification.Instance.Delete(theNote.ID.ToString());
-                        }
-                        Notification.Instance.Create(theNote.NotificationDateTime, theNote.ID.ToString());
+                        Notification.Instance.Delete(theNote.Id.ToString());
                     }
+                    Notification.Instance.Create(theNote.NotificationDateTime, theNote.Id.ToString());
                 }));
         /// <summary>
         /// 取消Note的提示时间
@@ -237,14 +234,14 @@ namespace StickyNotes.ViewModels {
         /// </summary>
         public RelayCommand<Note> CancelNotificationCommand => _cancelNotificationCommand ?? (_cancelNotificationCommand=new RelayCommand<Note>(note =>
         {
-            var theNote = GetNoteById(note.ID);
+            var theNote = GetNoteById(note.Id);
             if(theNote!=null)
             {
                 //TODO 或许换成其他的值作为note取消提醒更好,不过没找到可替代的方式
                 note.NotificationDateTime = DateTime.MinValue;
                 //通知系统取消提醒
-                if(Notification.Instance.Show().Contains(theNote.ID.ToString()))
-                Notification.Instance.Delete(theNote.ID.ToString());
+                if(Notification.Instance.Show().Contains(theNote.Id.ToString()))
+                Notification.Instance.Delete(theNote.Id.ToString());
             }
 
         }));
@@ -290,13 +287,13 @@ namespace StickyNotes.ViewModels {
         /// 设置Note的Tag
         /// </summary>
         
-        private RelayCommand<KeyValuePair<Note, string>> _SetNoteTagCommand;
+        private RelayCommand<KeyValuePair<Note, string>> _setNoteTagCommand;
 
         public RelayCommand<KeyValuePair<Note, string>> SetNoteTagCommand =>
-            _SetNoteTagCommand ?? (_SetNoteTagCommand = new RelayCommand<KeyValuePair<Note, string>>(
+            _setNoteTagCommand ?? (_setNoteTagCommand = new RelayCommand<KeyValuePair<Note, string>>(
                 noteString =>
                 {
-                    var theNote = GetNoteById(noteString.Key.ID);
+                    var theNote = GetNoteById(noteString.Key.Id);
                     theNote.Tag = noteString.Value;
                 }));
 
@@ -306,7 +303,9 @@ namespace StickyNotes.ViewModels {
             _setSelectNoteCommand ?? (_setSelectNoteCommand = new RelayCommand<Note>(
                 note =>
                 {
-                    var theNote = GetNoteById(note.ID);
+
+
+                    var theNote = GetNoteById(note.Id);
                     if (theNote==null)
                     {
                         return;
@@ -325,7 +324,7 @@ namespace StickyNotes.ViewModels {
         {
             foreach (var note in Note)
             {
-                if (id == note.ID)
+                if (id == note.Id)
                 {
                     return note;
 

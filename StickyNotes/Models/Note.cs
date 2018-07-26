@@ -1,15 +1,12 @@
 ﻿using System;
-using System.Collections.Generic;
 using System.ComponentModel;
-using System.Linq;
 using System.Runtime.CompilerServices;
-using System.Text;
-using System.Threading.Tasks;
 using Windows.UI.Xaml;
 using StickyNotes.Annotations;
 
 namespace StickyNotes.Models
 {
+    /// <inheritdoc />
     /// <summary>
     /// 全部的文本信息
     /// </summary>
@@ -19,11 +16,11 @@ namespace StickyNotes.Models
         /// <summary>
         /// Note唯一标识
         /// </summary>
-        public int ID { get; private set; }
+        public int Id { get; }
         public Note()
         {
             Random ran = new Random();
-            ID = ran.Next();
+            Id = ran.Next();
             //TODO 初始化时使得初始化通知时间为当前时间,但不会将这个时间添加到通知里
             _notificationDateTime = new DateTime();
             _notificationDateTime =DateTime.Now;
@@ -129,10 +126,11 @@ namespace StickyNotes.Models
                 OnPropertyChanged(nameof(Label));
             }
         }
+
         /// <summary>
         /// 作者
         /// </summary>
-        private string _author { get; set; }
+        private string _author;
         public string Author
         {
             get => _author;
@@ -195,7 +193,7 @@ namespace StickyNotes.Models
         private void UpdateLabel()
         {
             if(Content!=null)
-            Label = LabelLenght < this.Content.Length ? this.Content.Substring(0, LabelLenght) : this.Content;
+            Label = LabelLenght < Content.Length ? Content.Substring(0, LabelLenght) : Content;
         }
     }
 }

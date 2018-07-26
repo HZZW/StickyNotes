@@ -3,15 +3,13 @@ using Microsoft.Toolkit.Uwp.Notifications;
 using System;
 using System.Collections.Generic;
 using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using Windows.UI.Notifications;
 
 namespace StickyNotes.Models
 {
     public sealed class Notification
     {
-        private static Notification _instance = null;
+        private static Notification _instance;
 
         private Notification()
         {
@@ -20,10 +18,7 @@ namespace StickyNotes.Models
         /// <summary>
         /// Gets the instance.
         /// </summary>
-        public static Notification Instance
-        {
-            get { return _instance ?? (_instance = new Notification()); }
-        }
+        public static Notification Instance => _instance ?? (_instance = new Notification());
 
         public void Create(DateTime alarmTime, string id)
         {
@@ -102,10 +97,9 @@ namespace StickyNotes.Models
                 var scheduledNotif = new ScheduledToastNotification(
                     toastContent.GetXml(), // Content of the toast
                     alarmTime // Time we want the toast to appear at
-                    );
+                ) {Id = id};
 
                 // And add it to the schedule
-                scheduledNotif.Id = id;
                 ToastNotificationManager.CreateToastNotifier().AddToSchedule(scheduledNotif);
             }
         }

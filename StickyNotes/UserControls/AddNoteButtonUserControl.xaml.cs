@@ -29,7 +29,7 @@ namespace StickyNotes.UserControls {
     {
         public AddNoteButtonUserControl()
         {
-            this.InitializeComponent();
+            InitializeComponent();
         }
     }
 }

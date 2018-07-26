@@ -16,7 +16,7 @@ namespace StickyNotes {
     {
         public SettingPage()
         {
-            this.InitializeComponent();
+            InitializeComponent();
         }
         private void BackButton_OnClick(object sender, RoutedEventArgs e) {
             OnBackRequested();
@@ -56,23 +56,23 @@ namespace StickyNotes {
             {
                 case StartupTaskState.Disabled:
                     // 禁用狀態
-                    this.btnSetState.Content = "啟用";
-                    this.btnSetState.IsEnabled = true;
+                    btnSetState.Content = "啟用";
+                    btnSetState.IsEnabled = true;
                     break;
                 case StartupTaskState.DisabledByPolicy:
                     // 由管理員或組策略禁用
-                    this.btnSetState.Content = "被系統策略禁用";
-                    this.btnSetState.IsEnabled = false;
+                    btnSetState.Content = "被系統策略禁用";
+                    btnSetState.IsEnabled = false;
                     break;
                 case StartupTaskState.DisabledByUser:
                     // 由用户手工禁用
-                    this.btnSetState.Content = "被用户禁用";
-                    this.btnSetState.IsEnabled = false;
+                    btnSetState.Content = "被用户禁用";
+                    btnSetState.IsEnabled = false;
                     break;
                 case StartupTaskState.Enabled:
                     // 當前狀態為已啟用
-                    this.btnSetState.Content = "已啟用";
-                    this.btnSetState.IsEnabled = false;
+                    btnSetState.Content = "已啟用";
+                    btnSetState.IsEnabled = false;
                     break;
             }
         }

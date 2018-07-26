@@ -1,12 +1,6 @@
-﻿using System;
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
 using System.IO;
-using System.Linq;
-using System.Runtime.Serialization;
 using System.Runtime.Serialization.Formatters.Binary;
-using System.Text;
-using System.Threading.Tasks;
-using Windows.Storage;
 using StickyNotes.Models;
 
 namespace StickyNotes.Services
@@ -19,13 +13,13 @@ namespace StickyNotes.Services
         /// <summary>
         /// 推送
         /// </summary>
-        /// <param name="note">所有文本信息</param>
+        /// <param name="notes">所有文本信息</param>
         /// <returns></returns>
         public void Push(IEnumerable<Note> notes)
         {
-            using (FileStream stream = new FileStream(Properties.Instance.SavePath, FileMode.Create))
+            using (var stream = new FileStream(Properties.Instance.SavePath, FileMode.Create))
             {
-                BinaryFormatter binaryFormatter = new BinaryFormatter();
+                var binaryFormatter = new BinaryFormatter();
                 binaryFormatter.Serialize(stream, notes);
             }
         }
@@ -35,14 +29,14 @@ namespace StickyNotes.Services
         /// <returns>所有文本信息</returns>
         public IEnumerable<Note> Pull()
         {
-            using (FileStream stream = new FileStream(Properties.Instance.SavePath, FileMode.OpenOrCreate))
+            using (var stream = new FileStream(Properties.Instance.SavePath, FileMode.OpenOrCreate))
             {
                 if (stream.Length == 0)
                 {
                     return null;
                 }
-                BinaryFormatter binaryFormatter = new BinaryFormatter();
-                IEnumerable<Note> notes = binaryFormatter.Deserialize(stream) as IEnumerable<Note>;
+                var binaryFormatter = new BinaryFormatter();
+                var notes = binaryFormatter.Deserialize(stream) as IEnumerable<Note>;
                 return notes;
             }
         }

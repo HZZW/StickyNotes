@@ -10,20 +10,20 @@ namespace StickyNotes.UserControls {
     public sealed partial class NoteListUserControl : UserControl
     {
         // 为不同的菜单创建不同的List类型
-        private ObservableCollection<NavMenuItem> navMenuPrimaryItem = new ObservableCollection<NavMenuItem>();
+        private ObservableCollection<NavMenuItem> _navMenuPrimaryItem = new ObservableCollection<NavMenuItem>();
 
 
         private void AddButton_Click(object sender, RoutedEventArgs e)
         {
-            var theNoteViewModel = (this.DataContext as NoteViewModel);
-            theNoteViewModel.AddNoteCommand.Execute(null);
+            var theNoteViewModel = (DataContext as NoteViewModel);
+            theNoteViewModel?.AddNoteCommand.Execute(null);
         }
 
 
 
         public NoteListUserControl()
         {
-            this.InitializeComponent();
+            InitializeComponent();
            
             // SplitView 开关
             PaneOpenButton.Click += (sender, args) =>
@@ -40,10 +40,9 @@ namespace StickyNotes.UserControls {
         {
             var theNote = (e.ClickedItem as Note);
             if (theNote == null) return;
-            var theNoteViewModel = (this.DataContext as NoteViewModel);
+            var theNoteViewModel = (DataContext as NoteViewModel);
 
-            theNoteViewModel.SetSelectNoteCommand.Execute(theNote);
-
+            theNoteViewModel?.SetSelectNoteCommand.Execute(theNote);
         }
 
     }

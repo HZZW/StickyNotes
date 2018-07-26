@@ -12,7 +12,7 @@ namespace StickyNotes.UserControls {
     {
         public NoteBoxUserControl()
         {
-            this.InitializeComponent();
+            InitializeComponent();
         }
 
 
@@ -23,7 +23,7 @@ namespace StickyNotes.UserControls {
             // var content = this.Content;
 
             var noteViewModel = (App.Current.Resources["NoteViewModel"] as NoteViewModel);
-            var note = this.DataContext as Note;
+            var note = DataContext as Note;
             noteViewModel?.DeleteNoteCommand.Execute(note);
         }
 

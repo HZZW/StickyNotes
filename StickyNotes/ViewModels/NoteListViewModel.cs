@@ -37,14 +37,14 @@ namespace StickyNotes.ViewModels {
         // 导航页
         public Type DestPage { get; set; }
         // 用于左侧矩形的显示
-        private Visibility selected = Visibility.Collapsed;
+        private Visibility _selected = Visibility.Collapsed;
         public Visibility Selected
         {
-            get { return selected; }
+            get => _selected;
             set
             {
-                selected = value;
-                this.OnPropertyChanged("Selected");
+                _selected = value;
+                OnPropertyChanged("Selected");
             }
         }
         // 双向绑定，用于更新矩形是否显示

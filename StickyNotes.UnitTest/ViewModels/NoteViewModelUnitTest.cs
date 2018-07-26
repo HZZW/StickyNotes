@@ -1,15 +1,12 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using Windows.UI.Xaml;
 using GalaSoft.MvvmLight.Command;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
 using StickyNotes.Models;
-using StickyNotes.Services;
 using StickyNotes.ViewModels;
-using StickyNotes.UnitTest.Tools;
+
 namespace StickyNotes.UnitTest.ViewModels
 {
     [TestClass]
@@ -23,11 +20,37 @@ namespace StickyNotes.UnitTest.ViewModels
         {
             var noteViewModel = new NoteViewModel();
 
-            var noteSaveList = new List<Note>();
-            noteSaveList.Add(new Note() { Author = "LwwWG", Content = "it is a easy content one"  ,  Label = "title one",NotificationDateTime = new DateTime(2018,9,10)});
-            noteSaveList.Add(new Note() { Author = "LwwWG", Content = "it is a easy content two"  ,  Label = "title two", NotificationDateTime = new DateTime(2018, 10, 10) });
-            noteSaveList.Add(new Note() { Author = "LwwWG", Content = "it is a easy content three", Label = "title three", NotificationDateTime = new DateTime(2018, 11, 10) });
-            noteSaveList.Add(new Note() { Author = "LwwWG", Content = "it is a easy content four" , Label = "title four" , NotificationDateTime = new DateTime(2018, 12, 10) });
+            var noteSaveList = new List<Note>
+            {
+                new Note()
+                {
+                    Author = "LwwWG",
+                    Content = "it is a easy content one",
+                    Label = "title one",
+                    NotificationDateTime = new DateTime(2018, 9, 10)
+                },
+                new Note()
+                {
+                    Author = "LwwWG",
+                    Content = "it is a easy content two",
+                    Label = "title two",
+                    NotificationDateTime = new DateTime(2018, 10, 10)
+                },
+                new Note()
+                {
+                    Author = "LwwWG",
+                    Content = "it is a easy content three",
+                    Label = "title three",
+                    NotificationDateTime = new DateTime(2018, 11, 10)
+                },
+                new Note()
+                {
+                    Author = "LwwWG",
+                    Content = "it is a easy content four",
+                    Label = "title four",
+                    NotificationDateTime = new DateTime(2018, 12, 10)
+                }
+            };
 
             noteViewModel.PushCommand.Execute(noteSaveList);
 
@@ -43,18 +66,16 @@ namespace StickyNotes.UnitTest.ViewModels
         [TestMethod]
         public void TestAddNoteCommmand()
         {
-            int addCount = 100;
+            const int addCount = 100;
 
             var noteViewModel= new NoteViewModel();
 
-            var oldNoteList = noteViewModel.Note.ToList();
             var oldNoteListCount = noteViewModel.Note.Count;
 
             MultiCommand(addCount,noteViewModel.AddNoteCommand);
             noteViewModel.PushCommand.Execute(null);
             noteViewModel.PullCommand.Execute(null);
 
-            var newNoteList = noteViewModel.Note.ToList();
             var newNoteCount = noteViewModel.Note.Count;
 
             Assert.AreEqual(newNoteCount,oldNoteListCount+addCount);
@@ -68,13 +89,39 @@ namespace StickyNotes.UnitTest.ViewModels
         public void TestDeleteNoteCommand()
         {
             var noteViewModel = new NoteViewModel();
-            
-            var noteSaveList = new List<Note>();
-            noteSaveList.Add(new Note() { Author = "LwwWG", Content = "it is a easy content one", Label = "title one", NotificationDateTime = new DateTime(2018, 9, 10) });
-            noteSaveList.Add(new Note() { Author = "LwwWG", Content = "it is a easy content two", Label = "title two", NotificationDateTime = new DateTime(2018, 10, 10) });
-            noteSaveList.Add(new Note() { Author = "LwwWG", Content = "it is a easy content three", Label = "title three", NotificationDateTime = new DateTime(2018, 11, 10) });
-            noteSaveList.Add(new Note() { Author = "LwwWG", Content = "it is a easy content four", Label = "title four", NotificationDateTime = new DateTime(2018, 12, 10) });
-            
+
+            var noteSaveList = new List<Note>
+            {
+                new Note()
+                {
+                    Author = "LwwWG",
+                    Content = "it is a easy content one",
+                    Label = "title one",
+                    NotificationDateTime = new DateTime(2018, 9, 10)
+                },
+                new Note()
+                {
+                    Author = "LwwWG",
+                    Content = "it is a easy content two",
+                    Label = "title two",
+                    NotificationDateTime = new DateTime(2018, 10, 10)
+                },
+                new Note()
+                {
+                    Author = "LwwWG",
+                    Content = "it is a easy content three",
+                    Label = "title three",
+                    NotificationDateTime = new DateTime(2018, 11, 10)
+                },
+                new Note()
+                {
+                    Author = "LwwWG",
+                    Content = "it is a easy content four",
+                    Label = "title four",
+                    NotificationDateTime = new DateTime(2018, 12, 10)
+                }
+            };
+
 
             //保存
             noteViewModel.PushCommand.Execute(noteSaveList);
@@ -106,11 +153,37 @@ namespace StickyNotes.UnitTest.ViewModels
         {
             //设置数据
             var noteViewModel = new NoteViewModel();
-            var noteSaveList = new List<Note>();
-            noteSaveList.Add(new Note() { Author = "LwwWG", Content = "it is a easy content one", Label = "title one", NotificationDateTime = new DateTime(2018, 9, 10) });
-            noteSaveList.Add(new Note() { Author = "LwwWG", Content = "it is a easy content two", Label = "title two", NotificationDateTime = new DateTime(2018, 10, 10) });
-            noteSaveList.Add(new Note() { Author = "LwwWG", Content = "it is a easy content three", Label = "title three", NotificationDateTime = new DateTime(2018, 11, 10) });
-            noteSaveList.Add(new Note() { Author = "LwwWG", Content = "it is a easy content four", Label = "title four", NotificationDateTime = new DateTime(2018, 12, 10) });
+            var noteSaveList = new List<Note>
+            {
+                new Note()
+                {
+                    Author = "LwwWG",
+                    Content = "it is a easy content one",
+                    Label = "title one",
+                    NotificationDateTime = new DateTime(2018, 9, 10)
+                },
+                new Note()
+                {
+                    Author = "LwwWG",
+                    Content = "it is a easy content two",
+                    Label = "title two",
+                    NotificationDateTime = new DateTime(2018, 10, 10)
+                },
+                new Note()
+                {
+                    Author = "LwwWG",
+                    Content = "it is a easy content three",
+                    Label = "title three",
+                    NotificationDateTime = new DateTime(2018, 11, 10)
+                },
+                new Note()
+                {
+                    Author = "LwwWG",
+                    Content = "it is a easy content four",
+                    Label = "title four",
+                    NotificationDateTime = new DateTime(2018, 12, 10)
+                }
+            };
             noteViewModel.PushCommand.Execute(noteSaveList);
             //修改
             noteViewModel.SetNotificationCommand.Execute(new KeyValuePair<Note, DateTime> (noteViewModel.Note[0], new DateTime(2017, 12, 10)));
@@ -138,14 +211,65 @@ namespace StickyNotes.UnitTest.ViewModels
         {
             //设置数据
             var noteViewModel = new NoteViewModel();
-            var noteSaveList = new List<Note>();
-            noteSaveList.Add(new Note() { Author = "LwwWG", Content = "it is a easy content one"  ,  Label = "title one"  , NotificationDateTime = new DateTime(2018, 9,  10), Tag = "第一组" });
-            noteSaveList.Add(new Note() { Author = "LwwWG", Content = "it is a easy content two"  ,  Label = "title two"  , NotificationDateTime = new DateTime(2018, 10, 10), Tag = "第一组" });
-            noteSaveList.Add(new Note() { Author = "LwwWG", Content = "it is a easy content three",  Label = "title three", NotificationDateTime = new DateTime(2018, 11, 10), Tag = "第一组" });
-            noteSaveList.Add(new Note() { Author = "LwwWG", Content = "it is a easy content four" ,  Label = "title four" , NotificationDateTime = new DateTime(2018, 12, 10), Tag = "第二组" });
-            noteSaveList.Add(new Note() { Author = "LwwWG", Content = "it is a easy content four" ,  Label = "title four" , NotificationDateTime = new DateTime(2018, 12, 10), Tag = "第二组" });
-            noteSaveList.Add(new Note() { Author = "LwwWG", Content = "it is a easy content five" ,  Label = "title five" , NotificationDateTime = new DateTime(2018, 12, 10), Tag = "第二组" });
-            noteSaveList.Add(new Note() { Author = "LwwWG", Content = "it is a easy content six " ,  Label = "title six " , NotificationDateTime = new DateTime(2018, 12, 10), Tag = "第二组" });
+            var noteSaveList = new List<Note>
+            {
+                new Note()
+                {
+                    Author = "LwwWG",
+                    Content = "it is a easy content one",
+                    Label = "title one",
+                    NotificationDateTime = new DateTime(2018, 9, 10),
+                    Tag = "第一组"
+                },
+                new Note()
+                {
+                    Author = "LwwWG",
+                    Content = "it is a easy content two",
+                    Label = "title two",
+                    NotificationDateTime = new DateTime(2018, 10, 10),
+                    Tag = "第一组"
+                },
+                new Note()
+                {
+                    Author = "LwwWG",
+                    Content = "it is a easy content three",
+                    Label = "title three",
+                    NotificationDateTime = new DateTime(2018, 11, 10),
+                    Tag = "第一组"
+                },
+                new Note()
+                {
+                    Author = "LwwWG",
+                    Content = "it is a easy content four",
+                    Label = "title four",
+                    NotificationDateTime = new DateTime(2018, 12, 10),
+                    Tag = "第二组"
+                },
+                new Note()
+                {
+                    Author = "LwwWG",
+                    Content = "it is a easy content four",
+                    Label = "title four",
+                    NotificationDateTime = new DateTime(2018, 12, 10),
+                    Tag = "第二组"
+                },
+                new Note()
+                {
+                    Author = "LwwWG",
+                    Content = "it is a easy content five",
+                    Label = "title five",
+                    NotificationDateTime = new DateTime(2018, 12, 10),
+                    Tag = "第二组"
+                },
+                new Note()
+                {
+                    Author = "LwwWG",
+                    Content = "it is a easy content six ",
+                    Label = "title six ",
+                    NotificationDateTime = new DateTime(2018, 12, 10),
+                    Tag = "第二组"
+                }
+            };
             noteViewModel.PushCommand.Execute(noteSaveList);
             //筛选
             noteViewModel.SetSelectTagCommand.Execute("第一组");
@@ -179,14 +303,65 @@ namespace StickyNotes.UnitTest.ViewModels
             var noteViewModel = new NoteViewModel();
             var lastNotificationCount = Notification.Instance.Show().Count;
 
-            var noteSaveList = new List<Note>();
-            noteSaveList.Add(new Note() { Author = "LwwWG", Content = "it is a easy content one"  , Label = "title one"  ,  NotificationDateTime = new DateTime(2018, 9, 10),  Tag = "第一组" });
-            noteSaveList.Add(new Note() { Author = "LwwWG", Content = "it is a easy content two"  , Label = "title two"  ,  NotificationDateTime = new DateTime(2018, 10, 10), Tag = "第一组" });
-            noteSaveList.Add(new Note() { Author = "LwwWG", Content = "it is a easy content three", Label = "title three",  NotificationDateTime = new DateTime(2018, 11, 10), Tag = "第一组" });
-            noteSaveList.Add(new Note() { Author = "LwwWG", Content = "it is a easy content four" , Label = "title four" ,  NotificationDateTime = new DateTime(2018, 12, 10), Tag = "第二组" });
-            noteSaveList.Add(new Note() { Author = "LwwWG", Content = "it is a easy content four" , Label = "title four" ,  NotificationDateTime = new DateTime(2018, 12, 10), Tag = "第二组" });
-            noteSaveList.Add(new Note() { Author = "LwwWG", Content = "it is a easy content five" , Label = "title five" ,  NotificationDateTime = new DateTime(2018, 12, 10), Tag = "第二组" });
-            noteSaveList.Add(new Note() { Author = "LwwWG", Content = "it is a easy content six " , Label = "title six " ,  NotificationDateTime = new DateTime(2018, 12, 10), Tag = "第二组" });
+            var noteSaveList = new List<Note>
+            {
+                new Note()
+                {
+                    Author = "LwwWG",
+                    Content = "it is a easy content one",
+                    Label = "title one",
+                    NotificationDateTime = new DateTime(2018, 9, 10),
+                    Tag = "第一组"
+                },
+                new Note()
+                {
+                    Author = "LwwWG",
+                    Content = "it is a easy content two",
+                    Label = "title two",
+                    NotificationDateTime = new DateTime(2018, 10, 10),
+                    Tag = "第一组"
+                },
+                new Note()
+                {
+                    Author = "LwwWG",
+                    Content = "it is a easy content three",
+                    Label = "title three",
+                    NotificationDateTime = new DateTime(2018, 11, 10),
+                    Tag = "第一组"
+                },
+                new Note()
+                {
+                    Author = "LwwWG",
+                    Content = "it is a easy content four",
+                    Label = "title four",
+                    NotificationDateTime = new DateTime(2018, 12, 10),
+                    Tag = "第二组"
+                },
+                new Note()
+                {
+                    Author = "LwwWG",
+                    Content = "it is a easy content four",
+                    Label = "title four",
+                    NotificationDateTime = new DateTime(2018, 12, 10),
+                    Tag = "第二组"
+                },
+                new Note()
+                {
+                    Author = "LwwWG",
+                    Content = "it is a easy content five",
+                    Label = "title five",
+                    NotificationDateTime = new DateTime(2018, 12, 10),
+                    Tag = "第二组"
+                },
+                new Note()
+                {
+                    Author = "LwwWG",
+                    Content = "it is a easy content six ",
+                    Label = "title six ",
+                    NotificationDateTime = new DateTime(2018, 12, 10),
+                    Tag = "第二组"
+                }
+            };
             noteViewModel.PushCommand.Execute(noteSaveList);
             //SetNotificationCommand
             noteViewModel.SetNotificationCommand.Execute(new KeyValuePair<Note,DateTime>(noteSaveList[0],noteSaveList[0].NotificationDateTime));
@@ -197,26 +372,26 @@ namespace StickyNotes.UnitTest.ViewModels
             noteViewModel.SetNotificationCommand.Execute(new KeyValuePair<Note,DateTime>(noteSaveList[5],noteSaveList[5].NotificationDateTime));
             noteViewModel.SetNotificationCommand.Execute(new KeyValuePair<Note,DateTime>(noteSaveList[6],noteSaveList[6].NotificationDateTime));
             //检查
-            Assert.AreEqual(true, Notification.Instance.Show().Contains(noteSaveList[0].ID.ToString()));
-            Assert.AreEqual(true, Notification.Instance.Show().Contains(noteSaveList[1].ID.ToString()));
-            Assert.AreEqual(true, Notification.Instance.Show().Contains(noteSaveList[2].ID.ToString()));
-            Assert.AreEqual(true, Notification.Instance.Show().Contains(noteSaveList[3].ID.ToString()));
-            Assert.AreEqual(true, Notification.Instance.Show().Contains(noteSaveList[4].ID.ToString()));
-            Assert.AreEqual(true, Notification.Instance.Show().Contains(noteSaveList[5].ID.ToString()));
-            Assert.AreEqual(true, Notification.Instance.Show().Contains(noteSaveList[6].ID.ToString()));
+            Assert.AreEqual(true, Notification.Instance.Show().Contains(noteSaveList[0].Id.ToString()));
+            Assert.AreEqual(true, Notification.Instance.Show().Contains(noteSaveList[1].Id.ToString()));
+            Assert.AreEqual(true, Notification.Instance.Show().Contains(noteSaveList[2].Id.ToString()));
+            Assert.AreEqual(true, Notification.Instance.Show().Contains(noteSaveList[3].Id.ToString()));
+            Assert.AreEqual(true, Notification.Instance.Show().Contains(noteSaveList[4].Id.ToString()));
+            Assert.AreEqual(true, Notification.Instance.Show().Contains(noteSaveList[5].Id.ToString()));
+            Assert.AreEqual(true, Notification.Instance.Show().Contains(noteSaveList[6].Id.ToString()));
             Assert.AreEqual(lastNotificationCount+7, Notification.Instance.Show().Count);
             //CancelNotificationCommand
             noteViewModel.CancelNotificationCommand.Execute(noteSaveList[0]);
             noteViewModel.CancelNotificationCommand.Execute(noteSaveList[1]);
             noteViewModel.CancelNotificationCommand.Execute(noteSaveList[2]);
             //检查
-            Assert.AreEqual(true, !Notification.Instance.Show().Contains(noteSaveList[0].ID.ToString()));
-            Assert.AreEqual(true, !Notification.Instance.Show().Contains(noteSaveList[1].ID.ToString()));
-            Assert.AreEqual(true, !Notification.Instance.Show().Contains(noteSaveList[2].ID.ToString()));
-            Assert.AreEqual(true,  Notification.Instance.Show().Contains(noteSaveList[3].ID.ToString()));
-            Assert.AreEqual(true,  Notification.Instance.Show().Contains(noteSaveList[4].ID.ToString()));
-            Assert.AreEqual(true,  Notification.Instance.Show().Contains(noteSaveList[5].ID.ToString()));
-            Assert.AreEqual(true,  Notification.Instance.Show().Contains(noteSaveList[6].ID.ToString()));
+            Assert.AreEqual(true, !Notification.Instance.Show().Contains(noteSaveList[0].Id.ToString()));
+            Assert.AreEqual(true, !Notification.Instance.Show().Contains(noteSaveList[1].Id.ToString()));
+            Assert.AreEqual(true, !Notification.Instance.Show().Contains(noteSaveList[2].Id.ToString()));
+            Assert.AreEqual(true,  Notification.Instance.Show().Contains(noteSaveList[3].Id.ToString()));
+            Assert.AreEqual(true,  Notification.Instance.Show().Contains(noteSaveList[4].Id.ToString()));
+            Assert.AreEqual(true,  Notification.Instance.Show().Contains(noteSaveList[5].Id.ToString()));
+            Assert.AreEqual(true,  Notification.Instance.Show().Contains(noteSaveList[6].Id.ToString()));
             Assert.AreEqual(lastNotificationCount + 4, Notification.Instance.Show().Count);
             //再次设置
 
@@ -230,25 +405,25 @@ namespace StickyNotes.UnitTest.ViewModels
             noteViewModel.SetNotificationCommand.Execute(new KeyValuePair<Note, DateTime>(noteSaveList[6], new DateTime(2018,12,12)));
             Assert.AreEqual(lastNotificationCount + 7, Notification.Instance.Show().Count);
             //检查
-            Assert.AreEqual(true, Notification.Instance.Show().Contains(noteSaveList[0].ID.ToString()));
-            Assert.AreEqual(true, Notification.Instance.Show().Contains(noteSaveList[1].ID.ToString()));
-            Assert.AreEqual(true, Notification.Instance.Show().Contains(noteSaveList[2].ID.ToString()));
-            Assert.AreEqual(true, Notification.Instance.Show().Contains(noteSaveList[3].ID.ToString()));
-            Assert.AreEqual(true, Notification.Instance.Show().Contains(noteSaveList[4].ID.ToString()));
-            Assert.AreEqual(true, Notification.Instance.Show().Contains(noteSaveList[5].ID.ToString()));
-            Assert.AreEqual(true, Notification.Instance.Show().Contains(noteSaveList[6].ID.ToString()));
+            Assert.AreEqual(true, Notification.Instance.Show().Contains(noteSaveList[0].Id.ToString()));
+            Assert.AreEqual(true, Notification.Instance.Show().Contains(noteSaveList[1].Id.ToString()));
+            Assert.AreEqual(true, Notification.Instance.Show().Contains(noteSaveList[2].Id.ToString()));
+            Assert.AreEqual(true, Notification.Instance.Show().Contains(noteSaveList[3].Id.ToString()));
+            Assert.AreEqual(true, Notification.Instance.Show().Contains(noteSaveList[4].Id.ToString()));
+            Assert.AreEqual(true, Notification.Instance.Show().Contains(noteSaveList[5].Id.ToString()));
+            Assert.AreEqual(true, Notification.Instance.Show().Contains(noteSaveList[6].Id.ToString()));
             //CancelNotificationCommand
             noteViewModel.CancelNotificationCommand.Execute(noteSaveList[0]);
             noteViewModel.CancelNotificationCommand.Execute(noteSaveList[1]);
             noteViewModel.CancelNotificationCommand.Execute(noteSaveList[2]);
             //检查
-            Assert.AreEqual(true, !Notification.Instance.Show().Contains(noteSaveList[0].ID.ToString()));
-            Assert.AreEqual(true, !Notification.Instance.Show().Contains(noteSaveList[1].ID.ToString()));
-            Assert.AreEqual(true, !Notification.Instance.Show().Contains(noteSaveList[2].ID.ToString()));
-            Assert.AreEqual(true, Notification.Instance.Show().Contains(noteSaveList[3].ID.ToString()));
-            Assert.AreEqual(true, Notification.Instance.Show().Contains(noteSaveList[4].ID.ToString()));
-            Assert.AreEqual(true, Notification.Instance.Show().Contains(noteSaveList[5].ID.ToString()));
-            Assert.AreEqual(true, Notification.Instance.Show().Contains(noteSaveList[6].ID.ToString()));
+            Assert.AreEqual(true, !Notification.Instance.Show().Contains(noteSaveList[0].Id.ToString()));
+            Assert.AreEqual(true, !Notification.Instance.Show().Contains(noteSaveList[1].Id.ToString()));
+            Assert.AreEqual(true, !Notification.Instance.Show().Contains(noteSaveList[2].Id.ToString()));
+            Assert.AreEqual(true, Notification.Instance.Show().Contains(noteSaveList[3].Id.ToString()));
+            Assert.AreEqual(true, Notification.Instance.Show().Contains(noteSaveList[4].Id.ToString()));
+            Assert.AreEqual(true, Notification.Instance.Show().Contains(noteSaveList[5].Id.ToString()));
+            Assert.AreEqual(true, Notification.Instance.Show().Contains(noteSaveList[6].Id.ToString()));
             Assert.AreEqual(lastNotificationCount + 4,Notification.Instance.Show().Count);
         }
 
@@ -257,16 +432,67 @@ namespace StickyNotes.UnitTest.ViewModels
         {
             //设置数据
             var noteViewModel = new NoteViewModel();
-            var lastNotificationCount = Notification.Instance.Show().Count;
+            //var lastNotificationCount = Notification.Instance.Show().Count;
 
-            var noteSaveList = new List<Note>();
-            noteSaveList.Add(new Note() { Author = "LwwWG", Content = "it is a easy content one", Label = "title one", NotificationDateTime = new DateTime(2018, 9, 10), Tag = "第一组" });
-            noteSaveList.Add(new Note() { Author = "LwwWG", Content = "it is a easy content two", Label = "title two", NotificationDateTime = new DateTime(2018, 10, 10), Tag = "第一组" });
-            noteSaveList.Add(new Note() { Author = "LwwWG", Content = "it is a easy content three", Label = "title three", NotificationDateTime = new DateTime(2018, 11, 10), Tag = "第一组" });
-            noteSaveList.Add(new Note() { Author = "LwwWG", Content = "it is a easy content four", Label = "title four", NotificationDateTime = new DateTime(2018, 12, 10), Tag = "第二组" });
-            noteSaveList.Add(new Note() { Author = "LwwWG", Content = "it is a easy content four", Label = "title four", NotificationDateTime = new DateTime(2018, 12, 10), Tag = "第二组" });
-            noteSaveList.Add(new Note() { Author = "LwwWG", Content = "it is a easy content five", Label = "title five", NotificationDateTime = new DateTime(2018, 12, 10), Tag = "第二组" });
-            noteSaveList.Add(new Note() { Author = "LwwWG", Content = "it is a easy content six", Label = "title six", NotificationDateTime = new DateTime(2018, 12, 10),   Tag = "第二组" });
+            var noteSaveList = new List<Note>
+            {
+                new Note()
+                {
+                    Author = "LwwWG",
+                    Content = "it is a easy content one",
+                    Label = "title one",
+                    NotificationDateTime = new DateTime(2018, 9, 10),
+                    Tag = "第一组"
+                },
+                new Note()
+                {
+                    Author = "LwwWG",
+                    Content = "it is a easy content two",
+                    Label = "title two",
+                    NotificationDateTime = new DateTime(2018, 10, 10),
+                    Tag = "第一组"
+                },
+                new Note()
+                {
+                    Author = "LwwWG",
+                    Content = "it is a easy content three",
+                    Label = "title three",
+                    NotificationDateTime = new DateTime(2018, 11, 10),
+                    Tag = "第一组"
+                },
+                new Note()
+                {
+                    Author = "LwwWG",
+                    Content = "it is a easy content four",
+                    Label = "title four",
+                    NotificationDateTime = new DateTime(2018, 12, 10),
+                    Tag = "第二组"
+                },
+                new Note()
+                {
+                    Author = "LwwWG",
+                    Content = "it is a easy content four",
+                    Label = "title four",
+                    NotificationDateTime = new DateTime(2018, 12, 10),
+                    Tag = "第二组"
+                },
+                new Note()
+                {
+                    Author = "LwwWG",
+                    Content = "it is a easy content five",
+                    Label = "title five",
+                    NotificationDateTime = new DateTime(2018, 12, 10),
+                    Tag = "第二组"
+                },
+                new Note()
+                {
+                    Author = "LwwWG",
+                    Content = "it is a easy content six",
+                    Label = "title six",
+                    NotificationDateTime = new DateTime(2018, 12, 10),
+                    Tag = "第二组"
+                }
+            };
             noteViewModel.PushCommand.Execute(noteSaveList);
 
             //修改对应分组
@@ -312,14 +538,58 @@ namespace StickyNotes.UnitTest.ViewModels
         {
             //设置数据
             var noteViewModel = new NoteViewModel();
-            var lastNotificationCount = Notification.Instance.Show().Count;
-            var noteSaveList = new List<Note>();
-            noteSaveList.Add(new Note() { Author = "LwwWG", Content = "it is a easy content one"  , Label = "title one", NotificationDateTime = new DateTime(2018, 9, 10),   Tag = "第一组" });
-            noteSaveList.Add(new Note() { Author = "LwwWG", Content = "it is a easy content two"  , Label = "title two", NotificationDateTime = new DateTime(2018, 10, 10),  Tag = "第二组" });
-            noteSaveList.Add(new Note() { Author = "LwwWG", Content = "it is a easy content three", Label = "title three", NotificationDateTime = new DateTime(2018, 11, 10),Tag = "第三组" });
-            noteSaveList.Add(new Note() { Author = "LwwWG", Content = "it is a easy content four" , Label = "title four", NotificationDateTime = new DateTime(2018, 12, 10), Tag = "第四组" });
-            noteSaveList.Add(new Note() { Author = "LwwWG", Content = "it is a easy content five" , Label = "title five", NotificationDateTime = new DateTime(2018, 12, 10), Tag = "第五组" });
-            noteSaveList.Add(new Note() { Author = "LwwWG", Content = "it is a easy content six " , Label = "title six", NotificationDateTime = new DateTime(2018, 12, 10),  Tag = "第六组" });
+            //var lastNotificationCount = Notification.Instance.Show().Count;
+            var noteSaveList = new List<Note>
+            {
+                new Note()
+                {
+                    Author = "LwwWG",
+                    Content = "it is a easy content one",
+                    Label = "title one",
+                    NotificationDateTime = new DateTime(2018, 9, 10),
+                    Tag = "第一组"
+                },
+                new Note()
+                {
+                    Author = "LwwWG",
+                    Content = "it is a easy content two",
+                    Label = "title two",
+                    NotificationDateTime = new DateTime(2018, 10, 10),
+                    Tag = "第二组"
+                },
+                new Note()
+                {
+                    Author = "LwwWG",
+                    Content = "it is a easy content three",
+                    Label = "title three",
+                    NotificationDateTime = new DateTime(2018, 11, 10),
+                    Tag = "第三组"
+                },
+                new Note()
+                {
+                    Author = "LwwWG",
+                    Content = "it is a easy content four",
+                    Label = "title four",
+                    NotificationDateTime = new DateTime(2018, 12, 10),
+                    Tag = "第四组"
+                },
+                new Note()
+                {
+                    Author = "LwwWG",
+                    Content = "it is a easy content five",
+                    Label = "title five",
+                    NotificationDateTime = new DateTime(2018, 12, 10),
+                    Tag = "第五组"
+                },
+                new Note()
+                {
+                    Author = "LwwWG",
+                    Content = "it is a easy content six ",
+                    Label = "title six",
+                    NotificationDateTime = new DateTime(2018, 12, 10),
+                    Tag = "第六组"
+                }
+            };
             noteViewModel.PushCommand.Execute(noteSaveList);
             Assert.AreEqual(true, noteViewModel.Tag.Contains("第一组"));
             Assert.AreEqual(true, noteViewModel.Tag.Contains("第二组"));
@@ -341,14 +611,58 @@ namespace StickyNotes.UnitTest.ViewModels
         {
             //设置数据
             var noteViewModel = new NoteViewModel();
-            var lastNotificationCount = Notification.Instance.Show().Count;
-            var noteSaveList = new List<Note>();
-            noteSaveList.Add(new Note() { Author = "LwwWG", Content = "it is a easy content one", Label = "title one", NotificationDateTime = new DateTime(2018, 9, 10), Tag = "第一组" });
-            noteSaveList.Add(new Note() { Author = "LwwWG", Content = "it is a easy content two", Label = "title two", NotificationDateTime = new DateTime(2018, 10, 10), Tag = "第二组" });
-            noteSaveList.Add(new Note() { Author = "LwwWG", Content = "it is a easy content three", Label = "title three", NotificationDateTime = new DateTime(2018, 11, 10), Tag = "第三组" });
-            noteSaveList.Add(new Note() { Author = "LwwWG", Content = "it is a easy content four", Label = "title four", NotificationDateTime = new DateTime(2018, 12, 10), Tag = "第四组" });
-            noteSaveList.Add(new Note() { Author = "LwwWG", Content = "it is a easy content five", Label = "title five", NotificationDateTime = new DateTime(2018, 12, 10), Tag = "第五组" });
-            noteSaveList.Add(new Note() { Author = "LwwWG", Content = "it is a easy content six ", Label = "title six", NotificationDateTime = new DateTime(2018, 12, 10), Tag = "第六组" });
+            //var lastNotificationCount = Notification.Instance.Show().Count;
+            var noteSaveList = new List<Note>
+            {
+                new Note()
+                {
+                    Author = "LwwWG",
+                    Content = "it is a easy content one",
+                    Label = "title one",
+                    NotificationDateTime = new DateTime(2018, 9, 10),
+                    Tag = "第一组"
+                },
+                new Note()
+                {
+                    Author = "LwwWG",
+                    Content = "it is a easy content two",
+                    Label = "title two",
+                    NotificationDateTime = new DateTime(2018, 10, 10),
+                    Tag = "第二组"
+                },
+                new Note()
+                {
+                    Author = "LwwWG",
+                    Content = "it is a easy content three",
+                    Label = "title three",
+                    NotificationDateTime = new DateTime(2018, 11, 10),
+                    Tag = "第三组"
+                },
+                new Note()
+                {
+                    Author = "LwwWG",
+                    Content = "it is a easy content four",
+                    Label = "title four",
+                    NotificationDateTime = new DateTime(2018, 12, 10),
+                    Tag = "第四组"
+                },
+                new Note()
+                {
+                    Author = "LwwWG",
+                    Content = "it is a easy content five",
+                    Label = "title five",
+                    NotificationDateTime = new DateTime(2018, 12, 10),
+                    Tag = "第五组"
+                },
+                new Note()
+                {
+                    Author = "LwwWG",
+                    Content = "it is a easy content six ",
+                    Label = "title six",
+                    NotificationDateTime = new DateTime(2018, 12, 10),
+                    Tag = "第六组"
+                }
+            };
             noteViewModel.PushCommand.Execute(noteSaveList);
             //选择和判断
             noteViewModel.SetSelectNoteCommand.Execute(noteSaveList[0]);
@@ -387,10 +701,12 @@ namespace StickyNotes.UnitTest.ViewModels
             Assert.AreEqual(noteSaveList[4].Selected, Visibility.Collapsed);
             
         }
+
         /// <summary>
         /// 执行多次命令
         /// </summary>
         /// <param name="count">次数</param>
+        /// <param name="command">需要执行的Command</param>
         public void MultiCommand(int count, RelayCommand command)
         {
             for (int i = count; i > 0; i--)

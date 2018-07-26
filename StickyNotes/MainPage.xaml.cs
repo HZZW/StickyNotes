@@ -33,7 +33,7 @@ namespace StickyNotes {
     {
         public MainPage()
         {
-            this.InitializeComponent();
+            InitializeComponent();
 
         }
     }

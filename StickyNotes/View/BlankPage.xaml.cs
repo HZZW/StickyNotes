@@ -41,7 +41,7 @@ namespace StickyNotes {
     {
         public BlankPage()
         {
-            this.InitializeComponent();
+            InitializeComponent();
             ShowCurTimer();
             ApplicationView.PreferredLaunchViewSize = new Size(600, 302);
             ApplicationView.PreferredLaunchWindowingMode = ApplicationViewWindowingMode.PreferredLaunchViewSize;
@@ -72,20 +72,20 @@ namespace StickyNotes {
             //"星期"+DateTime.Now.DayOfWeek.ToString(("d"))
 
             //获得星期几
-            this.DataTextBlock.Text = DateTime.Now.ToString("dddd", new System.Globalization.CultureInfo("zh-cn"));
-            this.DataTextBlock.Text += " ";
+            DataTextBlock.Text = DateTime.Now.ToString("dddd", new System.Globalization.CultureInfo("zh-cn"));
+            DataTextBlock.Text += " ";
             //获得年月日
-            this.DataTextBlock.Text += DateTime.Now.ToString("yyyy年MM月dd日");   //yyyy年MM月dd日
-            this.DataTextBlock.Text += " ";
+            DataTextBlock.Text += DateTime.Now.ToString("yyyy年MM月dd日");   //yyyy年MM月dd日
+            DataTextBlock.Text += " ";
             //获得时分秒
-            this.TimeTextBlock.Text += DateTime.Now.ToString("HH:mm:ss");
+            TimeTextBlock.Text += DateTime.Now.ToString("HH:mm:ss");
             //System.Diagnostics.Debug.Print("this.ShowCurrentTime {0}", this.ShowCurrentTime);
         }
 
         //TODO will delete this method,just test 
         private void ButtonBase_OnClick(object sender, RoutedEventArgs e)
         {
-            var noteViewModel = this.DataContext as NoteViewModel;
+            var noteViewModel = DataContext as NoteViewModel;
             noteViewModel?.PullCommand.Execute(null);
         }
 
@@ -159,13 +159,13 @@ namespace StickyNotes {
             // var content = this.Content;
 
             var noteViewModel = (App.Current.Resources["NoteViewModel"] as NoteViewModel);
-            var note = (this.DataContext as NoteViewModel).SelectNote;
+            var note = (DataContext as NoteViewModel)?.SelectNote;
             noteViewModel?.DeleteNoteCommand.Execute(note);
         }
 
         private void AddButton_Click(object sender, RoutedEventArgs e)
         {
-            var theNoteViewModel = (this.DataContext as NoteViewModel);
+            var theNoteViewModel = (DataContext as NoteViewModel);
             theNoteViewModel.AddNoteCommand.Execute(null);
         }
     }

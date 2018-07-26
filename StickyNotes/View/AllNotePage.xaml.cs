@@ -34,7 +34,7 @@ namespace StickyNotes.View {
 
         public AllNotePage()
         {
-            this.InitializeComponent();
+            InitializeComponent();
         }
 
         private void SortButton_Click(object sender, RoutedEventArgs e)
@@ -43,14 +43,16 @@ namespace StickyNotes.View {
         }
         private void CommandBar_Opening(object sender, object e)
         {
-            CommandBar cb = sender as CommandBar;
-            if (cb != null) cb.Background.Opacity = 1.0;
+            if (!(sender is CommandBar cb)) return;
+            if (cb.Background != null)
+                cb.Background.Opacity = 1.0;
         }
 
         private void CommandBar_Closing(object sender, object e)
         {
-            CommandBar cb = sender as CommandBar;
-            if (cb != null) cb.Background.Opacity = 0.5;
+            if (!(sender is CommandBar cb)) return;
+            if (cb.Background != null)
+                cb.Background.Opacity = 0.5;
         }
         private void DeleteButton_Click(object sender, RoutedEventArgs e)
         {

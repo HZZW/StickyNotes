@@ -11,7 +11,7 @@ namespace StickyNotes.View {
     {
         public SetToastContentDialog()
         {
-            this.InitializeComponent();
+            InitializeComponent();
         }
 
 
