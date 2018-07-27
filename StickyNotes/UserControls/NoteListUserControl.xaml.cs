@@ -41,7 +41,6 @@ namespace StickyNotes.UserControls {
                 Title = "Time to relax",
                 Content = "https://pan.baidu.com/s/1ARSnPD82Yi59vERMoBlX8Q",
                 PrimaryButtonText = "确定",
-                SecondaryButtonText = "取消",
                 FullSizeDesired = false,
             };
 
