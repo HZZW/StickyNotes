@@ -44,7 +44,7 @@ namespace StickyNotes {
           //  ApplicationView.PreferredLaunchViewSize = new Size(400, 400);
           //  ApplicationView.PreferredLaunchWindowingMode = ApplicationViewWindowingMode.PreferredLaunchViewSize;
          //   ApplicationView.PreferredLaunchWindowingMode = ApplicationViewWindowingMode.Auto;
-            ApplicationView.GetForCurrentView().SetPreferredMinSize(new Size(330, 200));
+            ApplicationView.GetForCurrentView().SetPreferredMinSize(new Size(380, 200));
             var windows = CoreApplication.GetCurrentView().TitleBar;
 
             //windows.ExtendViewIntoTitleBar = false;
