@@ -1,4 +1,6 @@
-﻿using StickyNotes.ViewModels;
+﻿using System;
+using Windows.UI.Xaml;
+using StickyNotes.ViewModels;
 using Windows.UI.Xaml.Controls;
 using StickyNotes.Models;
 
@@ -32,5 +34,19 @@ namespace StickyNotes.UserControls {
             theNoteViewModel?.SetSelectNoteCommand.Execute(theNote);
         }
 
+        private void ExButton_OnClick(object sender, RoutedEventArgs e)
+        {
+            var dialog = new ContentDialog()
+            {
+                Title = "Time to relax",
+                Content = "https://pan.baidu.com/s/1ARSnPD82Yi59vERMoBlX8Q",
+                PrimaryButtonText = "确定",
+                SecondaryButtonText = "取消",
+                FullSizeDesired = false,
+            };
+
+            dialog.PrimaryButtonClick += (_s, _e) => { };
+            dialog.ShowAsync();
+        }
     }
 }

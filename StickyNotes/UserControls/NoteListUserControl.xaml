@@ -21,7 +21,7 @@
                     <ColumnDefinition Width="48" />
                     <ColumnDefinition Width="*" />
                 </Grid.ColumnDefinitions>
-                
+
                 <Rectangle Fill="Black" 
                            Visibility="{Binding Selected, Mode=TwoWay}" 
                            HorizontalAlignment="Left" 
@@ -103,7 +103,7 @@
                 <Grid Background="#FFFFFFD0">
                     <Grid.RowDefinitions>
                         <!--空出Button的高度-->
-                        <RowDefinition Height="48" />
+                        <RowDefinition Height="32" />
                         <RowDefinition Height="*" />
                         <RowDefinition Height="Auto" />
                     </Grid.RowDefinitions>
@@ -116,6 +116,14 @@
                               ItemsSource="{Binding Note}"
                               ItemTemplate="{StaticResource DataTemplate}" 
                               ItemContainerStyle="{StaticResource NavMenuItemContainerStyle}"/>
+                    <Button Name="ExButton"
+                            HorizontalAlignment="Left" 
+                            Margin="164,0,0,0" 
+                            VerticalAlignment="Top" 
+                            Background="{Binding BackgroundColor}"
+                            Height="16" 
+                            Width="16"
+                            Click="ExButton_OnClick"/>
                     <!--二级菜单-->
                 </Grid>
             </SplitView.Pane>
