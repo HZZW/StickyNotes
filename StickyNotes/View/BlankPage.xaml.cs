@@ -23,10 +23,12 @@ SOFTWARE. */
 using Windows.Foundation;
 using Windows.UI.Xaml;
 using Windows.ApplicationModel.Core;
+using Windows.System;
 using StickyNotes.ViewModels;
 using Windows.UI.ViewManagement;
 using StickyNotes.View;
 using Windows.UI;
+using Windows.UI.Core;
 
 
 // https://go.microsoft.com/fwlink/?LinkId=402352&clcid=0x804 上介绍了“空白页”项模板
@@ -40,10 +42,14 @@ namespace StickyNotes {
         public BlankPage()
         {
             InitializeComponent();
+
+            // Register for accelerator key events used for button hotkeys
+            Window.Current.CoreWindow.Dispatcher.AcceleratorKeyActivated += Dispatcher_AcceleratorKeyActivated;
+
             //ShowCurTimer();
-          //  ApplicationView.PreferredLaunchViewSize = new Size(400, 400);
-          //  ApplicationView.PreferredLaunchWindowingMode = ApplicationViewWindowingMode.PreferredLaunchViewSize;
-         //   ApplicationView.PreferredLaunchWindowingMode = ApplicationViewWindowingMode.Auto;
+            //  ApplicationView.PreferredLaunchViewSize = new Size(400, 400);
+            //  ApplicationView.PreferredLaunchWindowingMode = ApplicationViewWindowingMode.PreferredLaunchViewSize;
+            //   ApplicationView.PreferredLaunchWindowingMode = ApplicationViewWindowingMode.Auto;
             ApplicationView.GetForCurrentView().SetPreferredMinSize(new Size(330, 200));
             var windows = CoreApplication.GetCurrentView().TitleBar;
 
@@ -80,11 +86,32 @@ namespace StickyNotes {
         //    //System.Diagnostics.Debug.Print("this.ShowCurrentTime {0}", this.ShowCurrentTime);
         //}
 
+        private void Dispatcher_AcceleratorKeyActivated(CoreDispatcher sender, AcceleratorKeyEventArgs args)
+        {
+            if (args.EventType.ToString().Contains("Down"))
+            {
+                var ctrl = Window.Current.CoreWindow.GetKeyState(VirtualKey.Control);
+                if (ctrl.HasFlag(CoreVirtualKeyStates.Down))
+                {
+                    switch (args.VirtualKey)
+                    {
+                        case VirtualKey.D:
+                            var noteViewModel = Application.Current.Resources["NoteViewModel"] as NoteViewModel;
+                            var note = (DataContext as NoteViewModel)?.SelectNote;
+                            noteViewModel?.DeleteNoteCommand.Execute(note);
+                            break;
+                        case VirtualKey.S:
+                            var theNoteViewModel = (DataContext as NoteViewModel);
+                            theNoteViewModel?.AddNoteCommand.Execute(null);
+                            break;
+                    }
+                }
+            }
+        }
 
 
 
-
-      private void SettingButton_Click(object sender, RoutedEventArgs e)
+        private void SettingButton_Click(object sender, RoutedEventArgs e)
     {
         SettingContentDialog setting = new SettingContentDialog();
         setting.ShowAsync();
