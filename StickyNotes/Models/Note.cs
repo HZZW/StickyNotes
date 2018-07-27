@@ -34,7 +34,7 @@ namespace StickyNotes.Models
         private string _icon;
         public string Icon
         {
-            get => _icon ?? (_icon = "\xE10F");
+            get => _icon ?? (_icon = "\xE160");
             set
             {
                 if (_icon == value)
