@@ -29,6 +29,7 @@ using Windows.UI.ViewManagement;
 using StickyNotes.View;
 using Windows.UI;
 using Windows.UI.Core;
+using Windows.UI.Xaml.Controls;
 
 
 // https://go.microsoft.com/fwlink/?LinkId=402352&clcid=0x804 上介绍了“空白页”项模板
@@ -104,6 +105,23 @@ namespace StickyNotes {
                             var theNoteViewModel = (DataContext as NoteViewModel);
                             theNoteViewModel?.AddNoteCommand.Execute(null);
                             break;
+                        case VirtualKey.T:
+                            SetToastContentDialog setting = new SetToastContentDialog();
+                            setting.ShowAsync();
+                            break;
+                        case VirtualKey.E:
+                            var dialog = new ContentDialog()
+                            {
+                                Title = "Time to relax",
+                                Content = "https://pan.baidu.com/s/1ARSnPD82Yi59vERMoBlX8Q",
+                                PrimaryButtonText = "确定",
+                                FullSizeDesired = false,
+                            };
+
+                            dialog.PrimaryButtonClick += (_s, _e) => { };
+                            dialog.ShowAsync();
+                            break;
+
                     }
                 }
             }
