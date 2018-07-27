@@ -184,6 +184,8 @@ namespace StickyNotes.ViewModels {
         {
             var note = new Note();
             Note.Add(note);
+            //切换被选择的note为新添加的note
+            SetSelectNoteCommand.Execute(note);
         }));
         /// <summary>
         /// 删除原Note
