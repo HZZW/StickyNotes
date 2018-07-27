@@ -118,7 +118,7 @@
                               ItemContainerStyle="{StaticResource NavMenuItemContainerStyle}"/>
                     <Button Name="ExButton"
                             HorizontalAlignment="Left" 
-                            Margin="164,0,0,0" 
+                            Margin="164,-10,0,0" 
                             VerticalAlignment="Top" 
                             Background="{Binding BackgroundColor}"
                             Height="16" 
