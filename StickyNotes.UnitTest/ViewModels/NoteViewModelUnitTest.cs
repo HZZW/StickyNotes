@@ -663,6 +663,13 @@ namespace StickyNotes.UnitTest.ViewModels
                     Tag = "第六组"
                 }
             };
+            // 模拟页面初始化Selected
+            foreach (var note in noteSaveList)
+            {
+                var visible = note.Selected;
+            }
+
+
             noteViewModel.PushCommand.Execute(noteSaveList);
             //选择和判断
             noteViewModel.SetSelectNoteCommand.Execute(noteSaveList[0]);
