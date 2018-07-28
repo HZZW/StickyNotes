@@ -74,20 +74,32 @@ namespace StickyNotes.UserControls {
             }
         }
 
+        //private void FavoriteButton_OnClick(object sender, RoutedEventArgs e)
+        //{
+        //    bool state = true;
+        //    //if (state)
+        //    //{
+
+        //    //    FavoriteButton.Icon = "SolidStar";
+        //    //    state = false;
+        //    //}
+        //    //else
+        //    //{
+        //    //    FavoriteButton.Icon = "OutlineStar";
+        //    //    state = true;
+        //    //}
+        //}
+
+
+        //todo next  note  is  null;
         private void FavoriteButton_OnClick(object sender, RoutedEventArgs e)
         {
-            bool state = true;
-            //if (state)
-            //{
+            var note = (DataContext as Note);
+           
+            var noteViewModel = App.Current.Resources["NoteViewModel"] as NoteViewModel;
+            if (note == null || noteViewModel == null) return;
 
-            //    FavoriteButton.Icon = "SolidStar";
-            //    state = false;
-            //}
-            //else
-            //{
-            //    FavoriteButton.Icon = "OutlineStar";
-            //    state = true;
-            //}
+            noteViewModel.ChangeNoteFavoriteCommand.Execute(note);
         }
     }
 }
