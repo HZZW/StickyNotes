@@ -20,8 +20,11 @@
             <Grid>
                 <Grid.ColumnDefinitions>
                     <ColumnDefinition Width="48" />
+                    <ColumnDefinition Width="4"/>
+                    <ColumnDefinition Width="32" />
+                    <ColumnDefinition Width="4" />
                     <ColumnDefinition Width="*" />
-                    <ColumnDefinition Width="40" />
+                    <ColumnDefinition Width="4" />
                 </Grid.ColumnDefinitions>
 
                 <Rectangle Fill="Black"
@@ -36,8 +39,8 @@
                         Foreground="Black"
                         Margin="-2,0,0,0"
                         Content="&#xE734;"
-                        Width="40"
-                        Height="40"
+                        Width="32"
+                        Height="32"
                         VerticalAlignment="Center"
                         HorizontalAlignment="Right"
                         Click="FavoriteButton_OnClick"/>
@@ -50,11 +53,12 @@
                           Width="48" 
                           Height="48" />
 
-                <TextBlock Grid.Column="1" 
+                <TextBlock Grid.Column="4" 
                            Text="{Binding Label}" 
                            Foreground="Black" 
-                           Margin="12,0,0,0" 
-                           VerticalAlignment="Center" />
+                           Margin="0,0,8,0" 
+                           VerticalAlignment="Center" 
+                           Padding="2"/>
             </Grid>
         </DataTemplate>
         <!--ListViewItem样式定制-->
