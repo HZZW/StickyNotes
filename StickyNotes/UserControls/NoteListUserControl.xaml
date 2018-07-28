@@ -133,7 +133,8 @@
                               IsItemClickEnabled="True" 
                               ItemsSource="{Binding Note}"
                               ItemTemplate="{StaticResource DataTemplate}" 
-                              ItemContainerStyle="{StaticResource NavMenuItemContainerStyle}"/>
+                              ItemContainerStyle="{StaticResource NavMenuItemContainerStyle}"
+                              ItemClick="NavMenuPrimaryListView_OnItemClick"/>
                     <!--Name="ExButton"-->
                     <Button 
                             Grid.Row="0"
