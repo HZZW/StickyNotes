@@ -1,5 +1,4 @@
-﻿using System;
-using Windows.UI.Xaml;
+﻿using Windows.UI.Xaml;
 using StickyNotes.ViewModels;
 using Windows.UI.Xaml.Controls;
 using StickyNotes.Models;
@@ -44,7 +43,7 @@ namespace StickyNotes.UserControls {
                 FullSizeDesired = false,
             };
 
-            dialog.PrimaryButtonClick += (_s, _e) => { };
+            dialog.PrimaryButtonClick += (s, _e) => { };
             dialog.ShowAsync();
         }
     }
