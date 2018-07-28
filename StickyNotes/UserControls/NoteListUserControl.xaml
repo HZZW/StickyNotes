@@ -100,7 +100,8 @@
                    IsPaneOpen="False">
 
             <SplitView.Pane>
-                <Grid Background="#FFFFFFD0">
+                <Grid Name="rootGrid"
+                    Background="#FFFFFFD0">
                     <Grid.RowDefinitions>
                         <!--空出Button的高度-->
                         <RowDefinition Height="32" />
@@ -116,9 +117,11 @@
                               ItemsSource="{Binding Note}"
                               ItemTemplate="{StaticResource DataTemplate}" 
                               ItemContainerStyle="{StaticResource NavMenuItemContainerStyle}"/>
-                    <Button Name="ExButton"
+                    <!--Name="ExButton"-->
+                    <Button 
+                            Grid.Row="0"
                             HorizontalAlignment="Left" 
-                            Margin="164,0,0,0" 
+                            Margin="164,-10,0,0" 
                             VerticalAlignment="Top" 
                             Background="{Binding BackgroundColor}"
                             Height="16" 

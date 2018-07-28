@@ -34,6 +34,7 @@ namespace StickyNotes {
         {
             InitializeComponent();
 
+
         }
     }
 }

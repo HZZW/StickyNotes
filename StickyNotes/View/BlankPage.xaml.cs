@@ -20,13 +20,17 @@ LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
 OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
 SOFTWARE. */
 
+using System;
 using Windows.Foundation;
 using Windows.UI.Xaml;
 using Windows.ApplicationModel.Core;
+using Windows.System;
 using StickyNotes.ViewModels;
 using Windows.UI.ViewManagement;
 using StickyNotes.View;
 using Windows.UI;
+using Windows.UI.Core;
+using Windows.UI.Xaml.Controls;
 
 
 // https://go.microsoft.com/fwlink/?LinkId=402352&clcid=0x804 上介绍了“空白页”项模板
@@ -40,11 +44,15 @@ namespace StickyNotes {
         public BlankPage()
         {
             InitializeComponent();
+
+            // Register for accelerator key events used for button hotkeys
+            Window.Current.CoreWindow.Dispatcher.AcceleratorKeyActivated += Dispatcher_AcceleratorKeyActivated;
+
             //ShowCurTimer();
-          //  ApplicationView.PreferredLaunchViewSize = new Size(400, 400);
-          //  ApplicationView.PreferredLaunchWindowingMode = ApplicationViewWindowingMode.PreferredLaunchViewSize;
-         //   ApplicationView.PreferredLaunchWindowingMode = ApplicationViewWindowingMode.Auto;
-            ApplicationView.GetForCurrentView().SetPreferredMinSize(new Size(300, 200));
+            //  ApplicationView.PreferredLaunchViewSize = new Size(400, 400);
+            //  ApplicationView.PreferredLaunchWindowingMode = ApplicationViewWindowingMode.PreferredLaunchViewSize;
+            //   ApplicationView.PreferredLaunchWindowingMode = ApplicationViewWindowingMode.Auto;
+            ApplicationView.GetForCurrentView().SetPreferredMinSize(new Size(380, 200));
             var windows = CoreApplication.GetCurrentView().TitleBar;
 
             //windows.ExtendViewIntoTitleBar = false;
@@ -80,11 +88,53 @@ namespace StickyNotes {
         //    //System.Diagnostics.Debug.Print("this.ShowCurrentTime {0}", this.ShowCurrentTime);
         //}
 
+        private void Dispatcher_AcceleratorKeyActivated(CoreDispatcher sender, AcceleratorKeyEventArgs args)
+        {
+            if (args.EventType.ToString().Contains("Down"))
+            {
+                var ctrl = Window.Current.CoreWindow.GetKeyState(VirtualKey.Control);
+                if (ctrl.HasFlag(CoreVirtualKeyStates.Down))
+                {
+                    switch (args.VirtualKey)
+                    {
+                        case VirtualKey.D:
+                            var noteViewModel = Application.Current.Resources["NoteViewModel"] as NoteViewModel;
+                            var note = (DataContext as NoteViewModel)?.SelectNote;
+                            noteViewModel?.DeleteNoteCommand.Execute(note);
+                            break;
+                        case VirtualKey.S:
+                            var theNoteViewModel = (DataContext as NoteViewModel);
+                            theNoteViewModel?.AddNoteCommand.Execute(null);
+                            break;
+                        case VirtualKey.T:
+                            SetToastContentDialog setting = new SetToastContentDialog();
+                            setting.ShowAsync();
+                            break;
+                        case VirtualKey.E:
+                            var dialog = new ContentDialog()
+                            {
+                                Title = "Time to relax",
+                                Content = "https://pan.baidu.com/s/1ARSnPD82Yi59vERMoBlX8Q",
+                                PrimaryButtonText = "确定",
+                                FullSizeDesired = false,
+                            };
+
+                            dialog.PrimaryButtonClick += (s, e) =>
+                            {
+                                if (s == null) throw new ArgumentNullException(nameof(s));
+                                if (e == null) throw new ArgumentNullException(nameof(e));
+                            };
+                            dialog.ShowAsync();
+                            break;
+
+                    }
+                }
+            }
+        }
 
 
 
-
-      private void SettingButton_Click(object sender, RoutedEventArgs e)
+        private void SettingButton_Click(object sender, RoutedEventArgs e)
     {
         SettingContentDialog setting = new SettingContentDialog();
         setting.ShowAsync();

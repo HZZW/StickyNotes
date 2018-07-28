@@ -24,9 +24,7 @@ SOFTWARE. */
 
 //https://go.microsoft.com/fwlink/?LinkId=234236 上介绍了“用户控件”项模板
 
-using Windows.UI.Xaml;
 using Windows.UI.Xaml.Controls;
-using StickyNotes.ViewModels;
 
 namespace StickyNotes.UserControls {
     public sealed partial class NewNoteBoxUserControl
@@ -39,7 +37,7 @@ namespace StickyNotes.UserControls {
         private void TextBox_OnTextChanged(object sender, TextChangedEventArgs e)
         {
             var binding = InputBox.GetBindingExpression(TextBox.TextProperty);
-            binding.UpdateSource();
+            binding?.UpdateSource();
         }
     }
 }
