@@ -39,8 +39,8 @@
                         Foreground="Black"
                         Margin="-2,0,0,0"
                         Content="&#xE734;"
-                        Width="32"
-                        Height="32"
+                        Width="34"
+                        Height="34"
                         VerticalAlignment="Center"
                         HorizontalAlignment="Right"
                         Click="FavoriteButton_OnClick"/>
