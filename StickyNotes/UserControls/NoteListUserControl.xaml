@@ -6,6 +6,7 @@
     xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
              xmlns:media="using:Microsoft.Toolkit.Uwp.UI.Media"
              mc:Ignorable="d"
+    xmlns:local="using:StickyNotes.Models"
     d:DesignHeight="300"
     d:DesignWidth="400"
     >
@@ -15,7 +16,7 @@
 
     <UserControl.Resources>
         <!--菜单的数据模板-->
-        <DataTemplate x:Key="DataTemplate">
+        <DataTemplate x:Key="DataTemplate" x:DataType="local:Note">
             <Grid>
                 <Grid.ColumnDefinitions>
                     <ColumnDefinition Width="40" />
@@ -29,7 +30,9 @@
                            Width="5"
                            Height="48" />
                 <Button Name="FavoriteButton" 
-                        Grid.Column="0"
+                        Tag="{Binding}"
+                        Grid.Column="2"
+                        FontFamily="{ThemeResource SymbolThemeFontFamily}"
                         Foreground="Black"
                         Margin="-2,0,0,0"
                         Content="&#xE734;"
@@ -38,7 +41,7 @@
                         VerticalAlignment="Center"
                         HorizontalAlignment="Left"
                         Click="FavoriteButton_OnClick"/>
-                <FontIcon Grid.Column="1"
+                <FontIcon Grid.Column="0"
                           FontFamily="{Binding FontFamily}" 
                           Glyph="{Binding Icon}" 
                           Foreground="Black" 
@@ -47,7 +50,7 @@
                           Width="48" 
                           Height="48" />
 
-                <TextBlock Grid.Column="2" 
+                <TextBlock Grid.Column="1" 
                            Text="{Binding Label}" 
                            Foreground="Black" 
                            Margin="12,0,0,0" 

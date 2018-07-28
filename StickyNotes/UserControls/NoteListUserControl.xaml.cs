@@ -94,7 +94,9 @@ namespace StickyNotes.UserControls {
         //todo next  note  is  null;
         private void FavoriteButton_OnClick(object sender, RoutedEventArgs e)
         {
-            var note = (DataContext as Note);
+            
+
+            var note = ((sender as Button).Tag as Note);
            
             var noteViewModel = App.Current.Resources["NoteViewModel"] as NoteViewModel;
             if (note == null || noteViewModel == null) return;
