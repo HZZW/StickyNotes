@@ -7,8 +7,8 @@
 
     <Application.Resources>
         <!--单元测试前需要删除下述内容。-->
-        <ResourceDictionary>
+        <!--<ResourceDictionary>
             <viewModels:NoteViewModel x:Key="NoteViewModel" />
-        </ResourceDictionary>
+        </ResourceDictionary>-->
     </Application.Resources>
 </Application>

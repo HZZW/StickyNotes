@@ -42,11 +42,21 @@ namespace StickyNotes.ViewModels {
             Note = new ObservableCollection<Note>();
             Note.CollectionChanged += UpdateTagList;
         }
+
+        
+
         public NoteViewModel():this(new LocalNoteService())
         {
             PullCommand.Execute(null);
         }
         //-----------------------成员变量---------------------//
+
+        /// <summary>
+        /// 
+        /// </summary>
+        private int _favoriteCount=0;
+        
+
         /// <summary>
         /// 当前选择的Note
         /// </summary>
@@ -88,7 +98,15 @@ namespace StickyNotes.ViewModels {
         private ObservableCollection<Note> _note;
         public ObservableCollection<Note> Note
         {
-            get => _note??(_note=new ObservableCollection<Note>());
+            get
+            {
+                if (_note != null) return _note;
+
+                _note = new ObservableCollection<Note>();
+                UpdateNoteListByFavorite();
+                return _note;
+            }
+
             private set =>_note=value;
         }
 
@@ -102,6 +120,8 @@ namespace StickyNotes.ViewModels {
             private set => _tag = value;
         }
         
+
+
         /// <summary>
         /// 当前标签组的标签
         /// </summary>
@@ -316,6 +336,23 @@ namespace StickyNotes.ViewModels {
                     }
                     SelectNote = theNote;
                 }));
+
+        private RelayCommand<Note> _changeNoteFavoriteCommand;
+
+        public RelayCommand<Note> ChangeNoteFavoriteCommand =>
+            _changeNoteFavoriteCommand ?? (_changeNoteFavoriteCommand = new RelayCommand<Note>(
+                note =>
+                {
+
+
+                    var theNote = GetNoteById(note.Id);
+                    if (theNote == null) return;
+
+                    theNote.Favorite =!theNote.Favorite;
+                    //TODO 换位置.
+                    UpdateNoteListByFavorite();
+
+                }));
         //-----------------------继承---------------------------//
         public event PropertyChangedEventHandler PropertyChanged;
         [NotifyPropertyChangedInvocator]
@@ -342,6 +379,26 @@ namespace StickyNotes.ViewModels {
             UpdateTagListCommand.Execute(null);
             //相当于更新选择的Tag的列表,因为Note的列表可能是修改了Tag.
             SetSelectTagCommand.Execute(SelectTag);
+        }
+        private void UpdateNoteListByFavorite()
+        {
+            _favoriteCount = Note.Count(p => p.Favorite == true);
+            var favoriteNotes = Note.Where(p=>p.Favorite==true).ToList();
+
+            var commonNotes = Note.Where(p => p.Favorite == false).ToList();
+
+            Note.Clear();
+            foreach (var note in favoriteNotes)
+            {
+                Note.Add(note);
+            }
+
+            foreach (var note in commonNotes)
+            {
+                Note.Add(note);
+            }
+
+
         }
     }
 }

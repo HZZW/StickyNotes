@@ -78,7 +78,17 @@ namespace StickyNotes.Models
         /// </summary>
         [NonSerialized] private int _setSelectedDefault;
 
-
+        private bool _favorite;
+        public bool Favorite
+        {
+            get => _favorite;
+            set
+            {
+                if (Equals(_favorite, value)) return;
+                    _favorite = value;
+                OnPropertyChanged(nameof(Favorite));
+            }
+        }
 
         /// <summary>
         /// 内容
