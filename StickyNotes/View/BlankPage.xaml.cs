@@ -202,5 +202,10 @@ namespace StickyNotes {
             var theNoteViewModel = (DataContext as NoteViewModel);
             theNoteViewModel?.AddNoteCommand.Execute(null);
         }
+
+        private void FlyButton_click(object sender, RoutedEventArgs e)
+        {
+            throw new NotImplementedException();
+        }
     }
 }

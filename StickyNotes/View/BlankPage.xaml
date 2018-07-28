@@ -296,6 +296,13 @@
                     Background="#FFEFEFB0" 
                     Orientation="Horizontal" 
                     Grid.Row="0">
+            <Button Height="32"
+                    Width="48"
+                    Content="&#xE718;"
+                    Background="#FFFFFFD0"
+                    Click="FlyButton_click"
+                    FontWeight="Normal"
+                    FontFamily="Segoe MDL2 Assets" />
             <Button Height="32" 
                     Width="48"  
                     Content="&#xE109;" 
