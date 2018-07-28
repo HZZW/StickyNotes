@@ -18,17 +18,27 @@
         <DataTemplate x:Key="DataTemplate">
             <Grid>
                 <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="8" />
                     <ColumnDefinition Width="48" />
                     <ColumnDefinition Width="*" />
                 </Grid.ColumnDefinitions>
 
-                <Rectangle Fill="Black" 
-                           Visibility="{Binding Selected, Mode=TwoWay}" 
-                           HorizontalAlignment="Left" 
-                           Width="5" 
+                <Rectangle Fill="Black"
+                           Visibility="{Binding Selected, Mode=TwoWay}"
+                           HorizontalAlignment="Left"
+                           Width="5"
                            Height="48" />
-
-                <FontIcon Grid.Column="0"
+                <AppBarButton Name="FavoriteButton" 
+                              Grid.Column="0"
+                              Foreground="Black"
+                              Margin="-2,0,0,0"
+                              Icon="OutlineStar"
+                              Width="8"
+                              Height="8"
+                              VerticalAlignment="Center"
+                              HorizontalAlignment="Left" 
+                              Click="FavoriteButton_OnClick"/>
+                <FontIcon Grid.Column="1"
                           FontFamily="{Binding FontFamily}" 
                           Glyph="{Binding Icon}" 
                           Foreground="Black" 
@@ -37,7 +47,7 @@
                           Width="48" 
                           Height="48" />
 
-                <TextBlock Grid.Column="1" 
+                <TextBlock Grid.Column="2" 
                            Text="{Binding Label}" 
                            Foreground="Black" 
                            Margin="12,0,0,0" 
@@ -100,7 +110,7 @@
                    IsPaneOpen="False">
 
             <SplitView.Pane>
-                <Grid Name="rootGrid"
+                <Grid Name="RootGrid"
                     Background="#FFFFFFD0">
                     <Grid.RowDefinitions>
                         <!--空出Button的高度-->

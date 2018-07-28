@@ -54,12 +54,12 @@ namespace StickyNotes.UserControls {
 
         private void RootGrid_PointerPressed(object sender, PointerRoutedEventArgs e)
         {
-            _beforePoint = e.GetCurrentPoint(rootGrid);
+            _beforePoint = e.GetCurrentPoint(RootGrid);
         }
 
         private void RootGrid_PointerReleased(object sender, PointerRoutedEventArgs e)
         {
-            _afterPoint = e.GetCurrentPoint(rootGrid);
+            _afterPoint = e.GetCurrentPoint(RootGrid);
             if ((_beforePoint.PointerId == _afterPoint.PointerId && 
                  (_afterPoint.Position.X - _beforePoint.Position.X > 10)) 
                 )
@@ -72,6 +72,22 @@ namespace StickyNotes.UserControls {
             {
                 RootSplitView.IsPaneOpen = false;
             }
+        }
+
+        private void FavoriteButton_OnClick(object sender, RoutedEventArgs e)
+        {
+            bool state = true;
+            //if (state)
+            //{
+
+            //    FavoriteButton.Icon = "SolidStar";
+            //    state = false;
+            //}
+            //else
+            //{
+            //    FavoriteButton.Icon = "OutlineStar";
+            //    state = true;
+            //}
         }
     }
 }
