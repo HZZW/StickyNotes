@@ -32,6 +32,7 @@ using GalaSoft.MvvmLight.Command;
 using StickyNotes.Annotations;
 using StickyNotes.Models;
 using StickyNotes.Services;
+using StickyNotes.TextTools;
 
 namespace StickyNotes.ViewModels {
     public class NoteViewModel : INotifyPropertyChanged
@@ -56,7 +57,6 @@ namespace StickyNotes.ViewModels {
         /// </summary>
         private int _favoriteCount=0;
         
-
         /// <summary>
         /// 当前选择的Note
         /// </summary>
@@ -86,12 +86,12 @@ namespace StickyNotes.ViewModels {
                 OnPropertyChanged(nameof(SelectNote));
             }
         }
+
         /// <summary>
         /// note服务
         /// </summary>
         private readonly INoteService _noteService;
-
-
+        
         /// <summary>
         /// Note实例
         /// </summary>
@@ -120,8 +120,6 @@ namespace StickyNotes.ViewModels {
             private set => _tag = value;
         }
         
-
-
         /// <summary>
         /// 当前标签组的标签
         /// </summary>
@@ -306,13 +304,13 @@ namespace StickyNotes.ViewModels {
                     Tag.Add(theTag);
                 }
             }));
-
         /// <summary>
         /// 设置Note的Tag
         /// </summary>
-        
         private RelayCommand<KeyValuePair<Note, string>> _setNoteTagCommand;
-
+        /// <summary>
+        /// 设置Note的Tag
+        /// </summary>
         public RelayCommand<KeyValuePair<Note, string>> SetNoteTagCommand =>
             _setNoteTagCommand ?? (_setNoteTagCommand = new RelayCommand<KeyValuePair<Note, string>>(
                 noteString =>
@@ -320,9 +318,13 @@ namespace StickyNotes.ViewModels {
                     var theNote = GetNoteById(noteString.Key.Id);
                     theNote.Tag = noteString.Value;
                 }));
-
+        /// <summary>
+        /// 设置选择的Note
+        /// </summary>
         private RelayCommand<Note> _setSelectNoteCommand;
-
+        /// <summary>
+        /// 设置选择的Note
+        /// </summary>
         public RelayCommand<Note> SetSelectNoteCommand =>
             _setSelectNoteCommand ?? (_setSelectNoteCommand = new RelayCommand<Note>(
                 note =>
@@ -336,9 +338,13 @@ namespace StickyNotes.ViewModels {
                     }
                     SelectNote = theNote;
                 }));
-
+        /// <summary>
+        /// 改变Note的Favorite
+        /// </summary>
         private RelayCommand<Note> _changeNoteFavoriteCommand;
-
+        /// <summary>
+        /// 改变Note的Favorite
+        /// </summary>
         public RelayCommand<Note> ChangeNoteFavoriteCommand =>
             _changeNoteFavoriteCommand ?? (_changeNoteFavoriteCommand = new RelayCommand<Note>(
                 note =>
@@ -352,6 +358,24 @@ namespace StickyNotes.ViewModels {
                     //TODO 换位置.
                     UpdateNoteListByFavorite();
 
+                }));
+        /// <summary>
+        /// 重构selectedNote
+        /// </summary>
+        private RelayCommand _rebuildSelectedContentCommand;
+        /// <summary>
+        /// 重构selectedNote
+        /// </summary>
+        public RelayCommand RebuildSelectedContentCommand =>
+            _rebuildSelectedContentCommand ?? (_rebuildSelectedContentCommand = new RelayCommand(
+                () =>
+                {
+                    if (SelectNote == null) return;
+
+                    var theContent = SelectNote.Content;
+                    var newContent = TextContentRebuild.ReBuildText(theContent);
+
+                    SelectNote.Content = newContent;
                 }));
         //-----------------------继承---------------------------//
         public event PropertyChangedEventHandler PropertyChanged;
@@ -400,5 +424,7 @@ namespace StickyNotes.ViewModels {
 
 
         }
+
+
     }
 }

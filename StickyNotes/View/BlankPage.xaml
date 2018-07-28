@@ -310,6 +310,13 @@
                     FontWeight="Normal" 
                     Click="DeleteButton_Click"
                     FontFamily="Segoe MDL2 Assets" />
+            <Button Height="32" 
+                    Width="48" 
+                    Content="&#xE170;" 
+                    Background="#FFFFFFD0" 
+                    FontWeight="Normal" 
+                    Command="{Binding RebuildSelectedContentCommand}"
+                    FontFamily="Segoe MDL2 Assets" />
             <!--<Button Height="32" 
                     Width="48" 
                     Content="&#xE105;" 
@@ -322,6 +329,7 @@
                     Background="#FFFFFFD0"
                     FontWeight="Normal"
                     FontFamily="Segoe MDL2 Assets" >
+            
                 <Button.Flyout>
                     <MenuFlyout>
                         <MenuFlyoutItem Text="Toast" Click="ToastButton_Click">
