@@ -1,7 +1,9 @@
 ﻿using System;
+using Windows.UI.Input;
 using Windows.UI.Xaml;
 using StickyNotes.ViewModels;
 using Windows.UI.Xaml.Controls;
+using Windows.UI.Xaml.Input;
 using StickyNotes.Models;
 
 //https://go.microsoft.com/fwlink/?LinkId=234236 上介绍了“用户控件”项模板
@@ -46,6 +48,32 @@ namespace StickyNotes.UserControls {
 
             dialog.PrimaryButtonClick += (_s, _e) => { };
             dialog.ShowAsync();
+        }
+
+        private PointerPoint _beforePoint;
+        private PointerPoint _afterPoint;
+
+        private void RootGrid_PointerPressed(object sender, PointerRoutedEventArgs e)
+        {
+            _beforePoint = e.GetCurrentPoint(rootGrid);
+        }
+
+        private void RootGrid_PointerReleased(object sender, PointerRoutedEventArgs e)
+        {
+            _afterPoint = e.GetCurrentPoint(rootGrid);
+            if ((_beforePoint.PointerId == _afterPoint.PointerId && 
+                 (_afterPoint.Position.X - _beforePoint.Position.X > 10))
+                )
+            {
+                RootSplitView.IsPaneOpen = true;
+            }
+            else if (_beforePoint.PointerId == _afterPoint.PointerId &&
+                     ((_afterPoint.Position.X - _beforePoint.Position.X < -10) || 
+                      (_afterPoint.Position.Y - _beforePoint.Position.Y < -10))
+                         && RootSplitView.IsPaneOpen)
+            {
+                RootSplitView.IsPaneOpen = false;
+            }
         }
     }
 }
