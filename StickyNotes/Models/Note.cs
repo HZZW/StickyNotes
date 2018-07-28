@@ -77,8 +77,20 @@ namespace StickyNotes.Models
         /// 用于Selected的初始化标记
         /// </summary>
         [NonSerialized] private int _setSelectedDefault;
-
-
+        /// <summary>
+        /// 收藏
+        /// </summary>
+        private bool _favorite;
+        public bool Favorite
+        {
+            get => _favorite;
+            set
+            {
+                if (Equals(_favorite, value)) return;
+                    _favorite = value;
+                OnPropertyChanged(nameof(Favorite));
+            }
+        }
 
         /// <summary>
         /// 内容

@@ -709,6 +709,101 @@ namespace StickyNotes.UnitTest.ViewModels
             
         }
 
+        [TestMethod]
+        public void TestChangeNoteFavoriteCommand()
+        {
+            //设置数据
+            var noteViewModel = new NoteViewModel();
+            //var lastNotificationCount = Notification.Instance.Show().Count;
+            var noteSaveList = new List<Note>
+            {
+                new Note()
+                {
+                    Author = "LwwWG",
+                    Content = "it is a easy content one",
+                    Label = "title one",
+                    NotificationDateTime = new DateTime(2018, 9, 10),
+                    Tag = "第一组"
+                },
+                new Note()
+                {
+                    Author = "LwwWG",
+                    Content = "it is a easy content two",
+                    Label = "title two",
+                    NotificationDateTime = new DateTime(2018, 10, 10),
+                    Tag = "第二组"
+                },
+                new Note()
+                {
+                    Author = "LwwWG",
+                    Content = "it is a easy content three",
+                    Label = "title three",
+                    NotificationDateTime = new DateTime(2018, 11, 10),
+                    Tag = "第三组"
+                },
+                new Note()
+                {
+                    Author = "LwwWG",
+                    Content = "it is a easy content four",
+                    Label = "title four",
+                    NotificationDateTime = new DateTime(2018, 12, 10),
+                    Tag = "第四组"
+                },
+                new Note()
+                {
+                    Author = "LwwWG",
+                    Content = "it is a easy content five",
+                    Label = "title five",
+                    NotificationDateTime = new DateTime(2018, 12, 10),
+                    Tag = "第五组"
+                },
+                new Note()
+                {
+                    Author = "LwwWG",
+                    Content = "it is a easy content six ",
+                    Label = "title six",
+                    NotificationDateTime = new DateTime(2018, 12, 10),
+                    Tag = "第六组"
+                }
+            };
+            noteViewModel.PushCommand.Execute(noteSaveList);
+
+            //改变Favorite
+            noteViewModel.ChangeNoteFavoriteCommand.Execute(noteSaveList[0]);
+            //判断
+            Assert.AreEqual(noteViewModel.Note[0].Favorite, true);
+            Assert.AreEqual(noteSaveList[0].Favorite,true);
+
+
+            //改变Favorite
+            noteViewModel.ChangeNoteFavoriteCommand.Execute(noteSaveList[1]);
+            //判断
+            Assert.AreEqual(noteViewModel.Note[0].Favorite, true);
+            Assert.AreEqual(noteSaveList[0].Favorite, true);
+            Assert.AreEqual(noteViewModel.Note[1].Favorite, true);
+            Assert.AreEqual(noteSaveList[1].Favorite, true);
+
+
+            //改变Favorite
+            noteViewModel.ChangeNoteFavoriteCommand.Execute(noteSaveList[0]);
+            //判断
+            Assert.AreEqual(false, noteViewModel.Note[1].Equals(noteSaveList[1]));
+            Assert.AreEqual(true,noteViewModel.Note[0].Equals(noteSaveList[1]));
+            Assert.AreEqual(false, noteViewModel.Note[0].Equals(noteSaveList[0]));
+            Assert.AreEqual(noteViewModel.Note[0].Favorite, true);
+            Assert.AreEqual(noteViewModel.Note[1].Favorite, false);
+            Assert.AreEqual(noteSaveList[0].Favorite, false);
+            Assert.AreEqual(noteSaveList[1].Favorite, true);
+
+            //改变Favorite
+            noteViewModel.ChangeNoteFavoriteCommand.Execute(noteSaveList[1]);
+            //判断
+            Assert.AreEqual(noteViewModel.Note[0].Favorite, false);
+            Assert.AreEqual(noteSaveList[0].Favorite, false);
+            Assert.AreEqual(noteViewModel.Note[0].Favorite, false);
+            Assert.AreEqual(noteSaveList[0].Favorite, false);
+        }
+
         /// <summary>
         /// 执行多次命令
         /// </summary>
