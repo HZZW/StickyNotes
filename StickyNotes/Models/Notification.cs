@@ -11,10 +11,6 @@ namespace StickyNotes.Models
     {
         private static Notification _instance;
 
-        public Notification()
-        {
-        }
-
         /// <summary>
         /// Gets the instance.
         /// </summary>
