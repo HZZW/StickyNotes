@@ -91,7 +91,7 @@ namespace StickyNotes.UserControls {
         //}
 
 
-        //todo next  note  is  null;
+        //todo next  content isn't finish;
         private void FavoriteButton_OnClick(object sender, RoutedEventArgs e)
         {
             
