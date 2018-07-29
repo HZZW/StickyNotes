@@ -103,5 +103,10 @@ namespace StickyNotes.UserControls {
 
             noteViewModel.ChangeNoteFavoriteCommand.Execute(note);
         }
+
+        private void NavMenuPrimaryListView_OnItemClick(object sender, ItemClickEventArgs e)
+        {
+            RootSplitView.IsPaneOpen = false;
+        }
     }
 }
