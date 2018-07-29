@@ -356,7 +356,7 @@
                                 <FontIcon Glyph="&#xE713;"/>
                             </MenuFlyoutItem.Icon>
                         </MenuFlyoutItem>
-                        <MenuFlyoutItem Text="AllToast" Click="AllToastButton_Click">
+                        <MenuFlyoutItem Text="全部提醒" Click="AllToastButton_Click">
                             <MenuFlyoutItem.Icon>
                                 <FontIcon Glyph="&#xE71D;"/>
                             </MenuFlyoutItem.Icon>

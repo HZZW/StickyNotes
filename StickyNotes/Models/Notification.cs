@@ -2,6 +2,7 @@
 using Microsoft.Toolkit.Uwp.Notifications;
 using System;
 using System.Collections.Generic;
+using System.Collections.ObjectModel;
 using System.Linq;
 using Windows.UI.Notifications;
 using Windows.UI.Popups;
@@ -128,11 +129,11 @@ namespace StickyNotes.Models
             notifier.RemoveFromSchedule(toRemove);
         }
 
-        public List<string> Show()
+        public ObservableCollection<string> Show()
         {
             var notifier = ToastNotificationManager.CreateToastNotifier();
             var scheduled = notifier.GetScheduledToastNotifications();
-            List<string> resList = new List<string>();
+            ObservableCollection<string> resList = new ObservableCollection<string>();
             foreach (var s in scheduled)
             {
                 resList.Add(s.Id);
