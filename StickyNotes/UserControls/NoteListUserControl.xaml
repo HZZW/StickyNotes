@@ -12,12 +12,113 @@
 
     d:DesignWidth="400"
     >
+    
     <UserControl.DataContext>
         <Binding Source="{StaticResource NoteViewModel}" />
     </UserControl.DataContext>
 
     <UserControl.Resources>
-        
+        <userControls:BOOLtoICON x:Key="BooLtoIcon"/>
+        <Style TargetType="Button"
+               x:Name="ButtonStyle">
+            <Setter Property="Background"
+                    Value="{ThemeResource ButtonRevealBackground}" />
+            <Setter Property="Foreground"
+                    Value="{ThemeResource ButtonForeground}" />
+            <Setter Property="BorderBrush"
+                    Value="{ThemeResource ButtonRevealBorderBrush}" />
+            <Setter Property="BorderThickness"
+                    Value="{ThemeResource ButtonRevealBorderThemeThickness}" />
+            <Setter Property="Margin"
+                    Value="3" />
+            <Setter Property="HorizontalAlignment"
+                    Value="Left" />
+            <Setter Property="VerticalAlignment"
+                    Value="Center" />
+            <Setter Property="FontFamily"
+                    Value="{ThemeResource ContentControlThemeFontFamily}" />
+            <Setter Property="FontWeight"
+                    Value="Normal" />
+            <Setter Property="FontSize"
+                    Value="20" />
+            <Setter Property="UseSystemFocusVisuals"
+                    Value="True" />
+            <Setter Property="FocusVisualMargin"
+                    Value="-3" />
+            <Setter Property="Height"
+                    Value="50" />
+            <Setter Property="Width"
+                    Value="50" />
+            <Setter Property="Template">
+                <Setter.Value>
+                    <ControlTemplate TargetType="Button">
+                        <Grid x:Name="RootGrid">
+                            <VisualStateManager.VisualStateGroups>
+                                <VisualStateGroup x:Name="CommonStates">
+                                    <VisualState x:Name="Normal">
+                                        <Storyboard>
+                                            <PointerUpThemeAnimation Storyboard.TargetName="RootGrid" />
+                                        </Storyboard>
+                                    </VisualState>
+                                    <VisualState x:Name="PointerOver">
+                                        <VisualState.Setters>
+                                            <Setter Target="RootGrid.(RevealBrush.State)"
+                                                    Value="PointerOver" />
+                                            <Setter Target="BackgroundElement.Fill"
+                                                    Value="{ThemeResource ButtonRevealBackgroundPointerOver}" />
+                                            <Setter Target="BackgroundElement.Stroke"
+                                                    Value="{ThemeResource ButtonRevealBorderBrushPointerOver}" />
+                                            <Setter Target="ContentPresenter.Foreground"
+                                                    Value="green" />
+                                        </VisualState.Setters>
+                                        <Storyboard>
+                                            <PointerUpThemeAnimation Storyboard.TargetName="RootGrid" />
+                                        </Storyboard>
+                                    </VisualState>
+                                    <VisualState x:Name="Pressed">
+                                        <VisualState.Setters>
+                                            <Setter Target="RootGrid.(RevealBrush.State)"
+                                                    Value="Pressed" />
+                                            <Setter Target="BackgroundElement.Fill"
+                                                    Value="{ThemeResource ButtonRevealBackgroundPressed}" />
+                                            <Setter Target="BackgroundElement.Stroke"
+                                                    Value="{ThemeResource ButtonRevealBorderBrushPressed}" />
+                                            <Setter Target="ContentPresenter.Foreground"
+                                                    Value="black" />
+                                        </VisualState.Setters>
+                                        <Storyboard>
+                                            <PointerDownThemeAnimation Storyboard.TargetName="RootGrid" />
+                                        </Storyboard>
+                                    </VisualState>
+                                    <VisualState x:Name="Disabled">
+                                        <VisualState.Setters>
+                                            <Setter Target="BackgroundElement.Fill"
+                                                    Value="{ThemeResource ButtonRevealBackgroundDisabled}" />
+                                            <Setter Target="BackgroundElement.Stroke"
+                                                    Value="{ThemeResource ButtonRevealBorderBrushDisabled}" />
+                                            <Setter Target="ContentPresenter.Foreground"
+                                                    Value="{ThemeResource ButtonForegroundDisabled}" />
+                                        </VisualState.Setters>
+                                    </VisualState>
+                                </VisualStateGroup>
+                            </VisualStateManager.VisualStateGroups>
+                            <Ellipse Stroke="{TemplateBinding BorderBrush}"
+                                     StrokeThickness="2"
+                                     Fill="Transparent"
+                                     x:Name="BackgroundElement" />
+                            <ContentPresenter x:Name="ContentPresenter"
+                                              Content="{TemplateBinding Content}"
+                                              ContentTransitions="{TemplateBinding ContentTransitions}"
+                                              ContentTemplate="{TemplateBinding ContentTemplate}"
+                                              Padding="{TemplateBinding Padding}"
+                                              HorizontalContentAlignment="{TemplateBinding HorizontalContentAlignment}"
+                                              VerticalContentAlignment="{TemplateBinding VerticalContentAlignment}"
+                                              AutomationProperties.AccessibilityView="Raw" />
+                        </Grid>
+                    </ControlTemplate>
+                </Setter.Value>
+            </Setter>
+        </Style>
         <!--菜单的数据模板-->
         <DataTemplate x:Key="DataTemplate" 
                       x:DataType="local:Note">
@@ -36,20 +137,20 @@
                            HorizontalAlignment="Left"
                            Width="5"
                            Height="48" />
-                <userControls:FavoriteButtonUserControl Grid.Column="2"></userControls:FavoriteButtonUserControl>
-                <!--<Button Name="FavoriteButton"
-                        Tag="{Binding}"
+                <!--<userControls:FavoriteButtonUserControl Grid.Column="2"></userControls:FavoriteButtonUserControl>-->
+                <Button Name="FavoriteButton"
+                        Tag="{Binding Favorite}"
                         Grid.Column="2"
                         FontFamily="{ThemeResource SymbolThemeFontFamily}"
                         Foreground="Black"
                         Margin="-2,0,0,0"
-                        Content="&#xE734;"
+                        Content="{Binding Favorite,Converter={StaticResource BooLtoIcon}}"
                         Width="34"
                         Height="34"
                         HorizontalAlignment="Right"
                         Style="{StaticResource ButtonStyle}"
                         Click="FavoriteButton_OnClick">
-                </Button>-->
+                </Button>
                 <FontIcon Grid.Column="0"
                           FontFamily="{Binding FontFamily}" 
                           Glyph="{Binding Icon}" 

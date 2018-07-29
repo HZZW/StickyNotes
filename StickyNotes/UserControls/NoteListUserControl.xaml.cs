@@ -1,7 +1,9 @@
-﻿using Windows.UI.Input;
+﻿using System;
+using Windows.UI.Input;
 using Windows.UI.Xaml;
 using StickyNotes.ViewModels;
 using Windows.UI.Xaml.Controls;
+using Windows.UI.Xaml.Data;
 using Windows.UI.Xaml.Input;
 using StickyNotes.Models;
 
@@ -77,19 +79,31 @@ namespace StickyNotes.UserControls {
         //todo next  content isn't finish;
         private void FavoriteButton_OnClick(object sender, RoutedEventArgs e)
         {
-            
 
-            var note = ((sender as Button)?.Tag as Note);
-           
-            var noteViewModel = App.Current.Resources["NoteViewModel"] as NoteViewModel;
-            if (note == null || noteViewModel == null) return;
+                var note = ((sender as Button)?.DataContext as Note);
 
-            noteViewModel.ChangeNoteFavoriteCommand.Execute(note);
+                var noteViewModel = App.Current.Resources["NoteViewModel"] as NoteViewModel;
+                if (note == null || noteViewModel == null) return;
+
+                noteViewModel.ChangeNoteFavoriteCommand.Execute(note);
         }
 
         private void NavMenuPrimaryListView_OnItemClick(object sender, ItemClickEventArgs e)
         {
             RootSplitView.IsPaneOpen = false;
+        }
+    }
+
+    public class BOOLtoICON : IValueConverter
+    {
+        public object Convert(object value, Type targetType, object parameter, string language)
+        {
+            return !System.Convert.ToBoolean(value) ? "\uE734" : "\uE735";
+        }
+
+        public object ConvertBack(object value, Type targetType, object parameter, string language)
+        {
+            throw new NotImplementedException();
         }
     }
 }
