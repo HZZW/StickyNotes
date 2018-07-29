@@ -90,6 +90,11 @@ namespace StickyNotes {
         //    //System.Diagnostics.Debug.Print("this.ShowCurrentTime {0}", this.ShowCurrentTime);
         //}
 
+        /// <summary>
+        /// 响应式快捷键
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="args"></param>
         private void Dispatcher_AcceleratorKeyActivated(CoreDispatcher sender, AcceleratorKeyEventArgs args)
         {
             if (args.EventType.ToString().Contains("Down"))
@@ -243,6 +248,11 @@ namespace StickyNotes {
             (Application.Current.Resources["NoteViewModel"] as NoteViewModel)?.CancelNotificationCommand.Execute(note);
             var notifyPopup = new NotifyPopup("当前时间提醒已取消");
             notifyPopup.Show();
+        }
+
+        private void AllToastButton_Click(Object sender, RoutedEventArgs e)
+        {
+            Frame.Navigate(typeof(AllToastPage), "");
         }
     }
 }
