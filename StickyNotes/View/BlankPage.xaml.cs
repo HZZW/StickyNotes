@@ -185,6 +185,11 @@ namespace StickyNotes {
             setting.ShowAsync();
         }
 
+        /// <summary>
+        /// 删除选中便签
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
         private void DeleteButton_Click(object sender, RoutedEventArgs e)
         {
             // var parent = this.Parent;
@@ -197,15 +202,34 @@ namespace StickyNotes {
             noteViewModel?.DeleteNoteCommand.Execute(note);
         }
 
+        /// <summary>
+        /// 添加标签
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
         private void AddButton_Click(object sender, RoutedEventArgs e)
         {
             var theNoteViewModel = (DataContext as NoteViewModel);
             theNoteViewModel?.AddNoteCommand.Execute(null);
         }
 
-        private void FlyButton_click(object sender, RoutedEventArgs e)
+        /// <summary>
+        /// 窗口置顶与取消
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
+        private async void FlyButton_click(object sender, RoutedEventArgs e)
         {
-            throw new NotImplementedException();
+            if (ApplicationView.GetForCurrentView().ViewMode.Equals(ApplicationViewMode.Default))
+            {
+                await ApplicationView.GetForCurrentView().TryEnterViewModeAsync(ApplicationViewMode.CompactOverlay);
+                //OverallConfigManger.Instence.WindowMode = ApplicationViewMode.CompactOverlay;
+            }
+            else
+            {
+                await ApplicationView.GetForCurrentView().TryEnterViewModeAsync(ApplicationViewMode.Default);
+               // OverallConfigManger.Instence.WindowMode = ApplicationViewMode.Default;
+            }
         }
     }
 }
