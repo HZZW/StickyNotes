@@ -44,8 +44,6 @@ namespace StickyNotes.ViewModels {
             Note.CollectionChanged += UpdateTagList;
         }
 
-        
-
         public NoteViewModel():this(new LocalNoteService())
         {
             PullCommand.Execute(null);
@@ -145,6 +143,28 @@ namespace StickyNotes.ViewModels {
             get => _noteWithTag??(_noteWithTag=new ObservableCollection<Note>());
             private set => _noteWithTag = value;
         }
+        /// <summary>
+        /// 存在时间通知的Note
+        /// </summary>
+        private ObservableCollection<Note> _notificatioNotes;
+        /// <summary>
+        /// 存在时间通知的Note
+        /// </summary>
+        public ObservableCollection<Note> NotificationNotes
+        {
+            get
+            {
+                if (_notificatioNotes != null) return _notificatioNotes;
+
+                _notificatioNotes = new ObservableCollection<Note>();
+                UpdateNotificationNotes();
+
+                return _notificatioNotes;
+
+            }
+           private set => _notificatioNotes = value;
+        }
+
         //-----------------------命令-------------------------//
         /// <summary>
         /// 推送
@@ -246,6 +266,10 @@ namespace StickyNotes.ViewModels {
                         Notification.Instance.Delete(theNote.Id.ToString());
                     }
                     Notification.Instance.Create(theNote.NotificationDateTime, theNote.Id.ToString(), theNote.Label);
+                    //更新NotificationNotes
+                    if (!NotificationNotes.Contains(theNote))
+                        NotificationNotes.Add(theNote);
+
                 }));
         /// <summary>
         /// 取消Note的提示时间
@@ -263,7 +287,12 @@ namespace StickyNotes.ViewModels {
                 note.NotificationDateTime = DateTime.MinValue;
                 //通知系统取消提醒
                 if(Notification.Instance.Show().Contains(theNote.Id.ToString()))
-                Notification.Instance.Delete(theNote.Id.ToString());
+                {
+                    Notification.Instance.Delete(theNote.Id.ToString());
+                    //更新NotificationNotes
+                    if (NotificationNotes.Contains(theNote))
+                    NotificationNotes.Remove(theNote);
+                }
             }
 
         }));
@@ -429,7 +458,22 @@ namespace StickyNotes.ViewModels {
             }
 
         }
+        /// <summary>
+        /// 更新NotificationNotes
+        /// </summary>
+        private void UpdateNotificationNotes()
+        {
+            NotificationNotes.Clear();
 
+            foreach (var note in Note)
+            {
+                if (Notification.Instance.Show().Contains(note.Id.ToString()))
+                {
+                    NotificationNotes.Add(note);
+                }
+            }
+
+        }
 
     }
 }
