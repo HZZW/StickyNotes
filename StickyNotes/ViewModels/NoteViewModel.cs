@@ -245,7 +245,7 @@ namespace StickyNotes.ViewModels {
                     {
                         Notification.Instance.Delete(theNote.Id.ToString());
                     }
-                    Notification.Instance.Create(theNote.NotificationDateTime, theNote.Id.ToString());
+                    Notification.Instance.Create(theNote.NotificationDateTime, theNote.Id.ToString(), theNote.Label);
                 }));
         /// <summary>
         /// 取消Note的提示时间

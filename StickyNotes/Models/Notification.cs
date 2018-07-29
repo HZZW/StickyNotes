@@ -4,6 +4,8 @@ using System;
 using System.Collections.Generic;
 using System.Linq;
 using Windows.UI.Notifications;
+using Windows.UI.Popups;
+using Windows.UI.Xaml.Controls;
 
 namespace StickyNotes.Models
 {
@@ -16,10 +18,9 @@ namespace StickyNotes.Models
         /// </summary>
         public static Notification Instance => _instance ?? (_instance = new Notification());
 
-        public void Create(DateTime alarmTime, string id)
+        public void Create(DateTime alarmTime, string id, string content)
         {
             string title = "notes";
-            string content = "提醒时间到";
 
             // Construct the visuals of the toast
             ToastVisual visual = new ToastVisual()
@@ -39,6 +40,8 @@ namespace StickyNotes.Models
                         }
                     }
                 }
+
+                
             };
             // In a real app, these would be initialized with actual data
             //int conversationId = 384928;
@@ -50,6 +53,7 @@ namespace StickyNotes.Models
                      new ToastSelectionBox("snoozeTime")
                     {
                         DefaultSelectionBoxItemId = "15",
+                        Title = "推迟时间为",
                         Items =
                         {
                             new ToastSelectionBoxItem("5", "5 分钟"),
@@ -65,10 +69,12 @@ namespace StickyNotes.Models
                 {
                     new ToastButtonSnooze()
                     {
-                        SelectionBoxId = "snoozeTime"
+                        SelectionBoxId = "snoozeTime",
                     },
 
                     new ToastButtonDismiss()
+
+
                 }
 
             };
@@ -97,6 +103,17 @@ namespace StickyNotes.Models
 
                 // And add it to the schedule
                 ToastNotificationManager.CreateToastNotifier().AddToSchedule(scheduledNotif);
+            }
+            else
+            {
+                ContentDialog s = new ContentDialog()
+                {
+                    Title = "操作非法",
+                    Content = "设定时间已过期",
+                    PrimaryButtonText = "确定",
+                    FullSizeDesired = false
+                };
+                s.ShowAsync();
             }
         }
 
