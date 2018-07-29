@@ -17,7 +17,10 @@
             <RowDefinition Height="*" />
             <RowDefinition Height="Auto" />
         </Grid.RowDefinitions>
-        <StackPanel Grid.Row="0" Width="19999" x:Name="DragArea" Background="#FFFFFFD0"/>
+        <StackPanel Grid.Row="0" 
+                    Width="19999" 
+                    x:Name="DragArea" 
+                    Background="#FFFFFFD0"/>
 
         <ListView Grid.Row="1"
                       IsItemClickEnabled="True"
@@ -36,7 +39,7 @@
                         <TextBlock Text="{Binding NotificationDateTime}"
                                    Style="{StaticResource BaseTextBlockStyle}"
                                    Margin="0,0,0,0" />
-</StackPanel>
+                        </StackPanel>
                 </DataTemplate>
             </ListView.ItemTemplate>
         </ListView>

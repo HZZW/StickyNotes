@@ -135,7 +135,7 @@
                 <Rectangle Fill="Black"
                            Visibility="{Binding Selected, Mode=TwoWay}"
                            HorizontalAlignment="Left"
-                           Width="5"
+                           Width="3"
                            Height="48" />
                 <!--<userControls:FavoriteButtonUserControl Grid.Column="2"></userControls:FavoriteButtonUserControl>-->
                 <Button Name="FavoriteButton"
