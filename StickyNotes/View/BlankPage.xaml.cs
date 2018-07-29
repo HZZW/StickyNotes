@@ -225,12 +225,21 @@ namespace StickyNotes {
             {
                 await ApplicationView.GetForCurrentView().TryEnterViewModeAsync(ApplicationViewMode.CompactOverlay);
                 OverallConfigManger.Instence.WindowMode = ApplicationViewMode.CompactOverlay;
+                FlyButton.Content = "\uE77A";
             }
             else
             {
                 await ApplicationView.GetForCurrentView().TryEnterViewModeAsync(ApplicationViewMode.Default);
                OverallConfigManger.Instence.WindowMode = ApplicationViewMode.Default;
+                FlyButton.Content = "\uE718";
             }
+        }
+
+        private void ToastCancelButton_Click(object sender, RoutedEventArgs e)
+        {
+            var noteViewModel = Application.Current.Resources["NoteViewModel"] as NoteViewModel;
+            var note = (DataContext as NoteViewModel)?.SelectNote;
+            (Application.Current.Resources["NoteViewModel"] as NoteViewModel)?.CancelNotificationCommand.Execute(note);
         }
     }
 }
