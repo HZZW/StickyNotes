@@ -359,7 +359,9 @@
                     </MenuFlyout>
                 </Button.Flyout>
             </Button>
-            <StackPanel Width="19999" x:Name="DragArea" Background="#FFFFFFD0"/>
+            <StackPanel Width="19999"
+                        x:Name="DragArea"
+                        Background="#FFFFFFD0" />
         </StackPanel>
         <userControls:NewNoteBoxUserControl Grid.Row="1"></userControls:NewNoteBoxUserControl>
 
