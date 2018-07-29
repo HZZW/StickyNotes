@@ -296,7 +296,8 @@
                     Background="#FFEFEFB0" 
                     Orientation="Horizontal" 
                     Grid.Row="0">
-            <Button Height="32"
+            <Button Name="FlyButton"
+                    Height="32"
                     Width="48"
                     Content="&#xE718;"
                     Background="#FFFFFFD0"
@@ -339,12 +340,18 @@
             
                 <Button.Flyout>
                     <MenuFlyout>
-                        <MenuFlyoutItem Text="Toast" Click="ToastButton_Click">
+                        <MenuFlyoutItem Text="提醒" Click="ToastButton_Click">
                             <MenuFlyoutItem.Icon>
                                 <FontIcon Glyph="&#xED5A;"/>
                             </MenuFlyoutItem.Icon>
                         </MenuFlyoutItem>
-                        <MenuFlyoutItem Text="Setting" Click="SettingButton_Click">
+                        <MenuFlyoutItem Text="提醒取消"
+                                        Click="ToastCancelButton_Click">
+                            <MenuFlyoutItem.Icon>
+                                <FontIcon Glyph="&#xE916;" />
+                            </MenuFlyoutItem.Icon>
+                        </MenuFlyoutItem>
+                        <MenuFlyoutItem Text="设置" Click="SettingButton_Click">
                             <MenuFlyoutItem.Icon>
                                 <FontIcon Glyph="&#xE713;"/>
                             </MenuFlyoutItem.Icon>
@@ -352,7 +359,9 @@
                     </MenuFlyout>
                 </Button.Flyout>
             </Button>
-            <StackPanel Width="19999" x:Name="DragArea" Background="#FFFFFFD0"/>
+            <StackPanel Width="19999"
+                        x:Name="DragArea"
+                        Background="#FFFFFFD0" />
         </StackPanel>
         <userControls:NewNoteBoxUserControl Grid.Row="1"></userControls:NewNoteBoxUserControl>
 

@@ -31,6 +31,8 @@ using StickyNotes.View;
 using Windows.UI;
 using Windows.UI.Core;
 using Windows.UI.Xaml.Controls;
+using StickyNotes.Models;
+using StickyNotes.UserControls;
 
 
 // https://go.microsoft.com/fwlink/?LinkId=402352&clcid=0x804 上介绍了“空白页”项模板
@@ -52,7 +54,7 @@ namespace StickyNotes {
             //  ApplicationView.PreferredLaunchViewSize = new Size(400, 400);
             //  ApplicationView.PreferredLaunchWindowingMode = ApplicationViewWindowingMode.PreferredLaunchViewSize;
             //   ApplicationView.PreferredLaunchWindowingMode = ApplicationViewWindowingMode.Auto;
-            ApplicationView.GetForCurrentView().SetPreferredMinSize(new Size(380, 200));
+            ApplicationView.GetForCurrentView().SetPreferredMinSize(new Size(430, 360));
             var windows = CoreApplication.GetCurrentView().TitleBar;
 
             //windows.ExtendViewIntoTitleBar = false;
@@ -185,6 +187,11 @@ namespace StickyNotes {
             setting.ShowAsync();
         }
 
+        /// <summary>
+        /// 删除选中便签
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
         private void DeleteButton_Click(object sender, RoutedEventArgs e)
         {
             // var parent = this.Parent;
@@ -197,15 +204,45 @@ namespace StickyNotes {
             noteViewModel?.DeleteNoteCommand.Execute(note);
         }
 
+        /// <summary>
+        /// 添加标签
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
         private void AddButton_Click(object sender, RoutedEventArgs e)
         {
             var theNoteViewModel = (DataContext as NoteViewModel);
             theNoteViewModel?.AddNoteCommand.Execute(null);
         }
 
-        private void FlyButton_click(object sender, RoutedEventArgs e)
+        /// <summary>
+        /// 窗口置顶与取消
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
+        private async void FlyButton_click(object sender, RoutedEventArgs e)
         {
-            throw new NotImplementedException();
+            if (ApplicationView.GetForCurrentView().ViewMode.Equals(ApplicationViewMode.Default))
+            {
+                await ApplicationView.GetForCurrentView().TryEnterViewModeAsync(ApplicationViewMode.CompactOverlay);
+                OverallConfigManger.Instence.WindowMode = ApplicationViewMode.CompactOverlay;
+                FlyButton.Content = "\uE77A";
+            }
+            else
+            {
+                await ApplicationView.GetForCurrentView().TryEnterViewModeAsync(ApplicationViewMode.Default);
+               OverallConfigManger.Instence.WindowMode = ApplicationViewMode.Default;
+                FlyButton.Content = "\uE718";
+            }
+        }
+
+        private void ToastCancelButton_Click(object sender, RoutedEventArgs e)
+        {
+            var noteViewModel = Application.Current.Resources["NoteViewModel"] as NoteViewModel;
+            var note = (DataContext as NoteViewModel)?.SelectNote;
+            (Application.Current.Resources["NoteViewModel"] as NoteViewModel)?.CancelNotificationCommand.Execute(note);
+            var notifyPopup = new NotifyPopup("当前时间提醒已取消");
+            notifyPopup.Show();
         }
     }
 }

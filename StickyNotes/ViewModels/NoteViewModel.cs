@@ -245,7 +245,7 @@ namespace StickyNotes.ViewModels {
                     {
                         Notification.Instance.Delete(theNote.Id.ToString());
                     }
-                    Notification.Instance.Create(theNote.NotificationDateTime, theNote.Id.ToString());
+                    Notification.Instance.Create(theNote.NotificationDateTime, theNote.Id.ToString(), theNote.Label);
                 }));
         /// <summary>
         /// 取消Note的提示时间
@@ -416,6 +416,8 @@ namespace StickyNotes.ViewModels {
             var commonNotes = Note.Where(p => p.Favorite == false).ToList();
 
             Note.Clear();
+
+        
             foreach (var note in favoriteNotes)
             {
                 Note.Add(note);
@@ -425,7 +427,6 @@ namespace StickyNotes.ViewModels {
             {
                 Note.Add(note);
             }
-
 
         }
 

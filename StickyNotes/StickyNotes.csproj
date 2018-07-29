@@ -102,6 +102,7 @@
     <Compile Include="App.xaml.cs">
       <DependentUpon>App.xaml</DependentUpon>
     </Compile>
+    <Compile Include="Models\OverallConfigManger.cs" />
     <Compile Include="TextTools\TextContentRebuild.cs" />
     <Compile Include="TextTools\Table.cs" />
     <Compile Include="UserControls\NewNoteBoxUserControl.xaml.cs">
@@ -109,6 +110,9 @@
     </Compile>
     <Compile Include="UserControls\NoteListUserControl.xaml.cs">
       <DependentUpon>NoteListUserControl.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="UserControls\NotifyPopup.xaml.cs">
+      <DependentUpon>NotifyPopup.xaml</DependentUpon>
     </Compile>
     <Compile Include="View\BlankPage.xaml.cs">
       <DependentUpon>BlankPage.xaml</DependentUpon>
@@ -208,6 +212,10 @@
       <Generator>MSBuild:Compile</Generator>
     </Page>
     <Page Include="UserControls\NoteListUserControl.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="UserControls\NotifyPopup.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
