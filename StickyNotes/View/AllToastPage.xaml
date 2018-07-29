@@ -21,16 +21,22 @@
 
         <ListView Grid.Row="1"
                       IsItemClickEnabled="True"
-                      ItemsSource="{Binding Note}">
+                      ItemsSource="{Binding NotificationNotes}">
             <ListView.ItemTemplate>
                 <DataTemplate>
                     <StackPanel Orientation="Horizontal">
-                        <TextBlock Text="{Binding Id}"
-                                       Style="{StaticResource BaseTextBlockStyle}" />
+                        <TextBlock Text="便签"
+                                   Style="{StaticResource BaseTextBlockStyle}" />
                         <TextBlock Text="{Binding Label}"
-                                       Style="{StaticResource BaseTextBlockStyle}"
-                                       Margin="8,0,0,0" />
-                    </StackPanel>
+                                   Style="{StaticResource BaseTextBlockStyle}"
+                                   Margin="8,0,0,0" />
+                        <TextBlock Text="提醒时间为："
+                                   Style="{StaticResource BaseTextBlockStyle}"
+                                   Margin="8,0,0,0" />
+                        <TextBlock Text="{Binding NotificationDateTime}"
+                                   Style="{StaticResource BaseTextBlockStyle}"
+                                   Margin="0,0,0,0" />
+</StackPanel>
                 </DataTemplate>
             </ListView.ItemTemplate>
         </ListView>
