@@ -103,6 +103,7 @@
       <DependentUpon>App.xaml</DependentUpon>
     </Compile>
     <Compile Include="TextTools\TextContentRebuild.cs" />
+    <Compile Include="TextTools\Table.cs" />
     <Compile Include="UserControls\NewNoteBoxUserControl.xaml.cs">
       <DependentUpon>NewNoteBoxUserControl.xaml</DependentUpon>
     </Compile>

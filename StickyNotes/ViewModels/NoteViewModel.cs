@@ -359,6 +359,8 @@ namespace StickyNotes.ViewModels {
                     UpdateNoteListByFavorite();
 
                 }));
+
+        //------------------------文本重建命令------------------//
         /// <summary>
         /// 重构selectedNote
         /// </summary>
@@ -377,6 +379,8 @@ namespace StickyNotes.ViewModels {
 
                     SelectNote.Content = newContent;
                 }));
+
+
         //-----------------------继承---------------------------//
         public event PropertyChangedEventHandler PropertyChanged;
         [NotifyPropertyChangedInvocator]
