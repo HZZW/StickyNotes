@@ -118,7 +118,7 @@ namespace StickyNotes.Models
             {
                 //TODO LabelLenght默认长度为20
                 if(_labelLenght==0)
-                    LabelLenght=10;
+                    LabelLenght=15;
                 return _labelLenght;
             }
             set

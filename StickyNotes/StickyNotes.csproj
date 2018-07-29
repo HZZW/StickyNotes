@@ -104,6 +104,7 @@
     </Compile>
     <Compile Include="Models\OverallConfigManger.cs" />
     <Compile Include="TextTools\TextContentRebuild.cs" />
+    <Compile Include="TextTools\Table.cs" />
     <Compile Include="UserControls\NewNoteBoxUserControl.xaml.cs">
       <DependentUpon>NewNoteBoxUserControl.xaml</DependentUpon>
     </Compile>

@@ -186,25 +186,35 @@ namespace StickyNotes.UnitTest.ViewModels
             };
             noteViewModel.PushCommand.Execute(noteSaveList);
             //修改
-            noteViewModel.SetNotificationCommand.Execute(new KeyValuePair<Note, DateTime> (noteViewModel.Note[0], new DateTime(2017, 12, 10)));
-            noteViewModel.SetNotificationCommand.Execute(new KeyValuePair<Note, DateTime>(noteViewModel.Note[1], new DateTime(2017, 11, 10)));
-            noteViewModel.SetNotificationCommand.Execute(new KeyValuePair<Note, DateTime>(noteViewModel.Note[2], new DateTime(2017, 10, 10)));
-            noteViewModel.SetNotificationCommand.Execute(new KeyValuePair<Note, DateTime>(noteViewModel.Note[3], new DateTime(2017, 9,  10)));
+            noteViewModel.SetNotificationCommand.Execute(new KeyValuePair<Note, DateTime> (noteViewModel.Note[0], new DateTime(2018, 12, 10)));
+            noteViewModel.SetNotificationCommand.Execute(new KeyValuePair<Note, DateTime>(noteViewModel.Note[1], new DateTime(2018, 11, 10)));
+            noteViewModel.SetNotificationCommand.Execute(new KeyValuePair<Note, DateTime>(noteViewModel.Note[2], new DateTime(2018, 10, 10)));
+            noteViewModel.SetNotificationCommand.Execute(new KeyValuePair<Note, DateTime>(noteViewModel.Note[3], new DateTime(2018, 9,  10)));
             //判断
-            Assert.AreEqual(noteViewModel.Note[0].NotificationDateTime, new DateTime(2017, 12, 10));
-            Assert.AreEqual(noteViewModel.Note[1].NotificationDateTime, new DateTime(2017, 11, 10));
-            Assert.AreEqual(noteViewModel.Note[2].NotificationDateTime, new DateTime(2017, 10, 10));
-            Assert.AreEqual(noteViewModel.Note[3].NotificationDateTime, new DateTime(2017, 9,  10));
+            Assert.AreEqual(noteViewModel.Note[0].NotificationDateTime, new DateTime(2018, 12, 10));
+            Assert.AreEqual(noteViewModel.Note[1].NotificationDateTime, new DateTime(2018, 11, 10));
+            Assert.AreEqual(noteViewModel.Note[2].NotificationDateTime, new DateTime(2018, 10, 10));
+            Assert.AreEqual(noteViewModel.Note[3].NotificationDateTime, new DateTime(2018, 9,  10));
+            Assert.AreEqual(true, noteViewModel.NotificationNotes.Contains(noteViewModel.Note[0]));
+            Assert.AreEqual(true, noteViewModel.NotificationNotes.Contains(noteViewModel.Note[1]));
+            Assert.AreEqual(true, noteViewModel.NotificationNotes.Contains(noteViewModel.Note[2]));
+            Assert.AreEqual(true, noteViewModel.NotificationNotes.Contains(noteViewModel.Note[3]));
             //取消
             noteViewModel.CancelNotificationCommand.Execute(noteViewModel.Note[0]);
             noteViewModel.CancelNotificationCommand.Execute(noteViewModel.Note[1]);
             noteViewModel.CancelNotificationCommand.Execute(noteViewModel.Note[2]);
             noteViewModel.CancelNotificationCommand.Execute(noteViewModel.Note[3]);
+            
             //判断
             Assert.AreEqual(noteViewModel.Note[0].NotificationDateTime,DateTime.MinValue);
             Assert.AreEqual(noteViewModel.Note[1].NotificationDateTime,DateTime.MinValue);
             Assert.AreEqual(noteViewModel.Note[2].NotificationDateTime,DateTime.MinValue);
             Assert.AreEqual(noteViewModel.Note[3].NotificationDateTime,DateTime.MinValue);
+
+            Assert.AreEqual(false, noteViewModel.NotificationNotes.Contains(noteViewModel.Note[0]));
+            Assert.AreEqual(false, noteViewModel.NotificationNotes.Contains(noteViewModel.Note[1]));
+            Assert.AreEqual(false, noteViewModel.NotificationNotes.Contains(noteViewModel.Note[2]));
+            Assert.AreEqual(false, noteViewModel.NotificationNotes.Contains(noteViewModel.Note[3]));
         }
         [TestMethod]
         public void TestSetSelectTagCommand()
@@ -804,6 +814,7 @@ namespace StickyNotes.UnitTest.ViewModels
             Assert.AreEqual(noteSaveList[0].Favorite, false);
         }
 
+        
         /// <summary>
         /// 执行多次命令
         /// </summary>
