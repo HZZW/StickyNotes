@@ -16,7 +16,7 @@ namespace StickyNotes.View {
         }
 
 
-        private void ContentDialog_SecondaryButtonClick(ContentDialog sender, ContentDialogButtonClickEventArgs args)
+        public void ContentDialog_SecondaryButtonClick(ContentDialog sender, ContentDialogButtonClickEventArgs args)
         {
             var note = (Application.Current.Resources["NoteViewModel"] as NoteViewModel)?.SelectNote;
             var data = new DateTime(Data.Date.Year, Data.Date.Month, Data.Date.Day, Time.Time.Hours, Time.Time.Minutes, Time.Time.Seconds);
