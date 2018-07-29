@@ -32,6 +32,7 @@ using Windows.UI;
 using Windows.UI.Core;
 using Windows.UI.Xaml.Controls;
 using StickyNotes.Models;
+using StickyNotes.UserControls;
 
 
 // https://go.microsoft.com/fwlink/?LinkId=402352&clcid=0x804 上介绍了“空白页”项模板
@@ -225,12 +226,23 @@ namespace StickyNotes {
             {
                 await ApplicationView.GetForCurrentView().TryEnterViewModeAsync(ApplicationViewMode.CompactOverlay);
                 OverallConfigManger.Instence.WindowMode = ApplicationViewMode.CompactOverlay;
+                FlyButton.Content = "\uE77A";
             }
             else
             {
                 await ApplicationView.GetForCurrentView().TryEnterViewModeAsync(ApplicationViewMode.Default);
                OverallConfigManger.Instence.WindowMode = ApplicationViewMode.Default;
+                FlyButton.Content = "\uE718";
             }
+        }
+
+        private void ToastCancelButton_Click(object sender, RoutedEventArgs e)
+        {
+            var noteViewModel = Application.Current.Resources["NoteViewModel"] as NoteViewModel;
+            var note = (DataContext as NoteViewModel)?.SelectNote;
+            (Application.Current.Resources["NoteViewModel"] as NoteViewModel)?.CancelNotificationCommand.Execute(note);
+            var notifyPopup = new NotifyPopup("当前时间提醒已取消");
+            notifyPopup.Show();
         }
     }
 }

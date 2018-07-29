@@ -3,11 +3,13 @@
     xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
     xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
     xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
-    xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+    xmlns:userControls="using:StickyNotes.UserControls"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
              xmlns:media="using:Microsoft.Toolkit.Uwp.UI.Media"
              mc:Ignorable="d"
     xmlns:local="using:StickyNotes.Models"
-    d:DesignHeight="300"
+             d:DesignHeight="300"
+
     d:DesignWidth="400"
     >
     <UserControl.DataContext>
@@ -15,6 +17,7 @@
     </UserControl.DataContext>
 
     <UserControl.Resources>
+        
         <!--菜单的数据模板-->
         <DataTemplate x:Key="DataTemplate" 
                       x:DataType="local:Note">
@@ -33,7 +36,8 @@
                            HorizontalAlignment="Left"
                            Width="5"
                            Height="48" />
-                <Button Name="FavoriteButton" 
+                <userControls:FavoriteButtonUserControl Grid.Column="2"></userControls:FavoriteButtonUserControl>
+                <!--<Button Name="FavoriteButton"
                         Tag="{Binding}"
                         Grid.Column="2"
                         FontFamily="{ThemeResource SymbolThemeFontFamily}"
@@ -42,9 +46,10 @@
                         Content="&#xE734;"
                         Width="34"
                         Height="34"
-                        VerticalAlignment="Center"
                         HorizontalAlignment="Right"
-                        Click="FavoriteButton_OnClick"/>
+                        Style="{StaticResource ButtonStyle}"
+                        Click="FavoriteButton_OnClick">
+                </Button>-->
                 <FontIcon Grid.Column="0"
                           FontFamily="{Binding FontFamily}" 
                           Glyph="{Binding Icon}" 
@@ -158,3 +163,4 @@
 
     </Grid>
 </UserControl>
+

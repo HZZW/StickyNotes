@@ -104,11 +104,17 @@
     </Compile>
     <Compile Include="Models\OverallConfigManger.cs" />
     <Compile Include="TextTools\TextContentRebuild.cs" />
+    <Compile Include="UserControls\FavoriteButtonUserControl.xaml.cs">
+      <DependentUpon>FavoriteButtonUserControl.xaml</DependentUpon>
+    </Compile>
     <Compile Include="UserControls\NewNoteBoxUserControl.xaml.cs">
       <DependentUpon>NewNoteBoxUserControl.xaml</DependentUpon>
     </Compile>
     <Compile Include="UserControls\NoteListUserControl.xaml.cs">
       <DependentUpon>NoteListUserControl.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="UserControls\NotifyPopup.xaml.cs">
+      <DependentUpon>NotifyPopup.xaml</DependentUpon>
     </Compile>
     <Compile Include="View\BlankPage.xaml.cs">
       <DependentUpon>BlankPage.xaml</DependentUpon>
@@ -203,11 +209,19 @@
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </ApplicationDefinition>
+    <Page Include="UserControls\FavoriteButtonUserControl.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
     <Page Include="UserControls\NewNoteBoxUserControl.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
     <Page Include="UserControls\NoteListUserControl.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="UserControls\NotifyPopup.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>

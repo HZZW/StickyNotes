@@ -74,23 +74,6 @@ namespace StickyNotes.UserControls {
             }
         }
 
-        //private void FavoriteButton_OnClick(object sender, RoutedEventArgs e)
-        //{
-        //    bool state = true;
-        //    //if (state)
-        //    //{
-
-        //    //    FavoriteButton.Icon = "SolidStar";
-        //    //    state = false;
-        //    //}
-        //    //else
-        //    //{
-        //    //    FavoriteButton.Icon = "OutlineStar";
-        //    //    state = true;
-        //    //}
-        //}
-
-
         //todo next  content isn't finish;
         private void FavoriteButton_OnClick(object sender, RoutedEventArgs e)
         {
