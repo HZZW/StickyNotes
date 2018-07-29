@@ -412,6 +412,8 @@ namespace StickyNotes.ViewModels {
             var commonNotes = Note.Where(p => p.Favorite == false).ToList();
 
             Note.Clear();
+
+        
             foreach (var note in favoriteNotes)
             {
                 Note.Add(note);
@@ -421,7 +423,6 @@ namespace StickyNotes.ViewModels {
             {
                 Note.Add(note);
             }
-
 
         }
 

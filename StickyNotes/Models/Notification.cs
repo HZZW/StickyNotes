@@ -14,13 +14,13 @@ namespace StickyNotes.Models
         private static Notification _instance;
 
         /// <summary>
-        /// Gets the instance.
+        /// 创建单例
         /// </summary>
         public static Notification Instance => _instance ?? (_instance = new Notification());
 
         public void Create(DateTime alarmTime, string id, string content)
         {
-            string title = "notes";
+            string title = "浅易便签";
 
             // Construct the visuals of the toast
             ToastVisual visual = new ToastVisual()
