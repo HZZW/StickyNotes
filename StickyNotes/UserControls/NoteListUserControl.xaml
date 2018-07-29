@@ -6,6 +6,7 @@
     xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
              xmlns:media="using:Microsoft.Toolkit.Uwp.UI.Media"
              mc:Ignorable="d"
+    xmlns:local="using:StickyNotes.Models"
     d:DesignHeight="300"
     d:DesignWidth="400"
     >
@@ -15,19 +16,35 @@
 
     <UserControl.Resources>
         <!--菜单的数据模板-->
-        <DataTemplate x:Key="DataTemplate">
+        <DataTemplate x:Key="DataTemplate" 
+                      x:DataType="local:Note">
             <Grid>
                 <Grid.ColumnDefinitions>
                     <ColumnDefinition Width="48" />
+                    <ColumnDefinition Width="4"/>
+                    <ColumnDefinition Width="32" />
+                    <ColumnDefinition Width="4" />
                     <ColumnDefinition Width="*" />
+                    <ColumnDefinition Width="4" />
                 </Grid.ColumnDefinitions>
 
-                <Rectangle Fill="Black" 
-                           Visibility="{Binding Selected, Mode=TwoWay}" 
-                           HorizontalAlignment="Left" 
-                           Width="5" 
+                <Rectangle Fill="Black"
+                           Visibility="{Binding Selected, Mode=TwoWay}"
+                           HorizontalAlignment="Left"
+                           Width="5"
                            Height="48" />
-
+                <Button Name="FavoriteButton" 
+                        Tag="{Binding}"
+                        Grid.Column="2"
+                        FontFamily="{ThemeResource SymbolThemeFontFamily}"
+                        Foreground="Black"
+                        Margin="-2,0,0,0"
+                        Content="&#xE734;"
+                        Width="34"
+                        Height="34"
+                        VerticalAlignment="Center"
+                        HorizontalAlignment="Right"
+                        Click="FavoriteButton_OnClick"/>
                 <FontIcon Grid.Column="0"
                           FontFamily="{Binding FontFamily}" 
                           Glyph="{Binding Icon}" 
@@ -37,11 +54,12 @@
                           Width="48" 
                           Height="48" />
 
-                <TextBlock Grid.Column="1" 
+                <TextBlock Grid.Column="4" 
                            Text="{Binding Label}" 
                            Foreground="Black" 
-                           Margin="12,0,0,0" 
-                           VerticalAlignment="Center" />
+                           Margin="0,0,8,0" 
+                           VerticalAlignment="Center" 
+                           Padding="2"/>
             </Grid>
         </DataTemplate>
         <!--ListViewItem样式定制-->
@@ -100,7 +118,8 @@
                    IsPaneOpen="False">
 
             <SplitView.Pane>
-                <Grid Background="#FFFFFFD0">
+                <Grid Name="RootGrid"
+                    Background="#FFFFFFD0">
                     <Grid.RowDefinitions>
                         <!--空出Button的高度-->
                         <RowDefinition Height="32" />
@@ -115,8 +134,11 @@
                               IsItemClickEnabled="True" 
                               ItemsSource="{Binding Note}"
                               ItemTemplate="{StaticResource DataTemplate}" 
-                              ItemContainerStyle="{StaticResource NavMenuItemContainerStyle}"/>
-                    <Button Name="ExButton"
+                              ItemContainerStyle="{StaticResource NavMenuItemContainerStyle}"
+                              ItemClick="NavMenuPrimaryListView_OnItemClick"/>
+                    <!--Name="ExButton"-->
+                    <Button 
+                            Grid.Row="0"
                             HorizontalAlignment="Left" 
                             Margin="164,-10,0,0" 
                             VerticalAlignment="Top" 

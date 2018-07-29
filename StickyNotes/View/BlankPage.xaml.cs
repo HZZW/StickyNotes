@@ -20,6 +20,7 @@ LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
 OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
 SOFTWARE. */
 
+using System;
 using Windows.Foundation;
 using Windows.UI.Xaml;
 using Windows.ApplicationModel.Core;
@@ -30,6 +31,7 @@ using StickyNotes.View;
 using Windows.UI;
 using Windows.UI.Core;
 using Windows.UI.Xaml.Controls;
+using StickyNotes.Models;
 
 
 // https://go.microsoft.com/fwlink/?LinkId=402352&clcid=0x804 上介绍了“空白页”项模板
@@ -51,7 +53,7 @@ namespace StickyNotes {
             //  ApplicationView.PreferredLaunchViewSize = new Size(400, 400);
             //  ApplicationView.PreferredLaunchWindowingMode = ApplicationViewWindowingMode.PreferredLaunchViewSize;
             //   ApplicationView.PreferredLaunchWindowingMode = ApplicationViewWindowingMode.Auto;
-            ApplicationView.GetForCurrentView().SetPreferredMinSize(new Size(380, 200));
+            ApplicationView.GetForCurrentView().SetPreferredMinSize(new Size(430, 360));
             var windows = CoreApplication.GetCurrentView().TitleBar;
 
             //windows.ExtendViewIntoTitleBar = false;
@@ -118,7 +120,11 @@ namespace StickyNotes {
                                 FullSizeDesired = false,
                             };
 
-                            dialog.PrimaryButtonClick += (_s, _e) => { };
+                            dialog.PrimaryButtonClick += (s, e) =>
+                            {
+                                if (s == null) throw new ArgumentNullException(nameof(s));
+                                if (e == null) throw new ArgumentNullException(nameof(e));
+                            };
                             dialog.ShowAsync();
                             break;
 
@@ -180,6 +186,11 @@ namespace StickyNotes {
             setting.ShowAsync();
         }
 
+        /// <summary>
+        /// 删除选中便签
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
         private void DeleteButton_Click(object sender, RoutedEventArgs e)
         {
             // var parent = this.Parent;
@@ -192,10 +203,34 @@ namespace StickyNotes {
             noteViewModel?.DeleteNoteCommand.Execute(note);
         }
 
+        /// <summary>
+        /// 添加标签
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
         private void AddButton_Click(object sender, RoutedEventArgs e)
         {
             var theNoteViewModel = (DataContext as NoteViewModel);
             theNoteViewModel?.AddNoteCommand.Execute(null);
+        }
+
+        /// <summary>
+        /// 窗口置顶与取消
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
+        private async void FlyButton_click(object sender, RoutedEventArgs e)
+        {
+            if (ApplicationView.GetForCurrentView().ViewMode.Equals(ApplicationViewMode.Default))
+            {
+                await ApplicationView.GetForCurrentView().TryEnterViewModeAsync(ApplicationViewMode.CompactOverlay);
+                OverallConfigManger.Instence.WindowMode = ApplicationViewMode.CompactOverlay;
+            }
+            else
+            {
+                await ApplicationView.GetForCurrentView().TryEnterViewModeAsync(ApplicationViewMode.Default);
+               OverallConfigManger.Instence.WindowMode = ApplicationViewMode.Default;
+            }
         }
     }
 }
