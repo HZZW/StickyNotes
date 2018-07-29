@@ -96,7 +96,7 @@ namespace StickyNotes.UserControls {
         {
             
 
-            var note = ((sender as Button).Tag as Note);
+            var note = ((sender as Button)?.Tag as Note);
            
             var noteViewModel = App.Current.Resources["NoteViewModel"] as NoteViewModel;
             if (note == null || noteViewModel == null) return;

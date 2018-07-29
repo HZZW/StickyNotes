@@ -31,6 +31,7 @@ using StickyNotes.View;
 using Windows.UI;
 using Windows.UI.Core;
 using Windows.UI.Xaml.Controls;
+using StickyNotes.Models;
 
 
 // https://go.microsoft.com/fwlink/?LinkId=402352&clcid=0x804 上介绍了“空白页”项模板
@@ -223,12 +224,12 @@ namespace StickyNotes {
             if (ApplicationView.GetForCurrentView().ViewMode.Equals(ApplicationViewMode.Default))
             {
                 await ApplicationView.GetForCurrentView().TryEnterViewModeAsync(ApplicationViewMode.CompactOverlay);
-                //OverallConfigManger.Instence.WindowMode = ApplicationViewMode.CompactOverlay;
+                OverallConfigManger.Instence.WindowMode = ApplicationViewMode.CompactOverlay;
             }
             else
             {
                 await ApplicationView.GetForCurrentView().TryEnterViewModeAsync(ApplicationViewMode.Default);
-               // OverallConfigManger.Instence.WindowMode = ApplicationViewMode.Default;
+               OverallConfigManger.Instence.WindowMode = ApplicationViewMode.Default;
             }
         }
     }

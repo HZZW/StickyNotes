@@ -16,7 +16,8 @@
 
     <UserControl.Resources>
         <!--菜单的数据模板-->
-        <DataTemplate x:Key="DataTemplate" x:DataType="local:Note">
+        <DataTemplate x:Key="DataTemplate" 
+                      x:DataType="local:Note">
             <Grid>
                 <Grid.ColumnDefinitions>
                     <ColumnDefinition Width="48" />
