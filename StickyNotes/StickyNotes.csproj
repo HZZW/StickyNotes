@@ -115,6 +115,9 @@
     <Compile Include="UserControls\NotifyPopup.xaml.cs">
       <DependentUpon>NotifyPopup.xaml</DependentUpon>
     </Compile>
+    <Compile Include="View\AboutContentDialog.xaml.cs">
+      <DependentUpon>AboutContentDialog.xaml</DependentUpon>
+    </Compile>
     <Compile Include="View\AllToastPage.xaml.cs">
       <DependentUpon>AllToastPage.xaml</DependentUpon>
     </Compile>
@@ -221,6 +224,10 @@
       <Generator>MSBuild:Compile</Generator>
     </Page>
     <Page Include="UserControls\NotifyPopup.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="View\AboutContentDialog.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
