@@ -264,5 +264,10 @@ namespace StickyNotes {
         {
             Frame.Navigate(typeof(AllToastPage), "");
         }
+
+        private void TileButton_Click(object sender, RoutedEventArgs e)
+        {
+            Tile.FirstCreatTie("title","content",1);
+        }
     }
 }
