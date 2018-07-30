@@ -43,8 +43,10 @@ namespace StickyNotes.ViewModels {
             _noteService = noteService;
             Note = new ObservableCollection<Note>();
             Note.CollectionChanged += UpdateTagList;
-            
+            Note.CollectionChanged += UpdateAllTile;
         }
+
+        
 
         public NoteViewModel():this(new LocalNoteService())
         {
@@ -400,10 +402,11 @@ namespace StickyNotes.ViewModels {
         /// 添加Note的磁贴
         /// </summary>
         public RelayCommand<Note> UpdateTileCommand =>
-            _updateTileCommand ?? (_updateTileCommand = new RelayCommand<Note>(
-                note =>
+            _updateTileCommand ?? (_updateTileCommand = new RelayCommand<Note>(async note =>
                 {
-                    //todo 添加磁铁
+                    var theNote = GetNoteById(note.Id);
+                    if (theNote == null) return;
+                    await Tile.UpdataTileContent(theNote.Label, theNote.Content, theNote.Id);
                 }));
         /// <summary>
         /// 删除Note的磁贴
@@ -413,11 +416,27 @@ namespace StickyNotes.ViewModels {
         /// 删除Note的磁贴
         /// </summary>
         public RelayCommand<Note> DeleteTileCommand =>
-            _deleteTileCommand ?? (_deleteTileCommand = new RelayCommand<Note>(
-                note =>
+            _deleteTileCommand ?? (_deleteTileCommand = new RelayCommand<Note>(async note =>
                 {
-                    //todo 添加磁铁
+                    var theNote = GetNoteById(note.Id);
+                    if (theNote == null) return;
+                    await Tile.UpdataTileContent(theNote.Label, theNote.Content, theNote.Id);
                 }));
+        /// <summary>
+        /// 添加Note的磁贴
+        /// </summary>
+        private RelayCommand<Note> _addTileCommand;
+        /// <summary>
+        /// 添加Note的磁贴
+        /// </summary>
+        public RelayCommand<Note> AddTileCommand =>
+            _addTileCommand ?? (_addTileCommand = new RelayCommand<Note>(note =>
+            {
+                var theNote = GetNoteById(note.Id);
+                if (theNote == null) return;
+
+                Tile.FirstCreatTie(theNote.Label, theNote.Content, theNote.Id);
+            }));
 
         //------------------------文本重建命令------------------//
         /// <summary>
@@ -625,8 +644,19 @@ namespace StickyNotes.ViewModels {
             }
 
         }
+        /// <summary>
+        /// 更新所有Tile的磁贴内容
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
+        private void UpdateAllTile(object sender, NotifyCollectionChangedEventArgs e)
+        {
+            foreach (var note in Note)
+            {
+                UpdateTileCommand.Execute(Note);
+            }
+        }
 
-        
         /// <summary>
         /// 给textBox插入template,并移动光标
         /// </summary>
