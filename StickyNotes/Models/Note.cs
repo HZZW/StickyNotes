@@ -234,7 +234,9 @@ namespace StickyNotes.Models
             Label = Regex.Match(Content, labelPattern).Groups["labelContent"].Value;
 
         }
-
+        /// <summary>
+        /// 更新磁贴
+        /// </summary>
         private void  UpdateTile()
         {
             Tile.UpdataTileContent(Label,Content,Id);
