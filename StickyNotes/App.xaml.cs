@@ -23,6 +23,7 @@ SOFTWARE. */
 using System;
 using Windows.ApplicationModel;
 using Windows.ApplicationModel.Activation;
+using Windows.UI.Notifications;
 using Windows.UI.Xaml;
 using Windows.UI.Xaml.Controls;
 using Windows.UI.Xaml.Navigation;
@@ -42,6 +43,7 @@ namespace StickyNotes {
         {
             InitializeComponent();
             Suspending += OnSuspending;
+            TileUpdateManager.CreateTileUpdaterForApplication().EnableNotificationQueue(true);
         }
 
         /// <summary>

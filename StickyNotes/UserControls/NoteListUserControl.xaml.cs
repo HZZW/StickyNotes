@@ -94,7 +94,7 @@ namespace StickyNotes.UserControls {
         }
     }
 
-    public class BOOLtoICON : IValueConverter
+    public class BooLtoIcon : IValueConverter
     {
         public object Convert(object value, Type targetType, object parameter, string language)
         {

@@ -18,7 +18,7 @@
     </UserControl.DataContext>
 
     <UserControl.Resources>
-        <userControls:BOOLtoICON x:Key="BooLtoIcon"/>
+        <userControls:BooLtoIcon x:Key="BooLtoIcon"/>
         <Style TargetType="Button"
                x:Name="ButtonStyle">
             <Setter Property="Background"
