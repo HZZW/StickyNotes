@@ -2,6 +2,7 @@
 using System.ComponentModel;
 using System.Runtime.CompilerServices;
 using System.Text.RegularExpressions;
+using System.Threading.Tasks;
 using Windows.UI.Xaml;
 using StickyNotes.Annotations;
 
@@ -107,6 +108,7 @@ namespace StickyNotes.Models
                 }
                 _content = value;
                 UpdateLabel();
+                UpdateTile();
                 OnPropertyChanged(nameof(Content));
             }
         }
@@ -231,6 +233,11 @@ namespace StickyNotes.Models
             string labelPattern = @"^\s*?\[\s*Label\s*:\d*\s*\](?<labelContent>.*?)[\r\n]";
             Label = Regex.Match(Content, labelPattern).Groups["labelContent"].Value;
 
+        }
+
+        private void  UpdateTile()
+        {
+            Tile.UpdataTileContent(Label,Content,Id);
         }
     }
 }
