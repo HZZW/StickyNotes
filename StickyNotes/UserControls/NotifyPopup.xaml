@@ -2,29 +2,37 @@
     x:Class="StickyNotes.UserControls.NotifyPopup"
     xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
     xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
-    xmlns:local="using:StickyNotes.UserControls"
     xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
     xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
     mc:Ignorable="d"
     Background="{ThemeResource ApplicationPageBackgroundThemeBrush}">
 <UserControl.Resources>
-        <Storyboard x:Name="sbOut" >
-            <DoubleAnimationUsingKeyFrames Storyboard.TargetName="mainGrid"
+        <Storyboard x:Name="SbOut" >
+            <DoubleAnimationUsingKeyFrames Storyboard.TargetName="MainGrid"
                                 Storyboard.TargetProperty="Opacity"
                                 BeginTime="0:0:0">
-                <SplineDoubleKeyFrame  KeyTime="00:00:00.00" Value="1"/>
-                <SplineDoubleKeyFrame  KeyTime="00:00:00.400" Value="0.0"/>
+                <SplineDoubleKeyFrame  KeyTime="00:00:00.00" 
+                                       Value="1"/>
+                <SplineDoubleKeyFrame  KeyTime="00:00:00.400" 
+                                       Value="0.0"/>
             </DoubleAnimationUsingKeyFrames>
         </Storyboard>
     </UserControl.Resources>
 
-    <Grid x:Name="mainGrid" >
+    <Grid x:Name="MainGrid" >
         <Grid.RowDefinitions>
             <RowDefinition Height="*" />
             <RowDefinition Height="*" />
         </Grid.RowDefinitions>
-        <Border Grid.Row="1" Background="#aa000000" HorizontalAlignment="Center" VerticalAlignment="Top" Margin="8" Padding="4">
-            <TextBlock x:Name="tbNotify" TextWrapping="Wrap" Foreground="DeepSkyBlue"/>
+        <Border Grid.Row="1" 
+                Background="#aa000000" 
+                HorizontalAlignment="Center" 
+                VerticalAlignment="Top" 
+                Margin="8" 
+                Padding="4">
+            <TextBlock x:Name="TbNotify" 
+                       TextWrapping="Wrap" 
+                       Foreground="DeepSkyBlue"/>
         </Border>
     </Grid>
 </UserControl>

@@ -241,15 +241,25 @@ namespace StickyNotes {
             }
         }
 
+        /// <summary>
+        /// 取消时间提醒的popup
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
         private void ToastCancelButton_Click(object sender, RoutedEventArgs e)
         {
-            var noteViewModel = Application.Current.Resources["NoteViewModel"] as NoteViewModel;
+            //var noteViewModel = Application.Current.Resources["NoteViewModel"] as NoteViewModel;
             var note = (DataContext as NoteViewModel)?.SelectNote;
             (Application.Current.Resources["NoteViewModel"] as NoteViewModel)?.CancelNotificationCommand.Execute(note);
             var notifyPopup = new NotifyPopup("当前时间提醒已取消");
             notifyPopup.Show();
         }
 
+        /// <summary>
+        /// 所有时间提醒的汇总显示
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
         private void AllToastButton_Click(Object sender, RoutedEventArgs e)
         {
             Frame.Navigate(typeof(AllToastPage), "");
