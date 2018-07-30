@@ -653,7 +653,7 @@ namespace StickyNotes.ViewModels {
         {
             foreach (var note in Note)
             {
-                UpdateTileCommand.Execute(Note);
+                UpdateTileCommand.Execute(note);
             }
         }
 
