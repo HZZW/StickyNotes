@@ -192,16 +192,16 @@ namespace StickyNotes.Models
             string tileId = id.ToString();
             var tempList = await SecondaryTile.FindAllAsync();
             var tilelist = tempList.ToList();
-
+            var updater = TileUpdateManager.CreateTileUpdaterForSecondaryTile(tileId);
+            var scheduled = updater.GetScheduledTileNotifications();
             if (SecondaryTile.Exists(tileId)) //如果存在
             {
                 for (int i = 0; i < tilelist.Count; i++)
                 {
                     if (tilelist[i].TileId == tileId)//找到磁贴
                     {
-                        var updater = TileUpdateManager.CreateTileUpdaterForSecondaryTile(tileId);
-                        var scheduled = updater.GetScheduledTileNotifications();
-                        for (int j = 0, len = scheduled.Count; j < len; j++)    //删除旧通知
+                        
+                        for (int j = 0; j < scheduled.Count; j++)    //删除旧通知
                         {
                             if (scheduled[j].Tag == tileId)
                             {
@@ -209,25 +209,25 @@ namespace StickyNotes.Models
                             }
                             break;
                         }
+                        break;
                     }
                 }
             }
 
-            //发送新的通知
+            //将新的通知添加到通知队列
             TileContent updataContent = Tile.GenerateTileContent(title, content);
-            var update = TileUpdateManager.CreateTileUpdaterForSecondaryTile(tileId);
             var currentTime = DateTime.Now.AddSeconds(3); //3秒后更新
             var tileNotification =
-                new Windows.UI.Notifications.ScheduledTileNotification(updataContent.GetXml(),
+                new ScheduledTileNotification(updataContent.GetXml(),
                         new DateTimeOffset(currentTime)) //产生更新并将此更新的ID设为与磁贴一致
                 {
                     Tag = tileId
                 };
-            update.AddToSchedule(tileNotification);
+            updater.AddToSchedule(tileNotification);
         }
 
         //删除磁贴，在删除便签是调用此函数
-        private async static void DeleteTile(int id)
+       public async static void DeleteTile(int id)
         {
             string tileId = id.ToString();
             var tempList = await SecondaryTile.FindAllAsync();
