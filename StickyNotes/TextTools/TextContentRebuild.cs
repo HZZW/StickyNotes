@@ -158,6 +158,14 @@ namespace StickyNotes.TextTools
         /// <returns></returns>
         public static string ReBuildText(string oldString)
         {
+            switch (oldString)
+            {
+                case null:
+                    return null;
+                case "":
+                    return "";
+            }
+
             Initialize();
 
             var newString = "";
