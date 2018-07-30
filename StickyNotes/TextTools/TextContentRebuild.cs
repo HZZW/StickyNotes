@@ -13,7 +13,7 @@ namespace StickyNotes.TextTools
            
         //用于匹配Date的Pattern
         private const  string DateTagPattern = @"^\s*Date:(?<index>\d*):(?<year>\d{4})[\.|年](?<month>\d{1,2})[\.|月](?<day>\d{1,2})(日)?";
-        private const string DatePattern = @"(?<year>\d{4})[\.|年](?<month>\d{1,2})[\.|月](?<day>\d{1,2})(日)?";
+        private const string DatePattern = @"\s*(?<year>\d{4})\s*[\.|年]\s*(?<month>\d{1,2})\s*[\.|月]\s*(?<day>\d{1,2})\s*(日)?\s*";
         private const string DateTagReplacePatternWithoutIndex = @"%%Date::$2年$3月$4日%%";
         public const string _dateTagTemplate = "%%Date::年月日%%";
         public const int _dateTagTemplateBackspace = 6;
@@ -558,7 +558,7 @@ namespace StickyNotes.TextTools
             var lastDateString = dateString;
             //TODO
             var dateTemplate = Regex.Replace(dateString, DatePattern, DateTagReplacePatternWithoutIndex);
-            //如果未改变,说明不匹配模板
+            //如果未改变,说明不匹配模板,则使用空模板
             return dateTemplate == lastDateString ? _dateTagTemplate : dateTemplate;
         }
 
@@ -570,7 +570,7 @@ namespace StickyNotes.TextTools
             var lastEventString = eventString;
 
             var eventTemplate = Regex.Replace(eventString, EventPattern, EventTagReplacePatternWithoutIndex);
-            //如果未改变,说明不匹配模板
+            //如果未改变,说明不匹配模板,则使用空模板
             if (lastEventString == eventTemplate) return _eventTagTemplate;
             // BUG 一些情况下Replace得到的结果有多余的_eventTagTemplate,所以这里做了这一步
             eventTemplate = eventTemplate.Substring(0, eventString.Length + _eventTagTemplate.Length);
@@ -584,7 +584,7 @@ namespace StickyNotes.TextTools
             var lastLabelString = labelString;
 
             var labelTemplate = Regex.Replace(labelString, LabelPattern, LabelTagReplacePatternWithoutIndex);
-            //如果未改变,说明不匹配模板
+            //如果未改变,说明不匹配模板,则使用空模板
             if (lastLabelString == labelTemplate) return _labeltTagTemplate;
             // BUG 一些情况下Replace得到的结果有多余的_labeltTagTemplate,所以这里做了这一步
             labelTemplate = labelTemplate.Substring(0, labelString.Length + _labeltTagTemplate.Length);
@@ -598,7 +598,7 @@ namespace StickyNotes.TextTools
             var lastTableString = tableString;
 
             var tableTemplate = Regex.Replace(tableString, TablePattern, TableTagReplacePatternWithoutIndex);
-            //如果未改变,说明不匹配模板,返回空内容的模板
+            //如果未改变,说明不匹配模板,则使用空模板
             if (lastTableString == tableTemplate) return _tabletTagTemplate;
             // BUG 一些情况下Replace得到的结果有多余的_tabletTagTemplate,所以这里做了这一步
             tableTemplate = tableTemplate.Substring(0, tableString.Length + _tabletTagTemplate.Length);
