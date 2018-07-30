@@ -125,8 +125,8 @@
             <Grid>
                 <Grid.ColumnDefinitions>
                     <ColumnDefinition Width="48" />
-                    <ColumnDefinition Width="4"/>
-                    <ColumnDefinition Width="32" />
+                    <ColumnDefinition Width="2"/>
+                    <ColumnDefinition Width="88" />
                     <ColumnDefinition Width="4" />
                     <ColumnDefinition Width="*" />
                     <ColumnDefinition Width="4" />
@@ -140,7 +140,7 @@
                 <!--<userControls:FavoriteButtonUserControl Grid.Column="2"></userControls:FavoriteButtonUserControl>-->
                 <Button Name="FavoriteButton"
                         Tag="{Binding Favorite}"
-                        Grid.Column="2"
+                        Grid.Column="4"
                         FontFamily="{ThemeResource SymbolThemeFontFamily}"
                         Foreground="Black"
                         Margin="-6,0,0,0"
@@ -160,7 +160,7 @@
                           Width="48" 
                           Height="48" />
 
-                <TextBlock Grid.Column="4" 
+                <TextBlock Grid.Column="2" 
                            Text="{Binding Label}" 
                            Foreground="Black" 
                            Margin="0,0,8,0" 
