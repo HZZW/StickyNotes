@@ -208,7 +208,9 @@ namespace StickyNotes {
 
             var noteViewModel = Application.Current.Resources["NoteViewModel"] as NoteViewModel;
             var note = (DataContext as NoteViewModel)?.SelectNote;
+            (Application.Current.Resources["NoteViewModel"] as NoteViewModel)?.DeleteTileCommand.Execute(note);
             noteViewModel?.DeleteNoteCommand.Execute(note);
+          
         }
 
         /// <summary>
@@ -269,9 +271,15 @@ namespace StickyNotes {
 
         private async void TileButton_Click(object sender, RoutedEventArgs e)
         {
-            ////Tile.FirstCreatTie("title","content",2);
-            //await Tile.UpdataTileContent("好啊哈哈哈哈哈航昂昂哈航啊哈哈哈", "啦啦啦啦啦啦梁梁梁梁梁梁梁梁梁梁梁梁梁梁梁梁梁梁梁梁梁梁", 2);
-            //// Tile.DeleteTile(2);
+            var note = (DataContext as NoteViewModel)?.SelectNote;
+            (Application.Current.Resources["NoteViewModel"] as NoteViewModel)?.AddTileCommand.Execute(note);
+          
+        }
+
+        private void TileDeleteButton_Click(object sender, RoutedEventArgs e)
+        {
+            var note = (DataContext as NoteViewModel)?.SelectNote;
+            (Application.Current.Resources["NoteViewModel"] as NoteViewModel)?.DeleteTileCommand.Execute(note);
         }
     }
 }

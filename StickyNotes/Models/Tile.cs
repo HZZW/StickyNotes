@@ -6,6 +6,7 @@ using System.Threading.Tasks;
 using Windows.UI.Notifications;
 using Windows.UI.StartScreen;
 using Microsoft.Toolkit.Uwp.Notifications;
+using StickyNotes.UserControls;
 
 namespace StickyNotes.Models
 {
@@ -28,6 +29,8 @@ namespace StickyNotes.Models
                     if (tilelist[i].TileId == tileId)
                     {
                         tile = tilelist[i];
+                        var notifyPopup = new NotifyPopup("该便签已存在磁贴");
+                        notifyPopup.Show();
                         break;
                     }
                 }
@@ -49,6 +52,8 @@ namespace StickyNotes.Models
                 {
                     return;
                 }
+                var notifyPopup = new NotifyPopup("已为该便签添加磁贴");
+                notifyPopup.Show();
             }
 
             //数据绑定过程
@@ -264,9 +269,16 @@ namespace StickyNotes.Models
                     if (tilelist[i].TileId == tileId)
                     {
                         await tilelist[i].RequestDeleteAsync();
+                        var notifyPopup = new NotifyPopup("已删除该磁贴");
+                        notifyPopup.Show();
                         break;
                     }
                 }
+            }
+            else
+            {
+                var notifyPopup = new NotifyPopup("不存在该磁贴");
+                notifyPopup.Show();
             }
         }
     }
