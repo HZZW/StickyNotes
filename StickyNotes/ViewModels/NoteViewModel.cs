@@ -422,7 +422,7 @@ namespace StickyNotes.ViewModels {
                     var theNote = GetNoteById(note.Id);
                     if (theNote == null) return;
                     if (theNote.Content == null) return;
-                    await Tile.UpdataTileContent(theNote.Label, theNote.Content, theNote.Id);
+                    Tile.DeleteTile(theNote.Id);
                 }));
         /// <summary>
         /// 添加Note的磁贴
