@@ -515,7 +515,7 @@ namespace StickyNotes.TextTools
         {
             var addStr = "";
 
-            var keyList = _labelList.Keys.ToList();
+            var keyList = _labelList.Keys.OrderBy(p=>p);
             foreach (var index in keyList)
             {
 
