@@ -226,9 +226,11 @@ namespace StickyNotes.Models
                 Label = "";
                 return;
             }
-            string pattern = @"\A[^\r\n]{0," + LabelLenght.ToString()+ @"}";
-            Label = Regex.Match(Content, pattern).Value;
-            
+            //string labelPattern = @"\A[^\r\n]{0," + LabelLenght.ToString()+ @"}";
+
+            string labelPattern = @"^\s*?\[\s*Label\s*:\d*\s*\](?<labelContent>.*?)[\r\n]";
+            Label = Regex.Match(Content, labelPattern).Groups["labelContent"].Value;
+
         }
     }
 }

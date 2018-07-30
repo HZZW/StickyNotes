@@ -379,9 +379,9 @@ namespace StickyNotes.TextTools
             //--------------头-----------------------------//
             var addStr = "";
             //添加标签表
-            addStr = addStr + MakeDateEventSketch();
-            //添加时间-事件对应表
             addStr = addStr + MakeLabelSketch();
+            //添加时间-事件对应表
+            addStr = addStr + MakeDateEventSketch();
             //添加分隔符
             addStr = addStr + DividingLingString;
 
