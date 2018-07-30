@@ -21,6 +21,8 @@ OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
 SOFTWARE. */
 
 using System;
+using System.Runtime.CompilerServices;
+using System.Threading.Tasks;
 using Windows.Foundation;
 using Windows.UI.Xaml;
 using Windows.ApplicationModel.Core;
@@ -265,9 +267,11 @@ namespace StickyNotes {
             Frame.Navigate(typeof(AllToastPage), "");
         }
 
-        private void TileButton_Click(object sender, RoutedEventArgs e)
+        private async void TileButton_Click(object sender, RoutedEventArgs e)
         {
-            Tile.FirstCreatTie("title","content",2);
+            ////Tile.FirstCreatTie("title","content",2);
+            //await Tile.UpdataTileContent("好啊哈哈哈哈哈航昂昂哈航啊哈哈哈", "啦啦啦啦啦啦梁梁梁梁梁梁梁梁梁梁梁梁梁梁梁梁梁梁梁梁梁梁", 2);
+            //// Tile.DeleteTile(2);
         }
     }
 }

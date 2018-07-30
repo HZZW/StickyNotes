@@ -52,9 +52,21 @@ namespace StickyNotes.Models
             }
 
             //数据绑定过程
+
+            if (title.Length >= 20)
+            {
+                 title = title.Substring(0, 30);
+            }
+
+            if (content.Length >= 30)
+            {
+                content = content.Substring(0, 30);
+            }
+
             TileContent myContent = Tile.GenerateTileContent(title, content); //待绑定
             var updater = TileUpdateManager.CreateTileUpdaterForSecondaryTile(tile.TileId);
-            var currentTime = DateTime.Now.AddSeconds(3); //3秒后更新
+            updater.EnableNotificationQueue(true);
+            var currentTime = DateTime.Now.AddSeconds(2); //2秒后更新
             var tileNotification =
                 new Windows.UI.Notifications.ScheduledTileNotification(myContent.GetXml(),
                         new DateTimeOffset(currentTime)) //产生更新并将此更新的ID设为与磁贴一致
@@ -132,6 +144,7 @@ namespace StickyNotes.Models
                         {
                             Text = text,
                             HintStyle = AdaptiveTextStyle.CaptionSubtle
+                            
                         },
                     }
                 }
@@ -169,7 +182,7 @@ namespace StickyNotes.Models
                                         new AdaptiveText()
                                         {
                                             Text =text,
-                                            HintStyle = AdaptiveTextStyle.CaptionSubtle
+                                              HintStyle = AdaptiveTextStyle.CaptionSubtle
 
                                         }
 
@@ -193,6 +206,7 @@ namespace StickyNotes.Models
             var tempList = await SecondaryTile.FindAllAsync();
             var tilelist = tempList.ToList();
             var updater = TileUpdateManager.CreateTileUpdaterForSecondaryTile(tileId);
+            updater.EnableNotificationQueue(true);
             var scheduled = updater.GetScheduledTileNotifications();
             if (SecondaryTile.Exists(tileId)) //如果存在
             {
@@ -216,7 +230,7 @@ namespace StickyNotes.Models
 
             //将新的通知添加到通知队列
             TileContent updataContent = Tile.GenerateTileContent(title, content);
-            var currentTime = DateTime.Now.AddSeconds(3); //3秒后更新
+            var currentTime = DateTime.Now.AddSeconds(2); //2秒后更新
             var tileNotification =
                 new ScheduledTileNotification(updataContent.GetXml(),
                         new DateTimeOffset(currentTime)) //产生更新并将此更新的ID设为与磁贴一致
