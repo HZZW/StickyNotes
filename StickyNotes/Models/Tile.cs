@@ -228,6 +228,16 @@ namespace StickyNotes.Models
                 }
             }
 
+            if (title.Length >= 20)
+            {
+                title = title.Substring(0, 30);
+            }
+
+            if (content.Length >= 30)
+            {
+                content = content.Substring(0, 30);
+            }
+
             //将新的通知添加到通知队列
             TileContent updataContent = Tile.GenerateTileContent(title, content);
             var currentTime = DateTime.Now.AddSeconds(2); //2秒后更新
