@@ -406,6 +406,7 @@ namespace StickyNotes.ViewModels {
                 {
                     var theNote = GetNoteById(note.Id);
                     if (theNote == null) return;
+                    if (theNote.Content == null) return;
                     await Tile.UpdataTileContent(theNote.Label, theNote.Content, theNote.Id);
                 }));
         /// <summary>
@@ -420,6 +421,7 @@ namespace StickyNotes.ViewModels {
                 {
                     var theNote = GetNoteById(note.Id);
                     if (theNote == null) return;
+                    if (theNote.Content == null) return;
                     await Tile.UpdataTileContent(theNote.Label, theNote.Content, theNote.Id);
                 }));
         /// <summary>
@@ -434,6 +436,7 @@ namespace StickyNotes.ViewModels {
             {
                 var theNote = GetNoteById(note.Id);
                 if (theNote == null) return;
+                if (theNote.Content == null) return;
 
                 Tile.FirstCreatTie(theNote.Label, theNote.Content, theNote.Id);
             }));
