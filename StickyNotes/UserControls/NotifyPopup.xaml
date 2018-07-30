@@ -23,8 +23,8 @@
             <RowDefinition Height="*" />
             <RowDefinition Height="*" />
         </Grid.RowDefinitions>
-        <Border Grid.Row="1" Background="#aa000000" HorizontalAlignment="Center" VerticalAlignment="Top" Margin="0,50" Padding="20,15">
-            <TextBlock x:Name="tbNotify" TextWrapping="Wrap" Foreground="#daffffff"/>
+        <Border Grid.Row="1" Background="#aa000000" HorizontalAlignment="Center" VerticalAlignment="Top" Margin="8" Padding="4">
+            <TextBlock x:Name="tbNotify" TextWrapping="Wrap" Foreground="DeepSkyBlue"/>
         </Border>
     </Grid>
 </UserControl>
