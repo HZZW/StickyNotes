@@ -267,7 +267,7 @@ namespace StickyNotes {
 
         private void TileButton_Click(object sender, RoutedEventArgs e)
         {
-            Tile.FirstCreatTie("title","content",1);
+            Tile.FirstCreatTie("title","content",2);
         }
     }
 }
