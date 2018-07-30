@@ -24,7 +24,13 @@ SOFTWARE. */
 
 //https://go.microsoft.com/fwlink/?LinkId=234236 上介绍了“用户控件”项模板
 
+using System;
+using Windows.System;
+using Windows.UI.Core;
+using Windows.UI.Xaml;
 using Windows.UI.Xaml.Controls;
+using StickyNotes.View;
+using StickyNotes.ViewModels;
 
 namespace StickyNotes.UserControls {
     public sealed partial class NewNoteBoxUserControl
@@ -32,12 +38,43 @@ namespace StickyNotes.UserControls {
         public NewNoteBoxUserControl()
         {
             InitializeComponent();
+
+            Window.Current.CoreWindow.Dispatcher.AcceleratorKeyActivated += Dispatcher_AcceleratorKeyActivated;
         }
 
         private void TextBox_OnTextChanged(object sender, TextChangedEventArgs e)
         {
             var binding = InputBox.GetBindingExpression(TextBox.TextProperty);
             binding?.UpdateSource();
+        }
+
+        private void Dispatcher_AcceleratorKeyActivated(CoreDispatcher sender, AcceleratorKeyEventArgs args)
+        {
+
+            var noteViewModel1 = Application.Current.Resources["NoteViewModel"] as NoteViewModel;
+
+            if (args.EventType.ToString().Contains("Down"))
+            {
+                var ctrl = Window.Current.CoreWindow.GetKeyState(VirtualKey.Control);
+                if (ctrl.HasFlag(CoreVirtualKeyStates.Down))
+                {
+                    switch (args.VirtualKey)
+                    {
+                        case VirtualKey.P:
+                            noteViewModel1?.InsertDateTemplateCommand.Execute(InputBox);
+                            break;
+                        case VirtualKey.O:
+                            noteViewModel1?.InsertEventTemplateCommand.Execute(InputBox);
+                            break;
+                        case VirtualKey.I:
+                            noteViewModel1?.InsertTableTemplateCommand.Execute(InputBox);
+                            break;
+                        case VirtualKey.U:
+                            noteViewModel1?.InsertLabelTemplateCommand.Execute(InputBox);
+                            break;
+                    }
+                }
+            }
         }
     }
 }
