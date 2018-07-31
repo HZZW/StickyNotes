@@ -136,7 +136,7 @@
                         <ColumnDefinition Width="4" />
                     </Grid.ColumnDefinitions>
 
-                    <Rectangle Fill="Black"
+                    <Rectangle Fill="{ThemeResource MyForegroundBrush}" 
                            Visibility="{Binding Selected, Mode=TwoWay}"
                            HorizontalAlignment="Left"
                            Width="3"
@@ -146,7 +146,7 @@
                         Tag="{Binding Favorite}"
                         Grid.Column="4"
                         FontFamily="{ThemeResource SymbolThemeFontFamily}"
-                        Foreground="Black"
+                        Foreground="{ThemeResource MyForegroundBrush}" 
                         Margin="-6,0,0,0"
                         Content="{Binding Favorite,Converter={StaticResource BooLtoIcon}}"
                         Width="35"
@@ -158,7 +158,7 @@
                     <FontIcon Grid.Column="0"
                           FontFamily="{Binding FontFamily}" 
                           Glyph="{Binding Icon}" 
-                          Foreground="Black" 
+                          Foreground="{ThemeResource MyForegroundBrush}" 
                           VerticalAlignment="Center" 
                           Margin="-2,0,0,0" 
                           Width="48" 
@@ -166,7 +166,7 @@
 
                     <TextBlock Grid.Column="2" 
                            Text="{Binding Label}" 
-                           Foreground="Black" 
+                           Foreground="{ThemeResource MyForegroundBrush}" 
                            Margin="0,0,8,0" 
                            VerticalAlignment="Center" 
                            Padding="2"/>
