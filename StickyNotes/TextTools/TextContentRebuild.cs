@@ -26,7 +26,7 @@ namespace StickyNotes.TextTools
         public const int _eventTagTemplateBackspace = 3;
         public const int _eventTagTemplateForwordspace = 8;
         //用于匹配Label的Pattern
-        private const string LabelTagPattern = @"^\s*Label:(?<index>\d*):(?<labelContent>.*)";
+        private const string LabelTagPattern = @"^\s*Label:(?<index>\d+(\.\d+)*):(?<labelContent>.*)";
         private const string LabelPattern = @"(?<labelContent>.*)";
         private const string LabelTagReplacePatternWithoutIndex = @"%%Label::$1%%";
         public const string _labeltTagTemplate = "%%Label::%%";
@@ -127,6 +127,10 @@ namespace StickyNotes.TextTools
         /// 标签列表
         /// </summary>
         private static Dictionary<int, string> _labelList = new Dictionary<int, string>();
+        /// <summary>
+        /// 标签树
+        /// </summary>
+        private static Tree<string> _labelTree = new Tree<string>();
         /// <summary>
         /// 表格列表
         /// </summary>
@@ -408,6 +412,7 @@ namespace StickyNotes.TextTools
             _labelList.Clear();
             _tableList.Clear();
             _modifiableTagList.Clear();
+            _labelTree.Clear();
         }
 
         //---------------------数据记录------------------//
@@ -449,15 +454,21 @@ namespace StickyNotes.TextTools
         /// <param name="match">匹配</param>
         private static void RegisterLabel(Match match)
         {
+            //index 格式 1.1.3.4 ,以.分割.
+            var index = match.Groups["index"].Value;
+            var content = match.Groups["labelContent"].Value;
 
-            if (!int.TryParse(match.Groups["index"].Value, out var index)) return;
+            var indexNumStrings = index.Split('.');
+            
+            var indexNumList = new List<int>();
 
-            var labelContent = match.Groups["labelContent"].Value;
+            foreach (var indexNumString in indexNumStrings)
+            {
+                indexNumList.Add(Convert.ToInt32(indexNumString));
 
-            if (!_labelList.ContainsKey(index))
-                _labelList.Add(index, labelContent);
-            else
-                _labelList[index] = labelContent;
+            }
+            //添加到Laebl树里
+            _labelTree.AddPointByIndexList(indexNumList, content);
         }
         /// <summary>
         /// 将匹配数据填入Table列表
@@ -515,14 +526,7 @@ namespace StickyNotes.TextTools
         {
             var addStr = "";
 
-            var keyList = _labelList.Keys.ToList();
-            foreach (var index in keyList)
-            {
-
-                addStr += "[ Label :" + index + "]" + _labelList[index];
-
-                addStr += "\n";
-            }
+            addStr = addStr+_labelTree.GetComposingTree();
 
             return addStr;
         }
@@ -531,6 +535,7 @@ namespace StickyNotes.TextTools
         {
 
             var addStr = "";
+
             foreach (var tableKeyValue in _tableList)
             {
 

@@ -64,16 +64,16 @@ namespace StickyNotes {
             windows.ExtendViewIntoTitleBar = true;
             Window.Current.SetTitleBar(DragArea);
             var titleBar = ApplicationView.GetForCurrentView().TitleBar;
-            titleBar.BackgroundColor = Color.FromArgb(0xFF, 0xFF, 0xFF, 0xD0);
-            titleBar.ForegroundColor = Color.FromArgb(0xFF, 0xFF, 0xFF, 0xD0);
-            titleBar.InactiveBackgroundColor = Color.FromArgb(0xFF, 0xFF, 0xFF, 0xD0);
-            titleBar.InactiveForegroundColor = Color.FromArgb(0xFF, 0xFF, 0xFF, 0xD0);
+            titleBar.BackgroundColor = Color.FromArgb(0xFF,0x00,0x00,0x8B);
+            titleBar.ForegroundColor = Color.FromArgb(0xFF, 0xFF, 0xFF, 0xFF);
+            titleBar.InactiveBackgroundColor = Color.FromArgb(0xFF, 0x00, 0x00, 0x8B);
+            titleBar.InactiveForegroundColor = Color.FromArgb(0xFF, 0x00, 0x00, 0x8B);
 
-            titleBar.ButtonBackgroundColor = titleBar.ButtonInactiveBackgroundColor = Color.FromArgb(0xFF, 0xFF, 0xFF, 0xD0);
-            titleBar.ButtonHoverBackgroundColor = Color.FromArgb(0xFF, 0xEF, 0xEF, 0xB0);
-            titleBar.ButtonPressedBackgroundColor = Color.FromArgb(0xFF, 0xDF, 0xDF, 0x90);
+            titleBar.ButtonBackgroundColor = titleBar.ButtonInactiveBackgroundColor = Color.FromArgb(0xFF, 0x00, 0x00, 0x8B);
+            titleBar.ButtonHoverBackgroundColor = Color.FromArgb(0xFF, 0x00, 0x00, 0x8B);
+            //titleBar.ButtonPressedBackgroundColor = Color.FromArgb(0xFF, 0xDF, 0xDF, 0x90);
 
-            titleBar.ButtonForegroundColor = titleBar.ButtonHoverForegroundColor = titleBar.ButtonInactiveForegroundColor = titleBar.ButtonPressedForegroundColor = Colors.Black;
+            //titleBar.ButtonForegroundColor = titleBar.ButtonHoverForegroundColor = titleBar.ButtonInactiveForegroundColor = titleBar.ButtonPressedForegroundColor = Colors.Black;
         }
 
 
@@ -269,7 +269,7 @@ namespace StickyNotes {
             Frame.Navigate(typeof(AllToastPage), "");
         }
 
-        private async void TileButton_Click(object sender, RoutedEventArgs e)
+        private void TileButton_Click(object sender, RoutedEventArgs e)
         {
             var note = (DataContext as NoteViewModel)?.SelectNote;
             (Application.Current.Resources["NoteViewModel"] as NoteViewModel)?.AddTileCommand.Execute(note);
