@@ -5,8 +5,14 @@ using System.Text.RegularExpressions;
 
 namespace StickyNotes.TextTools
 {
-    
-        public class TextContentRebuild
+    /// <summary>
+    /// 文本整理
+    ///
+    /// 实际效果查看github项目Readme
+    /// https://github.com/HZZW/StickyNotes
+    ///
+    /// </summary>
+    public class TextContentRebuild
         {
 
         //----------------------匹配模式---------------------//
@@ -259,8 +265,21 @@ namespace StickyNotes.TextTools
 
             return clipMatches.ToList();
         }
+        /// <summary>
+        /// 重建ModifiableSketch部分
+        ///
+        /// 实际上并没在这部分修改ModifiableSketch
+        /// 因为可能有新的内容添加到ModifiableSketch中,但这时还没有办法的生成这部分内容并添加到其中
+        ///
+        /// 这部分将ModifiableSketch中的标记添加到modifiableSketch的记录表中
+        /// 
+        ///  
+        /// </summary>
+        /// <param name="modifiableSketch">原ModifiableSketch</param>
+        /// <returns></returns>
         private static string RebuildModifiableSketch(string modifiableSketch)
         {
+
             if (modifiableSketch == null) return "";
 
             //抽取%% %% 中的内容,不支持嵌套
@@ -291,11 +310,12 @@ namespace StickyNotes.TextTools
         {
             if (oldClip == null) return "";
 
+
+            // 识别句子中的#标记(这里称为头标记)和内容
             const string headTagPattern = @"^\s*(?<head>#*)\s*(?<content>.*)$";
 
             var clipMatch = Regex.Match(oldClip, headTagPattern);
-
-
+            
             var headClip = clipMatch.Groups["head"].Value;
             var contentClip = clipMatch.Groups["content"].Value;
 
@@ -311,6 +331,13 @@ namespace StickyNotes.TextTools
         }
         /// <summary>
         /// 处理头部分
+        /// 例如:
+        /// "##"将生成"  ## ",'#'的个数和其前的空白占位符个数对应,其后还添加一个单位空白符
+        /// 处理好的头部分和处理好的内容部分拼接就可以形成驼峰形式
+        ///
+        /// 由于头部分只排布了开头,假如内容换行了,则不会在换行的文本前添加对应的空白占位符进行排布
+        /// 所以对于长段的文本进行排布不能得到很行的驼峰效果
+        /// 
         /// </summary>
         /// <param name="headClip">头部分文本</param>
         /// <returns></returns>
@@ -331,6 +358,10 @@ namespace StickyNotes.TextTools
         }
         /// <summary>
         /// 处理内容部分
+        ///
+        /// 该函数实际上未修改文本的内容,而是把文本中的标记读出
+        /// 将对应的记录添加到对应的记录表中
+        /// 
         /// </summary>
         /// <param name="contentClip">内容部分文本</param>
         /// <returns></returns>

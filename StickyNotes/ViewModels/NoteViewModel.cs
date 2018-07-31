@@ -45,19 +45,13 @@ namespace StickyNotes.ViewModels {
             Note.CollectionChanged += UpdateTagList;
             Note.CollectionChanged += UpdateAllTile;
         }
-
-        
-
         public NoteViewModel():this(new LocalNoteService())
         {
             PullCommand.Execute(null);
         }
         //-----------------------成员变量---------------------//
-
-        
-
         /// <summary>
-        /// 
+        /// 标记为favorite的Note的数量
         /// </summary>
         private int _favoriteCount=0;
         
