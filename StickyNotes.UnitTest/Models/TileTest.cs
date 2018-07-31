@@ -16,7 +16,7 @@ namespace StickyNotes.UnitTest.Models
     public class TileTest
     {
         [TestMethod]
-        public async void TestFirstCreatTile()
+        public async Task  TestFirstCreatTile()
         {
 
             string id= "2";
@@ -42,6 +42,7 @@ namespace StickyNotes.UnitTest.Models
                 if (scheduled[i].Tag == tile.TileId)
                 {
                     notification = scheduled[i];
+                    break;
 
                 }
             }
@@ -76,12 +77,10 @@ namespace StickyNotes.UnitTest.Models
         public async Task TestDeleteTile()
         {
             int id = 2;
-           Tile.DeleteTile(id);
+            Tile.DeleteTile(id);
             var myList = await SecondaryTile.FindAllAsync();
             var tileList = myList.ToList();
-           Assert.AreEqual(0,tileList.Count);
-
-
+            Assert.AreEqual(0, tileList.Count);
         }
     }
 }

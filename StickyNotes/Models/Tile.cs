@@ -6,6 +6,7 @@ using System.Threading.Tasks;
 using Windows.UI.Notifications;
 using Windows.UI.StartScreen;
 using Microsoft.Toolkit.Uwp.Notifications;
+using StickyNotes.UserControls;
 
 namespace StickyNotes.Models
 {
@@ -28,6 +29,8 @@ namespace StickyNotes.Models
                     if (tilelist[i].TileId == tileId)
                     {
                         tile = tilelist[i];
+                        var notifyPopup = new NotifyPopup("该便签已存在磁贴");
+                        notifyPopup.Show();
                         break;
                     }
                 }
@@ -49,12 +52,26 @@ namespace StickyNotes.Models
                 {
                     return;
                 }
+                var notifyPopup = new NotifyPopup("已为该便签添加磁贴");
+                notifyPopup.Show();
             }
 
             //数据绑定过程
+
+            if (title.Length >= 20)
+            {
+                 title = title.Substring(0, 30);
+            }
+
+            if (content.Length >= 30)
+            {
+                content = content.Substring(0, 30);
+            }
+
             TileContent myContent = Tile.GenerateTileContent(title, content); //待绑定
             var updater = TileUpdateManager.CreateTileUpdaterForSecondaryTile(tile.TileId);
-            var currentTime = DateTime.Now.AddSeconds(3); //3秒后更新
+            updater.EnableNotificationQueue(true);
+            var currentTime = DateTime.Now.AddSeconds(2); //2秒后更新
             var tileNotification =
                 new Windows.UI.Notifications.ScheduledTileNotification(myContent.GetXml(),
                         new DateTimeOffset(currentTime)) //产生更新并将此更新的ID设为与磁贴一致
@@ -132,6 +149,7 @@ namespace StickyNotes.Models
                         {
                             Text = text,
                             HintStyle = AdaptiveTextStyle.CaptionSubtle
+                            
                         },
                     }
                 }
@@ -169,7 +187,7 @@ namespace StickyNotes.Models
                                         new AdaptiveText()
                                         {
                                             Text =text,
-                                            HintStyle = AdaptiveTextStyle.CaptionSubtle
+                                              HintStyle = AdaptiveTextStyle.CaptionSubtle
 
                                         }
 
@@ -193,6 +211,7 @@ namespace StickyNotes.Models
             var tempList = await SecondaryTile.FindAllAsync();
             var tilelist = tempList.ToList();
             var updater = TileUpdateManager.CreateTileUpdaterForSecondaryTile(tileId);
+            updater.EnableNotificationQueue(true);
             var scheduled = updater.GetScheduledTileNotifications();
             if (SecondaryTile.Exists(tileId)) //如果存在
             {
@@ -214,9 +233,19 @@ namespace StickyNotes.Models
                 }
             }
 
+            if (title.Length >= 20)
+            {
+                title = title.Substring(0, 30);
+            }
+
+            if (content.Length >= 30)
+            {
+                content = content.Substring(0, 30);
+            }
+
             //将新的通知添加到通知队列
             TileContent updataContent = Tile.GenerateTileContent(title, content);
-            var currentTime = DateTime.Now.AddSeconds(3); //3秒后更新
+            var currentTime = DateTime.Now.AddSeconds(2); //2秒后更新
             var tileNotification =
                 new ScheduledTileNotification(updataContent.GetXml(),
                         new DateTimeOffset(currentTime)) //产生更新并将此更新的ID设为与磁贴一致
@@ -240,9 +269,16 @@ namespace StickyNotes.Models
                     if (tilelist[i].TileId == tileId)
                     {
                         await tilelist[i].RequestDeleteAsync();
+                        var notifyPopup = new NotifyPopup("已删除该磁贴");
+                        notifyPopup.Show();
                         break;
                     }
                 }
+            }
+            else
+            {
+                var notifyPopup = new NotifyPopup("不存在该磁贴");
+                notifyPopup.Show();
             }
         }
     }

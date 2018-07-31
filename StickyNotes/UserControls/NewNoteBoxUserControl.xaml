@@ -12,6 +12,8 @@
         <TextBox 
             Name="InputBox"
             AcceptsReturn="True"
+            
+            
             TextWrapping="Wrap"
             Text="{Binding SelectNote.Content,Mode=TwoWay}"
             TextChanged="TextBox_OnTextChanged"

@@ -21,6 +21,8 @@ OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
 SOFTWARE. */
 
 using System;
+using System.Runtime.CompilerServices;
+using System.Threading.Tasks;
 using Windows.Foundation;
 using Windows.UI.Xaml;
 using Windows.ApplicationModel.Core;
@@ -206,7 +208,9 @@ namespace StickyNotes {
 
             var noteViewModel = Application.Current.Resources["NoteViewModel"] as NoteViewModel;
             var note = (DataContext as NoteViewModel)?.SelectNote;
+            (Application.Current.Resources["NoteViewModel"] as NoteViewModel)?.DeleteTileCommand.Execute(note);
             noteViewModel?.DeleteNoteCommand.Execute(note);
+          
         }
 
         /// <summary>
@@ -265,9 +269,17 @@ namespace StickyNotes {
             Frame.Navigate(typeof(AllToastPage), "");
         }
 
-        private void TileButton_Click(object sender, RoutedEventArgs e)
+        private async void TileButton_Click(object sender, RoutedEventArgs e)
         {
-            Tile.FirstCreatTie("title","content",2);
+            var note = (DataContext as NoteViewModel)?.SelectNote;
+            (Application.Current.Resources["NoteViewModel"] as NoteViewModel)?.AddTileCommand.Execute(note);
+          
+        }
+
+        private void TileDeleteButton_Click(object sender, RoutedEventArgs e)
+        {
+            var note = (DataContext as NoteViewModel)?.SelectNote;
+            (Application.Current.Resources["NoteViewModel"] as NoteViewModel)?.DeleteTileCommand.Execute(note);
         }
     }
 }

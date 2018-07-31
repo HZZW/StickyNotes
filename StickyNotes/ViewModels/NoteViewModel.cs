@@ -28,6 +28,7 @@ using System.ComponentModel;
 using System.Linq;
 using System.Runtime.CompilerServices;
 using Windows.UI.Xaml;
+using Windows.UI.Xaml.Controls;
 using GalaSoft.MvvmLight.Command;
 using StickyNotes.Annotations;
 using StickyNotes.Models;
@@ -42,13 +43,18 @@ namespace StickyNotes.ViewModels {
             _noteService = noteService;
             Note = new ObservableCollection<Note>();
             Note.CollectionChanged += UpdateTagList;
+            Note.CollectionChanged += UpdateAllTile;
         }
+
+        
 
         public NoteViewModel():this(new LocalNoteService())
         {
             PullCommand.Execute(null);
         }
         //-----------------------成员变量---------------------//
+
+        
 
         /// <summary>
         /// 
@@ -388,6 +394,52 @@ namespace StickyNotes.ViewModels {
                     UpdateNoteListByFavorite();
 
                 }));
+        /// <summary>
+        /// 添加Note的磁贴
+        /// </summary>
+        private RelayCommand<Note> _updateTileCommand;
+        /// <summary>
+        /// 添加Note的磁贴
+        /// </summary>
+        public RelayCommand<Note> UpdateTileCommand =>
+            _updateTileCommand ?? (_updateTileCommand = new RelayCommand<Note>(async note =>
+                {
+                    var theNote = GetNoteById(note.Id);
+                    if (theNote == null) return;
+                    if (theNote.Content == null) return;
+                    await Tile.UpdataTileContent(theNote.Label, theNote.Content, theNote.Id);
+                }));
+        /// <summary>
+        /// 删除Note的磁贴
+        /// </summary>
+        private RelayCommand<Note> _deleteTileCommand;
+        /// <summary>
+        /// 删除Note的磁贴
+        /// </summary>
+        public RelayCommand<Note> DeleteTileCommand =>
+            _deleteTileCommand ?? (_deleteTileCommand = new RelayCommand<Note>(async note =>
+                {
+                    var theNote = GetNoteById(note.Id);
+                    if (theNote == null) return;
+                    if (theNote.Content == null) return;
+                    Tile.DeleteTile(theNote.Id);
+                }));
+        /// <summary>
+        /// 添加Note的磁贴
+        /// </summary>
+        private RelayCommand<Note> _addTileCommand;
+        /// <summary>
+        /// 添加Note的磁贴
+        /// </summary>
+        public RelayCommand<Note> AddTileCommand =>
+            _addTileCommand ?? (_addTileCommand = new RelayCommand<Note>(note =>
+            {
+                var theNote = GetNoteById(note.Id);
+                if (theNote == null) return;
+                if (theNote.Content == null) return;
+
+                Tile.FirstCreatTie(theNote.Label, theNote.Content, theNote.Id);
+            }));
 
         //------------------------文本重建命令------------------//
         /// <summary>
@@ -407,6 +459,127 @@ namespace StickyNotes.ViewModels {
                     var newContent = TextContentRebuild.ReBuildText(theContent);
 
                     SelectNote.Content = newContent;
+                }));
+        //-----------------------插入文本格式------------------//
+        /// <summary>
+        /// 给TextBox 插入DateTagTemplate
+        /// </summary>
+        private RelayCommand<TextBox> _insertDateTemplateCommand;
+        /// <summary>
+        /// 给TextBox 插入DateTagTemplate
+        /// </summary>
+        public RelayCommand<TextBox> InsertDateTemplateCommand =>
+            _insertDateTemplateCommand ?? (_insertDateTemplateCommand = new RelayCommand<TextBox>(
+                theTextBox =>
+                {
+                    if (theTextBox == null) return;
+
+                    if (SelectNote == null) return;
+                    if (SelectNote.Content == null) SelectNote.Content = "";
+
+                    var theInsertString = TextContentRebuild._dateTagTemplate;
+
+                    if (theTextBox.SelectionLength > 0)
+                    {
+                        var theSelectText = theTextBox.SelectedText;
+
+                        RemoveSelectText(theTextBox);
+
+                        theInsertString = TextContentRebuild.MakeDateTemplate(theSelectText);
+                    }
+                    
+                    //插入内容
+                   InsertTemplate(theTextBox, theInsertString, TextContentRebuild._dateTagTemplateForwordspace);
+                   
+
+                }));
+        /// <summary>
+        /// 给TextBox 插入EventTagTemplate
+        /// </summary>
+        private RelayCommand<TextBox> _insertEventTemplateCommand;
+        /// <summary>
+        /// 给TextBox 插入EventTagTemplate
+        /// </summary>
+        public RelayCommand<TextBox> InsertEventTemplateCommand =>
+            _insertEventTemplateCommand ?? (_insertEventTemplateCommand = new RelayCommand<TextBox>(
+                theTextBox =>
+                {
+                    if (theTextBox == null) return;
+                    if (SelectNote == null) return;
+                    if (SelectNote.Content == null) SelectNote.Content = "";
+
+                    var theInsertString = TextContentRebuild._eventTagTemplate;
+
+                    if (theTextBox.SelectionLength > 0)
+                    {
+                        var theSelectText = theTextBox.SelectedText;
+
+                        RemoveSelectText(theTextBox);
+
+                        theInsertString = TextContentRebuild.MakeEventTemplate(theSelectText);
+                    }
+                    //插入内容
+                    InsertTemplate(theTextBox,theInsertString, TextContentRebuild._eventTagTemplateForwordspace);
+                    
+                }));
+        /// <summary>
+        /// 给TextBox 插入TableTagTemplate
+        /// </summary>
+        private RelayCommand<TextBox> _insertTableTemplateCommand;
+        /// <summary>
+        /// 给TextBox 插入TableTagTemplate
+        /// </summary>
+        public RelayCommand<TextBox> InsertTableTemplateCommand =>
+            _insertTableTemplateCommand ?? (_insertTableTemplateCommand = new RelayCommand<TextBox>(
+                theTextBox =>
+                {
+                    if (theTextBox == null) return;
+                    if (SelectNote == null) return;
+                    if (SelectNote.Content == null) SelectNote.Content = "";
+
+                    var theInsertString = TextContentRebuild._tabletTagTemplate;
+
+                    if (theTextBox.SelectionLength > 0)
+                    {
+                        var theSelectText = theTextBox.SelectedText;
+
+                        RemoveSelectText(theTextBox);
+
+                        theInsertString = TextContentRebuild.MakeTableTemplate(theSelectText);
+                    }
+
+                    //插入内容
+                    InsertTemplate(theTextBox, theInsertString, TextContentRebuild._tableTagTemplateForwordspace);
+
+                }));
+        /// <summary>
+        /// 给TextBox 插入LabelTagTemplate
+        /// </summary>
+        private RelayCommand<TextBox> _insertLabelTemplateCommand;
+        /// <summary>
+        /// 给TextBox 插入LabelTagTemplate
+        /// </summary>
+        public RelayCommand<TextBox> InsertLabelTemplateCommand =>
+            _insertLabelTemplateCommand ?? (_insertLabelTemplateCommand = new RelayCommand<TextBox>(
+                theTextBox =>
+                {
+                    if (theTextBox == null) return;
+                    if (SelectNote == null) return;
+                    if (SelectNote.Content == null) SelectNote.Content = "";
+
+                    var theInsertString = TextContentRebuild._labeltTagTemplate;
+
+                    if (theTextBox.SelectionLength > 0)
+                    {
+                        var theSelectText = theTextBox.SelectedText;
+
+                        RemoveSelectText(theTextBox);
+
+                        theInsertString = TextContentRebuild.MakeLabelTemplate(theSelectText);
+                    }
+
+                    //插入内容
+                    InsertTemplate(theTextBox, theInsertString, TextContentRebuild._labelTagTemplateForwordspace);
                 }));
 
 
@@ -473,6 +646,48 @@ namespace StickyNotes.ViewModels {
                 }
             }
 
+        }
+        /// <summary>
+        /// 更新所有Tile的磁贴内容
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
+        private void UpdateAllTile(object sender, NotifyCollectionChangedEventArgs e)
+        {
+            foreach (var note in Note)
+            {
+                UpdateTileCommand.Execute(note);
+            }
+        }
+
+        /// <summary>
+        /// 给textBox插入template,并移动光标
+        /// </summary>
+        /// <param name="textBox">目标textbox</param>
+        /// <param name="template">template</param>
+        /// <param name="forwordSpace">前进格</param>
+        private void InsertTemplate(TextBox textBox, string template, int forwordSpace)
+        {
+            //因为设置SelectNote的内容会冲刷掉selectStart的位置,所以保存这个位置
+            var lastSelectStart = textBox.SelectionStart;
+
+            textBox.Text = textBox.Text.Insert(textBox.SelectionStart, template);
+
+            textBox.SelectionStart = lastSelectStart;
+            textBox.SelectionStart = textBox.SelectionStart + forwordSpace;
+        }
+        /// <summary>
+        /// 移除textBox中选中部分,将光标移至原本选择的文本的开头位置
+        /// </summary>
+        /// <param name="textBox"></param>
+        private void RemoveSelectText(TextBox textBox)
+        {
+            //因为设置SelectNote的内容会冲刷掉selectStart的位置,所以保存这个位置
+            var lastSelectStart = textBox.SelectionStart;
+
+            textBox.Text = textBox.Text.Remove(textBox.SelectionStart,textBox.SelectionLength);
+
+            textBox.SelectionStart = lastSelectStart;
         }
 
     }
