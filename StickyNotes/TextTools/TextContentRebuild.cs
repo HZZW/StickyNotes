@@ -5,8 +5,14 @@ using System.Text.RegularExpressions;
 
 namespace StickyNotes.TextTools
 {
-    
-        public class TextContentRebuild
+    /// <summary>
+    /// 文本整理
+    ///
+    /// 实际效果查看github项目Readme
+    /// https://github.com/HZZW/StickyNotes
+    ///
+    /// </summary>
+    public class TextContentRebuild
         {
 
         //----------------------匹配模式---------------------//
@@ -15,30 +21,30 @@ namespace StickyNotes.TextTools
         private const  string DateTagPattern = @"^\s*Date:(?<index>\d*):(?<year>\d{4})[\.|年](?<month>\d{1,2})[\.|月](?<day>\d{1,2})(日)?";
         private const string DatePattern = @"\s*(?<year>\d{4})\s*[\.|年]\s*(?<month>\d{1,2})\s*[\.|月]\s*(?<day>\d{1,2})\s*(日)?\s*";
         private const string DateTagReplacePatternWithoutIndex = @"%%Date::$2年$3月$4日%%";
-        public const string _dateTagTemplate = "%%Date::年月日%%";
-        public const int _dateTagTemplateBackspace = 6;
-        public const int _dateTagTemplateForwordspace = 7;
+        public const string DateTagTemplate = "%%Date::年月日%%";
+        public const int DateTagTemplateBackspace = 6;
+        public const int DateTagTemplateForwordspace = 7;
         //用于匹配Event的Pattern
         private const string EventTagPattern = @"^\s*Event:(?<index>\d*):(?<eventContent>.*)";
         private const string EventPattern = @"\s*(?<eventContent>.*)\s*";
         private const string EventTagReplacePatternWithoutIndex = @"%%Event::$1%%";
-        public const string _eventTagTemplate = "%%Event::%%";
-        public const int _eventTagTemplateBackspace = 3;
-        public const int _eventTagTemplateForwordspace = 8;
+        public const string EventTagTemplate = "%%Event::%%";
+        public const int EventTagTemplateBackspace = 3;
+        public const int EventTagTemplateForwordspace = 8;
         //用于匹配Label的Pattern
         private const string LabelTagPattern = @"^\s*Label:(?<index>\d+(\.\d+)*):(?<labelContent>.*)";
         private const string LabelPattern = @"(?<labelContent>.*)";
         private const string LabelTagReplacePatternWithoutIndex = @"%%Label::$1%%";
-        public const string _labeltTagTemplate = "%%Label::%%";
-        public const int _labelTagTemplateBackspace = 3;
-        public const int _labelTagTemplateForwordspace = 8;
+        public const string LabeltTagTemplate = "%%Label::%%";
+        public const int LabelTagTemplateBackspace = 3;
+        public const int LabelTagTemplateForwordspace = 8;
         //用于匹配Table的Pattern
         private const string TableTagPattern = @"^\s*Table:(?<index>\d*):(?<row>\d*):(?<column>\d*):(?<tableContent>.*)";
         private const string TablePattern = @"(?<tableContent>.*)";
         private const string TableTagReplacePatternWithoutIndex = @"%%Table::::$1%%";
-        public const string _tabletTagTemplate = "%%Table::::%%";
-        public const int _tableTagTemplateBackspace = 5;
-        public const int _tableTagTemplateForwordspace = 8;
+        public const string TabletTagTemplate = "%%Table::::%%";
+        public const int TableTagTemplateBackspace = 5;
+        public const int TableTagTemplateForwordspace = 8;
         //用于匹配Modifiable的Pattern
         private const string ModifiableTagPattern = @"^\s*(?<modifiableTag>.*):(?<index>\d*)";
         //抽取%% %%中的内容,不支持嵌套
@@ -50,10 +56,7 @@ namespace StickyNotes.TextTools
         private static int _dividingLineLength = 10;
         public static int DividingLineLength
         {
-            get
-            {
-                return _dividingLineLength;
-            }
+            get => _dividingLineLength;
             set
             {
                 if (_dividingLineLength == value) return;
@@ -69,10 +72,7 @@ namespace StickyNotes.TextTools
         private static string _dividingLineUnit = "-";
         public static string DividingLineUnit
         {
-            get
-            {
-                return _dividingLineUnit;
-            }
+            get => _dividingLineUnit;
             set
             {
                 if (_dividingLineUnit.Equals(value)) return;
@@ -96,10 +96,7 @@ namespace StickyNotes.TextTools
                 }
                 return _dividingLineString;
             }
-            set
-            {
-                _dividingLineString = value;
-            }
+            set => _dividingLineString = value;
         }
         /// <summary>
         /// 更新分割符
@@ -118,27 +115,27 @@ namespace StickyNotes.TextTools
         /// <summary>
         /// 日期列表
         /// </summary>
-        private static Dictionary<int, DateTime> _dateList = new Dictionary<int, DateTime>();
+        private static readonly Dictionary<int, DateTime> DateList = new Dictionary<int, DateTime>();
         /// <summary>
         /// 事件列表
         /// </summary>
-        private static Dictionary<int, string> _eventList = new Dictionary<int, string>();
+        private static readonly Dictionary<int, string> EventList = new Dictionary<int, string>();
         /// <summary>
         /// 标签列表
         /// </summary>
-        private static Dictionary<int, string> _labelList = new Dictionary<int, string>();
+        private static readonly Dictionary<int, string> LabelList = new Dictionary<int, string>();
         /// <summary>
         /// 标签树
         /// </summary>
-        private static Tree<string> _labelTree = new Tree<string>();
+        private static readonly Tree<string> LabelTree = new Tree<string>();
         /// <summary>
         /// 表格列表
         /// </summary>
-        private static Dictionary<int, Table> _tableList = new Dictionary<int, Table>();
+        private static readonly Dictionary<int, Table> TableList = new Dictionary<int, Table>();
         /// <summary>
         /// 可修改部分列表
         /// </summary>
-        private static Dictionary<string, List<string>> _modifiableTagList = new Dictionary<string, List<string>>();
+        private static readonly Dictionary<string, List<string>> ModifiableTagList = new Dictionary<string, List<string>>();
         //---------------------modifiableTagList操作------//
         /// <summary>
         /// 添加ModifiableTag
@@ -147,8 +144,8 @@ namespace StickyNotes.TextTools
         /// <param name="index">序</param>
         private static void AddModifiableTag(string modifiableTag, string index)
         {
-            if (!_modifiableTagList.ContainsKey(modifiableTag)) _modifiableTagList.Add(modifiableTag, new List<string>());
-            if (!_modifiableTagList[modifiableTag].Contains(index)) _modifiableTagList[modifiableTag].Add(index);
+            if (!ModifiableTagList.ContainsKey(modifiableTag)) ModifiableTagList.Add(modifiableTag, new List<string>());
+            if (!ModifiableTagList[modifiableTag].Contains(index)) ModifiableTagList[modifiableTag].Add(index);
 
         }
         /// <summary>
@@ -159,8 +156,8 @@ namespace StickyNotes.TextTools
         /// <returns></returns>
         private static bool IsExitModifiableTag(string modifiableTag, string index)
         {
-            if (!_modifiableTagList.ContainsKey(modifiableTag)) return false;
-            if (!_modifiableTagList[modifiableTag].Contains(index)) return false;
+            if (!ModifiableTagList.ContainsKey(modifiableTag)) return false;
+            if (!ModifiableTagList[modifiableTag].Contains(index)) return false;
 
             return true;
         }
@@ -186,7 +183,7 @@ namespace StickyNotes.TextTools
 
             //抽取附加信息,去除分隔符,抽取正文内容
             //默认将超过DividingLineLength长度的DividingLineUnit都看作分割符
-            string sketchContentPattern = @"(" + DividingLineUnit + @"){" + DividingLineLength + @",}[\r\n]?"; ;
+            var sketchContentPattern = @"(" + DividingLineUnit + @"){" + DividingLineLength + @",}[\r\n]?"; ;
             var sketchContentRegex = new Regex(sketchContentPattern);
 
             //BUG limit是3 最后得到的SplitArray可能为得到的数组的分割情况为1个元素,3个元素,5个元素;
@@ -259,8 +256,21 @@ namespace StickyNotes.TextTools
 
             return clipMatches.ToList();
         }
+        /// <summary>
+        /// 重建ModifiableSketch部分
+        ///
+        /// 实际上并没在这部分修改ModifiableSketch
+        /// 因为可能有新的内容添加到ModifiableSketch中,但这时还没有办法的生成这部分内容并添加到其中
+        ///
+        /// 这部分将ModifiableSketch中的标记添加到modifiableSketch的记录表中
+        /// 
+        ///  
+        /// </summary>
+        /// <param name="modifiableSketch">原ModifiableSketch</param>
+        /// <returns></returns>
         private static string RebuildModifiableSketch(string modifiableSketch)
         {
+
             if (modifiableSketch == null) return "";
 
             //抽取%% %% 中的内容,不支持嵌套
@@ -291,11 +301,12 @@ namespace StickyNotes.TextTools
         {
             if (oldClip == null) return "";
 
+
+            // 识别句子中的#标记(这里称为头标记)和内容
             const string headTagPattern = @"^\s*(?<head>#*)\s*(?<content>.*)$";
 
             var clipMatch = Regex.Match(oldClip, headTagPattern);
-
-
+            
             var headClip = clipMatch.Groups["head"].Value;
             var contentClip = clipMatch.Groups["content"].Value;
 
@@ -311,6 +322,13 @@ namespace StickyNotes.TextTools
         }
         /// <summary>
         /// 处理头部分
+        /// 例如:
+        /// "##"将生成"  ## ",'#'的个数和其前的空白占位符个数对应,其后还添加一个单位空白符
+        /// 处理好的头部分和处理好的内容部分拼接就可以形成驼峰形式
+        ///
+        /// 由于头部分只排布了开头,假如内容换行了,则不会在换行的文本前添加对应的空白占位符进行排布
+        /// 所以对于长段的文本进行排布不能得到很行的驼峰效果
+        /// 
         /// </summary>
         /// <param name="headClip">头部分文本</param>
         /// <returns></returns>
@@ -331,6 +349,10 @@ namespace StickyNotes.TextTools
         }
         /// <summary>
         /// 处理内容部分
+        ///
+        /// 该函数实际上未修改文本的内容,而是把文本中的标记读出
+        /// 将对应的记录添加到对应的记录表中
+        /// 
         /// </summary>
         /// <param name="contentClip">内容部分文本</param>
         /// <returns></returns>
@@ -407,12 +429,12 @@ namespace StickyNotes.TextTools
         /// </summary>
         private static void Initialize()
         {
-            _dateList.Clear();
-            _eventList.Clear();
-            _labelList.Clear();
-            _tableList.Clear();
-            _modifiableTagList.Clear();
-            _labelTree.Clear();
+            DateList.Clear();
+            EventList.Clear();
+            LabelList.Clear();
+            TableList.Clear();
+            ModifiableTagList.Clear();
+            LabelTree.Clear();
         }
 
         //---------------------数据记录------------------//
@@ -430,10 +452,10 @@ namespace StickyNotes.TextTools
 
             var date  = new DateTime(year, month, day);
 
-            if (!_dateList.ContainsKey(index))
-                _dateList.Add(index, date);
+            if (!DateList.ContainsKey(index))
+                DateList.Add(index, date);
             else
-                _dateList[index] = date;
+                DateList[index] = date;
         }
         /// <summary>
         /// 将匹配数据填入Event列表
@@ -443,10 +465,10 @@ namespace StickyNotes.TextTools
         {
             var index = Convert.ToInt32(match.Groups["index"].Value);
             var eventContent = match.Groups["eventContent"].Value;
-            if (!_eventList.ContainsKey(index))
-                _eventList.Add(index, eventContent);
+            if (!EventList.ContainsKey(index))
+                EventList.Add(index, eventContent);
             else
-                _eventList[index] = eventContent;
+                EventList[index] = eventContent;
         }
         /// <summary>
         /// 将匹配数据填入Label列表
@@ -468,7 +490,7 @@ namespace StickyNotes.TextTools
 
             }
             //添加到Laebl树里
-            _labelTree.AddPointByIndexList(indexNumList, content);
+            LabelTree.AddPointByIndexList(indexNumList, content);
         }
         /// <summary>
         /// 将匹配数据填入Table列表
@@ -481,12 +503,12 @@ namespace StickyNotes.TextTools
             if (!int.TryParse(match.Groups["column"].Value, out var column)) return;
             var tableContent = match.Groups["tableContent"].Value;
 
-            if (!_tableList.ContainsKey(index))
+            if (!TableList.ContainsKey(index))
             {
-                _tableList.Add(index, new Table());
+                TableList.Add(index, new Table());
             }
 
-            _tableList[index].SetTable(row, column, tableContent);
+            TableList[index].SetTable(row, column, tableContent);
 
         }
         /// <summary>
@@ -507,13 +529,13 @@ namespace StickyNotes.TextTools
         {
             var addStr = "";
             //按时间先后排序
-            var dateList = _dateList.OrderBy(p => p.Value.Date).ToList();
+            var dateList = DateList.OrderBy(p => p.Value.Date).ToList();
 
             foreach (var theDate in dateList)
             {
-                if (!_eventList.ContainsKey(theDate.Key)) continue;
+                if (!EventList.ContainsKey(theDate.Key)) continue;
 
-                addStr += "[" + theDate.Value + "]" + _eventList[theDate.Key];
+                addStr += "[" + theDate.Value + "]" + EventList[theDate.Key];
 
                 addStr += "\n";
 
@@ -526,7 +548,7 @@ namespace StickyNotes.TextTools
         {
             var addStr = "";
 
-            addStr = addStr+_labelTree.GetComposingTree();
+            addStr = addStr+LabelTree.GetComposingTree();
 
             return addStr;
         }
@@ -536,7 +558,7 @@ namespace StickyNotes.TextTools
 
             var addStr = "";
 
-            foreach (var tableKeyValue in _tableList)
+            foreach (var tableKeyValue in TableList)
             {
 
                 var theTableIndex = tableKeyValue.Key;
@@ -564,7 +586,7 @@ namespace StickyNotes.TextTools
             //TODO
             var dateTemplate = Regex.Replace(dateString, DatePattern, DateTagReplacePatternWithoutIndex);
             //如果未改变,说明不匹配模板,则使用空模板
-            return dateTemplate == lastDateString ? _dateTagTemplate : dateTemplate;
+            return dateTemplate == lastDateString ? DateTagTemplate : dateTemplate;
         }
 
         public static string MakeEventTemplate(string eventString)
@@ -576,9 +598,9 @@ namespace StickyNotes.TextTools
 
             var eventTemplate = Regex.Replace(eventString, EventPattern, EventTagReplacePatternWithoutIndex);
             //如果未改变,说明不匹配模板,则使用空模板
-            if (lastEventString == eventTemplate) return _eventTagTemplate;
+            if (lastEventString == eventTemplate) return EventTagTemplate;
             // BUG 一些情况下Replace得到的结果有多余的_eventTagTemplate,所以这里做了这一步
-            eventTemplate = eventTemplate.Substring(0, eventString.Length + _eventTagTemplate.Length);
+            eventTemplate = eventTemplate.Substring(0, eventString.Length + EventTagTemplate.Length);
             return eventTemplate;
         }
 
@@ -590,9 +612,9 @@ namespace StickyNotes.TextTools
 
             var labelTemplate = Regex.Replace(labelString, LabelPattern, LabelTagReplacePatternWithoutIndex);
             //如果未改变,说明不匹配模板,则使用空模板
-            if (lastLabelString == labelTemplate) return _labeltTagTemplate;
+            if (lastLabelString == labelTemplate) return LabeltTagTemplate;
             // BUG 一些情况下Replace得到的结果有多余的_labeltTagTemplate,所以这里做了这一步
-            labelTemplate = labelTemplate.Substring(0, labelString.Length + _labeltTagTemplate.Length);
+            labelTemplate = labelTemplate.Substring(0, labelString.Length + LabeltTagTemplate.Length);
             return labelTemplate;
         }
 
@@ -604,9 +626,9 @@ namespace StickyNotes.TextTools
 
             var tableTemplate = Regex.Replace(tableString, TablePattern, TableTagReplacePatternWithoutIndex);
             //如果未改变,说明不匹配模板,则使用空模板
-            if (lastTableString == tableTemplate) return _tabletTagTemplate;
+            if (lastTableString == tableTemplate) return TabletTagTemplate;
             // BUG 一些情况下Replace得到的结果有多余的_tabletTagTemplate,所以这里做了这一步
-            tableTemplate = tableTemplate.Substring(0, tableString.Length + _tabletTagTemplate.Length);
+            tableTemplate = tableTemplate.Substring(0, tableString.Length + TabletTagTemplate.Length);
             return tableTemplate;
 
         }
