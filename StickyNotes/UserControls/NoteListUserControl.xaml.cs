@@ -37,44 +37,30 @@ namespace StickyNotes.UserControls {
             theNoteViewModel?.SetSelectNoteCommand.Execute(theNote);
         }
 
-        private void ExButton_OnClick(object sender, RoutedEventArgs e)
-        {
-            var dialog = new ContentDialog()
-            {
-                Title = "Time to relax",
-                Content = "https://pan.baidu.com/s/1ARSnPD82Yi59vERMoBlX8Q",
-                PrimaryButtonText = "确定",
-                FullSizeDesired = false,
-            };
+        //private PointerPoint _beforePoint;
+        //private PointerPoint _afterPoint;
 
-            dialog.PrimaryButtonClick += (s, _e) => { };
-            dialog.ShowAsync();
-        }
+        //private void RootGrid_PointerPressed(object sender, PointerRoutedEventArgs e)
+        //{
+        //    _beforePoint = e.GetCurrentPoint(RootGrid);
+        //}
 
-        private PointerPoint _beforePoint;
-        private PointerPoint _afterPoint;
-
-        private void RootGrid_PointerPressed(object sender, PointerRoutedEventArgs e)
-        {
-            _beforePoint = e.GetCurrentPoint(RootGrid);
-        }
-
-        private void RootGrid_PointerReleased(object sender, PointerRoutedEventArgs e)
-        {
-            _afterPoint = e.GetCurrentPoint(RootGrid);
-            if ((_beforePoint.PointerId == _afterPoint.PointerId && 
-                 (_afterPoint.Position.X - _beforePoint.Position.X > 10)) 
-                )
-            {
-                RootSplitView.IsPaneOpen = true;
-            }
-            else if (_beforePoint.PointerId == _afterPoint.PointerId &&
-                     ((_afterPoint.Position.X - _beforePoint.Position.X < -10))
-                     && RootSplitView.IsPaneOpen)
-            {
-                RootSplitView.IsPaneOpen = false;
-            }
-        }
+        //private void RootGrid_PointerReleased(object sender, PointerRoutedEventArgs e)
+        //{
+        //    _afterPoint = e.GetCurrentPoint(RootGrid);
+        //    if ((_beforePoint.PointerId == _afterPoint.PointerId && 
+        //         (_afterPoint.Position.X - _beforePoint.Position.X > 10)) 
+        //        )
+        //    {
+        //        RootSplitView.IsPaneOpen = true;
+        //    }
+        //    else if (_beforePoint.PointerId == _afterPoint.PointerId &&
+        //             ((_afterPoint.Position.X - _beforePoint.Position.X < -10))
+        //             && RootSplitView.IsPaneOpen)
+        //    {
+        //        RootSplitView.IsPaneOpen = false;
+        //    }
+        //}
 
         //todo next  content isn't finish;
         private void FavoriteButton_OnClick(object sender, RoutedEventArgs e)
@@ -82,7 +68,7 @@ namespace StickyNotes.UserControls {
 
                 var note = ((sender as Button)?.DataContext as Note);
 
-                var noteViewModel = App.Current.Resources["NoteViewModel"] as NoteViewModel;
+                var noteViewModel = Application.Current.Resources["NoteViewModel"] as NoteViewModel;
                 if (note == null || noteViewModel == null) return;
 
                 noteViewModel.ChangeNoteFavoriteCommand.Execute(note);
@@ -94,7 +80,7 @@ namespace StickyNotes.UserControls {
         }
     }
 
-    public class BOOLtoICON : IValueConverter
+    public class BooLtoIcon : IValueConverter
     {
         public object Convert(object value, Type targetType, object parameter, string language)
         {

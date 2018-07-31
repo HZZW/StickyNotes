@@ -21,6 +21,8 @@ OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
 SOFTWARE. */
 
 using System;
+using System.Runtime.CompilerServices;
+using System.Threading.Tasks;
 using Windows.Foundation;
 using Windows.UI.Xaml;
 using Windows.ApplicationModel.Core;
@@ -206,7 +208,9 @@ namespace StickyNotes {
 
             var noteViewModel = Application.Current.Resources["NoteViewModel"] as NoteViewModel;
             var note = (DataContext as NoteViewModel)?.SelectNote;
+            (Application.Current.Resources["NoteViewModel"] as NoteViewModel)?.DeleteTileCommand.Execute(note);
             noteViewModel?.DeleteNoteCommand.Execute(note);
+          
         }
 
         /// <summary>
@@ -241,18 +245,41 @@ namespace StickyNotes {
             }
         }
 
+        /// <summary>
+        /// 取消时间提醒的popup
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
         private void ToastCancelButton_Click(object sender, RoutedEventArgs e)
         {
-            var noteViewModel = Application.Current.Resources["NoteViewModel"] as NoteViewModel;
+            //var noteViewModel = Application.Current.Resources["NoteViewModel"] as NoteViewModel;
             var note = (DataContext as NoteViewModel)?.SelectNote;
             (Application.Current.Resources["NoteViewModel"] as NoteViewModel)?.CancelNotificationCommand.Execute(note);
             var notifyPopup = new NotifyPopup("当前时间提醒已取消");
             notifyPopup.Show();
         }
 
+        /// <summary>
+        /// 所有时间提醒的汇总显示
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
         private void AllToastButton_Click(Object sender, RoutedEventArgs e)
         {
             Frame.Navigate(typeof(AllToastPage), "");
+        }
+
+        private void TileButton_Click(object sender, RoutedEventArgs e)
+        {
+            var note = (DataContext as NoteViewModel)?.SelectNote;
+            (Application.Current.Resources["NoteViewModel"] as NoteViewModel)?.AddTileCommand.Execute(note);
+          
+        }
+
+        private void TileDeleteButton_Click(object sender, RoutedEventArgs e)
+        {
+            var note = (DataContext as NoteViewModel)?.SelectNote;
+            (Application.Current.Resources["NoteViewModel"] as NoteViewModel)?.DeleteTileCommand.Execute(note);
         }
     }
 }

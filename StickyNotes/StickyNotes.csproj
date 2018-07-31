@@ -103,8 +103,10 @@
       <DependentUpon>App.xaml</DependentUpon>
     </Compile>
     <Compile Include="Models\OverallConfigManger.cs" />
+    <Compile Include="Models\Tile.cs" />
     <Compile Include="TextTools\TextContentRebuild.cs" />
     <Compile Include="TextTools\Table.cs" />
+    <Compile Include="TextTools\Tree.cs" />
     <Compile Include="UserControls\NewNoteBoxUserControl.xaml.cs">
       <DependentUpon>NewNoteBoxUserControl.xaml</DependentUpon>
     </Compile>
@@ -113,6 +115,9 @@
     </Compile>
     <Compile Include="UserControls\NotifyPopup.xaml.cs">
       <DependentUpon>NotifyPopup.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="View\AboutContentDialog.xaml.cs">
+      <DependentUpon>AboutContentDialog.xaml</DependentUpon>
     </Compile>
     <Compile Include="View\AllToastPage.xaml.cs">
       <DependentUpon>AllToastPage.xaml</DependentUpon>
@@ -162,6 +167,7 @@
     <Content Include="Assets\LargeTile.scale-150.png" />
     <Content Include="Assets\LargeTile.scale-200.png" />
     <Content Include="Assets\LargeTile.scale-400.png" />
+    <Content Include="Assets\P70_05_5178x3452.jpg" />
     <Content Include="Assets\SmallTile.scale-100.png" />
     <Content Include="Assets\SmallTile.scale-125.png" />
     <Content Include="Assets\SmallTile.scale-150.png" />
@@ -219,6 +225,10 @@
       <Generator>MSBuild:Compile</Generator>
     </Page>
     <Page Include="UserControls\NotifyPopup.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="View\AboutContentDialog.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
