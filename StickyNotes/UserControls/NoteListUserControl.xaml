@@ -224,7 +224,8 @@
                    IsPaneOpen="False">
 
             <SplitView.Pane>
-                <Grid Name="RootGrid"
+                <!--Name="RootGrid"-->
+                <Grid 
                     Background="#FFFFFFD0">
                     <Grid.RowDefinitions>
                         <!--空出Button的高度-->

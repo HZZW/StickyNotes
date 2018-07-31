@@ -8,7 +8,9 @@
     Background="{ThemeResource ApplicationPageBackgroundThemeBrush}">
 
 
-    <Grid Background="#00000000">
+    <Grid 
+          BorderBrush="White"
+          BorderThickness="0">
         <Grid.RowDefinitions>
             <RowDefinition Height="32" />
             <RowDefinition Height="*" />
@@ -19,12 +21,17 @@
                     x:Name="DragArea" 
                     Background="#FFFFFFD0"/>
 
-        <ListView Grid.Row="1"
+        <ListView     Grid.Row="1"
+                      BorderBrush="White"
+                      BorderThickness="0"
                       IsItemClickEnabled="True"
                       ItemsSource="{Binding NotificationNotes}">
             <ListView.ItemTemplate>
                 <DataTemplate>
-                    <StackPanel Orientation="Horizontal">
+                    <StackPanel 
+                        BorderBrush="White"
+                        BorderThickness="0"
+                        Orientation="Horizontal">
                         <TextBlock Text="便签"
                                    Style="{StaticResource BaseTextBlockStyle}" />
                         <TextBlock Text="{Binding Label}"

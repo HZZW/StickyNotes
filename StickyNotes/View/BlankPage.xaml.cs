@@ -269,7 +269,7 @@ namespace StickyNotes {
             Frame.Navigate(typeof(AllToastPage), "");
         }
 
-        private async void TileButton_Click(object sender, RoutedEventArgs e)
+        private void TileButton_Click(object sender, RoutedEventArgs e)
         {
             var note = (DataContext as NoteViewModel)?.SelectNote;
             (Application.Current.Resources["NoteViewModel"] as NoteViewModel)?.AddTileCommand.Execute(note);
