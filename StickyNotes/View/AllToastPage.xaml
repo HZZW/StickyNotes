@@ -2,16 +2,13 @@
     x:Class="StickyNotes.View.AllToastPage"
     xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
     xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
-    xmlns:local="using:StickyNotes.View"
     xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
     xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
     mc:Ignorable="d"
     Background="{ThemeResource ApplicationPageBackgroundThemeBrush}">
 
 
-    <Grid Grid.Row="1"
-          Grid.Column="0"
-          Background="#00000000">
+    <Grid Background="#00000000">
         <Grid.RowDefinitions>
             <RowDefinition Height="32" />
             <RowDefinition Height="*" />
@@ -47,7 +44,7 @@
                     OverflowButtonVisibility="Collapsed"
                     DefaultLabelPosition="Right"
                     Background="#00000000">
-            <AppBarButton Name="BackButton"
+            <AppBarButton 
                           Icon="Back"
                           Label="Back"
                           Click="BackButton_OnClick" />

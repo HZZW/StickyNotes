@@ -242,16 +242,6 @@
                               ItemTemplate="{StaticResource DataTemplate}" 
                               ItemContainerStyle="{StaticResource NavMenuItemContainerStyle}"
                               ItemClick="NavMenuPrimaryListView_OnItemClick"/>
-                    <!--Name="ExButton"-->
-                    <Button 
-                            Grid.Row="0"
-                            HorizontalAlignment="Left" 
-                            Margin="164,-10,0,0" 
-                            VerticalAlignment="Top" 
-                            Background="{Binding BackgroundColor}"
-                            Height="16" 
-                            Width="16"
-                            Click="ExButton_OnClick"/>
                     <!--二级菜单-->
                 </Grid>
             </SplitView.Pane>
