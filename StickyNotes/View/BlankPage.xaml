@@ -10,6 +10,14 @@
         <Binding Source="{StaticResource NoteViewModel}" />
     </Page.DataContext>
 
+    <Page.Resources>
+        <ResourceDictionary>
+            <ResourceDictionary.ThemeDictionaries>
+                <ResourceDictionary x:Key="Light" Source="/View/LightDictionary.xaml"></ResourceDictionary>
+                <ResourceDictionary x:Key="Dark" Source="/View/DarkDictionary.xaml"></ResourceDictionary>
+            </ResourceDictionary.ThemeDictionaries>
+        </ResourceDictionary>
+    </Page.Resources>
     <!--<Page.Resources>
         <Style x:Key="Button"
                TargetType="AppBarButton">
@@ -293,35 +301,39 @@
         <StackPanel 
                     Height="32" 
                     Width="AUTO" 
-                    Background="#FFEFEFB0" 
+                    Background="{ThemeResource MyBackgroundBrush}" 
                     Orientation="Horizontal" 
                     Grid.Row="0">
             <Button Name="FlyButton"
                     Height="32"
                     Width="48"
                     Content="&#xE718;"
-                    Background="#FFFFFFD0"
+                    Background="{ThemeResource MyBackgroundBrush}"
+                    Foreground="{ThemeResource MyForegroundBrush}"
                     Click="FlyButton_click"
                     FontWeight="Normal"
                     FontFamily="Segoe MDL2 Assets" />
             <Button Height="32" 
                     Width="48"  
                     Content="&#xE109;" 
-                    Background="#FFFFFFD0" 
+                    Background="{ThemeResource MyBackgroundBrush}"
+                    Foreground="{ThemeResource MyForegroundBrush}"
                     Click="AddButton_Click"
                     FontWeight="Normal" 
                     FontFamily="Segoe MDL2 Assets" />
             <Button Height="32" 
                     Width="48" 
                     Content="&#xE107;" 
-                    Background="#FFFFFFD0" 
+                    Background="{ThemeResource MyBackgroundBrush}"
+                    Foreground="{ThemeResource MyForegroundBrush}"
                     FontWeight="Normal" 
                     Click="DeleteButton_Click"
                     FontFamily="Segoe MDL2 Assets" />
             <Button Height="32" 
                     Width="48" 
                     Content="&#xE170;" 
-                    Background="#FFFFFFD0" 
+                    Background="{ThemeResource MyBackgroundBrush}"
+                    Foreground="{ThemeResource MyForegroundBrush}"
                     FontWeight="Normal" 
                     Command="{Binding RebuildSelectedContentCommand}"
                     FontFamily="Segoe MDL2 Assets" />
@@ -334,7 +346,8 @@
             <Button Height="32" 
                     Width="48"  
                     Content="&#xE712;"
-                    Background="#FFFFFFD0"
+                    Background="{ThemeResource MyBackgroundBrush}"
+                    Foreground="{ThemeResource MyForegroundBrush}"
                     FontWeight="Normal"
                     FontFamily="Segoe MDL2 Assets" >
             
@@ -366,7 +379,7 @@
             </Button>
             <StackPanel Width="19999"
                         x:Name="DragArea"
-                        Background="#FFFFFFD0" />
+                        Background="{ThemeResource MyBackgroundBrush}" />
         </StackPanel>
         <userControls:NewNoteBoxUserControl Grid.Row="1"></userControls:NewNoteBoxUserControl>
 

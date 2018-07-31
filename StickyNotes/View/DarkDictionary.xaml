@@ -1,0 +1,9 @@
+﻿<ResourceDictionary
+    xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation" 
+    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+    xmlns:local="using:StickyNotes.View">
+    <SolidColorBrush x:Key="MyBackgroundBrush" Color="DarkBlue"/>
+    <SolidColorBrush x:Key="MyForegroundBrush" Color="White"/>
+    <SolidColorBrush x:Key="MyTextBackgroundBrush" Color="DarkBlue"/>
+    <SolidColorBrush x:Key="MyBorderBrush" Color="red"/>
+</ResourceDictionary>

@@ -7,16 +7,26 @@
     mc:Ignorable="d"
     d:DesignHeight="300"
     d:DesignWidth="400">
-
-    <Grid>
+    <UserControl.Resources>
+        <ResourceDictionary>
+            <ResourceDictionary.ThemeDictionaries>
+                <ResourceDictionary x:Key="Light" Source="/View/LightDictionary.xaml"></ResourceDictionary>
+                <ResourceDictionary x:Key="Dark" Source="/View/DarkDictionary.xaml"></ResourceDictionary>
+            </ResourceDictionary.ThemeDictionaries>
+        </ResourceDictionary>
+    </UserControl.Resources>
+    <Grid Background="{ThemeResource MyTextBackgroundBrush}">
         <TextBox 
             Name="InputBox"
             AcceptsReturn="True"
             TextWrapping="Wrap"
             Text="{Binding SelectNote.Content,Mode=TwoWay}"
-            TextChanged="TextBox_OnTextChanged"
-            BorderBrush="White"
+            Foreground="{ThemeResource MyForegroundBrush}"
+            SelectionHighlightColor="Red"
             BorderThickness="0"
-            />
+            TextChanged="TextBox_OnTextChanged" 
+            Style="{StaticResource MyTextBoxStyle}" 
+            >
+        </TextBox>
     </Grid>
 </UserControl>
