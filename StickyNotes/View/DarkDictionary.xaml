@@ -4,6 +4,6 @@
     xmlns:local="using:StickyNotes.View">
     <SolidColorBrush x:Key="MyBackgroundBrush" Color="DarkBlue"/>
     <SolidColorBrush x:Key="MyForegroundBrush" Color="White"/>
-    <SolidColorBrush x:Key="MyTextBackgroundBrush" Color="DarkBlue"/>
+    <SolidColorBrush x:Key="MyTextBackgroundBrush" Color="DarkSlateGray"/>
     <SolidColorBrush x:Key="MyBorderBrush" Color="red"/>
 </ResourceDictionary>
