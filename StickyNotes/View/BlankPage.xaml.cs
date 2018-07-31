@@ -64,16 +64,21 @@ namespace StickyNotes {
             windows.ExtendViewIntoTitleBar = true;
             Window.Current.SetTitleBar(DragArea);
             var titleBar = ApplicationView.GetForCurrentView().TitleBar;
-            titleBar.BackgroundColor = Color.FromArgb(0xFF,0x00,0x00,0x8B);
-            titleBar.ForegroundColor = Color.FromArgb(0xFF, 0xFF, 0xFF, 0xFF);
-            titleBar.InactiveBackgroundColor = Color.FromArgb(0xFF, 0x00, 0x00, 0x8B);
-            titleBar.InactiveForegroundColor = Color.FromArgb(0xFF, 0x00, 0x00, 0x8B);
 
-            titleBar.ButtonBackgroundColor = titleBar.ButtonInactiveBackgroundColor = Color.FromArgb(0xFF, 0x00, 0x00, 0x8B);
-            titleBar.ButtonHoverBackgroundColor = Color.FromArgb(0xFF, 0x00, 0x00, 0x8B);
+            titleBar.BackgroundColor = Colors.Transparent;
+            titleBar.ForegroundColor = Colors.Red;
+
+            //titleBar.InactiveBackgroundColor = Color.FromArgb(0xFF, 0x00, 0x00, 0x8B);
+            titleBar.InactiveForegroundColor = Colors.Red;
+
+            titleBar.ButtonBackgroundColor = Colors.Transparent;
+            titleBar.ButtonForegroundColor = Colors.DeepPink;
+
+            titleBar.ButtonInactiveBackgroundColor = Colors.Transparent;
+            titleBar.ButtonInactiveForegroundColor = Colors.DeepPink;
+
             //titleBar.ButtonPressedBackgroundColor = Color.FromArgb(0xFF, 0xDF, 0xDF, 0x90);
-
-            //titleBar.ButtonForegroundColor = titleBar.ButtonHoverForegroundColor = titleBar.ButtonInactiveForegroundColor = titleBar.ButtonPressedForegroundColor = Colors.Black;
+            //titleBar.ButtonHoverForegroundColor = titleBar.ButtonInactiveForegroundColor = titleBar.ButtonPressedForegroundColor = Colors.Black;
         }
 
 

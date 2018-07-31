@@ -350,7 +350,7 @@
                     Foreground="{ThemeResource MyForegroundBrush}"
                     FontWeight="Normal"
                     FontFamily="Segoe MDL2 Assets" >
-            
+
                 <Button.Flyout>
                     <MenuFlyout>
                         <MenuFlyoutItem Text="提醒" Click="ToastButton_Click">
@@ -389,7 +389,8 @@
             </Button>
             <StackPanel Width="19999"
                         x:Name="DragArea"
-                        Background="{ThemeResource MyBackgroundBrush}" />
+                        Background="{ThemeResource MyBackgroundBrush}"
+                        />
         </StackPanel>
         <userControls:NewNoteBoxUserControl Grid.Row="1"></userControls:NewNoteBoxUserControl>
 
