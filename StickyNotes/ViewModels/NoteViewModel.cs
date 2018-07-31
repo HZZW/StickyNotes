@@ -399,8 +399,7 @@ namespace StickyNotes.ViewModels {
             _updateTileCommand ?? (_updateTileCommand = new RelayCommand<Note>(async note =>
                 {
                     var theNote = GetNoteById(note.Id);
-                    if (theNote == null) return;
-                    if (theNote.Content == null) return;
+                    if (theNote?.Content == null) return;
                     await Tile.UpdataTileContent(theNote.Label, theNote.Content, theNote.Id);
                 }));
         /// <summary>
@@ -414,8 +413,7 @@ namespace StickyNotes.ViewModels {
             _deleteTileCommand ?? (_deleteTileCommand = new RelayCommand<Note>(async note =>
                 {
                     var theNote = GetNoteById(note.Id);
-                    if (theNote == null) return;
-                    if (theNote.Content == null) return;
+                    if (theNote?.Content == null) return;
                     Tile.DeleteTile(theNote.Id);
                 }));
         /// <summary>
@@ -429,8 +427,8 @@ namespace StickyNotes.ViewModels {
             _addTileCommand ?? (_addTileCommand = new RelayCommand<Note>(note =>
             {
                 var theNote = GetNoteById(note.Id);
-                if (theNote == null) return;
-                if (theNote.Content == null) return;
+
+                if (theNote?.Content == null) return;
 
                 Tile.FirstCreatTie(theNote.Label, theNote.Content, theNote.Id);
             }));
@@ -471,7 +469,7 @@ namespace StickyNotes.ViewModels {
                     if (SelectNote == null) return;
                     if (SelectNote.Content == null) SelectNote.Content = "";
 
-                    var theInsertString = TextContentRebuild._dateTagTemplate;
+                    var theInsertString = TextContentRebuild.DateTagTemplate;
 
                     if (theTextBox.SelectionLength > 0)
                     {
@@ -483,7 +481,7 @@ namespace StickyNotes.ViewModels {
                     }
                     
                     //插入内容
-                   InsertTemplate(theTextBox, theInsertString, TextContentRebuild._dateTagTemplateForwordspace);
+                   InsertTemplate(theTextBox, theInsertString, TextContentRebuild.DateTagTemplateForwordspace);
                    
 
                 }));
@@ -502,7 +500,7 @@ namespace StickyNotes.ViewModels {
                     if (SelectNote == null) return;
                     if (SelectNote.Content == null) SelectNote.Content = "";
 
-                    var theInsertString = TextContentRebuild._eventTagTemplate;
+                    var theInsertString = TextContentRebuild.EventTagTemplate;
 
                     if (theTextBox.SelectionLength > 0)
                     {
@@ -513,7 +511,7 @@ namespace StickyNotes.ViewModels {
                         theInsertString = TextContentRebuild.MakeEventTemplate(theSelectText);
                     }
                     //插入内容
-                    InsertTemplate(theTextBox,theInsertString, TextContentRebuild._eventTagTemplateForwordspace);
+                    InsertTemplate(theTextBox,theInsertString, TextContentRebuild.EventTagTemplateForwordspace);
                     
                 }));
         /// <summary>
@@ -531,7 +529,7 @@ namespace StickyNotes.ViewModels {
                     if (SelectNote == null) return;
                     if (SelectNote.Content == null) SelectNote.Content = "";
 
-                    var theInsertString = TextContentRebuild._tabletTagTemplate;
+                    var theInsertString = TextContentRebuild.TabletTagTemplate;
 
                     if (theTextBox.SelectionLength > 0)
                     {
@@ -543,7 +541,7 @@ namespace StickyNotes.ViewModels {
                     }
 
                     //插入内容
-                    InsertTemplate(theTextBox, theInsertString, TextContentRebuild._tableTagTemplateForwordspace);
+                    InsertTemplate(theTextBox, theInsertString, TextContentRebuild.TableTagTemplateForwordspace);
 
                 }));
         /// <summary>
@@ -561,7 +559,7 @@ namespace StickyNotes.ViewModels {
                     if (SelectNote == null) return;
                     if (SelectNote.Content == null) SelectNote.Content = "";
 
-                    var theInsertString = TextContentRebuild._labeltTagTemplate;
+                    var theInsertString = TextContentRebuild.LabeltTagTemplate;
 
                     if (theTextBox.SelectionLength > 0)
                     {
@@ -573,7 +571,7 @@ namespace StickyNotes.ViewModels {
                     }
 
                     //插入内容
-                    InsertTemplate(theTextBox, theInsertString, TextContentRebuild._labelTagTemplateForwordspace);
+                    InsertTemplate(theTextBox, theInsertString, TextContentRebuild.LabelTagTemplateForwordspace);
                 }));
 
 

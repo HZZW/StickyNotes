@@ -1,8 +1,5 @@
-﻿using System;
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
 using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace StickyNotes.TextTools
 {
@@ -14,7 +11,7 @@ namespace StickyNotes.TextTools
         /// <summary>
         /// 先列后行 即_table[colunm][row]
         /// </summary>
-        private Dictionary<int, Dictionary<int, string>> _table = new Dictionary<int, Dictionary<int, string>>();
+        private readonly Dictionary<int, Dictionary<int, string>> _table = new Dictionary<int, Dictionary<int, string>>();
         /// <summary>
         /// 设置表中某一单元
         /// </summary>
@@ -217,6 +214,7 @@ namespace StickyNotes.TextTools
             }
             return rowInstanceString;
         }
+
         /// <summary>
         /// 取出内容对应块同内容,不足以空格填充
         /// 
@@ -225,6 +223,7 @@ namespace StickyNotes.TextTools
         /// 由于字体原因,单个空格与单个汉字的宽度不同,所以使用多个空格得到一个汉字的宽度,但效果不太好
         /// 
         /// </summary>
+        /// <param name="content">完整内容</param>
         /// <param name="blockAmount">块大小</param>
         /// <param name="blockIndex">块序号</param>
         /// <returns>块内容</returns>
