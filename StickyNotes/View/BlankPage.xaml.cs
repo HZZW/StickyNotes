@@ -273,13 +273,15 @@ namespace StickyNotes {
         {
             var note = (DataContext as NoteViewModel)?.SelectNote;
             (Application.Current.Resources["NoteViewModel"] as NoteViewModel)?.AddTileCommand.Execute(note);
-          
+            //Tile.FirstCreatTie(" "," ",1);   //测试前把上面两条语句注释，只执行该条语句，运行后点击生成磁贴按钮
+
         }
 
         private void TileDeleteButton_Click(object sender, RoutedEventArgs e)
         {
             var note = (DataContext as NoteViewModel)?.SelectNote;
             (Application.Current.Resources["NoteViewModel"] as NoteViewModel)?.DeleteTileCommand.Execute(note);
+            Tile.DeleteTile(1);
         }
     }
 }
