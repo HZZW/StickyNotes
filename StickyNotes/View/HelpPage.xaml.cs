@@ -1,6 +1,5 @@
 ﻿using Windows.Foundation;
 using Windows.UI.ViewManagement;
-using Windows.UI.Xaml.Controls;
 
 
 // https://go.microsoft.com/fwlink/?LinkId=234238 上介绍了“空白页”项模板
@@ -14,7 +13,7 @@ namespace StickyNotes.View
     {
         public HelpPage()
         {
-            this.InitializeComponent();
+            InitializeComponent();
             ApplicationView.GetForCurrentView().SetPreferredMinSize(new Size(887, 915));
         }
     }
