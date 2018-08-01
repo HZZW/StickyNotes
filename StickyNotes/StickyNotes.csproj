@@ -138,6 +138,9 @@
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Services\INoteService.cs" />
     <Compile Include="Services\LocalNoteService.cs" />
+    <Compile Include="View\HelpPage.xaml.cs">
+      <DependentUpon>HelpPage.xaml</DependentUpon>
+    </Compile>
     <Compile Include="View\SettingContentDialog.xaml.cs">
       <DependentUpon>SettingContentDialog.xaml</DependentUpon>
     </Compile>
@@ -251,6 +254,10 @@
     <Page Include="MainPage.xaml">
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
+    </Page>
+    <Page Include="View\HelpPage.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
     </Page>
     <Page Include="View\LightDictionary.xaml">
       <SubType>Designer</SubType>

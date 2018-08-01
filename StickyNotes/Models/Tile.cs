@@ -276,11 +276,11 @@ namespace StickyNotes.Models
                     }
                 }
             }
-            else
-            {
-                var notifyPopup = new NotifyPopup("不存在该磁贴");
-                notifyPopup.Show();
-            }
+            //else
+            //{
+            //    var notifyPopup = new NotifyPopup("不存在该磁贴");
+            //    notifyPopup.Show();
+            //}
         }
     }
 }

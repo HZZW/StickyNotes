@@ -6,7 +6,7 @@
     xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
     mc:Ignorable="d"
     Title="关于此应用"
-    PrimaryButtonText="确定"
+    PrimaryButtonText="查看帮助(点击后放大窗口查看)"
     PrimaryButtonClick="ContentDialog_PrimaryButtonClick">
 
     <Grid Margin="0,0,12.796,-21.867">
@@ -17,10 +17,10 @@
         </Grid.RowDefinitions>
         <TextBlock Grid.Row="0"
                    Text="由东北大学浅易便签开发小组制作"
-                   Style="{StaticResource  SubtitleTextBlockStyle}" />
-        <TextBlock Grid.Row="1"
+                   Style="{StaticResource  SubtitleTextBlockStyle}" HorizontalAlignment="Center" Margin="0,-4,0,0" VerticalAlignment="Top" />
+        <TextBlock
                    Text=" ©2018 浅易便签小组。 保留所有权力。"
                    Style="{StaticResource  BaseTextBlockStyle}"
-                   Margin="0,0,0,0" />
+                   Margin="0,22,0,0" HorizontalAlignment="Center" Grid.RowSpan="2" VerticalAlignment="Top" />
     </Grid>
 </ContentDialog>

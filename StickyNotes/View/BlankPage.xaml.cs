@@ -288,5 +288,12 @@ namespace StickyNotes {
             (Application.Current.Resources["NoteViewModel"] as NoteViewModel)?.DeleteTileCommand.Execute(note);
             Tile.DeleteTile(1);
         }
+
+        private void AboutMenuFlyoutItem_OnClick(object sender, RoutedEventArgs e)
+        {
+            AboutContentDialog about = new AboutContentDialog();
+            ;
+            about.ShowAsync();
+        }
     }
 }

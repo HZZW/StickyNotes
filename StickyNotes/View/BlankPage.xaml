@@ -384,6 +384,11 @@
                                 <FontIcon Glyph="&#xE713;"/>
                             </MenuFlyoutItem.Icon>
                         </MenuFlyoutItem>
+                        <MenuFlyoutItem Text="关于" Click="AboutMenuFlyoutItem_OnClick">
+                            <MenuFlyoutItem.Icon>
+                                <FontIcon Glyph="&#xE171;"/>
+                            </MenuFlyoutItem.Icon>
+                        </MenuFlyoutItem>
                     </MenuFlyout>
                 </Button.Flyout>
             </Button>

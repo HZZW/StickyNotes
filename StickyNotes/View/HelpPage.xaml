@@ -1,0 +1,47 @@
+﻿<Page
+    x:Class="StickyNotes.View.HelpPage"
+    xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+    xmlns:local="using:StickyNotes.View"
+    xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+    xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+    mc:Ignorable="d"
+    Background="{ThemeResource ApplicationPageBackgroundThemeBrush}">
+
+    <Grid>
+        <RichTextBlock
+            SelectionHighlightColor="Green">
+            <Paragraph># 文本整理功能</Paragraph>
+            <Paragraph Margin="4,4,4,4">1. 整理过的文本结构:</Paragraph>
+            <Paragraph Margin="16,4,4,4">1). Label和Date-Event区,显示该Note中的Label标记内容和Date-Event标记内容,每次整理都会覆盖这部分的内容</Paragraph>
+            <Paragraph Margin="16,4,4,4">2). Table表格区,显示该Note中的Table标记内容,该部分内容不会被覆盖,只要区域内保留着它的标记</Paragraph>
+            <Paragraph Margin="16,4,4,4">3). 正文部分,显示用户输入的内容</Paragraph>
+            <Paragraph Margin="4,4,4,4">2. 可使用的标记:</Paragraph>
+            <Paragraph Margin="16,4,4,4">1). # :用于每一行的开头,形成驼峰效果,#前会有两个空格,##前有四个空格,###前有6个空格,以此类推</Paragraph>
+            <Paragraph Margin="16,4,4,4">2). Label:%%Label:&lt;序号1&gt;(&lt;.序号2&gt;(&lt;.序号3&gt;&lt;.序号4&gt;....)):&lt;内容&gt;%%,Label将有驼峰效果.</Paragraph>
+            <Paragraph Margin="16,4,4,4">3). Date :%%Date:&lt;序号&gt;:&lt;年份&gt;年&lt;月份&gt;月&lt;日期&gt;日%%,或%%Date:&lt;序号&gt;:&lt;年份&gt;.&lt;月份&gt;.&lt;日期&gt;%%</Paragraph>
+            <Paragraph Margin="16,4,4,4">4). Event:%%Event:&lt;序号&gt;:&lt;内容&gt;%% </Paragraph>
+            <Paragraph Margin="16,4,4,4">5). Table:%%Table:&lt;序号&gt;:&lt;行号&gt;:&lt;列号&gt;:&lt;内容&gt;%%</Paragraph>
+            <Paragraph Margin="16,4,4,4">6). 需要注意:</Paragraph>
+            <Paragraph Margin="32,4,4,4">①.&lt;&gt;中内容必须填写才能有效生成整理的文本</Paragraph>
+            <Paragraph Margin="32,4,4,4">②. Label 中序号最小的,其内容作为便签的标题,如果整个便签没有有效Label,则便签无标题.</Paragraph>
+            <Paragraph Margin="32,4,4,4">③. Date和Event成对使用,如果Date 的序号没有Event的 序号对应,则生成整理的Date-Event文本</Paragraph>
+            <Paragraph Margin="4,4,4,4">3. 可使用的快捷操作:</Paragraph>
+            <Paragraph Margin="16,4,4,4">1). 选中日期+Ctrl+p,自动生成带日期的Date标记.</Paragraph>
+            <Paragraph Margin="16,4,4,4">2). 选中内容+Ctrl+o,自动生成带内容的Event标记.</Paragraph>
+            <Paragraph Margin="16,4,4,4">3). 选中内容+Ctrl+i,自动生成带内容的Table标记.</Paragraph>
+            <Paragraph Margin="16,4,4,4">4). 选中内容+Ctrl+u,自动生成带内容的Label标记.</Paragraph>
+            <Paragraph Margin="16,4,4,4">5). 未选中日期+Ctrl+p,自动生成空的Date标记.</Paragraph>
+            <Paragraph Margin="16,4,4,4">6). 未选中内容+Ctrl+o,自动生成空的Event标记.</Paragraph>
+            <Paragraph Margin="16,4,4,4">7). 未选中内容+Ctrl+i,自动生成空的Table标记.</Paragraph>
+            <Paragraph Margin="16,4,4,4">8). 未选中内容+Ctrl+u,自动生成空的Label标记.</Paragraph>
+            <Paragraph Margin="16,4,4,4">9).主界面下：Ctrl+D,删除当前便签</Paragraph>
+            <Paragraph Margin="16,4,4,4">10).主界面下：Ctrl+S，新建便签</Paragraph>
+            <Paragraph Margin="16,4,4,4">11).主界面下：Ctrl+T，设置当前便签提醒</Paragraph>
+            <Paragraph Margin="4,4,4,4">4.目标:</Paragraph>
+            <Paragraph Margin="16,4,4,4">1).对于文字较多的便签,可以将其中内容精简显示</Paragraph>
+            <Paragraph Margin="4,4,4,4">5.缺陷:</Paragraph>
+            <Paragraph Margin="16,4,4,4">1).当文字本身就是精简的,过多使用标记就会使得原本的内容更加难以阅读.</Paragraph>
+        </RichTextBlock>
+    </Grid>
+</Page>
