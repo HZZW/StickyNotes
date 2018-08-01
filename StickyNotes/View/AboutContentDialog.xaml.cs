@@ -30,7 +30,7 @@ namespace StickyNotes.View
 
                 newViewId = ApplicationView.GetForCurrentView().Id;
             });
-            bool viewShown = await ApplicationViewSwitcher.TryShowAsStandaloneAsync(newViewId);
+            await ApplicationViewSwitcher.TryShowAsStandaloneAsync(newViewId);
         }
 
     }
