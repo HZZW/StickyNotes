@@ -518,7 +518,6 @@ namespace StickyNotes.TextTools
         /// <param name="match">匹配</param>
         private static void RegisterModifiableSketch(Match match)
         {
-            //TODO 登记ModifiableSketch消息
             var modifiableTag = match.Groups["modifiableTag"].Value;
             var index = match.Groups["index"].Value;
 
@@ -584,7 +583,7 @@ namespace StickyNotes.TextTools
             if (dateString == null) return "";
 
             var lastDateString = dateString;
-            //TODO
+            
             var dateTemplate = Regex.Replace(dateString, DatePattern, DateTagReplacePatternWithoutIndex);
             //如果未改变,说明不匹配模板,则使用空模板
             return dateTemplate == lastDateString ? DateTagTemplate : dateTemplate;
