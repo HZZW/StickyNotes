@@ -6,7 +6,7 @@
     xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
     mc:Ignorable="d"
     Title="关于此应用"
-    PrimaryButtonText="查看帮助(点击后放大窗口查看)"
+    PrimaryButtonText="查看帮助"
     PrimaryButtonClick="ContentDialog_PrimaryButtonClick">
 
     <Grid Margin="0,0,12.796,-21.867">
