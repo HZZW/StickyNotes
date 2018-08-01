@@ -10,7 +10,7 @@ using StickyNotes.UserControls;
 
 namespace StickyNotes.Models
 {
-   public class Tile
+    public class Tile
     {
 
         //第一次创建磁贴时调用
@@ -52,29 +52,29 @@ namespace StickyNotes.Models
                 {
                     return;
                 }
+
                 var notifyPopup = new NotifyPopup("已为该便签添加磁贴");
                 notifyPopup.Show();
             }
 
             //数据绑定过程
-
             if (title.Length >= 20)
             {
-                 title = title.Substring(0, 30);
+                title = title.Substring(0, 30);
             }
 
-            if (content.Length >= 30)
+            if (content.Length >= 80)
             {
-                content = content.Substring(0, 30);
+                content = content.Substring(0, 80);
             }
 
-            TileContent myContent = Tile.GenerateTileContent(title, content); 
-            var updater = TileUpdateManager.CreateTileUpdaterForSecondaryTile(tile.TileId);
-            updater.EnableNotificationQueue(true);
+            TileContent myContent = Tile.GenerateTileContent(title, content);
             var tileNotification = new TileNotification(myContent.GetXml())
             {
                 Tag = tile.TileId,
             };
+            var updater = TileUpdateManager.CreateTileUpdaterForSecondaryTile(tile.TileId);
+            updater.EnableNotificationQueue(true);
             updater.Update(tileNotification);
             //var currentTime = DateTime.Now.AddSeconds(2); //2秒后更新
             //var tileNotification =
@@ -111,21 +111,21 @@ namespace StickyNotes.Models
                 {
                     BackgroundImage = new TileBackgroundImage()
                     {
-                        Source = "Assets/P70_05_5178x3452.jpg"
+                        Source = ChooseImage(),
                     },
-
                     Children =
                     {
                         new AdaptiveText()
                         {
-                            Text =title,
+                            Text = title,
                         },
                         new AdaptiveText()
                         {
                             Text = text,
-                            HintStyle = AdaptiveTextStyle.CaptionSubtle
+                            HintStyle = AdaptiveTextStyle.CaptionSubtle,
+                            HintMaxLines = 2,
+                            HintWrap = true,
                         }
-
                     }
                 }
             };
@@ -140,7 +140,7 @@ namespace StickyNotes.Models
                 {
                     BackgroundImage = new TileBackgroundImage()
                     {
-                        Source = "Assets/P70_05_5178x3452.jpg"
+                        Source = ChooseImage(),
                     },
                     Children =
                     {
@@ -153,15 +153,17 @@ namespace StickyNotes.Models
                         new AdaptiveText()
                         {
                             Text = text,
-                            HintStyle = AdaptiveTextStyle.CaptionSubtle
-                            
+                            HintStyle = AdaptiveTextStyle.CaptionSubtle,
+                            HintMaxLines = 3,
+                            HintWrap = true,
+
                         },
                     }
                 }
             };
         }
 
-        //Medium tile
+        //Large tile
         public static TileBinding GenerateTileBindingLarge(string title, string text)
         {
             return new TileBinding()
@@ -170,7 +172,7 @@ namespace StickyNotes.Models
                 {
                     BackgroundImage = new TileBackgroundImage()
                     {
-                        Source = "Assets/P70_05_5178x3452.jpg"
+                        Source = ChooseImage(),
                     },
 
                     Children =
@@ -185,14 +187,16 @@ namespace StickyNotes.Models
                                     {
                                         new AdaptiveText()
                                         {
-                                            Text =title,
+                                            Text = title,
                                             HintStyle = AdaptiveTextStyle.Subtitle
                                         },
 
                                         new AdaptiveText()
                                         {
-                                            Text =text,
-                                              HintStyle = AdaptiveTextStyle.CaptionSubtle
+                                            Text = text,
+                                            HintStyle = AdaptiveTextStyle.CaptionSubtle,
+                                            HintMaxLines = 4,
+                                            HintWrap = true,
 
                                         }
 
@@ -221,7 +225,7 @@ namespace StickyNotes.Models
             {
                 for (int i = 0; i < tilelist.Count; i++)
                 {
-                    if (tilelist[i].TileId == tileId)//找到磁贴
+                    if (tilelist[i].TileId == tileId) //找到磁贴
                     {
 
                         if (title.Length >= 20)
@@ -233,7 +237,7 @@ namespace StickyNotes.Models
                         {
                             content = content.Substring(0, 30);
                         }
-                        
+
                         //替换旧的通知
                         TileContent updataContent = Tile.GenerateTileContent(title, content);
                         var updataTileNotification = new TileNotification(updataContent.GetXml())
@@ -244,7 +248,7 @@ namespace StickyNotes.Models
                         break;
                     }
                 }
-            }         
+            }
             //var currentTime = DateTime.Now.AddSeconds(2); //2秒后更新
             //var tileNotification =
             //    new ScheduledTileNotification(updataContent.GetXml(),
@@ -256,8 +260,8 @@ namespace StickyNotes.Models
 
         }
 
-        //删除磁贴，在删除便签是调用此函数
-       public async static void DeleteTile(int id)
+        //删除磁贴，在删除便签是调用
+        public async static void DeleteTile(int id)
         {
             string tileId = id.ToString();
             var tempList = await SecondaryTile.FindAllAsync();
@@ -281,6 +285,14 @@ namespace StickyNotes.Models
                 var notifyPopup = new NotifyPopup("不存在该磁贴");
                 notifyPopup.Show();
             }
+        }
+
+        private static string ChooseImage()
+        {
+            int count = 13; //13张背景图片
+            Random rd = new Random();
+            var choose = rd.Next(1, count);
+            return  "Assets/"+choose.ToString() + ".jpg";
         }
     }
 }
