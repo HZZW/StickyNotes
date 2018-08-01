@@ -9,6 +9,7 @@
     Background="{ThemeResource ApplicationPageBackgroundThemeBrush}">
 
     <Grid>
+        <ScrollViewer>
         <RichTextBlock
             SelectionHighlightColor="Green">
             <Paragraph># 文本整理功能</Paragraph>
@@ -43,5 +44,6 @@
             <Paragraph Margin="4,4,4,4">5.缺陷:</Paragraph>
             <Paragraph Margin="16,4,4,4">1).当文字本身就是精简的,过多使用标记就会使得原本的内容更加难以阅读.</Paragraph>
         </RichTextBlock>
+        </ScrollViewer>
     </Grid>
 </Page>
