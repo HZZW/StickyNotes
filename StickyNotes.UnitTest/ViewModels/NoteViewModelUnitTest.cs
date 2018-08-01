@@ -822,14 +822,14 @@ namespace StickyNotes.UnitTest.ViewModels
         /// <param name="command">需要执行的Command</param>
         public void MultiCommand(int count, RelayCommand command)
         {
-            for (int i = count; i > 0; i--)
+            for (var i = count; i > 0; i--)
             {
                 command.Execute(null);
             }
         }
         public void MultiCommand<T>(int count, RelayCommand<T> command)
         {
-            for (int i = count; i > 0; i--)
+            for (var i = count; i > 0; i--)
             {
                 command.Execute(null);
             }

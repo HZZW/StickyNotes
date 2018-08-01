@@ -38,10 +38,9 @@ namespace StickyNotes.TextTools
         public string GetTable(int row, int column)
         {
             if (!_table.ContainsKey(column))
-                return "";
-            if (!_table[column].ContainsKey(row))
-                return "";
-            return _table[column][row];
+                return null;
+
+            return !_table[column].ContainsKey(row) ? null : _table[column][row];
         }
         /// <summary>
         /// 表排版

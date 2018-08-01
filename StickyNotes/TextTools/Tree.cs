@@ -33,18 +33,18 @@ namespace StickyNotes.TextTools
             if (!SubTrees.ContainsKey(index))
                 SubTrees.Add(index, new Tree<T>());
         }
-        ///// <summary>
-        ///// 添加子树节点并设置内容
-        ///// </summary>
-        ///// <param name="index"></param>
-        ///// <param name="content"></param>
-        //public void AddPoint(int index, T content)
-        //{
-        //    if (!SubTrees.ContainsKey(index)) 
-        //        SubTrees.Add(index, new Tree<T>());
+        /// <summary>
+        /// 添加子树节点并设置内容
+        /// </summary>
+        /// <param name="index"></param>
+        /// <param name="content"></param>
+        public void AddPoint(int index, T content)
+        {
+            if (!SubTrees.ContainsKey(index))
+                SubTrees.Add(index, new Tree<T>());
 
-        //    SubTrees[index].Content = content;
-        //}
+            SubTrees[index].Content = content;
+        }
         /// <summary>
         /// 根据节点序列添加节点
         /// </summary>
@@ -63,6 +63,26 @@ namespace StickyNotes.TextTools
                 theTreeNow = theTreeNow.SubTrees[index];
             }
             theTreeNow.Content = content;
+        }
+
+        /// <summary>
+        /// 根据节点序列获得节点
+        /// </summary>
+        /// <param name="indexList">节点相对当前节点的路径</param>
+        public Tree<T> GetPointByIndexList(List<int> indexList)
+        {
+            //被索引的树节点
+            var theTreeNow = this;
+            //遍历序列
+            foreach (var index in indexList)
+            {
+                if (!theTreeNow.SubTrees.ContainsKey(index))
+                    return null;
+
+                theTreeNow = theTreeNow.SubTrees[index];
+            }
+
+            return theTreeNow;
         }
         /// <summary>
         /// 整理出这个表的内容,以驼峰形式显示
