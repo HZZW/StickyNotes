@@ -33,18 +33,18 @@ namespace StickyNotes.TextTools
             if (!SubTrees.ContainsKey(index))
                 SubTrees.Add(index, new Tree<T>());
         }
-        /// <summary>
-        /// 添加子树节点并设置内容
-        /// </summary>
-        /// <param name="index"></param>
-        /// <param name="content"></param>
-        public void AddPoint(int index, T content)
-        {
-            if (!SubTrees.ContainsKey(index)) 
-                SubTrees.Add(index, new Tree<T>());
+        ///// <summary>
+        ///// 添加子树节点并设置内容
+        ///// </summary>
+        ///// <param name="index"></param>
+        ///// <param name="content"></param>
+        //public void AddPoint(int index, T content)
+        //{
+        //    if (!SubTrees.ContainsKey(index)) 
+        //        SubTrees.Add(index, new Tree<T>());
 
-            SubTrees[index].Content = content;
-        }
+        //    SubTrees[index].Content = content;
+        //}
         /// <summary>
         /// 根据节点序列添加节点
         /// </summary>

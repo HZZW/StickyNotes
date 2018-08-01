@@ -110,30 +110,30 @@ namespace StickyNotes.Models
                 OnPropertyChanged(nameof(Content));
             }
         }
-        /// <summary>
-        /// label的长度限制
-        /// </summary>
-        private int _labelLenght;
-        public int LabelLenght
-        {
-            get
-            {
-                //TODO LabelLenght默认长度为20
-                if(_labelLenght==0)
-                    LabelLenght=15;
-                return _labelLenght;
-            }
-            set
-            {
-                if (_labelLenght == value)
-                {
-                    return;
-                }
+        ///// <summary>
+        ///// label的长度限制
+        ///// </summary>
+        //private int _labelLenght;
+        //public int LabelLenght
+        //{
+        //    get
+        //    {
+        //        //TODO LabelLenght默认长度为20
+        //        if(_labelLenght==0)
+        //            LabelLenght=15;
+        //        return _labelLenght;
+        //    }
+        //    set
+        //    {
+        //        if (_labelLenght == value)
+        //        {
+        //            return;
+        //        }
 
-                _labelLenght = value;
-                OnPropertyChanged(nameof(LabelLenght));
-                UpdateLabel();
-            } }
+        //        _labelLenght = value;
+        //        OnPropertyChanged(nameof(LabelLenght));
+        //        UpdateLabel();
+        //    } }
         /// <summary>
         /// 标题
         /// </summary>

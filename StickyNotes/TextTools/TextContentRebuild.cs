@@ -183,19 +183,20 @@ namespace StickyNotes.TextTools
 
             //抽取附加信息,去除分隔符,抽取正文内容
             //默认将超过DividingLineLength长度的DividingLineUnit都看作分割符
-            var sketchContentPattern = @"(" + DividingLineUnit + @"){" + DividingLineLength + @",}[\r\n]?"; ;
+            var sketchContentPattern = @"(" + DividingLineUnit + @"){" + DividingLineLength + @",}[\r\n]?" ;
             var sketchContentRegex = new Regex(sketchContentPattern);
 
             //BUG limit是3 最后得到的SplitArray可能为得到的数组的分割情况为1个元素,3个元素,5个元素;
             const int limit = 3;
             var SplitArray = sketchContentRegex.Split(oldString, limit);
 
-            //剪影部分
-            var oldStringSketch = "";
+            //剪影部分,因为之后没用到,所以先注释了
+            //var oldStringSketch = "";
+
             //可修改剪影部分
             var oldStringModifiableSketch = "";
             //正文部分
-            var oldStringContent = "";
+            string oldStringContent;
 
 
             switch (SplitArray.Length)
@@ -206,12 +207,12 @@ namespace StickyNotes.TextTools
                     oldStringContent = SplitArray[0];
                     break;
                 case 3:
-                    oldStringSketch = SplitArray[0];
+                    //oldStringSketch = SplitArray[0];
                     //oldStringModifiableSketch = "";
                     oldStringContent = SplitArray[2];
                     break;
                 case 5:
-                    oldStringSketch = SplitArray[0];
+                    //oldStringSketch = SplitArray[0];
                     oldStringModifiableSketch = SplitArray[2];
                     oldStringContent = SplitArray[4];
                     break;

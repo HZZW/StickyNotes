@@ -86,7 +86,6 @@ namespace StickyNotes.TextTools
                     {
                         var theRow = _table[rowNum];
                         var theContent = "";
-                        var theContentToShow = "";
                         if (!theRow.ContainsKey(lineNum))
                         {
                             //无操作
@@ -97,7 +96,7 @@ namespace StickyNotes.TextTools
 
                         }
                         //得到当前单元的当前行应该显示的内容
-                        theContentToShow = CutTheContent(theContent, charAmountPerLine, theLineNumOfTheUnit);
+                        var theContentToShow = CutTheContent(theContent, charAmountPerLine, theLineNumOfTheUnit);
                         theComposingTable = theComposingTable + theContentToShow;
                         //添加行距符号
                         theComposingTable = theComposingTable + MakerRowDistanceString(rowDistance);
