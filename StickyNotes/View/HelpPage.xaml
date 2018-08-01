@@ -35,7 +35,7 @@
             <Paragraph Margin="16,4,4,4">6). 未选中内容+Ctrl+o,自动生成空的Event标记.</Paragraph>
             <Paragraph Margin="16,4,4,4">7). 未选中内容+Ctrl+i,自动生成空的Table标记.</Paragraph>
             <Paragraph Margin="16,4,4,4">8). 未选中内容+Ctrl+u,自动生成空的Label标记.</Paragraph>
-            <Paragraph Margin="16,4,4,4">9).主界面下：Ctrl+D,删除当前便签</Paragraph>
+            <Paragraph Margin="16,4,4,4">9).主界面下：Ctrl+D，删除当前便签</Paragraph>
             <Paragraph Margin="16,4,4,4">10).主界面下：Ctrl+S，新建便签</Paragraph>
             <Paragraph Margin="16,4,4,4">11).主界面下：Ctrl+T，设置当前便签提醒</Paragraph>
             <Paragraph Margin="4,4,4,4">4.目标:</Paragraph>
