@@ -119,8 +119,8 @@ namespace StickyNotes.Models
             get
             {
                 //TODO LabelLenght默认长度为20
-                if(_labelLenght==0)
-                    LabelLenght=15;
+                if (_labelLenght == 0)
+                    LabelLenght = 15;
                 return _labelLenght;
             }
             set
@@ -133,7 +133,8 @@ namespace StickyNotes.Models
                 _labelLenght = value;
                 OnPropertyChanged(nameof(LabelLenght));
                 UpdateLabel();
-            } }
+            }
+        }
         /// <summary>
         /// 标题
         /// </summary>
@@ -240,6 +241,10 @@ namespace StickyNotes.Models
             string labelPattern = @"^\s*?\[\s*Label\s*:\d(\s*?\.\s*?\d)*\s*?\](?<labelContent>.*?)[\r\n]";
             Label = Regex.Match(Content, labelPattern).Groups["labelContent"].Value;
 
+            if (Label == "")
+            {
+                Label = Regex.Match(Content, @"^\s*?(?<labelContent>[^\r\n]{0," + LabelLenght + @"})").Groups["labelContent"].Value;
+            }
         }
         /// <summary>
         /// 更新磁贴

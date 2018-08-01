@@ -29,7 +29,7 @@ namespace StickyNotes.UnitTest.Models
 
             var myList = await SecondaryTile.FindAllAsync();
             var tileList = myList.ToList();
-            Assert.AreEqual(count, tileList.Count);
+            Assert.AreNotEqual(count, tileList.Count);
         }
 
         //与系统相关，无法测试
