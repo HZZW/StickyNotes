@@ -254,6 +254,10 @@ namespace StickyNotes.ViewModels {
             }
             Note.Remove(theNote);
 
+            if (Note.Count == 0)
+            {
+                AddNoteCommand.Execute(null);
+            }
 
         }));
         /// <summary>
