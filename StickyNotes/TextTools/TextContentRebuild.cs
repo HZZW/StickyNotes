@@ -464,7 +464,8 @@ namespace StickyNotes.TextTools
         /// <param name="match">匹配</param>
         private static void RegisterEvent(Match match)
         {
-            var index = Convert.ToInt32(match.Groups["index"].Value);
+
+            int.TryParse(match.Groups["index"].Value, out var index);
             var eventContent = match.Groups["eventContent"].Value;
             if (!EventList.ContainsKey(index))
                 EventList.Add(index, eventContent);
@@ -487,6 +488,7 @@ namespace StickyNotes.TextTools
 
             foreach (var indexNumString in indexNumStrings)
             {
+
                 indexNumList.Add(Convert.ToInt32(indexNumString));
 
             }
