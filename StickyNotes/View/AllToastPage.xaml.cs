@@ -1,6 +1,4 @@
 ﻿using Windows.UI.Xaml;
-using Windows.UI.Xaml.Controls;
-using StickyNotes.Models;
 
 // https://go.microsoft.com/fwlink/?LinkId=234238 上介绍了“空白页”项模板
 

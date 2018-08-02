@@ -167,7 +167,7 @@
                     <TextBlock Grid.Column="2" 
                            Text="{Binding Label}" 
                            Foreground="{ThemeResource MyForegroundBrush}" 
-                           Margin="0,0,8,0" 
+                           Margin="0,0,8,0"
                            VerticalAlignment="Center" 
                            Padding="2"/>
                 </Grid>
