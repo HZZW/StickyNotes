@@ -75,11 +75,13 @@ namespace StickyNotes.ViewModels {
                 if (_selectNote != null)
                 {
                     _selectNote.Selected = Visibility.Collapsed;
+                    _selectNote.LastChoice = false;
                 }
                 _selectNote = value;
                 if (_selectNote != null)
                 {
                     _selectNote.Selected = Visibility.Visible;
+                    _selectNote.LastChoice = true;
                 }
                 OnPropertyChanged(nameof(SelectNote));
             }
@@ -207,6 +209,10 @@ namespace StickyNotes.ViewModels {
             foreach (var note in notes)
             {
                 Note.Add(note);
+                if (note.LastChoice == true)
+                {
+                    SelectNote = note;
+                }
             }
         }));
         /// <summary>
@@ -239,8 +245,16 @@ namespace StickyNotes.ViewModels {
             if(Notification.Instance.Show().Contains(theNote.Id.ToString()))
                 CancelNotificationCommand.Execute(theNote);
 
-            if (theNote == SelectNote) SelectNote = null;
+            if (theNote == SelectNote)
+            {
+                if (Note.Count == 0)
+                    SelectNote = null;
+                else
+                    SelectNote = Note[0];
+            }
             Note.Remove(theNote);
+
+
         }));
         /// <summary>
         /// 设置note的时间提示
@@ -681,5 +695,6 @@ namespace StickyNotes.ViewModels {
             textBox.SelectionStart = lastSelectStart;
         }
 
+        
     }
 }

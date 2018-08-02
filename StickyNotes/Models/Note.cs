@@ -14,6 +14,8 @@ namespace StickyNotes.Models
     [Serializable]
     public class Note:INotifyPropertyChanged
     {
+
+
         /// <summary>
         /// Note唯一标识
         /// </summary>
@@ -211,6 +213,12 @@ namespace StickyNotes.Models
                 OnPropertyChanged(nameof(Tag));
             }
         }
+        /// <summary>
+        /// 上次保存时处于被选中的状态
+        /// </summary>
+        private bool _lastChoice;
+        public bool LastChoice { get; set; }
+
 
         /// <summary>
         /// 属性改变事件
