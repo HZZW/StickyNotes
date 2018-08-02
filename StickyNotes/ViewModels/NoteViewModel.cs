@@ -409,7 +409,8 @@ namespace StickyNotes.ViewModels {
         /// </summary>
         public RelayCommand<Note> DeleteTileCommand =>
             _deleteTileCommand ?? (_deleteTileCommand = new RelayCommand<Note>(note =>
-                {
+            {
+                    if (note == null) return;
                     var theNote = GetNoteById(note.Id);
                     if (theNote?.Content == null) return;
                     Tile.DeleteTile(theNote.Id);
