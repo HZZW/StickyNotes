@@ -369,7 +369,7 @@
                                 <FontIcon Glyph="&#xE71D;"/>
                             </MenuFlyoutItem.Icon>
                         </MenuFlyoutItem>
-                        <MenuFlyoutItem Text="重构选中" Command="{Binding RebuildSelectedContentCommand}">
+                        <MenuFlyoutItem Text="文本整理" Command="{Binding RebuildSelectedContentCommand}">
                             <MenuFlyoutItem.Icon>
                                 <FontIcon Glyph="&#xE170;"/>
                             </MenuFlyoutItem.Icon>
