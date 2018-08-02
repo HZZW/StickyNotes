@@ -258,6 +258,7 @@ namespace StickyNotes.ViewModels {
                 else
                     SelectNote = Note.FirstOrDefault(p=>p.LastChoice==false);
             }
+            DeleteTileCommand.Execute(theNote);
             Note.Remove(theNote);
 
             if (Note.Count == 0)
