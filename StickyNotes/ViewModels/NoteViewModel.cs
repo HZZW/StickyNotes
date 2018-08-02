@@ -256,7 +256,7 @@ namespace StickyNotes.ViewModels {
                 if (Note.Count == 0)
                     SelectNote = null;
                 else
-                    SelectNote = Note[0];
+                    SelectNote = Note.FirstOrDefault(p=>p.LastChoice==false);
             }
             Note.Remove(theNote);
 
