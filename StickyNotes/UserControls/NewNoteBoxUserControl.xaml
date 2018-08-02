@@ -22,7 +22,7 @@
             TextWrapping="Wrap"
             Text="{Binding SelectNote.Content,Mode=TwoWay}"
             Foreground="{ThemeResource MyForegroundBrush}"
-            SelectionHighlightColor="Red"
+            SelectionHighlightColor="{ThemeResource MySelectBrush}"
             BorderThickness="0"
             TextChanged="TextBox_OnTextChanged" 
             Style="{StaticResource MyTextBoxStyle}" 
