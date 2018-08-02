@@ -50,8 +50,9 @@
         <CommandBar Grid.Row="2"
                     OverflowButtonVisibility="Collapsed"
                     DefaultLabelPosition="Right"
-                    Background="#00000000">
-            <AppBarButton 
+                    Background="{ThemeResource MyBackgroundBrush}">
+            <AppBarButton Background="{ThemeResource MyBackgroundBrush}"
+                          Foreground="{ThemeResource MyForegroundBrush }"
                           Icon="Back"
                           Label="Back"
                           Click="BackButton_OnClick" />

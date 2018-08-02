@@ -203,14 +203,6 @@
     </UserControl.Resources>
 
     <Grid Background="{ThemeResource ApplicationPageBackgroundThemeBrush}">
-        <Border BorderBrush="Black"
-                BorderThickness="1"
-                Grid.Column="0"
-                Height="400">
-            <Border.Background>
-                <media:BackdropBlurBrush Amount="10" />
-            </Border.Background>
-        </Border>
         <!--汉堡菜单开关-->
         <Button Name="PaneOpenButton" 
                 FontFamily="Segoe MDL2 Assets" 

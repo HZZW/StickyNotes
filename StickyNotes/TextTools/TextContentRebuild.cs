@@ -18,28 +18,28 @@ namespace StickyNotes.TextTools
         //----------------------匹配模式---------------------//
            
         //用于匹配Date的Pattern
-        private const  string DateTagPattern = @"^\s*Date:(?<index>\d*):(?<year>\d{4})[\.|年](?<month>\d{1,2})[\.|月](?<day>\d{1,2})(日)?";
+        private const  string DateTagPattern = @"^\s*Date\s*:\s*(?<index>\d*)\s*:\s*(?<year>\d{4})\s*[\.|年]\s*(?<month>\d{1,2})\s*[\.|月]\s*(?<day>\d{1,2})(日)?\s*";
         private const string DatePattern = @"\s*(?<year>\d{4})\s*[\.|年]\s*(?<month>\d{1,2})\s*[\.|月]\s*(?<day>\d{1,2})\s*(日)?\s*";
         private const string DateTagReplacePatternWithoutIndex = @"%%Date::$2年$3月$4日%%";
         public const string DateTagTemplate = "%%Date::年月日%%";
         public const int DateTagTemplateBackspace = 6;
         public const int DateTagTemplateForwordspace = 7;
         //用于匹配Event的Pattern
-        private const string EventTagPattern = @"^\s*Event:(?<index>\d*):(?<eventContent>.*)";
+        private const string EventTagPattern = @"^\s*Event\s*:\s*(?<index>\d*)\s*:\s*(?<eventContent>.*)\s*";
         private const string EventPattern = @"\s*(?<eventContent>.*)\s*";
         private const string EventTagReplacePatternWithoutIndex = @"%%Event::$1%%";
         public const string EventTagTemplate = "%%Event::%%";
         public const int EventTagTemplateBackspace = 3;
         public const int EventTagTemplateForwordspace = 8;
         //用于匹配Label的Pattern
-        private const string LabelTagPattern = @"^\s*Label:(?<index>\d+(\.\d+)*):(?<labelContent>.*)";
+        private const string LabelTagPattern = @"^\s*Label\s*:\s*(?<index>\d+(\.\d+)*)\s*:\s*(?<labelContent>.*)\s*";
         private const string LabelPattern = @"(?<labelContent>.*)";
         private const string LabelTagReplacePatternWithoutIndex = @"%%Label::$1%%";
         public const string LabeltTagTemplate = "%%Label::%%";
         public const int LabelTagTemplateBackspace = 3;
         public const int LabelTagTemplateForwordspace = 8;
         //用于匹配Table的Pattern
-        private const string TableTagPattern = @"^\s*Table:(?<index>\d*):(?<row>\d*):(?<column>\d*):(?<tableContent>.*)";
+        private const string TableTagPattern = @"^\s*Table\s*:\s*(?<index>\d*)\s*:\s*(?<row>\d*)\s*:\s*(?<column>\d*)\s*:\s*(?<tableContent>.*)\s*";
         private const string TablePattern = @"(?<tableContent>.*)";
         private const string TableTagReplacePatternWithoutIndex = @"%%Table::::$1%%";
         public const string TabletTagTemplate = "%%Table::::%%";
@@ -464,7 +464,7 @@ namespace StickyNotes.TextTools
         /// <param name="match">匹配</param>
         private static void RegisterEvent(Match match)
         {
-            var index = Convert.ToInt32(match.Groups["index"].Value);
+            if (!int.TryParse(match.Groups["index"].Value, out var index)) return;
             var eventContent = match.Groups["eventContent"].Value;
             if (!EventList.ContainsKey(index))
                 EventList.Add(index, eventContent);
