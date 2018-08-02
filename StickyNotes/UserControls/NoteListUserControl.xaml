@@ -219,15 +219,15 @@
                    CompactPaneLength="48" 
                    OpenPaneLength="180" 
                    IsPaneOpen="False">
-
             <SplitView.Pane>
                 <Grid Name="RootGrid"
-                    Background="{ThemeResource MyBackgroundBrush}">
+                    Background="{ThemeResource MyBackgroundBrush}"
+                      BorderBrush="{ThemeResource MyBorderBrush}"
+                      BorderThickness="0.5">
                     <Grid.RowDefinitions>
                         <!--空出Button的高度-->
                         <RowDefinition Height="32" />
                         <RowDefinition Height="*" />
-                        <RowDefinition Height="Auto" />
                     </Grid.RowDefinitions>
                     <!--一级菜单-->
                     <ListView Name="NavMenuPrimaryListView" 
