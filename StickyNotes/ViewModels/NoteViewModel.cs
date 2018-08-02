@@ -450,6 +450,7 @@ namespace StickyNotes.ViewModels {
         public RelayCommand<Note> AddTileCommand =>
             _addTileCommand ?? (_addTileCommand = new RelayCommand<Note>(note =>
             {
+                if (note == null) return;
                 var theNote = GetNoteById(note.Id);
 
                 if (theNote?.Content == null) return;
