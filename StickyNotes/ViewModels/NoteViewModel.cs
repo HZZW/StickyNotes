@@ -45,19 +45,13 @@ namespace StickyNotes.ViewModels {
             Note.CollectionChanged += UpdateTagList;
             Note.CollectionChanged += UpdateAllTile;
         }
-
-        
-
         public NoteViewModel():this(new LocalNoteService())
         {
             PullCommand.Execute(null);
         }
         //-----------------------成员变量---------------------//
-
-        
-
         /// <summary>
-        /// 
+        /// 标记为favorite的Note的数量
         /// </summary>
         private int _favoriteCount=0;
         
@@ -121,7 +115,6 @@ namespace StickyNotes.ViewModels {
         public ObservableCollection<string> Tag
         {
             get => _tag ?? (_tag = new ObservableCollection<string>());
-            private set => _tag = value;
         }
         
         /// <summary>
@@ -168,7 +161,6 @@ namespace StickyNotes.ViewModels {
                 return _notificatioNotes;
 
             }
-           private set => _notificatioNotes = value;
         }
 
         //-----------------------命令-------------------------//
@@ -405,8 +397,7 @@ namespace StickyNotes.ViewModels {
             _updateTileCommand ?? (_updateTileCommand = new RelayCommand<Note>(async note =>
                 {
                     var theNote = GetNoteById(note.Id);
-                    if (theNote == null) return;
-                    if (theNote.Content == null) return;
+                    if (theNote?.Content == null) return;
                     await Tile.UpdataTileContent(theNote.Label, theNote.Content, theNote.Id);
                 }));
         /// <summary>
@@ -417,11 +408,10 @@ namespace StickyNotes.ViewModels {
         /// 删除Note的磁贴
         /// </summary>
         public RelayCommand<Note> DeleteTileCommand =>
-            _deleteTileCommand ?? (_deleteTileCommand = new RelayCommand<Note>(async note =>
+            _deleteTileCommand ?? (_deleteTileCommand = new RelayCommand<Note>(note =>
                 {
                     var theNote = GetNoteById(note.Id);
-                    if (theNote == null) return;
-                    if (theNote.Content == null) return;
+                    if (theNote?.Content == null) return;
                     Tile.DeleteTile(theNote.Id);
                 }));
         /// <summary>
@@ -435,8 +425,8 @@ namespace StickyNotes.ViewModels {
             _addTileCommand ?? (_addTileCommand = new RelayCommand<Note>(note =>
             {
                 var theNote = GetNoteById(note.Id);
-                if (theNote == null) return;
-                if (theNote.Content == null) return;
+
+                if (theNote?.Content == null) return;
 
                 Tile.FirstCreatTie(theNote.Label, theNote.Content, theNote.Id);
             }));
@@ -477,7 +467,7 @@ namespace StickyNotes.ViewModels {
                     if (SelectNote == null) return;
                     if (SelectNote.Content == null) SelectNote.Content = "";
 
-                    var theInsertString = TextContentRebuild._dateTagTemplate;
+                    var theInsertString = TextContentRebuild.DateTagTemplate;
 
                     if (theTextBox.SelectionLength > 0)
                     {
@@ -489,7 +479,7 @@ namespace StickyNotes.ViewModels {
                     }
                     
                     //插入内容
-                   InsertTemplate(theTextBox, theInsertString, TextContentRebuild._dateTagTemplateForwordspace);
+                   InsertTemplate(theTextBox, theInsertString, TextContentRebuild.DateTagTemplateForwordspace);
                    
 
                 }));
@@ -508,7 +498,7 @@ namespace StickyNotes.ViewModels {
                     if (SelectNote == null) return;
                     if (SelectNote.Content == null) SelectNote.Content = "";
 
-                    var theInsertString = TextContentRebuild._eventTagTemplate;
+                    var theInsertString = TextContentRebuild.EventTagTemplate;
 
                     if (theTextBox.SelectionLength > 0)
                     {
@@ -519,7 +509,7 @@ namespace StickyNotes.ViewModels {
                         theInsertString = TextContentRebuild.MakeEventTemplate(theSelectText);
                     }
                     //插入内容
-                    InsertTemplate(theTextBox,theInsertString, TextContentRebuild._eventTagTemplateForwordspace);
+                    InsertTemplate(theTextBox,theInsertString, TextContentRebuild.EventTagTemplateForwordspace);
                     
                 }));
         /// <summary>
@@ -537,7 +527,7 @@ namespace StickyNotes.ViewModels {
                     if (SelectNote == null) return;
                     if (SelectNote.Content == null) SelectNote.Content = "";
 
-                    var theInsertString = TextContentRebuild._tabletTagTemplate;
+                    var theInsertString = TextContentRebuild.TabletTagTemplate;
 
                     if (theTextBox.SelectionLength > 0)
                     {
@@ -549,7 +539,7 @@ namespace StickyNotes.ViewModels {
                     }
 
                     //插入内容
-                    InsertTemplate(theTextBox, theInsertString, TextContentRebuild._tableTagTemplateForwordspace);
+                    InsertTemplate(theTextBox, theInsertString, TextContentRebuild.TableTagTemplateForwordspace);
 
                 }));
         /// <summary>
@@ -567,7 +557,7 @@ namespace StickyNotes.ViewModels {
                     if (SelectNote == null) return;
                     if (SelectNote.Content == null) SelectNote.Content = "";
 
-                    var theInsertString = TextContentRebuild._labeltTagTemplate;
+                    var theInsertString = TextContentRebuild.LabeltTagTemplate;
 
                     if (theTextBox.SelectionLength > 0)
                     {
@@ -579,7 +569,7 @@ namespace StickyNotes.ViewModels {
                     }
 
                     //插入内容
-                    InsertTemplate(theTextBox, theInsertString, TextContentRebuild._labelTagTemplateForwordspace);
+                    InsertTemplate(theTextBox, theInsertString, TextContentRebuild.LabelTagTemplateForwordspace);
                 }));
 
 
@@ -612,8 +602,8 @@ namespace StickyNotes.ViewModels {
         }
         private void UpdateNoteListByFavorite()
         {
-            _favoriteCount = Note.Count(p => p.Favorite == true);
-            var favoriteNotes = Note.Where(p=>p.Favorite==true).ToList();
+            _favoriteCount = Note.Count(p => p.Favorite);     //选择出Favorite为true的note
+            var favoriteNotes = Note.Where(p=>p.Favorite).ToList();
 
             var commonNotes = Note.Where(p => p.Favorite == false).ToList();
 

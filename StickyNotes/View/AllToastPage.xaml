@@ -19,7 +19,7 @@
         <StackPanel Grid.Row="0" 
                     Width="19999" 
                     x:Name="DragArea" 
-                    Background="#FFFFFFD0"/>
+                    Background="{ThemeResource MyBackgroundBrush}"/>
 
         <ListView     Grid.Row="1"
                       BorderBrush="White"

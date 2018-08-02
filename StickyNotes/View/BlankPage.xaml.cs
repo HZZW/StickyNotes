@@ -21,8 +21,6 @@ OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
 SOFTWARE. */
 
 using System;
-using System.Runtime.CompilerServices;
-using System.Threading.Tasks;
 using Windows.Foundation;
 using Windows.UI.Xaml;
 using Windows.ApplicationModel.Core;
@@ -287,6 +285,13 @@ namespace StickyNotes {
             var note = (DataContext as NoteViewModel)?.SelectNote;
             (Application.Current.Resources["NoteViewModel"] as NoteViewModel)?.DeleteTileCommand.Execute(note);
             Tile.DeleteTile(1);
+        }
+
+        private void AboutMenuFlyoutItem_OnClick(object sender, RoutedEventArgs e)
+        {
+            AboutContentDialog about = new AboutContentDialog();
+            ;
+            about.ShowAsync();
         }
     }
 }

@@ -2,7 +2,6 @@
 using System.ComponentModel;
 using System.Runtime.CompilerServices;
 using System.Text.RegularExpressions;
-using System.Threading.Tasks;
 using Windows.UI.Xaml;
 using StickyNotes.Annotations;
 
@@ -92,7 +91,6 @@ namespace StickyNotes.Models
                 OnPropertyChanged(nameof(Favorite));
             }
         }
-
         /// <summary>
         /// 内容
         /// </summary>
@@ -112,15 +110,17 @@ namespace StickyNotes.Models
                 OnPropertyChanged(nameof(Content));
             }
         }
-        
+        /// <summary>
+        /// label的长度限制
+        /// </summary>
         private int _labelLenght;
         public int LabelLenght
         {
             get
             {
-                //TODO LabelLenght默认长度为20
-                if(_labelLenght==0)
-                    LabelLenght=15;
+                //TODO LabelLenght默认长度为15
+                if (_labelLenght == 0)
+                    LabelLenght = 15;
                 return _labelLenght;
             }
             set
@@ -133,7 +133,8 @@ namespace StickyNotes.Models
                 _labelLenght = value;
                 OnPropertyChanged(nameof(LabelLenght));
                 UpdateLabel();
-            } }
+            }
+        }
         /// <summary>
         /// 标题
         /// </summary>
@@ -157,7 +158,6 @@ namespace StickyNotes.Models
                 OnPropertyChanged(nameof(Label));
             }
         }
-
         /// <summary>
         /// 作者
         /// </summary>
@@ -211,6 +211,11 @@ namespace StickyNotes.Models
                 OnPropertyChanged(nameof(Tag));
             }
         }
+
+        /// <summary>
+        /// 属性改变事件
+        /// 不添加序列化中 
+        /// </summary>
         [field: NonSerialized]
         public event PropertyChangedEventHandler PropertyChanged;
         [NotifyPropertyChangedInvocator]
@@ -218,8 +223,11 @@ namespace StickyNotes.Models
         {
             PropertyChanged?.Invoke(this, new PropertyChangedEventArgs(propertyName));
         }
+
         /// <summary>
         /// 更新Label
+        ///
+        /// 在Tag改变时调用
         /// </summary>
         private void UpdateLabel()
         {
@@ -233,9 +241,15 @@ namespace StickyNotes.Models
             string labelPattern = @"^\s*?\[\s*Label\s*:\d(\s*?\.\s*?\d)*\s*?\](?<labelContent>.*?)[\r\n]";
             Label = Regex.Match(Content, labelPattern).Groups["labelContent"].Value;
 
+            if (Label == "")
+            {
+                Label = Regex.Match(Content, @"^\s*?(?<labelContent>[^\r\n]{0," + LabelLenght + @"})").Groups["labelContent"].Value;
+            }
         }
         /// <summary>
         /// 更新磁贴
+        ///
+        /// 在Content改变时调用
         /// </summary>
         private void  UpdateTile()
         {
