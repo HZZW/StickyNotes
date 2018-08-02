@@ -205,7 +205,11 @@ namespace StickyNotes.ViewModels {
             var notes = service.Pull()?.ToList();
             //因为拉取的内容包含全部信息,所以需要清除原本信息
             Note.Clear();
-            if (notes == null) return;
+            if (notes == null)
+            {
+                AddNoteCommand.Execute(null);
+                return;
+            }
             foreach (var note in notes)
             {
                 Note.Add(note);
@@ -214,6 +218,8 @@ namespace StickyNotes.ViewModels {
                     SelectNote = note;
                 }
             }
+
+            
         }));
         /// <summary>
         /// 添加新Note
