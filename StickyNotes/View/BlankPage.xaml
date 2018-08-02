@@ -241,7 +241,7 @@
         </Style>
     </Page.Resources>-->
     <!--x:Name="MainGrid"-->
-<Grid Background="White" 
+    <Grid Background="White" 
           IsTapEnabled="True">
         <Grid.RowDefinitions>
             <!--x:Name="MasterRow"-->

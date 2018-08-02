@@ -211,7 +211,7 @@ namespace StickyNotes {
 
             var noteViewModel = Application.Current.Resources["NoteViewModel"] as NoteViewModel;
             var note = (DataContext as NoteViewModel)?.SelectNote;
-            (Application.Current.Resources["NoteViewModel"] as NoteViewModel)?.DeleteTileCommand.Execute(note);
+            (Application.Current.Resources["NoteViewModel"] as NoteViewModel)?.DeleteNoteCommand.Execute(note);
             noteViewModel?.DeleteNoteCommand.Execute(note);
           
         }
