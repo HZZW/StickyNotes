@@ -7,6 +7,7 @@ using System.Linq;
 using Windows.UI.Notifications;
 using Windows.UI.Popups;
 using Windows.UI.Xaml.Controls;
+using StickyNotes.UserControls;
 
 namespace StickyNotes.Models
 {
@@ -107,14 +108,8 @@ namespace StickyNotes.Models
             }
             else
             {
-                ContentDialog s = new ContentDialog()
-                {
-                    Title = "操作非法",
-                    Content = "设定时间已过期",
-                    PrimaryButtonText = "确定",
-                    FullSizeDesired = false
-                };
-                s.ShowAsync();
+                var notifyPopup = new NotifyPopup("设定时间已过期");
+                notifyPopup.Show();
             }
         }
 

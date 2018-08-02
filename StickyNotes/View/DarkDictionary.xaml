@@ -6,4 +6,5 @@
     <SolidColorBrush x:Key="MyForegroundBrush" Color="White"/>
     <SolidColorBrush x:Key="MyTextBackgroundBrush" Color="Black"/>
     <SolidColorBrush x:Key="MyBorderBrush" Color="White"/>
+    <SolidColorBrush x:Key="MySelectBrush" Color="Green"/>
 </ResourceDictionary>
