@@ -329,14 +329,14 @@
                     FontWeight="Normal" 
                     Click="DeleteButton_Click"
                     FontFamily="Segoe MDL2 Assets" />
-            <Button Height="32" 
+            <!--<Button Height="32" 
                     Width="48" 
                     Content="&#xE170;" 
                     Background="{ThemeResource MyBackgroundBrush}"
                     Foreground="{ThemeResource MyForegroundBrush}"
                     FontWeight="Normal" 
                     Command="{Binding RebuildSelectedContentCommand}"
-                    FontFamily="Segoe MDL2 Assets" />
+                    FontFamily="Segoe MDL2 Assets" />-->
             <!--<Button Height="32" 
                     Width="48" 
                     Content="&#xE105;" 
@@ -353,20 +353,25 @@
 
                 <Button.Flyout>
                     <MenuFlyout>
-                        <MenuFlyoutItem Text="提醒" Click="ToastButton_Click">
+                        <MenuFlyoutItem Text="设定提醒" Click="ToastButton_Click">
                             <MenuFlyoutItem.Icon>
                                 <FontIcon Glyph="&#xED5A;"/>
                             </MenuFlyoutItem.Icon>
                         </MenuFlyoutItem>
-                        <MenuFlyoutItem Text="提醒取消"
+                        <MenuFlyoutItem Text="取消提醒"
                                         Click="ToastCancelButton_Click">
                             <MenuFlyoutItem.Icon>
                                 <FontIcon Glyph="&#xE916;" />
                             </MenuFlyoutItem.Icon>
                         </MenuFlyoutItem>
-                        <MenuFlyoutItem Text="全部提醒" Click="AllToastButton_Click">
+                        <MenuFlyoutItem Text="浏览提醒" Click="AllToastButton_Click">
                             <MenuFlyoutItem.Icon>
                                 <FontIcon Glyph="&#xE71D;"/>
+                            </MenuFlyoutItem.Icon>
+                        </MenuFlyoutItem>
+                        <MenuFlyoutItem Text="重构选中" Command="{Binding RebuildSelectedContentCommand}">
+                            <MenuFlyoutItem.Icon>
+                                <FontIcon Glyph="&#xE170;"/>
                             </MenuFlyoutItem.Icon>
                         </MenuFlyoutItem>
                         <MenuFlyoutItem Text="生成磁贴" Click="TileButton_Click">

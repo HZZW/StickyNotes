@@ -278,9 +278,10 @@ namespace StickyNotes.ViewModels {
         /// </summary>
         public RelayCommand<Note> CancelNotificationCommand => _cancelNotificationCommand ?? (_cancelNotificationCommand=new RelayCommand<Note>(note =>
         {
-            var theNote = GetNoteById(note.Id);
-            if(theNote!=null)
+            if(note == null) return;
+            if(GetNoteById(note.Id) != null)
             {
+                var theNote = GetNoteById(note.Id);
                 //TODO 或许换成其他的值作为note取消提醒更好,不过没找到可替代的方式
                 note.NotificationDateTime = DateTime.MinValue;
                 //通知系统取消提醒
