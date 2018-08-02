@@ -7,6 +7,7 @@
     mc:Ignorable="d"
     Title="关于此应用"
     PrimaryButtonText="查看帮助"
+    SecondaryButtonText="返回"
     PrimaryButtonClick="ContentDialog_PrimaryButtonClick">
 
     <Grid Margin="0,0,12.796,-21.867">

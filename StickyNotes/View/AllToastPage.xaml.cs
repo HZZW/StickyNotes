@@ -14,7 +14,7 @@ namespace StickyNotes.View
             InitializeComponent();
 
             Window.Current.SetTitleBar(DragArea);
-            
+
 
         }
 
